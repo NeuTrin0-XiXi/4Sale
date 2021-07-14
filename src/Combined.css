@@ -1,0 +1,85 @@
+/* Navbar */
+
+.navBarList{
+display: flex;
+justify-content: space-around;
+font-family: Poppins;
+font-style: 'Zen Loop', cursive;
+font-weight: normal;
+font-size: 24px;
+margin :-26px;
+padding: 37px;
+line-height: 36px;
+flex-wrap: wrap;
+
+}
+
+.inputbar{
+    height: 29px;
+    width: 416px;
+    border: 2px solid black;
+    border-radius: 7px;
+    margin: -9px;
+    padding: 5px;
+}
+
+.categoryDD{
+    margin: -89px;
+    padding: 4px;
+    height: -3px;
+    width: 137px;
+    border: 2px solid black;
+    border-radius: 7px;
+    font-size: 18px;
+    font-family: Poppins;
+}
+.logo{
+    font-family: Poppins;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 61px;
+    line-height: 96px;
+    color: #62C1AD;
+    margin: -53px;
+    padding: 22px;
+    transition: all 0.1s; 
+    cursor: pointer;
+}
+
+ .partOfNav{
+    font-size: 23px;
+    margin: -7px;
+    padding: 10px;
+    transition: all 0.1s; 
+    cursor: pointer;
+}
+
+.partOfNav:hover{
+    text-shadow: 3px 3px 3px rgb(164, 168, 180);
+    font-size: 27px ;
+}
+
+#home{
+    margin-left: -24px;
+    margin-right: -62px;
+}
+
+#about{
+    margin-left: 23px;
+    margin-right: 23px;
+}
+#buy{
+    margin-left:-64px ;
+}
+
+#sell{
+    margin-left: -32px;
+}
+
+#contactUs{
+    margin-right: 44px;
+    margin-left: -36px;
+}
+
+/* Navbar Css Ends Here */
+/* ___________________________________________________________________________________________________________________ */
