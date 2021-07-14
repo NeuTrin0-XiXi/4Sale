@@ -23,8 +23,10 @@ const Navbar = () => {
                 </select>
                 </li>
                 <li className = "searchBar">
+            <font>
             <input type = "text" className = "inputbar" placeholder = "Search Here ">    
             </input>
+            </font>
             </li>
             <li id = "id"  className ="partOfNav">Login/Signup</li>
                 </ul>

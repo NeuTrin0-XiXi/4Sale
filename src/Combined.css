@@ -1,5 +1,7 @@
 /* Navbar */
 
+
+
 .navBarList{
 display: flex;
 justify-content: space-around;
@@ -83,3 +85,157 @@ flex-wrap: wrap;
 
 /* Navbar Css Ends Here */
 /* ___________________________________________________________________________________________________________________ */
+ /*Footer Css starts Here*/
+
+ .footer{
+    width: 100vw;
+    height: 300px;
+    background: #333333;
+ }
+
+ .footerTextList{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position:relative;
+    top: 23px;
+    padding: 21px;
+    margin: -5px;
+    font-size: 25px;
+    font-family: Poppins;
+    color: #62C1AD;
+    cursor: pointer;
+ }
+
+
+ .logoFooter{
+     position: relative;
+     top: 94px;
+     left: -13px;
+    font-family: Poppins;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 61px;
+    line-height: 96px;
+    color: #62C1AD;
+    margin: -53px;
+    padding: 22px;
+    transition: all 0.1s; 
+    cursor: pointer;
+ }
+
+ /* Footer css ends here */
+ /* _______________________________________________________________________________________________ */
+/* AboutUs Page css starts here */
+
+
+.aboutUsPage{
+    display: flex;
+    flex-direction: column;
+}
+
+.textImageBox1{
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+    width: 100vw;
+    background-color: #EEEEEE;
+    position: relative;
+    top: -10px;
+}
+
+.textAboutUs1{
+    font-size: 73px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    position: relative;
+    left: -57px;
+    top: 212px;
+    margin: 40px;
+    padding: 23px;
+    width: 508px;
+    height: 198px;
+
+}
+
+.imageAboutUs1{
+    border-radius: 7px;
+    height: 443px;
+    width: 778px;
+    margin: 5px;
+    padding: 6px;
+    position: relative;
+    top: 203px;
+    right: 82px;
+}
+
+.textImageBox2{
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+    width: 100vw;
+    background-color: white;
+    position: relative;
+    top: -10px;
+}
+
+.textAboutUs2{
+    font-size: 73px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    position: relative;
+    left: 623px;
+    top: 212px;
+    margin: 40px;
+    padding: 23px;
+    width: 508px;
+    height: 198px;
+
+}
+
+.imageAboutUs2{
+    border-radius: 7px;
+    height: 443px;
+    width: 778px;
+    margin: 5px;
+    padding: 6px;
+    position: relative;
+    top: 203px;
+    right: 525px;
+}
+
+/* AboutUs ends here */
+/* __________________________________________________________________________________________________________________________________________________ */
+/* sell page starts here */
+
+#sellTextImage{
+    display: flex;
+    flex-direction: row;
+    height: 65vh;
+    width: 100vw;
+    background-color: #EEEEEE;
+    position: relative;
+    top: -10px;
+}
+
+#sellText{
+    font-family: Poppins;
+    font-size: 56px;
+    padding: 19px;
+    margin: 31px;
+    position: relative;
+    top: 3px;
+    left: 49px;
+    height: 23px;
+    width: 396px;
+}
+
+#sellImage{
+    height: 23px;
+    position: relative;
+    top: 23px;
+    right: 23px;
+    width: 23px;
+    margin: 23px;
+    padding: 23px;
+}
