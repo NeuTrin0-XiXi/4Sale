@@ -1,16 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-import SellingPage from './SellingPage';
-// import Footer from './Footer';
-// import Navbar from './Navbar';
+import Footer2 from './Footer2';
+import Sample from './Sample';
+
+
+// import SellingPage from './SellingPage';
+// // import Footer from './Footer';
+// import Navbarnew from './Navbarnew';
 // import AboutUs from './AboutUs';
-// import TileSet from './TileSet';
+// // import TileSet from './TileSet';
 
 
 function App() {
   return (
     <div className="App">
-    <SellingPage />
+      <Sample />
+      <Footer2 />
     </div>
   );
 }

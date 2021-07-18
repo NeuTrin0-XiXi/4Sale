@@ -3,7 +3,7 @@ import Combined from "./Combined.css"
 import Footer from './Footer'
 import Navbar from './Navbar';
 
-function SellingPage() {
+function Selling() {
     return (<div>
         <Navbar />
         <div id = "sellTextImage">
@@ -18,6 +18,14 @@ function SellingPage() {
             </div>
 
         </div>
+        <div className = "sellerForm">
+            <form>
+                <label className = "sellFormText">Product Title</label>               
+                <input id = "productTitle"></input>
+                <label className = "sellFormText" >Product Description</label>
+                <textarea id = "productDescription"></textarea>
+            </form>
+        </div>
         <div>
             <Footer />
         </div>
@@ -25,4 +33,4 @@ function SellingPage() {
     )
 }
 
-export default SellingPage
+export default Selling
