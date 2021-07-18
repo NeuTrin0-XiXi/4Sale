@@ -256,13 +256,14 @@ flex-wrap: wrap;
 
 .footerBox{
     height: 14.5rem !important;
+    bottom: 0px !important;
     background-color: #333333 !important;
 }
 
 .footerText{
     color: white !important;
     font-size: 23px !important;
-    margin-top: 52px !important;
+    margin-top: 15px !important;
     margin-bottom: 10px !important;
     margin-left: -53px !important;
     margin-right: 10px !important;

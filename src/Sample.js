@@ -15,7 +15,7 @@ const Sample = () => {
       <div class="col-md-7">
         <h2 class="featurette-heading">Want to share your belongings?<br /><br /><br /> Post an AD now !!</h2> 
       </div>
-      <div class="col-md-5">
+      <div class="col-md-5 ">
         <img class=" img-fluid bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src = "https://source.unsplash.com/1600x900/?space,elements" alt= "Displat Image SellPage"></img>
       </div>
     </div>
@@ -26,7 +26,7 @@ const Sample = () => {
 
                         <div class="col-md-7 col-lg-8 bg-light ">
                             <br />
-                            <h2 class="mb-3 "><u>Product Details</u></h2>
+                            <h2 class="mb-3 "><u>Product Details</u></h2><br /><br />
                             <form class="needs-validation" novalidate="">
                                 <div class="row g-3">
                                 <div class="col-12">
