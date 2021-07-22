@@ -1,7 +1,7 @@
 import React from 'react'
 import Combined from "./Combined.css"
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function AboutUs() {
     return (

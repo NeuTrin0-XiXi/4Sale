@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-import Footer2 from './Footer2';
-import Sample from './Sample';
+import Footer2 from './components/Footer2';
+import Sample from './components/Sample';
 
 
 // import SellingPage from './SellingPage';
