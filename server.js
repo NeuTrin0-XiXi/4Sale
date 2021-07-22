@@ -1,6 +1,5 @@
 const express=require('express');
 const mongoose=require('mongoose');
-const bodyParser=require('body-parser');
 // const fs=require('fs');
 
 
@@ -11,7 +10,6 @@ app.use('/api',require('./api/routes'));
 
 //Middleware
 // app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 

@@ -41,6 +41,7 @@ const userSchema=new schema({
         unique: true
     }
 });
+const userModel=mongoose.model('user',userSchema);
 
 module.exports={
     itemModel,
