@@ -30,6 +30,19 @@ const itemSchema= new schema({
 });
 const itemModel=mongoose.model('item',itemSchema);
 
+const userSchema=new schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    }
+});
+
 module.exports={
-    itemModel
+    itemModel,
+    user
 }

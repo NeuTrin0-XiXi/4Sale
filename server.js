@@ -5,13 +5,14 @@ const bodyParser=require('body-parser');
 
 
 const app=express();
-app.use('/api',require('./routes/routes'));
+//Using the APIs
+app.use('/api',require('./api/routes'));
 
 
 //Middleware
 // app.use(bodyParser.json());
-
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
 
