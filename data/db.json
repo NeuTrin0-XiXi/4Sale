@@ -1,0 +1,17 @@
+{"product": [
+    {
+        "title": "Football",
+        "body": "Black and white",
+        "author": "Mr.L",
+        "id":1    
+    },
+    {
+        "title": "Pen",
+        "body": "Parker roller ball",
+        "author": "Ryuzaki",
+        "id":2    
+    }
+
+]
+}
+

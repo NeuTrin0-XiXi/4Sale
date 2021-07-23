@@ -252,6 +252,7 @@ flex-wrap: wrap;
 
 .navBarHeader{
     background-color: #333333 !important;
+    width: 100% !important;
 }
 
 .footerBox{
@@ -267,4 +268,44 @@ flex-wrap: wrap;
     margin-bottom: 10px !important;
     margin-left: -53px !important;
     margin-right: 10px !important;
+}
+
+.crousalCustomEdit{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    height: 35.5rem !important;
+}
+
+.NavbarCustomEdit{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.homeTileBox{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.bigContainer{
+    padding-left: 0px  !important;
+    padding-right: 0px  !important;
+    width:100vw !important;
+}
+
+.contactUsMessage{
+    height: 111px !important;
+}
+
+.contactUsTitle
+{
+    color: #62C1AD !important;
+}
+
+.contactInfoElement{
+    margin-top: 25px !important;
+    margin-bottom: 0px !important;
+}
+
+.contactUsFormPart{
+    text-align: center !important;
 }
