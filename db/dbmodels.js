@@ -1,7 +1,8 @@
 const mongoose=require('mongoose');
 const schema=mongoose.Schema;
 
-//Schema structure:
+//Schemas
+//Item Schema:
 const itemSchema= new schema({
     name:{
         type: String,
@@ -23,27 +24,32 @@ const itemSchema= new schema({
         type: Number,
         required: true
     },
-    image: {
-        type: ImageData,
-        required: true
+    categories: {
+        type: [String]
     }
 });
-const itemModel=mongoose.model('item',itemSchema);
 
+//User Schema
 const userSchema=new schema({
     name: {
         type: String,
-        required: true
+        required: [true,"*This field is required"],
+        unique: true
     },
     email: {
         type: String,
-        required: true,
+        required: [true,"*This field is required"],
         unique: true
     }
 });
+
+
+
+//Models
+const itemModel=mongoose.model('items',itemSchema);
 const userModel=mongoose.model('user',userSchema);
 
 module.exports={
     itemModel,
-    user
+    userModel
 }
