@@ -12,8 +12,8 @@ route.get('/',(req,res)=>{
     }).catch(next);
 });
 
-//
-//practice
+
+//post an item
 route.post('/',(req,res)=>{
     Item.create(req.body).then((item)=>{
         res.status(200).send("Item posted");
@@ -22,5 +22,11 @@ route.post('/',(req,res)=>{
 });
 
 
+//Delete an item
+route.delete('/:id',(req,res,next)=>{
+    Item.findByIdAndRemove({_id: req.params.id}).then((item)=>{
+        res.status(200).send(item.name," has been deleted");
+    }).catch(next);
+});
 
 module.exports=route;

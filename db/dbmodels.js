@@ -33,13 +33,17 @@ const itemSchema= new schema({
 const userSchema=new schema({
     name: {
         type: String,
-        required: [true,"*This field is required"],
+        required: [true,"This field is required"],
         unique: true
     },
     email: {
         type: String,
-        required: [true,"*This field is required"],
+        required: [true,"This field is required"],
         unique: true
+    },
+    favourites:{
+        type: [String],
+        default: []
     }
 });
 

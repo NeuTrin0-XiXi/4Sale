@@ -1,6 +1,7 @@
 
 const express=require('express');
 const mongoose=require('mongoose');
+const path=require('path');
 // const fs=require('fs');
 const app=express();
 
@@ -13,9 +14,14 @@ mongoose.connect('mongodb://localhost:27017/4sale').then(()=>{
     console.log("mongoDB connected...")
 });
 
+//Static files
+app.use('/',express.static(__dirname+'/client/build'));
+app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+});
 
 
-//bodyParser middleware
+//bodyParser middleware 
 app.use(express.json());
 
 
@@ -24,6 +30,7 @@ app.use('/api',require('./api/routes'));
 
 //Error handeling
 app.use((err,req,res,next)=>{
+    console.log(err);
     res.status(400).send({error: err.message});
 })
 
