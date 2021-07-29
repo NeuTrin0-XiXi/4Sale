@@ -6,7 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = () => {
     return (
+      
         <div>
+          <br />
             <div id="myCarousel" class="container-fluid carousel slide crousalCustomEdit" data-bs-ride="carousel">
     <div class="carousel-inner crousalCustomEdit">
            

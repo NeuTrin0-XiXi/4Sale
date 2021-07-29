@@ -276,9 +276,8 @@ flex-wrap: wrap;
     height: 35.5rem !important;
 }
 
-.NavbarCustomEdit{
-    padding-left: 0px !important;
-    padding-right: 0px !important;
+.navbarCustom{
+    background-color: #333333 !important;
 }
 
 .homeTileBox{
@@ -308,4 +307,17 @@ flex-wrap: wrap;
 
 .contactUsFormPart{
     text-align: center !important;
+}
+
+.navBarItems{
+    text-decoration : none !important;
+    font-size: 21px !important;
+    transition-property: all !important;
+}
+
+.navBarItems:hover{
+    transition-duration: 0.01s !important;
+    color: aliceblue !important;
+    font-size: 22px !important;
+
 }

@@ -6,7 +6,6 @@ import Navbarnew from './Navbarnew';
 function AboutUs() {
     return (
         <div>
-            <Navbarnew />
             <br /><br /><br />
             <div class="row featurette">
       <div class="col-md-7 d-flex align-items-center">

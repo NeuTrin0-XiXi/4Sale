@@ -8,7 +8,7 @@ import EditProfilecss from './EditProfilecss.css';
 const EditProfile = () => {
     return (
         <div className = "container-fluid d-flex justify-content-center flex-column bd-highlight mb-3 ">
-            < Navbarnew />
+           
             <br /><br /><br /><br /><br />
             <div>
             <div class="container">

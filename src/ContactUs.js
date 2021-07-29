@@ -8,7 +8,7 @@ const ContactUs = () => {
     return (
         <div>
             <div>
-                <Navbarnew />
+                
                 <br /><br /><br />
             </div>
             <div class="container">
