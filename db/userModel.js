@@ -6,12 +6,11 @@ const userSchema=new schema({
     name:{
         type: String,
         required: true,
-        unique: true
+        unique: false
     },
     email:{
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     favourites:{
         type: [schema.Types.ObjectId],

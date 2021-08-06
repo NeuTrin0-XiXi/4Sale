@@ -13,7 +13,8 @@ const itemSchema= new schema({
         default: Date.now
     },
     // user:{
-    //     type: schema.Types.ObjectId
+    //     type: schema.Types.ObjectId,
+    //      ref: 'user'
     // },
     price:{
         type: Number,

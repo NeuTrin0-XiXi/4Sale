@@ -3,37 +3,37 @@
 const express=require('express');
 const route=express.Router();
 const User=require('../db/models').userModel;
+const Item=require('../db/models').itemModel;
 
 //API handlers
-//Get requests
-route.get('/',(req,res,next)=>{
-    User.find(req.body).then((user)=>{
-        res.status(200).send(user)
+//GET requests
+//GET favourites:
+route.get('/favourites/:id',(req,res,next)=>{
+    User.findById(req.params.id).then((user)=>{
+        Item.find({_id: user.favourites}).then((item)=>{
+            res.status(200).send(item);
+        });
     }).catch(next);
 });
 
-// route.get('/',(req,res,next)=>{
-//     User.findOne(req.query).then((user)=>{
-//         res.send(user);
-//     }).catch(next);
-// });
 
-// route.get('/:name',(req,res,next)=>{
-//     User.findOne({name: req.params.name}).then((user)=>{
-//         res.send(user);
-//     }).catch(next);
-// });
+//--------------------------------------------------------------------------//
 
-
-//Post requests
+//POST requests
 route.post('/',(req,res,next)=>{
     User.create(req.body).then((user)=>{
-        res.status(200).send("User posted");
+        res.status(200).send(`User posted`);
         console.log(req.body);
     }).catch(next);
 });
 
 
-
+//-------------------------------------------------------------------------//
+//PUT requests
+route.put('/:id',(req,res,next)=>{
+    User.updateOne({_id: req.params.id},req.body).then((user)=>{
+        res.status(200).send(`user updated`);
+    }).catch(next);
+})
 
 module.exports=route;
