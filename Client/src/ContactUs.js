@@ -1,14 +1,14 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbarnew from './components/Navbarnew';
-import Combined from './components/Combined.css';
-import Footer2 from './components/Footer2'
+import Navbarnew from './Navbarnew';
+import Combined from './Combined.css';
+import Footer2 from './Footer2'
 
 const ContactUs = () => {
     return (
         <div>
             <div>
-                <Navbarnew />
+                
                 <br /><br /><br />
             </div>
             <div class="container">
@@ -95,4 +95,4 @@ const ContactUs = () => {
     )
 }
 
-export default ContactUs;
+export default ContactUs

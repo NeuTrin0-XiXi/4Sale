@@ -1,14 +1,19 @@
+import logo from './logo.svg';
 import './App.css';
-import Navbarnew from './components/Navbarnew';
-import Home from './components/Home';
+import Navbarnew from './Navbarnew';
+import Home from './Home';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Sample from './components/Sample';
+import Sample from './Sample';
 import AboutUs from './AboutUs'
 import ContactUs from './ContactUs'
-import Newnavbar2 from './components/Newnavbar2';
+import Newnavbar2 from './Newnavbar2';
+import TestJSONdb from './TestJSONdb';
+import {Provider} from 'react-redux';
+import store from './store/store';
 
 function App() {
   return (
+    <Provider store = {store}>
     <Router>
       <div className="App">
         <div>
@@ -17,7 +22,7 @@ function App() {
         <div className="content">
           <Switch>
             <Route exact path="/">
-              <Home />
+              <Home/>
             </Route>
             <Route exact path="/aboutUs">
               <AboutUs />
@@ -32,6 +37,7 @@ function App() {
         </div>
       </div>
     </Router>
+    </Provider>
   );
 }
 

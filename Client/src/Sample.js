@@ -1,21 +1,52 @@
-import React from 'react';
+import React ,{ Component } from 'react';
+import { useState , useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbarnew from './Navbarnew';
 import Combined from './Combined.css';
-const Sample = () => {
+import { connect } from 'react-redux';
+import {addItem} from './actions/ActionCreators';
+
+
+
+class Sample extends Component {
+    state = {
+        title: '',
+        description: '',
+        email: '',
+        price: '',
+        category: ''
+      }
+
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        const newItem = {
+            name:this.state.name
+        }
+
+        this.props.addItem(newItem);
+        (alert("Sucessfully Posted AD ..."))
+    }
+
+    onChange = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+
+    }
+    render() {
+       
     return (
         <div>
             <div className="container-fluid ">
                 <main>
                     <div className = "d-flex justify-content-center flex-column bd-highlight mb-3">
-                        <Navbarnew />
+                        
                         <br />
               
                         <div class="row featurette d-flex justify-content-center">
       <div class="col-md-7">
         <h2 class="featurette-heading">Want to share your belongings?<br /><br /><br /> Post an AD now !!</h2> 
       </div>
-      <div class="col-md-5">
+      <div class="col-md-5 ">
         <img class=" img-fluid bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src = "https://source.unsplash.com/1600x900/?space,elements" alt= "Displat Image SellPage"></img>
       </div>
     </div>
@@ -26,12 +57,12 @@ const Sample = () => {
 
                         <div class="col-md-7 col-lg-8 bg-light ">
                             <br />
-                            <h2 class="mb-3 "><u>Product Details</u></h2>
-                            <form class="needs-validation" novalidate="">
+                            <h2 class="mb-3 "><u>Product Details</u></h2><br /><br />
+                            <form class="needs-validation" novalidate="" onSubmit = {this.onSubmit} >
                                 <div class="row g-3">
                                 <div class="col-12">
                                         <label for="address" class="form-label">Product Title</label>
-                                        <input type="text" class="form-control" id="productTitle" placeholder="Enter the product title here" required=""></input>
+                                        <input type="text" class="form-control"  id="productTitle" placeholder="Enter the product title here" required="" name = "title"  onChange = {this.onChange}/>
                                         <div class="invalid-feedback">
                                             Please enter product title.
                                         </div>
@@ -40,7 +71,7 @@ const Sample = () => {
                                     <div class="col-12">
                                         <label for="username" class="form-label">Product Description</label>
                                         <div class="input-group has-validation">
-                                            <textarea class="form-control" id="username" placeholder="Enter Product Description" required=""></textarea>
+                                            <textarea class="form-control"  id="username" placeholder="Enter Product Description" required="" name = "description"  onChange = {this.onChange}></textarea>
                                             <div class="invalid-feedback">
                                                 Please enter product description.
                                             </div>
@@ -49,7 +80,7 @@ const Sample = () => {
 
                                     <div class="col-12">
                                         <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-                                        <input type="email" class="form-control" id="email" placeholder="you@example.com"></input>
+                                        <input type="email" class="form-control"  id="email" placeholder="you@example.com" name = "email"  onChange = {this.onChange}/>
                                         <div class="invalid-feedback">
                                             Please enter a valid institute email address .
                                         </div>
@@ -57,7 +88,8 @@ const Sample = () => {
                                     <div className = "d-flex justify-content-center flex-column bd-highlight mb-3">
                                     <div class="col-6 d-flex justify-content-center flex-column bd-highlight mb-3">
                                         <label for="address" class="form-label">Price</label>
-                                        <input type="text" class="form-control" id="address" placeholder="Set a Price" required=""></input>
+                                        <input type="text" class="form-control"  id="address" placeholder="Set a Price" required="" name = "price"  onChange = {this.onChange} />
+                                        
                                         <div class="invalid-feedback">
                                             Please enter product price.
                                         </div>
@@ -66,7 +98,8 @@ const Sample = () => {
 
                                     <div class="col-6 d-flex justify-content-center flex-column bd-highlight mb-3">
                                         <label for="address" class="form-label">Category</label>
-                                        <input type="text" class="form-control" id="catgory" placeholder="Enter the category" required=""></input>
+                                        <input type="text" class="form-control"  id="catgory" placeholder="Enter the category" required="" name = "category"  onChange = {this.onChange}/>
+                                        
                                         <div class="invalid-feedback">
                                             Please enter product category.
                                         </div>
@@ -133,5 +166,10 @@ const Sample = () => {
         </div>
     )
 }
+}
 
-export default Sample
+const mapStateToProps = (state) => ({
+    item: state.item
+})
+
+export default connect(mapStateToProps , {addItem})(Sample);

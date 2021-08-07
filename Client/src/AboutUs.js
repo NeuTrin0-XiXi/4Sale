@@ -1,61 +1,75 @@
 import React from 'react'
-import Combined from "./components/Combined.css"
-import Footer2 from './components/Footer2';
-import Navbarnew from './components/Navbarnew';
+import Combined from "./Combined.css"
+import Footer2 from './Footer2';
+import Navbarnew from './Navbarnew';
 
 function AboutUs() {
-  return (
-    <div>
-      <Navbarnew />
-      <br /><br /><br />
-      <div class="row featurette">
-        <div class="col-md-7 d-flex align-items-center">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-          <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
-        </div>
-        <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
-        </div>
+    return (
+        <div>
+            <br /><br /><br />
+            <div class="row featurette">
+      <div class="col-md-7 d-flex align-items-center">
+        <h1 class="featurette-heading block1aboutUs">We are what we deliver</h1>
+        
       </div>
-      {/* _______________________ */}
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2 d-flex align-items-center">
-          <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+      <div class="col-md-5">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src= "https://source.unsplash.com/500x500/?online"/>
 
-        </div>
-      </div>
-      <div class="row featurette">
-        <div class="col-md-7 d-flex align-items-center">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-          <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
-        </div>
-        <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
 
-        </div>
-      </div>
-      {/* _______________________ */}
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2 d-flex align-items-center">
-          <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
-        </div>
-      </div>
-      <br /><br /><br />
-      <div>
-        <Footer2 />
       </div>
     </div>
-  );
+      {/* _______________________ */}
+      <div class="row featurette">
+      <div class="col-md-7 order-md-2 d-flex align-items-center  flex-direction-column">
+        <div className = "col-md-4">
+       <h2 className = "HeaderBox">Our Vision</h2>
+       </div>
+       <div className = "col-md-8">
+       <p className = "paraAboutUs">
+       It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+       </p>
+       </div>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src= "https://source.unsplash.com/500x500/?work"/>
+
+      </div>
+    </div>
+            <div class="row featurette">
+      <div class="col-md-7 d-flex align-items-center">
+        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
+        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+      </div>
+      <div class="col-md-5">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src= "https://source.unsplash.com/500x500/?product"/>
+
+
+      </div>
+    </div>
+      {/* _______________________ */}
+      <div class="row featurette">
+      <div class="col-md-7 order-md-2 d-flex align-items-center  flex-direction-column">
+        <div className = "col-md-4">
+       <h2 className = "HeaderBox">Join Us</h2>
+       </div>
+       <div className = "col-md-8">
+       <p className = "paraAboutUs">
+       It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+       </p>
+       </div>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src= "https://source.unsplash.com/500x500/?company"/>
+
+
+      </div>
+    </div>
+    <br /><br /><br />
+        <div>
+        <Footer2 />
+        </div>
+        </div>
+            );
 }
 
-export default AboutUs;
+export default AboutUs

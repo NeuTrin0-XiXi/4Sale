@@ -8,17 +8,17 @@ const ProductPage = () => {
     return (
         <div>
             <div>
-                <Navbarnew />
+        <Navbarnew />
             </div>
 
+            
 
 
-
-            <br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br />
             <div>
-                <Footer2 />
+            <Footer2 />
             </div>
-
+            
         </div>
     )
 }
