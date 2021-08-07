@@ -34,11 +34,11 @@ route.get('/search', (req, res, next) => {
 
 //GET Items from Filters:                           
 route.get('/filter', (req, res, next) => {
-    if (req.query.priceUb != undefined && req.query.priceLb != undefined) {
-        req.query.price = { $lte: req.query.priceUb, $gte: req.query.priceLb };
-        delete req.query.priceUb;
-        delete req.query.priceLb;
-    }
+    // if (req.query.priceUb != undefined && req.query.priceLb != undefined) {
+    //     req.query.price = { $lte: req.query.priceUb, $gte: req.query.priceLb };
+    //     delete req.query.priceUb;
+    //     delete req.query.priceLb;
+    // }
     Item.find(req.query)
         .select('name date price')
         .then((item) => {
