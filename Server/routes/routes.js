@@ -8,17 +8,12 @@ router.get('/4Sale' , (req , res) => {
     .then((items) => res.json(items));
 })
 
-router.post('/sell' , (req,res) => {
-    const newProduct = new Product({
-        title: req.body.title,
-        description: req.body.description,
-        email: req.body.email,
-        price: req.body.price,
-        category: req.body.category
-    });
-
-    newProduct.save()
-    .then((item) => res.json(item));
+router.post('/sell' , (req,res,next) => {
+    Product.create(req.body)
+    .then((item)=>{
+        res.send(item);
+    })
+    .catch(next);
 })
 
 // router.delete('/yourpage/:id' , (req , res)) => {
