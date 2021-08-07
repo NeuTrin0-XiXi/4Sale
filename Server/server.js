@@ -7,12 +7,12 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-mongoose.connect('mongodb://localhost/4Sale')
+mongoose.connect('mongodb://localhost:27017/4Sale1')
 .then(() => {console.log("MongoDB connected successfully ....")})
 .catch((err) => {console.log("MongoDB connection unsuccessfull ....")});
 
 mongoose.Promise = global.Promise;
-app.use('/routes/routes' , items);
+app.use('/' ,items);
 
 const port = 5000;
 
