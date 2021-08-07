@@ -1,7 +1,7 @@
-const express=require('express');
-const mongoose=require('mongoose');
-const path=require('path');
-const app=express();
+const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+const app = express();
 // const recent_items=require('./db/itemModel');
 
 
@@ -11,9 +11,14 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useCreateIndex', true);
 
-mongoose.connect('mongodb://localhost:27017/4sale').then(()=>{
-    console.log("mongoDB connected...")
-});
+mongoose.connect('mongodb://localhost:27017/4sale')
+    .then(() => {
+        console.log("mongoDB connected...")
+    })
+    .catch((err)=>{
+        console.log(err.message);
+        res.status(500).send(err.message);
+    });
 
 
 
@@ -21,7 +26,7 @@ mongoose.connect('mongodb://localhost:27017/4sale').then(()=>{
 // app.use('/',express.static(__dirname+'/client/build'));
 // app.get('/',(req,res)=>{
 //     res.sendFile(path.resolve(__dirname,'client','build','index.html'));
-    // recent_items.find();
+// recent_items.find();
 // });
 
 
@@ -32,12 +37,12 @@ app.use(express.json());
 
 
 //Using the API routes
-app.use('/api',require('./api_routes'));
+app.use('/api', require('./api_routes'));
 
 
 
 //Error handeling
-app.use((err,req,res,next)=>{
+app.use((err, req, res, next) => {
     console.log(err.message);
     res.status(400).send(err.message);
 })
@@ -47,7 +52,7 @@ app.use((err,req,res,next)=>{
 
 
 //Listening to requests
-const port=process.env.PORT || 80;
-app.listen(port,()=>{
+const port = process.env.PORT || 80;
+app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });

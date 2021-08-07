@@ -1,5 +1,4 @@
 import React from 'react'
-import Footer2 from './Footer2'
 import Navbarnew from './Navbarnew'
 import Combined from './Combined.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,7 +25,6 @@ class Home extends Component {
         <br />
         <div id="myCarousel" class="container-fluid carousel slide crousalCustomEdit" data-bs-ride="carousel">
           <div class="carousel-inner crousalCustomEdit">
-
             <div class="carousel-item active crousalCustomEdit" >
               <img src="https://source.unsplash.com/1600x900/?rain" class="bd-placeholder-img" />
 
@@ -81,22 +79,22 @@ class Home extends Component {
         {/* ______________________________________ */}
 
         <div className="card">
-          <Container className = "ContainerProperties">
+          <Container className="ContainerProperties">
             {items.map(({ _id, title, description, price }) => (
-              <div className = "row card">
-              <div className = "col-md-4">
-              <div class="card  customCard" key={_id}>
-                <img class="card-img-top cardImageCustom" src="..." alt="Card image cap" />
-                <div class="card-body  customCard">
-                  <h5 class="card-title cardText">{title}</h5>
-                  <p class="card-text cardText">{description}</p>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item cardText">Rs. {price}</li>
-                    <li><a href="#" class="btn btn-primary">Add to WishList</a></li>
-                  </ul>  
+              <div className="row card">
+                <div className="col-md-4">
+                  <div class="card  customCard" key={_id}>
+                    <img class="card-img-top cardImageCustom" src="..." alt="Card image cap" />
+                    <div class="card-body  customCard">
+                      <h5 class="card-title cardText">{title}</h5>
+                      <p class="card-text cardText">{description}</p>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item cardText">Rs. {price}</li>
+                        <li><a href="#" class="btn btn-primary">Add to WishList</a></li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              </div>
               </div>
 
             ))}
@@ -105,18 +103,16 @@ class Home extends Component {
         </div>
 
         <br /><br /><br /><br />
-        <div>
-          <Footer2 />
-        </div>
+        
       </div>
     )
   }
 }
 
-Home.propTypes = {
-  getItems: Proptypes.func.isRequired,
-  item: Proptypes.object.isRequired
-}
+// Home.propTypes = {
+//   getItems: Proptypes.func.isRequired,
+//   item: Proptypes.object.isRequired
+// }
 
 const mapStateToProps = (state) => ({
   product: state.product
