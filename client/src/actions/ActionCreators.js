@@ -1,4 +1,4 @@
-import { GET_ITEMS , ADD_ITEMS ,LOAD_ITEMS } from "./types";
+import { GET_ITEMS , ADD_ITEMS ,ITEMS_LOADING } from "./types";
 import axios from 'axios';
 
 
@@ -20,6 +20,15 @@ export const addItem = (item) => dispatch => {
         payload: res.data
     }))
 };
+
+export const setItemsLoading = () => {                           
+                                                                
+    return {                             
+        type: ITEMS_LOADING                                                                     
+    };
+};
+
+
 
 
 

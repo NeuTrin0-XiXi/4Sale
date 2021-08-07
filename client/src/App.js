@@ -8,10 +8,12 @@ import AboutUs from './AboutUs'
 import ContactUs from './ContactUs'
 import Newnavbar2 from './Newnavbar2';
 import TestJSONdb from './TestJSONdb';
+import {Provider} from 'react-redux';
+import store from './store/store';
 
 function App() {
   return (
-
+    <Provider store = {store}>
     <Router>
       <div className="App">
         <div>
@@ -35,6 +37,7 @@ function App() {
         </div>
       </div>
     </Router>
+    </Provider>
   );
 }
 

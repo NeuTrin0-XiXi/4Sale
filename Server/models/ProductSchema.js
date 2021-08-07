@@ -9,7 +9,7 @@ const ProductSchema = new Schema({
     },
 
 
-    descripttion: {
+    description: {
         type:String,
         required: [true, "Product Description is required"]
     },
@@ -35,7 +35,5 @@ const ProductSchema = new Schema({
 
 });
 
-const PSchema = mongoose.model('items' , ProductSchema);
-
-module.exports = PSchema;
+module.exports = Item = mongoose.model('item' , ProductSchema);     //item is the name given to our collection(model) by us
 

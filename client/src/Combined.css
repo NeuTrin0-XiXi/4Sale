@@ -408,3 +408,25 @@ flex-wrap: wrap;
     height: 35.5rem !important;
 
 }
+
+.customCard{
+    height: 30rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    
+};
+
+.ContainerProperties{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around !important;
+}
+
+.cardImageCustom{
+    height: 30rem !important;
+}
+
+.cardText{
+    font-size: 20px !important;
+}

@@ -1,30 +1,39 @@
-import React from 'react';
+import React ,{ Component } from 'react';
 import { useState , useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbarnew from './Navbarnew';
 import Combined from './Combined.css';
+import { connect } from 'react-redux';
+import {addItem} from './actions/ActionCreators';
 
 
-const Sample = () => {
-    const [productTitle , setProductTitle] = useState('');
-    const [productDescription , setProductDescription] = useState('');
-    const [email , setEmail] = useState('');
-    const [price , setPrice] = useState('');
-    const [category , setCategory] = useState('');
 
-    const handleSubmit = (e) => {
+class Sample extends Component {
+    state = {
+        title: '',
+        description: '',
+        email: '',
+        price: '',
+        category: ''
+      }
+
+
+    onSubmit = (e) => {
         e.preventDefault();
-        const blog = {productTitle , productDescription ,email , price , category}
-        fetch('' ,
-        {
-            method: 'POST',
-            headers: {"Content-Type" : "application/json" },
-            body: JSON.stringify(blog)
-        }).then(() => {
-            console.log("New blog added");
-        })
+        const newItem = {
+            name:this.state.name
+        }
+
+        this.props.addItem(newItem);
+        (alert("Sucessfully Posted AD ..."))
     }
 
+    onChange = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+
+    }
+    render() {
+       
     return (
         <div>
             <div className="container-fluid ">
@@ -49,12 +58,11 @@ const Sample = () => {
                         <div class="col-md-7 col-lg-8 bg-light ">
                             <br />
                             <h2 class="mb-3 "><u>Product Details</u></h2><br /><br />
-                            <form class="needs-validation" novalidate="" onSubmit = {handleSubmit }>
+                            <form class="needs-validation" novalidate="" onSubmit = {this.onSubmit} >
                                 <div class="row g-3">
                                 <div class="col-12">
                                         <label for="address" class="form-label">Product Title</label>
-                                        <input type="text" class="form-control" value = {productTitle} id="productTitle" placeholder="Enter the product title here" required=""
-                                        onChange = {(e) => setProductTitle(e.target.value)}></input>
+                                        <input type="text" class="form-control"  id="productTitle" placeholder="Enter the product title here" required="" name = "title"  onChange = {this.onChange}/>
                                         <div class="invalid-feedback">
                                             Please enter product title.
                                         </div>
@@ -63,8 +71,7 @@ const Sample = () => {
                                     <div class="col-12">
                                         <label for="username" class="form-label">Product Description</label>
                                         <div class="input-group has-validation">
-                                            <textarea class="form-control" value = {productDescription} id="username" placeholder="Enter Product Description" required=""
-                                            onChange = {(e) => setProductDescription(e.target.value)}></textarea>
+                                            <textarea class="form-control"  id="username" placeholder="Enter Product Description" required="" name = "description"  onChange = {this.onChange}></textarea>
                                             <div class="invalid-feedback">
                                                 Please enter product description.
                                             </div>
@@ -73,8 +80,7 @@ const Sample = () => {
 
                                     <div class="col-12">
                                         <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-                                        <input type="email" class="form-control" value = {email} id="email" placeholder="you@example.com"
-                                        onChange = {(e) => setEmail(e.target.value)}></input>
+                                        <input type="email" class="form-control"  id="email" placeholder="you@example.com" name = "email"  onChange = {this.onChange}/>
                                         <div class="invalid-feedback">
                                             Please enter a valid institute email address .
                                         </div>
@@ -82,18 +88,18 @@ const Sample = () => {
                                     <div className = "d-flex justify-content-center flex-column bd-highlight mb-3">
                                     <div class="col-6 d-flex justify-content-center flex-column bd-highlight mb-3">
                                         <label for="address" class="form-label">Price</label>
-                                        <input type="text" class="form-control" vlaue = {price} id="address" placeholder="Set a Price" required=""
-                                        onChange = {(e) => setPrice(e.target.value)}></input>
+                                        <input type="text" class="form-control"  id="address" placeholder="Set a Price" required="" name = "price"  onChange = {this.onChange} />
+                                        
                                         <div class="invalid-feedback">
                                             Please enter product price.
                                         </div>
                                     </div>
-                                    {console.log({price})}
+                                    
 
                                     <div class="col-6 d-flex justify-content-center flex-column bd-highlight mb-3">
                                         <label for="address" class="form-label">Category</label>
-                                        <input type="text" class="form-control" value = {category} id="catgory" placeholder="Enter the category" required=""
-                                        onChange = {(e) => setCategory(e.target.value)}></input>
+                                        <input type="text" class="form-control"  id="catgory" placeholder="Enter the category" required="" name = "category"  onChange = {this.onChange}/>
+                                        
                                         <div class="invalid-feedback">
                                             Please enter product category.
                                         </div>
@@ -160,5 +166,10 @@ const Sample = () => {
         </div>
     )
 }
+}
 
-export default Sample
+const mapStateToProps = (state) => ({
+    item: state.item
+})
+
+export default connect(mapStateToProps , {addItem})(Sample);
