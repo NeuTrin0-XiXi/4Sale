@@ -8,13 +8,21 @@ const User=require('../db/models').userModel;
 
 //API handlers
 
-//GET Handlers:                   
-//GET Items from Search Bar(name):                  
-route.get('/search',(req,res,next)=>{
-    console.log(req);
-    Item.find({name: req.query.name}).then((item)=>{
+//GET Handlers:      
+//GET all items:
+route.get('/',(req,res,next)=>{
+    Item.find({}).then((item)=>{
         res.status(200).send(item)
     }).catch(next);
+});
+
+
+//GET Items from Search Bar(name):                  
+route.get('/search',(req,res,next)=>{
+    Item.find(res.query).then((item)=>{
+        res.status(200).send(item);
+    }).catch(next);
+
 });
 
 
