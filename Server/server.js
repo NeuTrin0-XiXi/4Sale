@@ -8,7 +8,9 @@ app.use(express.json());
 app.use(express.static('public'));
 
 
-mongoose.use({useNewUrlParser:true})
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb://localhost:27017/4Sale1')
 .then(() => {console.log("MongoDB connected successfully ....")})
 .catch((err) => {console.log("MongoDB connection unsuccessfull ....")});
