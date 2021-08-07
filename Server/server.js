@@ -1,11 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const items = require('./routes/routes');
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(express.static('public'));
 
 mongoose.connect('mongodb://localhost/4Sale')
