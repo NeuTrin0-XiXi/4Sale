@@ -5,7 +5,7 @@ import axios from 'axios';
 export const getItems = () => dispatch => {
     dispatch(setItemsLoading());
 
-    axios.get('/items')            
+    axios.get('/api/items')            
     .then(res => dispatch({
         type:GET_ITEMS,
         payload: res.data
@@ -14,7 +14,7 @@ export const getItems = () => dispatch => {
 
 
 export const addItem = (item) => dispatch => {
-    axios.post('/items' , item)
+    axios.post('/api/items' , item)
     .then(res => dispatch({
         type: ADD_ITEMS,
         payload: res.data

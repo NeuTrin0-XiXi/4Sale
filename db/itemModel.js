@@ -23,6 +23,11 @@ const itemSchema= new schema({
     categories: {
         type: [String]
     },
+    description:{
+        type:String,
+        required:true
+    }
+
 
 });
 
