@@ -430,3 +430,26 @@ flex-wrap: wrap;
 .cardText{
     font-size: 20px !important;
 }
+
+
+.productRedirect{
+    text-decoration: none !important;
+}
+
+.customProductPagTitle{
+    font-size: 77px !important;
+    margin-top: -41px !important;
+    margin-bottom: 6px !important;
+    padding-top: -7px !important;
+    padding-bottom: -8px !important;
+
+}
+
+.cardCustom{
+    margin-top: 72px !important;
+    margin-bottom: 36px !important;
+}
+
+.ProductPageBox{
+    border: 2px solid red;
+}

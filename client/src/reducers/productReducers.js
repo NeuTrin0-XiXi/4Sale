@@ -4,8 +4,10 @@ const initialState = {
     items:[
         {
             title: "Football",
-            description:"Thid is a football",
-            price: 2000
+            description:"This is a football",
+            price: 2000,
+            category: "Sports"
+
         },
         {
             title: "Basketball",

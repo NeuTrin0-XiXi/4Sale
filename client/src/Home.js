@@ -8,6 +8,7 @@ import { Container } from 'react-bootstrap';
 import { getItems } from './actions/ActionCreators';
 import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 
 
 class Home extends Component {
@@ -80,11 +81,11 @@ class Home extends Component {
         <br /><br /><br />
         {/* ______________________________________ */}
 
-        <div className="card">
+        <div className="card-deck">
           <Container className = "ContainerProperties">
-            {items.map(({ _id, title, description, price }) => (
-              <div className = "row card">
-              <div className = "col-md-4">
+            {items.map(({ _id, title, description, price , category }) => (
+              <Link to = {`/product/${title}/${description}/${price}/${category}`} className = "productRedirect">
+              <div className = "col-md-4 cardCustom ">
               <div class="card  customCard" key={_id}>
                 <img class="card-img-top cardImageCustom" src="..." alt="Card image cap" />
                 <div class="card-body  customCard">
@@ -92,12 +93,13 @@ class Home extends Component {
                   <p class="card-text cardText">{description}</p>
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item cardText">Rs. {price}</li>
+                    <li class="list-group-item cardText">{category}</li>
                     <li><a href="#" class="btn btn-primary">Add to WishList</a></li>
                   </ul>  
                 </div>
               </div>
               </div>
-              </div>
+              </Link>
 
             ))}
           </Container>

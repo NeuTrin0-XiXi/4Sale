@@ -10,6 +10,8 @@ import Newnavbar2 from './Newnavbar2';
 import TestJSONdb from './TestJSONdb';
 import {Provider} from 'react-redux';
 import store from './store/store';
+import ProductPage from './ProductPage'; 
+import BackgroundImage from './BackgroundImage';
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
         <div>
           <Newnavbar2 />
         </div>
+        {/* <div>
+          <BackgroundImage />
+        </div> */}
         <div className="content">
           <Switch>
             <Route exact path="/">
@@ -32,6 +37,9 @@ function App() {
             </Route>
             <Route exact path="/contactUs">
               <ContactUs />
+            </Route>
+            <Route exact path="/product/:title/:description/:price/:category">
+              <ProductPage />
             </Route>
           </Switch>
         </div>
