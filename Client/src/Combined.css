@@ -1,9 +1,6 @@
 /* Navbar */
 
-#navbar{
-    position: sticky !important;
-     top:0 !important;
-}
+
 
 .navBarList{
 display: flex;
