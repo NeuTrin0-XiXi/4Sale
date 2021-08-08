@@ -256,7 +256,7 @@ flex-wrap: wrap;
 }
 
 .footerBox{
-    height: 14.5rem !important;
+    height: 10.5rem !important;
     bottom: 0px !important;
     background-color: #333333 !important;
 }
@@ -274,6 +274,7 @@ flex-wrap: wrap;
 
 .navbarCustom{
     background-color: #333333 !important;
+    height: 6.5rem !important;
 }
 
 .homeTileBox{
@@ -307,9 +308,9 @@ flex-wrap: wrap;
 
 .navBarItems{
     text-decoration: none !important;
-    font-size: 21px !important;
+    font-size: 16px !important;
     transition-property: all !important;
-    margin-left: 13px !important;
+    margin-left: 3px !important;
     margin-right: 3px !important;
     color: white !important;
 }
@@ -345,22 +346,22 @@ flex-wrap: wrap;
 
 #dropdownlabel{
     color: white;
-    font-size: 21px ;
+    font-size: 16px ;
 }
 
 #ddlist{
     font-family: Poppins;
-    font-size: 19px;
+    font-size: 17px;
     margin-left: 6px;
     margin-right: 1px;
     margin-top: 9px;
     margin-bottom: 1px;
-    padding-left: 13px;
+    padding-left: 3px;
     padding-right: 1px;
     padding-top: 1px;
     padding-bottom: 5px;
-    height: 34px;
-    width: 173px;
+    height: 27px;
+    width: 144px;
     border-radius: 7px;
 }
 
@@ -372,18 +373,18 @@ flex-wrap: wrap;
     margin-left: 6px;
     margin-right: 1px !important;
     margin-top: 0px;
-    margin-bottom: 1px;
+    margin-bottom: 3px;
     padding-left: 13px;
     padding-right: 1px;
     padding-top: 1px;
     padding-bottom: 5px;
-    height: 61px;
-    width: 506px;
+    height: 46px;
+    width: 386px;
     border-radius: 7 !important;
 }
 
 #navSubmitBtn{
-    font-size: 19px;
+    font-size: 15px;
     margin-left: 15px;
     margin-right: 1px !important;
     margin-top: 0px;
@@ -392,8 +393,8 @@ flex-wrap: wrap;
     padding-right: 1px;
     padding-top: 1;
     padding-bottom: 5px;
-    height: 61px;
-    width: 111px;
+    height: 46px;
+    width: 72px;
     border-radius: 7 !important;
 }
     
@@ -442,14 +443,67 @@ flex-wrap: wrap;
     margin-bottom: 6px !important;
     padding-top: -7px !important;
     padding-bottom: -8px !important;
+    font-family: Poppins !important;
 
 }
 
 .cardCustom{
     margin-top: 72px !important;
     margin-bottom: 36px !important;
+    margin-right: 20px !important;
+    margin-left: 20px !important;
+    
 }
+
+#cardBoxOutline{
+    border: 1px white !important;
+    box-shadow: 5px 5px 10px  slategray !important;
+}
+
 
 .ProductPageBox{
     border: 2px solid red;
 }
+
+.productText{
+    font-size: 30px ;
+    font-family: Poppins;
+    display: flex;
+}
+
+.ProductImage{
+    border-radius: 10px;
+}
+
+.customBuyButton{
+    height: 45px;
+    font-family: Poppins;
+    color: white !important;
+    width: 264px ;
+    border: 1px white !important;
+    border-radius: 15px !important;
+    font-size: 23px;
+    transition-property: all !important;
+}
+
+.customBuyButton:hover{
+    box-shadow: 5px 5px 15px rgb(179, 180, 182);
+}
+
+#BuyButtonId{
+    background-color: #62c1ad !important;
+}
+
+#customWishlist{
+    background-color: #f6c324 !important;
+}
+
+.p-2{
+    font-size: 30px !important;
+}
+
+.customHeaderSellPage{
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+

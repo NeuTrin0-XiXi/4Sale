@@ -8,12 +8,17 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-mongoose.connect('mongodb://localhost/4Sale')
+
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useCreateIndex', true);
+mongoose.connect('mongodb://localhost:27017/4Sale')
 .then(() => {console.log("MongoDB connected successfully ....")})
 .catch((err) => {console.log("MongoDB connection unsuccessfull ....")});
 
 mongoose.Promise = global.Promise;
-app.use('/routes/routes' , items);
+
+app.use('/4Sale' , items);
 
 const port = 5000;
 

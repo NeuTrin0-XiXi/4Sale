@@ -3,7 +3,7 @@ const User = require('../models/UserSchema');
 const Product = require('../models/ProductSchema');
 const router = express.Router();
 
-router.get('/4Sale' , (req , res) => {
+router.get('/' , (req , res) => {
     Product.find()
     .then((items) => res.json(items));
 })

@@ -4,7 +4,15 @@ import Navbarnew from './Navbarnew';
 import Combined from './Combined.css';
 import Footer2 from './Footer2'
 
+
+
 const ContactUs = () => {
+
+const handleSubmit = (e) => {
+	e.preventDefault();
+	alert("Message Sucessfully Submitted...");
+}
+	
     return (
         <div>
             <div>
@@ -39,7 +47,7 @@ const ContactUs = () => {
 				<h2 class="mb-2 text-primary contactUsTitle"><u>Contact Us</u></h2>
 			</div>
             <br /><br /><br />
-            <div className = "d-flex justify-content-center flex-column bd-highlight mb-3">
+            <form className = "d-flex justify-content-center flex-column bd-highlight mb-3" onSubmit = {handleSubmit}>
 			<div class=" col-xxl-7 ">
 				<div class="form-group">
 					<label for="fullName">Full Name</label>
@@ -68,14 +76,14 @@ const ContactUs = () => {
 				</div>
 			</div>
             <br /><br /><br />
-            </div>
+            </form>
 		</div>
 		
         <br />
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 				<div class="container text-right">
-					<button type="button" id="submit" name="submit" class="btn btn-success col-md-4 customColor">Submit</button>
+					<button type="submit"  class="btn btn-success col-md-4 customColor">Submit</button>
 				</div>
 			</div>
 		</div>
