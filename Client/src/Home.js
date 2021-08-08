@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbarnew from './Navbarnew'
 import Combined from './Combined.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Component } from 'react';

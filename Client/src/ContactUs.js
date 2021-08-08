@@ -1,8 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbarnew from './Navbarnew';
 import Combined from './Combined.css';
-import Footer2 from './Footer2'
 
 const ContactUs = () => {
 	return (
