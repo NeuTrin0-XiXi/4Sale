@@ -1,6 +1,9 @@
 /* Navbar */
 
-
+#navbarCustom{
+    position:sticky;
+    top: 0px
+}
 
 .navBarList{
 display: flex;

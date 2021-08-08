@@ -1,15 +1,15 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Combined from './Combined.css';
+import './Combined.css';
 import { Link } from 'react-router-dom';
-import GoogleLogin from './GoogleLogin';
+// import GoogleLogin from './GoogleLogin';
 
-const Newnavbar2 = () => {
+const Navbar = () => {
     return (
         <div>
             <nav class="navbar navbar-expand-lg navbar-light navbarCustom">
                 <div class="container-fluid">
-                    <a class="navbar-brand logo" href="#">4Sale</a>
+                    <Link class="navbar-brand logo" to="/">4Sale</Link >
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -17,22 +17,22 @@ const Newnavbar2 = () => {
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 e">
                             <div className="container d-flex justify-content:space-around">
                                 <li class="nav-item navBarItems">
-                                    <a class="nav-link active navBarItems" id="homeTab" aria-current="page" href="#"><Link to="/">Home</Link></a>
+                                    <Link class="nav-link active navBarItems" id="homeTab" aria-current="page" to="/">Home</Link >
                                 </li>
                                 <li class="nav-item navBarItems">
-                                    <a class="nav-link active navBarItems" aria-current="page" href="#"><Link to="/sell">Sell</Link></a>
+                                    <Link class="nav-link active navBarItems" aria-current="page" to="/sell">Sell</Link >
                                 </li>
                                 <li class="nav-item navBarItems">
-                                    <a class="nav-link active navBarItems" aria-current="page" href="#"><Link to="/contactUs">Contact Us</Link></a>
+                                    <Link class="nav-link active navBarItems" aria-current="page" to="/contact-us">Contact Us</Link >
                                 </li>
                                 <li class="nav-item navBarItems">
-                                    <a class="nav-link navBarItems" href="#"><Link to="/aboutUs">About Us</Link></a>
+                                    <Link class="nav-link navBarItems" to="/about-us">About Us</Link >
                                 </li>
                             </div>
                             <li class="nav-item dropdown">
-                                <a class="nav-link " href="#" id="navbarDropdown" role="button" aria-expanded="false">
+                                <Link class="nav-link " to="#" id="navbarDropdown" role="button" aria-expanded="false">
                                     <label id="dropdownlabel">Categories</label>
-                                </a>
+                                </Link >
                             </li>
                             <li>
                                 <select id="ddlist">
@@ -49,11 +49,11 @@ const Newnavbar2 = () => {
                             <button class="btn btn-outline-success" id="navSubmitBtn" type="submit">Search</button>
                         </form>
                     </div>
-                    <GoogleLogin />
+                    {/* <GoogleLogin /> */}
                 </div>
             </nav>
         </div>
     )
 }
 
-export default Newnavbar2
+export default Navbar;

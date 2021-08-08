@@ -1,8 +1,9 @@
 import React from 'react';
-import GoogleLogin from './GoogleLogin';
+import GoogleLogin from 'react-google-login';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
-function GoogleLogin() {
+function UserLogin() {
     const loginSucess=(res)=>{
         console.log(res);
         axios({
@@ -12,9 +13,9 @@ function GoogleLogin() {
     };
 
     const loginFail=(res)=>{
-        return(
-            alert("Login failed")
-        )
+        // return(
+        //     // alert("Login failed");
+        // );
     };
 
     return (
@@ -30,8 +31,8 @@ function GoogleLogin() {
     )
 }
 
-const mapStateToProps = (state) => ({
+// const mapStateToProps = (state) => ({
     
-});
-  
-export default connect(mapStateToProps)(GoogleLogin);
+// });
+// connect(mapStateToProps)
+export default (UserLogin);
