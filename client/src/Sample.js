@@ -5,6 +5,7 @@ import Navbarnew from './Navbarnew';
 import Combined from './Combined.css';
 import { connect } from 'react-redux';
 import {addItem} from './actions/ActionCreators';
+import { Link } from 'react-router-dom';
 
 
 
@@ -16,22 +17,35 @@ class Sample extends Component {
         price: '',
         category: ''
       }
+    
+      onChange = (e) => {
+          this.setState({[e.target.name]: e.target.value})
 
+    }
 
     onSubmit = (e) => {
-        e.preventDefault();
-        const newItem = {
-            name:this.state.name
+        if(this.state.title === '' || this.state.description === '' || this.state.price === '' || this.state.category === '' || this.state.email === '')
+        {
+            alert("Please Fill all the Fields");
+            e.preventDefault();
         }
 
-        this.props.addItem(newItem);
-        (alert("Sucessfully Posted AD ..."))
-    }
+        else
+        {
+          e.preventDefault();
+          const newItem = {
+          title: this.state.title,
+          description: this.state.description,
+          email: this.state.email,
+          price: this.state.price,
+          category: this.state.category    
+          }
+  
+          this.props.addItem(newItem);
+          (alert("Sucessfully Posted AD ..."))
+        }
+      }
 
-    onChange = (e) => {
-        this.setState({[e.target.name]: e.target.value})
-
-    }
     render() {
        
     return (
@@ -42,7 +56,7 @@ class Sample extends Component {
                         
                         <br />
               
-                        <div class="row featurette d-flex justify-content-center">
+                        <div class="row featurette d-flex justify-content-center customHeaderSellPage">
       <div class="col-md-7">
         <h2 class="featurette-heading">Want to share your belongings?<br /><br /><br /> Post an AD now !!</h2> 
       </div>
@@ -62,7 +76,7 @@ class Sample extends Component {
                                 <div class="row g-3">
                                 <div class="col-12">
                                         <label for="address" class="form-label">Product Title</label>
-                                        <input type="text" class="form-control"  id="productTitle" placeholder="Enter the product title here" required="" name = "title"  onChange = {this.onChange}/>
+                                        <input type="text" class="form-control"  id="productTitle" placeholder="Enter the product title here" required name = "title"  onChange = {this.onChange}/>
                                         <div class="invalid-feedback">
                                             Please enter product title.
                                         </div>
@@ -71,7 +85,7 @@ class Sample extends Component {
                                     <div class="col-12">
                                         <label for="username" class="form-label">Product Description</label>
                                         <div class="input-group has-validation">
-                                            <textarea class="form-control"  id="username" placeholder="Enter Product Description" required="" name = "description"  onChange = {this.onChange}></textarea>
+                                            <textarea class="form-control"  id="username" placeholder="Enter Product Description" required name = "description"  onChange = {this.onChange}></textarea>
                                             <div class="invalid-feedback">
                                                 Please enter product description.
                                             </div>
@@ -88,7 +102,7 @@ class Sample extends Component {
                                     <div className = "d-flex justify-content-center flex-column bd-highlight mb-3">
                                     <div class="col-6 d-flex justify-content-center flex-column bd-highlight mb-3">
                                         <label for="address" class="form-label">Price</label>
-                                        <input type="text" class="form-control"  id="address" placeholder="Set a Price" required="" name = "price"  onChange = {this.onChange} />
+                                        <input type="text" class="form-control"  id="address" placeholder="Set a Price" required name = "price"  onChange = {this.onChange} />
                                         
                                         <div class="invalid-feedback">
                                             Please enter product price.
@@ -98,7 +112,7 @@ class Sample extends Component {
 
                                     <div class="col-6 d-flex justify-content-center flex-column bd-highlight mb-3">
                                         <label for="address" class="form-label">Category</label>
-                                        <input type="text" class="form-control"  id="catgory" placeholder="Enter the category" required="" name = "category"  onChange = {this.onChange}/>
+                                        <input type="text" class="form-control"  id="catgory" placeholder="Enter the category" required name = "category"  onChange = {this.onChange}/>
                                         
                                         <div class="invalid-feedback">
                                             Please enter product category.
@@ -108,7 +122,7 @@ class Sample extends Component {
                                     <div className = "d-flex justify-content-center flex-column bd-highlight mb-3">
                                     <div class="col-md-5">
                                         <label for="country" class="form-label">Country</label>
-                                        <select class="form-select" id="country" required="">
+                                        <select class="form-select" id="country" required>
                                             <option value="">Choose...</option>
                                             <option>United States</option>
                                         </select>
@@ -119,7 +133,7 @@ class Sample extends Component {
 
                                     <div class="col-md-5">
                                         <label for="state" class="form-label">State</label>
-                                        <select class="form-select" id="state" required="">
+                                        <select class="form-select" id="state" required>
                                             <option value="">Choose...</option>
                                             <option>California</option>
                                         </select>
@@ -130,7 +144,7 @@ class Sample extends Component {
 
                                     <div class="col-md-5">
                                         <label for="zip" class="form-label">Zip</label>
-                                        <input type="text" class="form-control" id="zip" placeholder="" required=""></input>
+                                        <input type="text" class="form-control" id="zip" placeholder="" required></input>
                                         <div class="invalid-feedback">
                                             Zip code required.
                                         </div>
@@ -143,7 +157,7 @@ class Sample extends Component {
                                 <hr class="my-4" />
                                 <div className = "d-flex flex-column bd-highlight mb-3 justify-content-evenly ">
                                 <button class="w-100 btn btn-success btn-lg" type="submit">Post Ad</button>
-                                <button class="w-100 btn btn-primary btn-lg" type="cancel">Cancel</button>
+                                <button class="w-100 btn btn-primary btn-lg" type="cancel"><Link to = "/4Sale" style = {{textDecoration: 'none' , color: 'white'}}>Cancel</Link></button>
                                 </div>
                             </form>
                         </div>

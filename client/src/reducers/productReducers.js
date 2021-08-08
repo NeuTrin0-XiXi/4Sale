@@ -4,14 +4,41 @@ const initialState = {
     items:[
         {
             title: "Football",
-            description:"Thid is a football",
-            price: 2000
+            description:"This is a football ",
+            email:"200003015",
+            price: 2000,
+            category: "Sports"
+
         },
         {
             title: "Basketball",
             description:"Thid is a basketball",
-            price: 3000
+            email:"200003015",
+            price: 3000,
+            category: "Sports"
+        },
+        {
+            title: "Sapiens",
+            description:"This is written by Noah Harrari",
+            email:"200003015",
+            price: 3000,
+            category: "books"
+        },
+        {
+            title: "Electric Kettle",
+            description:"This is an electric kettle",
+            email:"200003015",
+            price: 3000,
+            category: "Utilities"
+        },
+        {
+            title: "Electric Kettle",
+            description:"This is an electric kettle",
+            email:"200003015",
+            price: 3000,
+            category: "Utilities"
         }
+       
     ],
     loading : false
 }

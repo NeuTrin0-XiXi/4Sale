@@ -10,6 +10,11 @@ import Newnavbar2 from './Newnavbar2';
 import TestJSONdb from './TestJSONdb';
 import {Provider} from 'react-redux';
 import store from './store/store';
+import ProductPage from './ProductPage'; 
+import BackgroundImage from './BackgroundImage';
+import LoginPage from './LoginPage';
+import CategoryPage from './CategoryPage';
+import IntroPage from './IntroPage';
 
 function App() {
   return (
@@ -19,19 +24,34 @@ function App() {
         <div>
           <Newnavbar2 />
         </div>
+        {/* <div>
+          <BackgroundImage />
+        </div> */}
         <div className="content">
           <Switch>
-            <Route exact path="/">
+          <Route exact path="/">
+              <IntroPage/>
+            </Route>
+            <Route exact path="/4Sale">
               <Home/>
             </Route>
-            <Route exact path="/aboutUs">
+            <Route exact path="/4Sale/aboutUs">
               <AboutUs />
             </Route>
-            <Route exact path="/sell">
+            <Route exact path="/4Sale/sell">
               <Sample />
             </Route>
-            <Route exact path="/contactUs">
+            <Route exact path="/4Sale/contactUs">
               <ContactUs />
+            </Route>
+            <Route exact path="/4Sale/category/">
+              <CategoryPage />
+            </Route>
+            <Route exact path="/4Sale/login">
+              <LoginPage />
+            </Route>
+            <Route exact path="/4Sale/product/:title/:description/:price/:category">
+              <ProductPage />
             </Route>
           </Switch>
         </div>
