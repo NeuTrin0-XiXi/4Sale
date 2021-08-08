@@ -13,6 +13,7 @@ const User = require('../db/models').userModel;
 route.get('/', (req, res, next) => {
     Item.find({})
         .select('name date price')
+        .sort({date: 'desc'})
         .then((item) => {
             res.status(200).send(item)
         })
@@ -66,7 +67,7 @@ route.get('/:id', (req, res, next) => {
 route.post('/', (req, res, next) => {
     Item.create(req.body)
         .then((item) => {
-            res.status(201).send(`Posted ${item.name} sucessfully`);
+            res.status(201).send(`Ad for ${item.name} posted sucessfully`);
         })
         .catch(next);
 });
@@ -81,7 +82,7 @@ route.put('/:id', (req, res, next) => {
         .then(
             Item.findById(req.params.id)
                 .then((item) => {
-                    res.status(200).send(`${item.name} has been updated`);
+                    res.status(200).send(`Your Ad, ${item.name} has been updated`);
                 })
         )
         .catch(next);
@@ -94,7 +95,7 @@ route.put('/:id', (req, res, next) => {
 route.delete('/:id', (req, res, next) => {
     Item.deleteOne({ _id: req.params.id })
         .then((item) => {
-            res.status(200).send(`${item.name} has been removed`);
+            res.status(200).send(`Your Ad has been removed`);
         })
         .catch(next);
 });

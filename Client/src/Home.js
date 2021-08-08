@@ -81,22 +81,22 @@ class Home extends Component {
         {/* ______________________________________ */}
 
         <div className="card">
-          <Container className = "ContainerProperties">
+          <Container className="ContainerProperties">
             {items.map(({ _id, title, description, price }) => (
-              <div className = "row card">
-              <div className = "col-md-4">
-              <div class="card  customCard" key={_id}>
-                <img class="card-img-top cardImageCustom" src="..." alt="Card image cap" />
-                <div class="card-body  customCard">
-                  <h5 class="card-title cardText">{title}</h5>
-                  <p class="card-text cardText">{description}</p>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item cardText">Rs. {price}</li>
-                    <li><a href="#" class="btn btn-primary">Add to WishList</a></li>
-                  </ul>  
+              <div className="row card">
+                <div className="col-md-4">
+                  <div class="card  customCard" key={_id}>
+                    <img class="card-img-top cardImageCustom" src="..." alt="Card image cap" />
+                    <div class="card-body  customCard">
+                      <h5 class="card-title cardText">{title}</h5>
+                      <p class="card-text cardText">{description}</p>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item cardText">Rs. {price}</li>
+                        <li><a href="#" class="btn btn-primary">Add to WishList</a></li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              </div>
               </div>
 
             ))}
