@@ -11,11 +11,13 @@ const User = require('../db/models').userModel;
 //GET Handlers:      
 //GET all items:
 route.get('/', (req, res, next) => {
+    console.log('GET Request');
     Item.find({})
         .select('name date price')
         .sort({date: 'desc'})
         .then((item) => {
-            res.status(200).send(item)
+            res.header("Access-Control-Allow-Origin", "*");
+            res.status(200).send(item);
         })
         .catch(next);
 });
@@ -26,6 +28,7 @@ route.get('/search', (req, res, next) => {
     Item.find(res.query)
         .select('name date price')
         .then((item) => {
+            res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
         })
         .catch(next);
@@ -43,6 +46,7 @@ route.get('/filter', (req, res, next) => {
     Item.find(req.query)
         .select('name date price')
         .then((item) => {
+            res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
         })
         .catch(next);
@@ -53,6 +57,7 @@ route.get('/filter', (req, res, next) => {
 route.get('/:id', (req, res, next) => {
     Item.findById(req.params.id)
         .then((item) => {
+            res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item)
         })
         .catch(next);
@@ -67,6 +72,7 @@ route.get('/:id', (req, res, next) => {
 route.post('/', (req, res, next) => {
     Item.create(req.body)
         .then((item) => {
+            res.header("Access-Control-Allow-Origin", "*");
             res.status(201).send(`Ad for ${item.name} posted sucessfully`);
         })
         .catch(next);
@@ -82,6 +88,7 @@ route.put('/:id', (req, res, next) => {
         .then(
             Item.findById(req.params.id)
                 .then((item) => {
+                    res.header("Access-Control-Allow-Origin", "*");
                     res.status(200).send(`Your Ad, ${item.name} has been updated`);
                 })
         )
@@ -95,6 +102,7 @@ route.put('/:id', (req, res, next) => {
 route.delete('/:id', (req, res, next) => {
     Item.deleteOne({ _id: req.params.id })
         .then((item) => {
+            res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(`Your Ad has been removed`);
         })
         .catch(next);

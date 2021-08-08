@@ -4,7 +4,7 @@ import Home from './Home';
 import Sell from './Sell';
 import AboutUs from './AboutUs';
 import ContactUs from './ContactUs';
-import Profile from './EditProfile';
+// import Profile from './EditProfile';
 
 function Body() {
     return (

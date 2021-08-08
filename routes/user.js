@@ -11,6 +11,7 @@ const Item=require('../db/models').itemModel;
 route.get('/favourites/:id',(req,res,next)=>{
     User.findById(req.params.id).then((user)=>{
         Item.find({_id: user.favourites}).then((item)=>{
+            res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
         });
     }).catch(next);
@@ -22,6 +23,7 @@ route.get('/favourites/:id',(req,res,next)=>{
 //POST requests
 route.post('/',(req,res,next)=>{
     User.create(req.body).then((user)=>{
+        res.header("Access-Control-Allow-Origin", "*");
         res.status(200).send(`User posted`);
         console.log(req.body);
     }).catch(next);
