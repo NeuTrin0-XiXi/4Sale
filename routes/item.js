@@ -56,7 +56,7 @@ route.get('/filter', (req, res, next) => {
 //GET Item details:                             
 route.get('/:id', (req, res, next) => {
     Item.findById(req.params.id)
-        .select('name date price')
+        .select('name date price userName')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item)

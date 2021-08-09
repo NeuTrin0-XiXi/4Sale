@@ -19,7 +19,7 @@ class Home extends Component {
     this.props.getItems();
   }
    handelClick=(_id)=>{
-    this.props.getItem(_id);
+    // this.props.getItem(_id);
   }
 
   render() {
@@ -89,7 +89,7 @@ class Home extends Component {
               <Link to={'item/:_id'} className="productRedirect" style={textColor}>
                 <div className="col-lg-4 cardCustom d-inline-block">
                   <div class="card  customCard" key={_id} id="cardBoxOutline">
-                    <img class="card-img-top cardImageCustom" src="..." alt="Card image cap" onClick={()=>{handelClick({_id})}}/>
+                    <img class="card-img-top cardImageCustom" src="..." alt="Card image cap" onClick={()=>{this.renderhandelClick({_id})}}/>
                     <div class="card-body  customCard">
                       <h5 class="card-title cardText">{title}</h5>
                       <ul class="list-group list-group-flush">
@@ -123,4 +123,4 @@ const mapStateToProps = (state) => ({
   product: state.product
 });
 
-export default connect(mapStateToProps, { getItems, getItem })(Home);
+export default connect(mapStateToProps, { getItems})(Home);

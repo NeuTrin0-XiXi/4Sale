@@ -8,11 +8,10 @@ import ProductImage from './ProductPageSections/ProductImage';
 import ProductInfo from './ProductPageSections/ProductInfo.js';
 import { Components } from 'react'
 
-class ProductPage extends Component {
+export default function ProductPage(){
   // componentDidMount() {
   //   this.props.getItem();
   // }
-  render() {
     // const { item } = this.props.product;
     const { title, description, userName, price, category } = useParams();       //Destructuring the state parameters
     const handleBuyClick = () => {
@@ -54,11 +53,6 @@ class ProductPage extends Component {
         <Footer2 />
       </div>
     )
-  }
 }
 
-const mapStateToProps = (state) => ({
-  product: state.product
-});
 
-export default connect(mapStateToProps, { getItem })(ProductPage);

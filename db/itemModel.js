@@ -14,7 +14,7 @@ const itemSchema= new schema({
     },
     userName:{
         type: String,
-        ref: 'user'
+        required:true
     },
     price:{
         type: Number,

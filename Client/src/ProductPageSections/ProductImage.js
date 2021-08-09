@@ -5,7 +5,7 @@ const ProductImage = ({Image}) => {
     return (
         <div>
            {Image}
-         </div>
+        </div>
     )
 }
 

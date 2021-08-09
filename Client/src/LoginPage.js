@@ -1,26 +1,31 @@
-import React from 'react'
+import React from 'react';
+import GoogleLogin from 'react-google-login';
+import axios from 'axios';
 
-const LoginPage = () => {
+function LoginPage(){
+    const LoginSuccess=(res)=>{
+        axios.post('/api/googlelogin',{
+            googleToken: res.tokenId
+        })
+        .then(res=>{
+            console.log(res);
+        })
+    }
+    const LoginFail=(res)=>{
+        console.log(res);
+    }
+
     return (
-        <div>
-            <div>
-                Login Page
-            </div>
-
-
-
-            <div
-                style={{
-                    backgroundImage: "url(" + "https://source.unsplash.com/1600x900/?ocean" + ")",
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat'
-                }}
+        <div className="col-md-6 offset-md-3 text-center">
+            <GoogleLogin
+                clientId="1059582039946-3rije6k0k92ertj2utffkrvdjjgdrkm0.apps.googleusercontent.com"
+                buttonText="Login"
+                onSuccess={LoginSuccess}
+                onFailure={LoginFail}
+                cookiePolicy={'single_host_origin'}
             />
-
         </div>
-
-    )
+    );
 }
 
-export default LoginPage
+export default LoginPage;

@@ -2,7 +2,7 @@
   "name": "buying_and_selling",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://localhost:80",
+  "proxy": "http://localhost:80",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -13,6 +13,7 @@
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
     "react-google-login": "^5.2.2",
+    "react-image-gallery": "^1.2.6",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
