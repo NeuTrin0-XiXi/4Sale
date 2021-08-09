@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './Navbar';
+import BackgroundImage from './BackgroundImage';
 import Body from './Body';
 import Footer from './Footer';
 
@@ -13,6 +14,9 @@ function App() {
         <div className="Navbar">
           <Navbar className="Navbar"/>
         </div>
+        {/* <div>
+          <BackgroundImage />
+        </div> */}
         <div className="content">
           <Body />
         </div>

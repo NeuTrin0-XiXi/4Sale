@@ -1,435 +1,510 @@
 /* Navbar */
 
-#navbarCustom{
-    position:sticky;
-    top: 0px
-}
+
 
 .navBarList{
-display: flex;
-justify-content: space-around;
-font-family: Poppins;
-font-style: 'Zen Loop', cursive;
-font-weight: normal;
-font-size: 24px;
-margin :-26px;
-padding: 37px;
-line-height: 36px;
-flex-wrap: wrap;
-
-}
-
-.inputbar{
-    height: 29px;
-    width: 416px;
-    border: 2px solid black;
-    border-radius: 7px;
-    margin: -9px;
-    padding: 5px;
-}
-
-.categoryDD{
-    margin: -89px;
-    padding: 4px;
-    height: -3px;
-    width: 137px;
-    border: 2px solid black;
-    border-radius: 7px;
-    font-size: 18px;
-    font-family: Poppins;
-}
-.logo{
-    font-family: Poppins !important;
-    font-style: italic !important;
-    font-weight: bold !important;
-    font-size: 50px !important;
-    top: 50px !important;
-    left: 50px !important;
-    line-height: 96px !important;
-    color: #62C1AD !important;
-}
-
- .partOfNav{
-    font-size: 23px;
-    margin: -7px;
-    padding: 10px;
-    transition: all 0.1s; 
-    cursor: pointer;
-}
-
-.partOfNav:hover{
-    text-shadow: 3px 3px 3px rgb(164, 168, 180);
-    font-size: 27px ;
-}
-
-#home{
-    margin-left: -24px;
-    margin-right: -62px;
-}
-
-#about{
-    margin-left: 23px;
-    margin-right: 23px;
-}
-#buy{
-    margin-left:-64px ;
-}
-
-#sell{
-    margin-left: -32px;
-}
-
-#contactUs{
-    margin-right: 44px;
-    margin-left: -36px;
-}
-
-/* Navbar Css Ends Here */
-/* ___________________________________________________________________________________________________________________ */
- /*Footer Css starts Here*/
-
- .footer{
-    width: 100vw;
-    height: 300px;
-    background: #333333;
- }
-
- .footerTextList{
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
-    position:relative;
-    top: 23px;
-    padding: 21px;
-    margin: -5px;
-    font-size: 25px;
     font-family: Poppins;
-    color: #62C1AD;
-    cursor: pointer;
- }
-
-
- .logoFooter{
-     position: relative;
-     top: 94px;
-     left: -13px;
-    font-family: Poppins;
-    font-style: italic;
-    font-weight: bold;
-    font-size: 61px;
-    line-height: 96px;
-    color: #62C1AD;
-    margin: -53px;
-    padding: 22px;
-    transition: all 0.1s; 
-    cursor: pointer;
- }
-
- /* Footer css ends here */
- /* _______________________________________________________________________________________________ */
-/* AboutUs Page css starts here */
-
-
-.aboutUsPage{
-    display: flex;
-    flex-direction: column;
-}
-
-.textImageBox1{
-    display: flex;
-    flex-direction: row;
-    height: 90vh;
-    width: 100vw;
-    position: relative;
-    top: -10px;
-}
-
-.textAboutUs1{
-    font-size: 73px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    position: relative;
-    left: -81px;
-    top: 212px;
-    margin: 40px;
-    padding: 23px;
-    width: 508px;
-    height: 198px;
-
-}
-
-.imageAboutUs1{
-    border-radius: 30px;
-    height: 566px;
-    width: 1026px;
-    margin: 5px;
-    padding: 6px;
-    position: relative;
-    top: 13px;
-    right: 141px;
-}
-
-.textImageBox2{
-    display: flex;
-    flex-direction: row;
-    height: 90vh;
-    width: 100vw;
-    background-color: white;
-    position: relative;
-    top: -10px;
-}
-
-.textAboutUs2{
-    font-size: 73px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    position: relative;
-    left: 623px;
-    top: 212px;
-    margin: 40px;
-    padding: 23px;
-    width: 508px;
-    height: 198px;
-
-}
-
-.imageAboutUs2{
-    border-radius: 7px;
-    height: 443px;
-    width: 778px;
-    margin: 5px;
-    padding: 6px;
-    position: relative;
-    top: 203px;
-    right: 525px;
-}
-
-/* AboutUs ends here */
-/* __________________________________________________________________________________________________________________________________________________ */
-/* sell page starts here */
-
-#sellTextImage{
-    display: flex;
-    flex-direction: row;
-    height: 65vh;
-    width: 100vw;
-    background-color: #EEEEEE;
-    position: relative;
-    top: -10px;
-}
-
-#sellText{
-    font-family: Poppins;
-    font-size: 56px;
-    padding: 19px;
-    margin: 31px;
-    position: relative;
-    top: 3px;
-    left: 49px;
-    height: 23px;
-    width: 396px;
-}
-
-#sellImage{
-    height: 23px;
-    position: relative;
-    top: 23px;
-    right: 23px;
-    width: 23px;
-    margin: 23px;
-    padding: 23px;
-}
-
-.navbarContainer
-{
-    margin-right: 15px !important;
-    margin-left: 13px !important;
-    margin-top: -25px !important;
-    margin-bottom: -25px !important;
-}
-
-.px-2 {
-    padding-right: 4.5rem!important;
-    padding-left: 1.5rem!important;
-}
-
-.navBarHeader{
-    background-color: #333333 !important;
-    width: 100% !important;
-}
-
-.footerBox{
-    height: 14.5rem !important;
-    bottom: 0px !important;
-    background-color: #333333 !important;
-}
-
-.footerText{
-    color: white !important;
-    font-size: 23px !important;
-    margin-top: 15px !important;
-    margin-bottom: 10px !important;
-    margin-left: -53px !important;
-    margin-right: 10px !important;
-}
-
-
-
-.navbarCustom{
-    background-color: #333333 !important;
-}
-
-.homeTileBox{
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-}
-
-.bigContainer{
-    padding-left: 0px  !important;
-    padding-right: 0px  !important;
-    width:100vw !important;
-}
-
-.contactUsMessage{
-    height: 111px !important;
-}
-
-.contactUsTitle
-{
-    color: #62C1AD !important;
-}
-
-.contactInfoElement{
-    margin-top: 25px !important;
-    margin-bottom: 0px !important;
-}
-
-.contactUsFormPart{
-    text-align: center !important;
-}
-
-.navBarItems{
-    text-decoration: none !important;
-    font-size: 21px !important;
-    transition-property: all !important;
-    margin-left: 13px !important;
-    margin-right: 3px !important;
-    color: white !important;
-}
-
-.navBarItems:hover{
-    transition-duration: 0.01s !important;
-    color: aliceblue !important;
+    font-style: 'Zen Loop', cursive;
+    font-weight: normal;
+    font-size: 24px;
+    margin :-26px;
+    padding: 37px;
+    line-height: 36px;
+    flex-wrap: wrap;
     
-
-}
-
-.block1aboutUs{
-    font-size: 71px !important;
-    margin-left: 182px !important;
-    margin-top: 23px !important;
-}
-
-.HeaderBox{
-    font-size: 65px !important;
-    margin-left: 10px !important;
-    margin-top: 10px !important;
-    padding-left: 1px !important;
-    padding-right: 70px !important;
+    }
     
-}
-.paraAboutUs{
-
-    font-size: 25px !important;
-    text-align: left !important;
-    margin-left: 10px !important;
-    margin-top: 10px !important;
-}
-
-#dropdownlabel{
-    color: white;
-    font-size: 21px ;
-}
-
-#ddlist{
-    font-family: Poppins;
-    font-size: 19px;
-    margin-left: 6px;
-    margin-right: 1px;
-    margin-top: 9px;
-    margin-bottom: 1px;
-    padding-left: 13px;
-    padding-right: 1px;
-    padding-top: 1px;
-    padding-bottom: 5px;
-    height: 34px;
-    width: 173px;
-    border-radius: 7px;
-}
-
-
+    .inputbar{
+        height: 29px;
+        width: 416px;
+        border: 2px solid black;
+        border-radius: 7px;
+        margin: -9px;
+        padding: 5px;
+    }
     
-
-#navSearchBar{
-    font-size: 19px;
-    margin-left: 6px;
-    margin-right: 1px !important;
-    margin-top: 0px;
-    margin-bottom: 1px;
-    padding-left: 13px;
-    padding-right: 1px;
-    padding-top: 1px;
-    padding-bottom: 5px;
-    height: 61px;
-    width: 506px;
-    border-radius: 7 !important;
-}
-
-#navSubmitBtn{
-    font-size: 19px;
-    margin-left: 15px;
-    margin-right: 1px !important;
-    margin-top: 0px;
-    margin-bottom: 1px;
-    padding-left: 6px;
-    padding-right: 1px;
-    padding-top: 1;
-    padding-bottom: 5px;
-    height: 61px;
-    width: 111px;
-    border-radius: 7 !important;
-}
+    .categoryDD{
+        margin: -89px;
+        padding: 4px;
+        height: -3px;
+        width: 137px;
+        border: 2px solid black;
+        border-radius: 7px;
+        font-size: 18px;
+        font-family: Poppins;
+    }
+    .logo{
+        font-family: Poppins !important;
+        font-style: italic !important;
+        font-weight: bold !important;
+        font-size: 50px !important;
+        top: 50px !important;
+        left: 50px !important;
+        line-height: 96px !important;
+        color: #62C1AD !important;
+    }
     
-#homeTab{
-    color: white !important;
-    text-decoration: none !important;
-}
-
-.crousalCustomEdit{
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    height: 35.5rem !important;
-
-}
-
-.customCard{
-    height: 30rem !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
+     .partOfNav{
+        font-size: 23px;
+        margin: -7px;
+        padding: 10px;
+        transition: all 0.1s; 
+        cursor: pointer;
+    }
     
-};
-
-.ContainerProperties{
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-around !important;
-}
-
-.cardImageCustom{
-    height: 30rem !important;
-}
-
-.cardText{
-    font-size: 20px !important;
-}
+    .partOfNav:hover{
+        text-shadow: 3px 3px 3px rgb(164, 168, 180);
+        font-size: 27px ;
+    }
+    
+    #home{
+        margin-left: -24px;
+        margin-right: -62px;
+    }
+    
+    #about{
+        margin-left: 23px;
+        margin-right: 23px;
+    }
+    #buy{
+        margin-left:-64px ;
+    }
+    
+    #sell{
+        margin-left: -32px;
+    }
+    
+    #contactUs{
+        margin-right: 44px;
+        margin-left: -36px;
+    }
+    
+    /* Navbar Css Ends Here */
+    /* ___________________________________________________________________________________________________________________ */
+     /*Footer Css starts Here*/
+    
+     .footer{
+        width: 100vw;
+        height: 300px;
+        background: #333333;
+     }
+    
+     .footerTextList{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        position:relative;
+        top: 23px;
+        padding: 21px;
+        margin: -5px;
+        font-size: 25px;
+        font-family: Poppins;
+        color: #62C1AD;
+        cursor: pointer;
+     }
+    
+    
+     .logoFooter{
+         position: relative;
+         top: 94px;
+         left: -13px;
+        font-family: Poppins;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 61px;
+        line-height: 96px;
+        color: #62C1AD;
+        margin: -53px;
+        padding: 22px;
+        transition: all 0.1s; 
+        cursor: pointer;
+     }
+    
+     /* Footer css ends here */
+     /* _______________________________________________________________________________________________ */
+    /* AboutUs Page css starts here */
+    
+    
+    .aboutUsPage{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .textImageBox1{
+        display: flex;
+        flex-direction: row;
+        height: 90vh;
+        width: 100vw;
+        position: relative;
+        top: -10px;
+    }
+    
+    .textAboutUs1{
+        font-size: 73px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        position: relative;
+        left: -81px;
+        top: 212px;
+        margin: 40px;
+        padding: 23px;
+        width: 508px;
+        height: 198px;
+    
+    }
+    
+    .imageAboutUs1{
+        border-radius: 30px;
+        height: 566px;
+        width: 1026px;
+        margin: 5px;
+        padding: 6px;
+        position: relative;
+        top: 13px;
+        right: 141px;
+    }
+    
+    .textImageBox2{
+        display: flex;
+        flex-direction: row;
+        height: 90vh;
+        width: 100vw;
+        background-color: white;
+        position: relative;
+        top: -10px;
+    }
+    
+    .textAboutUs2{
+        font-size: 73px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        position: relative;
+        left: 623px;
+        top: 212px;
+        margin: 40px;
+        padding: 23px;
+        width: 508px;
+        height: 198px;
+    
+    }
+    
+    .imageAboutUs2{
+        border-radius: 7px;
+        height: 443px;
+        width: 778px;
+        margin: 5px;
+        padding: 6px;
+        position: relative;
+        top: 203px;
+        right: 525px;
+    }
+    
+    /* AboutUs ends here */
+    /* __________________________________________________________________________________________________________________________________________________ */
+    /* sell page starts here */
+    
+    #sellTextImage{
+        display: flex;
+        flex-direction: row;
+        height: 65vh;
+        width: 100vw;
+        background-color: #EEEEEE;
+        position: relative;
+        top: -10px;
+    }
+    
+    #sellText{
+        font-family: Poppins;
+        font-size: 56px;
+        padding: 19px;
+        margin: 31px;
+        position: relative;
+        top: 3px;
+        left: 49px;
+        height: 23px;
+        width: 396px;
+    }
+    
+    #sellImage{
+        height: 23px;
+        position: relative;
+        top: 23px;
+        right: 23px;
+        width: 23px;
+        margin: 23px;
+        padding: 23px;
+    }
+    
+    .navbarContainer
+    {
+        margin-right: 15px !important;
+        margin-left: 13px !important;
+        margin-top: -25px !important;
+        margin-bottom: -25px !important;
+    }
+    
+    .px-2 {
+        padding-right: 4.5rem!important;
+        padding-left: 1.5rem!important;
+    }
+    
+    .navBarHeader{
+        background-color: #333333 !important;
+        width: 100% !important;
+    }
+    
+    .footerBox{
+        height: 10.5rem !important;
+        bottom: 0px !important;
+        background-color: #333333 !important;
+    }
+    
+    .footerText{
+        color: white !important;
+        font-size: 23px !important;
+        margin-top: 15px !important;
+        margin-bottom: 10px !important;
+        margin-left: -53px !important;
+        margin-right: 10px !important;
+    }
+    
+    
+    
+    .navbarCustom{
+        background-color: #333333 !important;
+        height: 6.5rem !important;
+    }
+    
+    .homeTileBox{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    
+    .bigContainer{
+        padding-left: 0px  !important;
+        padding-right: 0px  !important;
+        width:100vw !important;
+    }
+    
+    .contactUsMessage{
+        height: 111px !important;
+    }
+    
+    .contactUsTitle
+    {
+        color: #62C1AD !important;
+    }
+    
+    .contactInfoElement{
+        margin-top: 25px !important;
+        margin-bottom: 0px !important;
+    }
+    
+    .contactUsFormPart{
+        text-align: center !important;
+    }
+    
+    .navBarItems{
+        text-decoration: none !important;
+        font-size: 16px !important;
+        transition-property: all !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+        color: white !important;
+    }
+    
+    .navBarItems:hover{
+        transition-duration: 0.01s !important;
+        color: aliceblue !important;
+        
+    
+    }
+    
+    .block1aboutUs{
+        font-size: 71px !important;
+        margin-left: 182px !important;
+        margin-top: 23px !important;
+    }
+    
+    .HeaderBox{
+        font-size: 65px !important;
+        margin-left: 10px !important;
+        margin-top: 10px !important;
+        padding-left: 1px !important;
+        padding-right: 70px !important;
+        
+    }
+    .paraAboutUs{
+    
+        font-size: 25px !important;
+        text-align: left !important;
+        margin-left: 10px !important;
+        margin-top: 10px !important;
+    }
+    
+    #dropdownlabel{
+        color: white;
+        font-size: 16px ;
+    }
+    
+    #ddlist{
+        font-family: Poppins;
+        font-size: 17px;
+        margin-left: 6px;
+        margin-right: 1px;
+        margin-top: 9px;
+        margin-bottom: 1px;
+        padding-left: 3px;
+        padding-right: 1px;
+        padding-top: 1px;
+        padding-bottom: 5px;
+        height: 27px;
+        width: 144px;
+        border-radius: 7px;
+    }
+    
+    
+        
+    
+    #navSearchBar{
+        font-size: 19px;
+        margin-left: 6px;
+        margin-right: 1px !important;
+        margin-top: 0px;
+        margin-bottom: 3px;
+        padding-left: 13px;
+        padding-right: 1px;
+        padding-top: 1px;
+        padding-bottom: 5px;
+        height: 46px;
+        width: 386px;
+        border-radius: 7 !important;
+    }
+    
+    #navSubmitBtn{
+        font-size: 15px;
+        margin-left: 15px;
+        margin-right: 1px !important;
+        margin-top: 0px;
+        margin-bottom: 1px;
+        padding-left: 6px;
+        padding-right: 1px;
+        padding-top: 1;
+        padding-bottom: 5px;
+        height: 46px;
+        width: 72px;
+        border-radius: 7 !important;
+    }
+        
+    #homeTab{
+        color: white !important;
+        text-decoration: none !important;
+    }
+    
+    .crousalCustomEdit{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        height: 35.5rem !important;
+    
+    }
+    
+    .customCard{
+        height: 30rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        
+    };
+    
+    .ContainerProperties{
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+    }
+    
+    .cardImageCustom{
+        height: 30rem !important;
+    }
+    
+    .cardText{
+        font-size: 20px !important;
+    }
+    
+    
+    .productRedirect{
+        text-decoration: none !important;
+    }
+    
+    .customProductPagTitle{
+        font-size: 77px !important;
+        margin-top: -41px !important;
+        margin-bottom: 6px !important;
+        padding-top: -7px !important;
+        padding-bottom: -8px !important;
+        font-family: Poppins !important;
+    
+    }
+    
+    .cardCustom{
+        margin-top: 72px !important;
+        margin-bottom: 36px !important;
+        margin-right: 20px !important;
+        margin-left: 20px !important;
+        
+    }
+    
+    #cardBoxOutline{
+        border: 1px white !important;
+        box-shadow: 5px 5px 10px  slategray !important;
+    }
+    
+    
+    .ProductPageBox{
+        border: 2px solid red;
+    }
+    
+    .productText{
+        font-size: 30px ;
+        font-family: Poppins;
+        display: flex;
+    }
+    
+    .ProductImage{
+        border-radius: 10px;
+    }
+    
+    .customBuyButton{
+        height: 45px;
+        font-family: Poppins;
+        color: white !important;
+        width: 264px ;
+        border: 1px white !important;
+        border-radius: 15px !important;
+        font-size: 23px;
+        transition-property: all !important;
+    }
+    
+    .customBuyButton:hover{
+        box-shadow: 5px 5px 15px rgb(179, 180, 182);
+    }
+    
+    #BuyButtonId{
+        background-color: #62c1ad !important;
+    }
+    
+    #customWishlist{
+        background-color: #f6c324 !important;
+    }
+    
+    .p-2{
+        font-size: 30px !important;
+    }
+    
+    .customHeaderSellPage{
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    
