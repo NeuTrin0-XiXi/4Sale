@@ -59,7 +59,7 @@ class Sample extends Component {
                                     <h2 class="featurette-heading">Want to share your belongings?<br /><br /><br /> Post an AD now !!</h2>
                                 </div>
                                 <div class="col-md-5 ">
-                                    <img class=" img-fluid bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="https://source.unsplash.com/1600x900/?space,elements" alt="Displat Image SellPage"></img>
+                                    <img class=" img-fluid bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="https://source.unsplash.com/1600x900/?money,finance" alt="Displat Image SellPage"></img>
                                 </div>
                             </div>
                             <br />
