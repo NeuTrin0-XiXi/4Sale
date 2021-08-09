@@ -18,9 +18,7 @@
   "homepage": "https://github.com/Jaisxixi/4Sale#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-jwt": "^6.0.0",
     "google-auth-library": "^7.5.0",
-    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.3"
   }
 }
