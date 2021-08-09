@@ -1,7 +1,6 @@
 import React from 'react'
 import Combined from "./Combined.css"
 import Footer2 from './Footer2';
-import Navbarnew from './Navbarnew';
 
 function AboutUs() {
   return (
@@ -13,7 +12,7 @@ function AboutUs() {
 
         </div>
         <div class="col-md-5">
-          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?online" />
+          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?people" />
 
 
         </div>
@@ -36,9 +35,9 @@ function AboutUs() {
         </div>
       </div>
       <div class="row featurette">
-        <div class="col-md-7 d-flex align-items-center">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-          <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+        <div class="col-md-7 d-flex align-items-center " >
+          <h2 class="featurette-heading" style={{fontsize: "55px"}}>Who are we? </h2>
+          <p class="lead">We are the students of IIT Indore. This web application is an effort by us to provide buying and selling services withing the IITI community</p>
         </div>
         <div class="col-md-5">
           <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?product" />
