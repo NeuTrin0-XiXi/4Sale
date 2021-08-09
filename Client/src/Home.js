@@ -36,16 +36,6 @@ class Home extends Component {
       <div>
         <div id="myCarousel" class="container-fluid carousel slide crousalCustomEdit" data-bs-ride="carousel">
           <div class="carousel-inner crousalCustomEdit">
-            <div class="carousel-item active crousalCustomEdit" >
-              <img src="https://source.unsplash.com/1600x900/?rain" class="bd-placeholder-img" />
-              <div class="container ">
-                <div class="carousel-caption text-start">
-                  <h1>Example headline.</h1>
-                  <p>Some representative placeholder content for the first slide of the carousel.</p>
-                  <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-                </div>
-              </div>
-            </div>
             <div class="carousel-item active crousalCustomEdit ">
               <img src="https://source.unsplash.com/1600x900/?ocean" class="bd-placeholder-img" />
             </div>

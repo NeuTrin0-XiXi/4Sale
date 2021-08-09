@@ -20,7 +20,7 @@ function App() {
     <Provider store = {store}>
     <Router>
       <div className="App">
-        <div>
+        <div className="NavbBar">
           <Newnavbar2 />
         </div>
         {/* <div>

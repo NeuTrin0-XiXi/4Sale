@@ -75,6 +75,7 @@ route.post('/', (req, res, next) => {
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(201).send(`Ad for ${item.name} posted sucessfully`);
+            console.log("posted");
         })
         .catch(next);
 });
