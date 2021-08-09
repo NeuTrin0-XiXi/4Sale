@@ -1,39 +1,40 @@
-import { GET_ITEMS , ADD_ITEMS ,LOAD_ITEMS } from "../actions/types";
+import { GET_ITEMS, ADD_ITEMS, LOAD_ITEMS } from "../actions/types";
 
 const initialState = {
-    items:[
+    items: [
         {
             title: "Football",
-            description:"Thid is a football",
-            price: 2000
-        },
-        {
-            title: "Basketball",
-            description:"Thid is a basketball",
-            price: 3000
+            description: "This is a football ",
+            email: "200003015",
+            price: 2000,
+            category: "Sports"
         }
     ],
-    loading : false
+    item: {
+        title:''
+    },
+    
+    loading: false
 }
 
-const productReducers = (state = initialState , action) => {
-    switch(action.type){
-        case GET_ITEMS :
+const productReducers = (state = initialState, action) => {
+    switch (action.type) {
+        case GET_ITEMS:
             return {
                 ...state,
-                items:action.payload,
-                loading:false
+                items: action.payload,
+                loading: false
             };
 
 
 
-        case ADD_ITEMS :
+        case ADD_ITEMS:
             return {
                 ...state,
-                items:[action.payload , ...state.items]
+                items: [action.payload, ...state.items]
             }
-        
-        default : return state;
+
+        default: return state;
     }
 
 }

@@ -3,7 +3,7 @@ const schema=mongoose.Schema;
 
 //Schema
 const itemSchema= new schema({
-    name:{
+    title:{
         type: String,
         required: true,
         unique: false
@@ -12,10 +12,10 @@ const itemSchema= new schema({
         type: Date,
         default: Date.now
     },
-    // user:{
-    //     type: schema.Types.ObjectId,
-    //      ref: 'user'
-    // },
+    userName:{
+        type: String,
+        ref: 'user'
+    },
     price:{
         type: Number,
         required: true

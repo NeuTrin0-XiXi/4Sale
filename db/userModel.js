@@ -8,6 +8,9 @@ const userSchema=new schema({
         required: true,
         unique: false
     },
+    id_token:{
+        type:String
+    },
     email:{
         type: String,
         required: true

@@ -1,40 +1,43 @@
 import React from 'react'
-import './Combined.css';
+import Footer2 from './Footer2'
+import Navbarnew from './Navbarnew'
+import Combined from './Combined.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Component } from 'react';
-import Items from './components/Items';
-// import { getItems } from './actions/ActionCreators';
-// import Proptypes from 'prop-types';
-// import { connect } from 'react-redux';
-import axios from 'axios';
+import { Container } from 'react-bootstrap';
+import { getItems } from './actions/ActionCreators';
+import Proptypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 class Home extends Component {
-  state = {
-    items: [
-    ]
-  }
-  componentDidMount() {
-    axios.get('/api/items')
-      .then(res => {
-        console.log(res);
-        let newItems = [...this.state.items, res.data];
-        this.setState({
-          items: newItems
-        })
-      });
-  }
 
+
+
+  componentDidMount() {
+    this.props.getItems();
+  }
+   handelClick=(_id)=>{
+    this.props.getItem(_id);
+  }
 
   render() {
+    // this.props.something.items;
+    const { items } = this.props.product;
+
+    const textColor = {
+      color: 'black',
+      textDecoration: 'none'
+    };
+
+
     return (
       <div>
         <div id="myCarousel" class="container-fluid carousel slide crousalCustomEdit" data-bs-ride="carousel">
           <div class="carousel-inner crousalCustomEdit">
-
             <div class="carousel-item active crousalCustomEdit" >
               <img src="https://source.unsplash.com/1600x900/?rain" class="bd-placeholder-img" />
-
               <div class="container ">
                 <div class="carousel-caption text-start">
                   <h1>Example headline.</h1>
@@ -78,21 +81,46 @@ class Home extends Component {
         {/* ______________________________________ */}
         <div>
           <h3 style={{ fontFamily: 'Poppins' }}><b><u>Recently Added</u></b></h3>
-          <Items items={this.state.items} />
+        </div>
+
+        <div className="card-deck">
+          <Container className="ContainerProperties">
+            {items.map(({ _id, title, description, price, category }) => (
+              <Link to={'item/:_id'} className="productRedirect" style={textColor}>
+                <div className="col-lg-4 cardCustom d-inline-block">
+                  <div class="card  customCard" key={_id} id="cardBoxOutline">
+                    <img class="card-img-top cardImageCustom" src="..." alt="Card image cap" onClick={()=>{handelClick({_id})}}/>
+                    <div class="card-body  customCard">
+                      <h5 class="card-title cardText">{title}</h5>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item cardText">Rs. {price}</li>
+                        <li class="list-group-item cardText">{category}</li>
+                        <li><a href="#" class="btn btn-primary" style={{ backgroundColor: '#62c1ad', textDecoration: 'none' }}>Add to WishList</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </Container>
         </div>
         <br /><br /><br /><br />
+        <div>
+          <Footer2 />
+        </div>
       </div>
     )
   }
 }
 
-// Home.propTypes = {
-//   getItems: Proptypes.func.isRequired,
-//   item: Proptypes.object.isRequired
-// }
+Home.propTypes = {
+  getItems: Proptypes.func.isRequired,
+  getItem: Proptypes.func.isRequired,
+  item: Proptypes.object.isRequired
+}
 
-// const mapStateToProps = (state) => ({
-//   product: state.product
-// });
-// connect(mapStateToProps, { getItems })
-export default Home;
+const mapStateToProps = (state) => ({
+  product: state.product
+});
+
+export default connect(mapStateToProps, { getItems, getItem })(Home);
