@@ -16,9 +16,9 @@ class Home extends Component {
   componentDidMount() {
     this.props.getItems();
   }
-   handelClick=(_id)=>{
-    // this.props.getItem(_id);
-  }
+  //  handelClick=(_id)=>{
+  // this.props.getItem(_id);
+  // }
 
   render() {
     // this.props.something.items;
@@ -74,10 +74,10 @@ class Home extends Component {
         <div className="card-deck">
           <Container className="ContainerProperties">
             {items.map(({ _id, title, description, price, category }) => (
-              <Link to={`/item:${_id}`} className="productRedirect" style={textColor}>
+              <Link to={`/item`} className="productRedirect" style={textColor}>
                 <div className="col-lg-4 cardCustom d-inline-block">
                   <div className="card  customCard" key={_id} id="cardBoxOutline">
-                    <img className="card-img-top cardImageCustom" src="..." alt="Card image cap" onClick={()=>{this.handelClick({_id})}}/>
+                    {/* <img className="card-img-top cardImageCustom" src="..." alt="Card image cap" onClick={()=>{this.handelClick({_id})}}/> */}
                     <div className="card-body  customCard">
                       <h5 className="card-title cardText">{title}</h5>
                       <ul className="list-group list-group-flush">
@@ -100,12 +100,11 @@ class Home extends Component {
 
 Home.propTypes = {
   getItems: Proptypes.func.isRequired,
-  getItem: Proptypes.func.isRequired,
-  item: Proptypes.object.isRequired
+  // item: Proptypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
   product: state.product
 });
 
-export default connect(mapStateToProps, { getItems})(Home);
+export default connect(mapStateToProps, { getItems })(Home);

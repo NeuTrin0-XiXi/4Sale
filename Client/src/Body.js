@@ -31,7 +31,7 @@ export default function Body() {
             <Route exact path="/login">
                 <LoginPage />
             </Route>
-            <Route  path="/item">
+            <Route  path ="/item">
                 <ProductPage />
             </Route>
         </Switch>
