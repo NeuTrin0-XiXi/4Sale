@@ -1,25 +1,24 @@
-import React from 'react'
-import Combined from "./Combined.css"
-import Footer2 from './Footer2';
+import React from 'react';
+import './Combined.css';
 
 function AboutUs() {
   return (
     <div>
       <br /><br /><br />
-      <div class="row featurette">
-        <div class="col-md-7 d-flex align-items-center">
-          <h1 class="featurette-heading block1aboutUs">We are what we deliver</h1>
+      <div className="row featurette">
+        <div className="col-md-7 d-flex align-items-center">
+          <h1 className="featurette-heading block1aboutUs">We are what we deliver</h1>
 
         </div>
-        <div class="col-md-5">
-          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?people" />
+        <div className="col-md-5">
+          <img className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?people" />
 
 
         </div>
       </div>
       {/* _______________________ */}
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2 d-flex align-items-center  flex-direction-column">
+      <div className="row featurette">
+        <div className="col-md-7 order-md-2 d-flex align-items-center  flex-direction-column">
           <div className="col-md-4">
             <h2 className="HeaderBox">Our Vision</h2>
           </div>
@@ -29,25 +28,25 @@ function AboutUs() {
             </p>
           </div>
         </div>
-        <div class="col-md-5 order-md-1">
-          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?work" />
+        <div className="col-md-5 order-md-1">
+          <img className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?work" />
 
         </div>
       </div>
-      <div class="row featurette">
-        <div class="col-md-7 d-flex align-items-center " >
-          <h2 class="featurette-heading" style={{fontsize: "55px"}}>Who are we? </h2>
-          <p class="lead">We are the students of IIT Indore. This web application is an effort by us to provide buying and selling services withing the IITI community</p>
+      <div className="row featurette">
+        <div className="col-md-7 d-flex align-items-center " >
+          <h2 className="featurette-heading" style={{ fontsize: "55px" }}>Who are we? </h2>
+          <p className="lead">We are the students of IIT Indore. This web application is an effort by us to provide buying and selling services withing the IITI community</p>
         </div>
-        <div class="col-md-5">
-          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?product" />
+        <div className="col-md-5">
+          <img className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?product" />
 
 
         </div>
       </div>
       {/* _______________________ */}
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2 d-flex align-items-center  flex-direction-column">
+      <div className="row featurette">
+        <div className="col-md-7 order-md-2 d-flex align-items-center  flex-direction-column">
           <div className="col-md-4">
             <h2 className="HeaderBox">Join Us</h2>
           </div>
@@ -57,16 +56,13 @@ function AboutUs() {
             </p>
           </div>
         </div>
-        <div class="col-md-5 order-md-1">
-          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?company" />
+        <div className="col-md-5 order-md-1">
+          <img className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?company" />
 
 
         </div>
       </div>
       <br /><br /><br />
-      <div>
-        <Footer2 />
-      </div>
     </div>
   );
 }

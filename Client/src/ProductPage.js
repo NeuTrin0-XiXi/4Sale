@@ -1,42 +1,47 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbarnew from './Navbarnew';
-import Combined from './Combined.css';
-import Footer2 from './Footer2';
+import './Combined.css';
 import { useParams } from 'react-router';
-import ProductImage from './ProductPageSections/ProductImage';
-import ProductInfo from './ProductPageSections/ProductInfo.js';
+// import ProductImage from './ProductPageSections/ProductImage';
+// import ProductInfo from './ProductPageSections/ProductInfo.js';
 import { Components } from 'react'
+import axios from 'axios';
 
-export default function ProductPage(){
-  // componentDidMount() {
-  //   this.props.getItem();
-  // }
-    // const { item } = this.props.product;
-    const { title, description, userName, price, category } = useParams();       //Destructuring the state parameters
+class ProductPage extends Components {
+  componentDidMount() {
+    axios.get('/api/items/:' + _id)
+      .then(res => {
+        console.log(res.body);
+      })
+  }
+  // const { item } = this.props.product;
+  render() {
     const handleBuyClick = () => {
       alert("Notification Sent to the owner...")
     }
+    const { _id } = useParams();       //Destructuring the state parameters
+
+
     return (
       <div>
         <div>
-          <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-            <div class="my-3 py-3">
+          <div className="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+            <div className="my-3 py-3">
               <p className="display-5 customProductPagTitle">{title}</p>
             </div>
-            <div class="bg-light box-shadow mx-auto" style={{ width: "85%", height: "100%", borderRadius: "21px 21px 0 0" }}>
+            <div className="bg-light box-shadow mx-auto" style={{ width: "85%", height: "100%", borderRadius: "21px 21px 0 0" }}>
               <div style={{ color: "black" }} >
-                <div class="d-sm-flex flex-column justify-content-around">
+                <div className="d-sm-flex flex-column justify-content-around">
                   <br /><br />
                   <div className="productcrousel d-flex justify-content-center">
                     <img src="https://source.unsplash.com/500x500/?football" className="ProductImage" />
                   </div >
                   <br /><br />
-                  <div class="p-2"><b><u>Price:</u></b> Rs {price}</div>
+                  <div className="p-2"><b><u>Price:</u></b> Rs {price}</div>
                   <br />
-                  <div class="p-2"><b><u>Category:</u></b>  {category}</div>
+                  <div className="p-2"><b><u>Category:</u></b>  {category}</div>
                   <br />
-                  <div class="p-2"><u><b>Description</b></u></div>
+                  <div className="p-2"><u><b>Description</b></u></div>
                   <div>{description}</div>
                   <br /><br />
                 </div>
@@ -50,9 +55,10 @@ export default function ProductPage(){
             </div>
           </div>
         </div>
-        <Footer2 />
       </div>
     )
+  }
 }
 
 
+export default ProductPage;
