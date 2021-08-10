@@ -20,11 +20,16 @@ class Sample extends Component {
     
       onChange = (e) => {
           this.setState({[e.target.name]: e.target.value})
+    }
 
+    fileChangeHandler = (e) => {
+        this.setState({
+            ProductImage : e.target.files[0]
+        })
     }
 
     onSubmit = (e) => {
-        if(this.state.title === '' || this.state.description === '' || this.state.price === '' || this.state.category === '' || this.state.email === '')
+        if(this.state.title === '' || this.state.description === '' || this.state.price === '' || this.state.category === '' || this.state.email === '' || this.state.ProductImage === '')
         {
             alert("Please Fill all the Fields");
             e.preventDefault();
@@ -38,7 +43,7 @@ class Sample extends Component {
           description: this.state.description,
           email: this.state.email,
           price: this.state.price,
-          category: this.state.category    
+          category: this.state.category, 
           }
   
           this.props.addItem(newItem);
@@ -118,6 +123,16 @@ class Sample extends Component {
                                             Please enter product category.
                                         </div>
                                     </div>
+                                    
+                                    <div class="col-6 d-flex justify-content-center flex-column bd-highlight mb-3">
+                                        <label for="file" class="form-label">Enter the image of product</label>
+                                        <input type="file" class="form-control"  id="ProductImage"  placeholder="Attatch the Image file here" required name = "ProductImage"  onChange = {this.fileChangeHandler}/>
+                                        
+                                        <div class="invalid-feedback">
+                                            Please enter PRODUCT image
+                                        </div>
+                                    </div>
+                                   
                                     </div>
                                     <div className = "d-flex justify-content-center flex-column bd-highlight mb-3">
                                     <div class="col-md-5">

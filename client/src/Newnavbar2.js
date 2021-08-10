@@ -3,6 +3,7 @@ import  'bootstrap/dist/css/bootstrap.min.css';
 import Combined from './Combined.css';
 import { Link } from 'react-router-dom';
 import LoginPage from './LoginPage';
+import CategoryList from './CategoryList';
 
 
 const Newnavbar2 = () => {
@@ -53,6 +54,7 @@ const Newnavbar2 = () => {
                                        <option value = "games">Games</option>
                                        <option value = "utilities">Utilities</option>
                                    </select>
+                                   {/* <CategoryList /> */}
                                    </li>
                                 </ul>
                                 <form class="d-flex">

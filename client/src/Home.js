@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 
 
+
 class Home extends Component {
 
   
@@ -19,10 +20,12 @@ class Home extends Component {
     this.props.getItems();
   }
 
+ 
+
 
   render() {
     // this.props.something.items;
-    const { items } = this.props.product;
+    const {items} = this.props.product;
     
     const textColor = {
       color: 'black',
@@ -85,17 +88,20 @@ class Home extends Component {
 
         <div className="card-deck">
           <Container className = "ContainerProperties">
-            {items.map(({ _id, title, description, price , category  }) => (
-              <Link to = {`/4Sale/product/${title}/${description}/${price}/${category}/`} className = "productRedirect" style = {textColor}>
+            {items.map(({ _id, title, description,email , price , category }) => (
+              <Link to = {`/4Sale/product`} className = "productRedirect" style = {textColor}>
+              
+              {/* ${title}/${description}/${email}/${price}/${category} */}
+              
               <div className = "col-lg-4 cardCustom d-inline-block">
               <div class="card  customCard" key={_id} id = "cardBoxOutline">
-                <img class="card-img-top cardImageCustom" src="..." alt="Card image cap" />
+                <img class="card-img-top cardImageCustom" src= "https://source.unsplash.com/1600x900/?cheems" alt="Card image cap" />
                 <div class="card-body  customCard">
                   <h5 class="card-title cardText">{title}</h5>
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item cardText">Rs. {price}</li>
                     <li class="list-group-item cardText">{category}</li>
-                    <li><a href="#" class="btn btn-primary" style = {{backgroundColor: '#62c1ad' , textDecoration: 'none'}}>Add to WishList</a></li>
+                    <li><a href="#" class="btn btn-primary" style = {{backgroundColor: '#62c1ad' , textDecoration: 'none'}} >Add to WishList</a></li>
                   </ul>  
                 </div>
               </div>
@@ -123,5 +129,6 @@ Home.propTypes = {
 const mapStateToProps = (state) => ({
   product: state.product
 });
+
 
 export default connect(mapStateToProps, { getItems })(Home);

@@ -13,7 +13,6 @@ import store from './store/store';
 import ProductPage from './ProductPage'; 
 import BackgroundImage from './BackgroundImage';
 import LoginPage from './LoginPage';
-import CategoryPage from './CategoryPage';
 import IntroPage from './IntroPage';
 
 function App() {
@@ -44,13 +43,10 @@ function App() {
             <Route exact path="/4Sale/contactUs">
               <ContactUs />
             </Route>
-            <Route exact path="/4Sale/category/">
-              <CategoryPage />
-            </Route>
             <Route exact path="/4Sale/login">
               <LoginPage />
             </Route>
-            <Route exact path="/4Sale/product/:title/:description/:price/:category">
+            <Route exact path="/4Sale/product">                        {/*title/:description/:email/:price/:category */}
               <ProductPage />
             </Route>
           </Switch>
