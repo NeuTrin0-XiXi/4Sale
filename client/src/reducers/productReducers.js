@@ -3,12 +3,12 @@ import { GET_ITEMS , ADD_ITEMS ,LOAD_ITEMS } from "../actions/types";
 const initialState = {
     items:[
         {
+            _id: "f",
             title: "Football",
             description:"This is a football ",
             email:"200003015",
             price: 2000,
-            category: "Sports"
-
+            category: "Sports",
         },
         {
             title: "Basketball",

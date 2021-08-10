@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Combined from './Combined.css';
 import { Link } from 'react-router-dom';
 import LoginPage from './LoginPage';
+import CategoryList from './CategoryList';
 
 
 const Newnavbar2 = () => {
@@ -44,6 +45,7 @@ const Newnavbar2 = () => {
                                 <a class="nav-link " href="#" id="navbarDropdown" role="button" aria-expanded="false">
                                     <label id="dropdownlabel">Categories</label>
                                 </a>
+<<<<<<< HEAD
                             </li>
                             <li>
                                 <select id="ddlist">
@@ -61,6 +63,28 @@ const Newnavbar2 = () => {
                             <Link to="/4Sale/login" style={{ textDecoration: 'none' }}><button class="btn btn-outline-warning" id="navSubmitBtn" type="LOGIN">Login</button></Link>
                         </form>
                     </div>
+=======
+                                </li>
+                                <li>
+                                   <select id = "ddlist">
+                                       <option value = "allCategories">All Categories</option>
+                                       <option value = "sports">Sports</option>
+                                       <option value = "books">Books</option>
+                                       <option value = "games">Games</option>
+                                       <option value = "utilities">Utilities</option>
+                                   </select>
+                                   {/* <CategoryList /> */}
+                                   </li>
+                                </ul>
+                                <form class="d-flex">
+                                    <input class="form-control me-2" id = "navSearchBar" type="search" placeholder="Search" aria-label="Search" />
+                                    <button class="btn btn-outline-success"  id = "navSubmitBtn" type="submit">Search</button>
+                                    <Link to = "/4Sale/login" style = {{textDecoration: 'none'}}><button class="btn btn-outline-warning"  id = "navSubmitBtn" type="LOGIN">Login</button></Link>
+                                </form>
+    </div>
+  </div>
+</nav>
+>>>>>>> 939ba305b4604d1639280a1848896f2f136a1d19
                 </div>
             </nav>
         </div>
