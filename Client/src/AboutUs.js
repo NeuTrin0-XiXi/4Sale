@@ -1,6 +1,7 @@
 import React from 'react';
 import './Combined.css';
 
+
 function AboutUs() {
   return (
     <div>

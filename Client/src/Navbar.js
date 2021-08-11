@@ -57,7 +57,7 @@ const Navbar = () => {
                         <form className="d-flex">
                             <input className="form-control me-2" id="navSearchBar" type="search" placeholder="Search" aria-label="Search" />
                             <button className="btn btn-outline-success" id="navSubmitBtn" type="submit">Search</button>
-                            <Link to="/login" style={{ textDecoration: 'none' }}><button className="btn btn-outline-warning" id="navSubmitBtn" type="LOGIN">Login</button></Link>
+                            <Link to="/login" style={{ textDecoration: 'none' }}><button className="btn btn-outline-warning" id="navLoginBtn" type="LOGIN">Login</button></Link>
                         </form>
                     </div>
                 </div>

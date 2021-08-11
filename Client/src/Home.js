@@ -2,12 +2,8 @@ import React from 'react';
 import './Combined.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Component } from 'react';
-import { Container } from 'react-bootstrap';
-import { getItems } from './actions/ActionCreators';
-import Proptypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import ItemList from './components/ItemList';
 
 
 class Home extends Component {
@@ -17,7 +13,8 @@ class Home extends Component {
       {
         _id: '',
         title: '',
-        price: ''
+        price: '',
+        date: ''
 
       }
     ]
@@ -26,10 +23,10 @@ class Home extends Component {
   componentDidMount() {
     axios.get('/api/items')
       .then(res => {
-        console.log(res.data);
         this.setState({
-          items:res.data
+          items: res.data
         });
+        console.log(this.state.items);
       })
   }
 
@@ -37,11 +34,6 @@ class Home extends Component {
   render() {
     // this.props.something.items;
     // const { items } = this.props.product;
-
-    const textColor = {
-      color: 'black',
-      textDecoration: 'none'
-    };
 
     return (
       <div>
@@ -83,28 +75,7 @@ class Home extends Component {
         <div>
           <h3 style={{ fontFamily: 'Poppins' }}><b><u>Recently Added</u></b></h3>
         </div>
-
-        <div className="card-deck">
-          <Container className="ContainerProperties">
-            {this.state.items.map(({ _id, title, price }) => (
-              <Link to={`/item/${_id}`} className="productRedirect" style={textColor}>
-                <div className="col-lg-4 cardCustom d-inline-block">
-                  <div className="card  customCard" key={_id} id="cardBoxOutline">
-                    {/* <img className="card-img-top cardImageCustom" src="..." alt="Card image cap" onClick={()=>{this.handelClick({_id})}}/> */}
-                    <div className="card-body  customCard">
-                      <h5 className="card-title cardText">{title}</h5>
-                      <ul className="list-group list-group-flush">
-                        <li className="list-group-item cardText">Rs. {price}</li>
-                        {/* <li className="list-group-item cardText">{category}</li> */}
-                        <li><a href="#" className="btn btn-primary" style={{ backgroundColor: '#62c1ad', textDecoration: 'none' }}>Add to WishList</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </Container>
-        </div>
+        <ItemList items={this.state.items} />
         <br /><br /><br /><br />
       </div>
     )

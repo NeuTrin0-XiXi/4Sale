@@ -12,8 +12,16 @@ const itemSchema= new schema({
         type: Date,
         default: Date.now
     },
+    userID:{    //Not provided to frontend  //Only used in case for notifying user for Buy notification
+        type: schema.Types.ObjectId,
+        ref: 'user'
+    },
     userName:{
         type: String,
+        required:true
+    },
+    userEmail:{
+        type:String,
         required:true
     },
     price:{
@@ -26,6 +34,9 @@ const itemSchema= new schema({
     description:{
         type:String,
         required:true
+    },
+    images:{
+        type:[String]
     }
 
 

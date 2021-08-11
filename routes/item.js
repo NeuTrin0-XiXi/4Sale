@@ -2,19 +2,19 @@
 
 const express = require('express');
 const route = express.Router();
+const fileUpload = require('express-fileupload');
 const Item = require('../db/models').itemModel;
 const User = require('../db/models').userModel;
-
-
+const imageFolder=require('../staticFolderConfig');
 //API handlers
+
 
 //GET Handlers:      
 //GET all items:
 route.get('/', (req, res, next) => {
-    console.log('GET Request');
     Item.find({})
-        .select('name date price')
-        .sort({date: 'desc'})
+        .select('title date price')
+        .sort({ date: 'desc' })
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
@@ -26,7 +26,7 @@ route.get('/', (req, res, next) => {
 //GET Items from Search Bar(name):                  
 route.get('/search', (req, res, next) => {
     Item.find(res.query)
-        .select('name date price')
+        .select('title date price')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
@@ -44,7 +44,7 @@ route.get('/filter', (req, res, next) => {
     //     delete req.query.priceLb;
     // }
     Item.find(req.query)
-        .select('name date price')
+        .select('title date price')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
@@ -56,7 +56,7 @@ route.get('/filter', (req, res, next) => {
 //GET Item details:                             
 route.get('/:id', (req, res, next) => {
     Item.findById(req.params.id)
-        .select('name date price userName')
+        .select('title date price userName')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item)
@@ -68,14 +68,21 @@ route.get('/:id', (req, res, next) => {
 
 //---------------------------------------------------------------------------//
 
-//post an item
-
+//Middleware:
+route.use(fileUpload());
+//POST Handler:
 route.post('/', (req, res, next) => {
+    console.log(req.body);
     Item.create(req.body)
         .then((item) => {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.status(201).send(`Ad for ${item.name} posted sucessfully`);
-            console.log("posted");
+            Item.findOne(item)
+                .select('title')
+                .then(item => {
+                    const { file } = req.files;
+                    file.mv(`${imageFolder}/${item._id}`);
+                    res.header("Access-Control-Allow-Origin", "*");
+                    res.status(201).send(item);
+                })
         })
         .catch(next);
 });

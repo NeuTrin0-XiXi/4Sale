@@ -1,49 +1,35 @@
 import React, { Component } from 'react';
-// import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
 import { connect } from 'react-redux';
-import { addItem } from './actions/ActionCreators';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 
 
-class Sample extends Component {
-    state = {
-        title: '',
-        description: '',
-        email: '',
-        price: '',
-        category: ''
-    }
-
-    onChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
-
-    }
-
-    onSubmit = (e) => {
-        if (this.state.title === '' || this.state.description === '' || this.state.price === '' || this.state.category === '' || this.state.email === '') {
-            alert("Please Fill all the Fields");
-            e.preventDefault();
-        }
-
-        else {
-            e.preventDefault();
-            const newItem = {
-                title: this.state.title,
-                description: this.state.description,
-                email: this.state.email,
-                price: this.state.price,
-                category: this.state.category
-            }
-
-            this.props.addItem(newItem);
-            (alert("Sucessfully Posted AD ..."))
-        }
-    }
-
+class Sell extends Component {
     render() {
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            const formData = e.target;
+            const newItem = new FormData(formData);
+            // for(let key of newItem.keys()){
+            //     console.log(key, newItem.get(key));
+            // }
+            newItem.append('userName', 'Jais');
+            newItem.append('userEmail', 'me@webdev.com');
+
+            axios.post('/api/items', newItem)
+                .then(res => {
+                    alert(res.data.title);
+                    console.log(res.data)
+                    // axios.put(`/api/user/sold/611158c5a60e1f1b2887df6e`, {        //Edit user favs id to variable
+                    //     soldItems: res.data._id
+                    // })
+                })
+
+        }
 
         return (
             <div>
@@ -69,37 +55,32 @@ class Sample extends Component {
                                 <div className="col-md-7 col-lg-8 bg-light ">
                                     <br />
                                     <h2 className="mb-3 "><u>Product Details</u></h2><br /><br />
-                                    <form className="needs-validation" novalidate="" onSubmit={this.onSubmit} >
+
+                                    {/* FORM */}
+                                    <form className="needs-validation" id="itemForm" noValidate="" onSubmit={handleSubmit} >
                                         <div className="row g-3">
                                             <div className="col-12">
-                                                <label for="address" className="form-label">Product Title</label>
-                                                <input type="text" className="form-control" id="productTitle" placeholder="Enter the product title here" required name="title" onChange={this.onChange} />
+                                                <label htmlFor="productTitle" className="form-label">Product Title</label>
+                                                <input required type="text" className="form-control" id="productTitle" placeholder="Enter the product title here" required name="title" />
                                                 <div className="invalid-feedback">
                                                     Please enter product title.
                                                 </div>
                                             </div>
 
                                             <div className="col-12">
-                                                <label for="username" className="form-label">Product Description</label>
+                                                <label htmlFor="description" className="form-label">Product Description</label>
                                                 <div className="input-group has-validation">
-                                                    <textarea className="form-control" id="username" placeholder="Enter Product Description" required name="description" onChange={this.onChange}></textarea>
+                                                    <textarea required className="form-control" id="description" placeholder="Enter Product Description" required name="description" />
                                                     <div className="invalid-feedback">
                                                         Please enter product description.
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div className="col-12">
-                                                <label for="email" className="form-label">Email <span className="text-muted">(Optional)</span></label>
-                                                <input type="email" className="form-control" id="email" placeholder="you@example.com" name="email" onChange={this.onChange} />
-                                                <div className="invalid-feedback">
-                                                    Please enter a valid institute email address .
-                                                </div>
-                                            </div>
                                             <div className="d-flex justify-content-center flex-column bd-highlight mb-3">
-                                                <div className="col-6 d-flex justify-content-center flex-column bd-highlight mb-3">
-                                                    <label for="address" className="form-label">Price</label>
-                                                    <input type="text" className="form-control" id="address" placeholder="Set a Price" required name="price" onChange={this.onChange} />
+                                                <div className="col-6 d-flex justify-content-center flex-column bd-highlight mb-4">
+                                                    <label htmlFor="price" className="form-label" required>Price</label>
+                                                    <input min="0" type="number" className="form-control" id="price" placeholder="Set a Price" required name="price" />
 
                                                     <div className="invalid-feedback">
                                                         Please enter product price.
@@ -108,11 +89,36 @@ class Sample extends Component {
 
 
                                                 <div className="col-6 d-flex justify-content-center flex-column bd-highlight mb-3">
-                                                    <label for="address" className="form-label">Category</label>
-                                                    <input type="text" className="form-control" id="catgory" placeholder="Enter the category" required name="category" onChange={this.onChange} />
+                                                    <label className="form-label">Categories</label>
+                                                    <div className="mb-3 form-check col-2">
+                                                        <input type="checkbox" className="form-check-input" id="Sports" name="Sports" />
+                                                        <label className="form-check-label" htmlFor="Sports">Sports</label>
+                                                    </div>
+                                                    <div className="mb-3 form-check col-2">
+                                                        <input type="checkbox" className="form-check-input" id="Books" name="Books" />
+                                                        <label className="form-check-label" htmlFor="Books">Books</label>
+                                                    </div>
+                                                    <div className="mb-3 form-check col-2">
+                                                        <input type="checkbox" className="form-check-input" id="Games" name="Games" />
+                                                        <label className="form-check-label" htmlFor="Games">Games</label>
+                                                    </div>
+                                                    <div className="mb-3 form-check col-2">
+                                                        <input type="checkbox" className="form-check-input" id="Utilities" name="Utilities" />
+                                                        <label className="form-check-label" htmlFor="Utilities">Utilities</label>
+                                                    </div>
 
                                                     <div className="invalid-feedback">
                                                         Please enter product category.
+                                                    </div>
+                                                </div>
+
+                                                <div className="col-6 d-flex justify-content-center flex-column bd-highlight mb-3">
+                                                    <label htmlFor="image1" className="form-label">Upload Images</label>
+                                                    <input type="file" className="form-control" id="image1" placeholder="Enter the category" required name="file1" />
+                                                    <input type="file" className="form-control" id="image2" placeholder="Enter the category" name="file2" />
+                                                    <input type="file" className="form-control" id="image3" placeholder="Enter the category" name="file3" />
+                                                    <div className="invalid-feedback">
+                                                        Please upload an image.
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,9 +128,9 @@ class Sample extends Component {
 
                                         <hr className="my-4" />
                                         <div className="d-flex flex-column bd-highlight mb-3 justify-content-evenly ">
-                                            <button className="w-100 btn btn-success btn-lg" type="submit">Post Ad</button>
-                                            <button className="w-100 btn btn-primary btn-lg" type="cancel"><Link to="/4Sale" style={{ textDecoration: 'none', color: 'white' }}>Cancel</Link></button>
+                                            <button className="w-100 btn btn-success btn-lg" type="submit" onClick={this.pushToHome}>Post Ad</button>
                                         </div>
+                                        <button className="w-100 btn btn-primary btn-lg" style={{ textDecoration: 'none', color: 'white' }} type="reset">Cancel</button>
                                     </form>
                                 </div>
                             </div>
@@ -138,7 +144,7 @@ class Sample extends Component {
                 </div>
 
 
-                <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+                <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossOrigin="anonymous"></script>
 
                 <script src="form-validation.js"></script>
 
@@ -149,7 +155,7 @@ class Sample extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    item: state.item
+    user: state.user
 })
 
-export default connect(mapStateToProps, { addItem })(Sample);
+export default connect(mapStateToProps)(Sell);

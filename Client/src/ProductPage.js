@@ -18,8 +18,8 @@ function ProductPage() {
   const handleBuyClick = () => {
     alert("Notification Sent to the owner...")
   }
-  const _id=useParams()._id;
-  console.log({_id});
+  let {_id }= useParams();
+  console.log(_id);
 
   return (
     <div>

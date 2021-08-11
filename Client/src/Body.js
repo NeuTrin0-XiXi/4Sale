@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import AboutUs from './AboutUs'
@@ -8,8 +9,8 @@ import ProductPage from './ProductPage';
 import LoginPage from './LoginPage';
 import CategoryPage from './CategoryPage';
 
-export default function Body() {
-
+function Body() {
+    
 
     return (
         <Switch>
@@ -31,10 +32,10 @@ export default function Body() {
             <Route exact path="/login">
                 <LoginPage />
             </Route>
-            <Route  path="/item/:_id">
-                <ProductPage />
+            <Route exact path="/item/:_id" children={<ProductPage/>}>
             </Route>
         </Switch>
     )
-
 }
+
+export default Body;

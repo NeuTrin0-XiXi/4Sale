@@ -22,8 +22,7 @@ route.post('/', (req, res, next) => {
         .then(res => {
             const { email_verified, name, email } = res.payload;
             if (email_verified) {
-                User.findOne({ email })
-                    // .select('name email')
+                User.findOne({ email })         
                     .then((user) => {
                         if (user) {
                             foundAndSend(user);
@@ -34,7 +33,7 @@ route.post('/', (req, res, next) => {
                             })
                         }
                     })
-                    .catch(this.next);
+                    .catch(this.next);      //Error handeling
             }
             else{
                 error();

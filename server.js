@@ -1,4 +1,5 @@
 const express = require('express');
+const { request } = require('https');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
@@ -26,14 +27,11 @@ mongoose.connect('mongodb://localhost:27017/4sale')
     // app.use('/',express.static(__dirname+'/client/build'));
     // app.get('/',(req,res)=>{
     //     res.sendFile(path.resolve(__dirname,'client','build','index.html'));
-    // recent_items.find();
     // });
-
 
 
 //bodyParser middleware 
 app.use(express.json());
-
 
 
 //Using the API routes
@@ -43,7 +41,7 @@ app.use('/api', require('./api_routes'));
 
 //Error handeling
 app.use((err, req, res, next) => {
-    console.log(err.message);
+    console.log(err);
     res.status(400).send(err.message);
 })
 

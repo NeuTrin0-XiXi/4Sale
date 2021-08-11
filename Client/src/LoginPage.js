@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function LoginPage(){
     const LoginSuccess=(res)=>{
+        console.log(res);    //Use this data for profile name and pictures
         axios.post('/api/googlelogin',{
             googleToken: res.tokenId
         })
