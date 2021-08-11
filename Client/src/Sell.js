@@ -14,19 +14,20 @@ class Sell extends Component {
             e.preventDefault();
             const formData = e.target;
             const newItem = new FormData(formData);
-            // for(let key of newItem.keys()){
-            //     console.log(key, newItem.get(key));
-            // }
-            newItem.append('userName', 'Jais');
+            
+            newItem.append('userName', 'Jais');             //Edit User detsils to variables
             newItem.append('userEmail', 'me@webdev.com');
 
             axios.post('/api/items', newItem)
                 .then(res => {
-                    alert(res.data.title);
+                    alert(`Posted Ad for ${res.data.title}`);
                     console.log(res.data)
-                    // axios.put(`/api/user/sold/611158c5a60e1f1b2887df6e`, {        //Edit user favs id to variable
-                    //     soldItems: res.data._id
-                    // })
+                    axios.put(`/api/user/sold/611158c5a60e1f1b2887df6e`, {        //Edit user favs id to variable
+                        sold: res.data._id
+                    })
+                    .then((res)=>{
+                        console.log(res);
+                    });
                 })
 
         }
@@ -114,7 +115,7 @@ class Sell extends Component {
 
                                                 <div className="col-6 d-flex justify-content-center flex-column bd-highlight mb-3">
                                                     <label htmlFor="image1" className="form-label">Upload Images</label>
-                                                    <input type="file" className="form-control" id="image1" placeholder="Enter the category" required name="file1" />
+                                                    <input type="file" className="form-control" id="image1" placeholder="Enter the category"  name="file1" />
                                                     <input type="file" className="form-control" id="image2" placeholder="Enter the category" name="file2" />
                                                     <input type="file" className="form-control" id="image3" placeholder="Enter the category" name="file3" />
                                                     <div className="invalid-feedback">

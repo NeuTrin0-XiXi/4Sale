@@ -3,7 +3,7 @@ import '../Combined.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import {useHistory} from 'react-router-dom';
 function ItemList(props) {
     const { items } = props;
     const textColor = {
@@ -15,7 +15,7 @@ function ItemList(props) {
             <Container className="ContainerProperties">
                 {items.map(({ _id, title, price }) => (
                     <div className="col-lg-4 cardCustom d-inline-block" key={_id}>
-                        <Link to={`/item${_id}}`} className="productRedirect" style={textColor}>
+                        <Link to={'/item/'+_id} className="productRedirect" style={textColor}>
                             <div className="card  customCard" id="cardBoxOutline">
                                 {/* <img className="card-img-top cardImageCustom" src="..." alt="Card image cap" onClick={()=>{this.handelClick({_id})}}/> */}
                                 <div className="card-body  customCard">

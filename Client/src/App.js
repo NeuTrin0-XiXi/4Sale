@@ -6,7 +6,7 @@ import Footer from './Footer';
 
 function App() {
   return (
-    <Router>
+    <Router >
       <div className="App">
         <div>
           <Navbar />

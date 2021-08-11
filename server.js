@@ -3,7 +3,6 @@ const { request } = require('https');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
-// const recent_items=require('./db/itemModel');
 
 
 

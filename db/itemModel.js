@@ -38,8 +38,6 @@ const itemSchema= new schema({
     images:{
         type:[String]
     }
-
-
 });
 
 

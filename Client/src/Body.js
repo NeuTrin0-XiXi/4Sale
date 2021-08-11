@@ -10,7 +10,7 @@ import LoginPage from './LoginPage';
 import CategoryPage from './CategoryPage';
 
 function Body() {
-    
+
 
     return (
         <Switch>
@@ -26,13 +26,14 @@ function Body() {
             <Route exact path="/contact-us">
                 <ContactUs />
             </Route>
-            <Route exact path="/category/">
+            <Route exact path="/category">
                 <CategoryPage />
             </Route>
             <Route exact path="/login">
                 <LoginPage />
             </Route>
-            <Route exact path="/item/:_id" children={<ProductPage/>}>
+            <Route  exact path="/item/:_id">
+                <ProductPage />
             </Route>
         </Switch>
     )

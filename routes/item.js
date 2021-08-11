@@ -5,7 +5,7 @@ const route = express.Router();
 const fileUpload = require('express-fileupload');
 const Item = require('../db/models').itemModel;
 const User = require('../db/models').userModel;
-const imageFolder=require('../staticFolderConfig');
+const imageFolder = require('../staticFolderConfig');
 //API handlers
 
 
@@ -72,14 +72,34 @@ route.get('/:id', (req, res, next) => {
 route.use(fileUpload());
 //POST Handler:
 route.post('/', (req, res, next) => {
-    console.log(req.body);
-    Item.create(req.body)
-        .then((item) => {
-            Item.findOne(item)
-                .select('title')
-                .then(item => {
-                    const { file } = req.files;
-                    file.mv(`${imageFolder}/${item._id}`);
+    // const { file1,file2,file3 } = req.files;
+    const { body } = req;
+    let setCategories=[];
+    let index = 0;
+    for (let key of Object.keys(body)) {
+        var value = body[key];
+        if (value == 'on') {
+            setCategories[index] = key;
+            index++;
+        }
+    }
+    const itemBody = {
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price,
+        userName: req.body.userName,
+        userEmail: req.body.userEmail,
+        categories: setCategories
+    }
+    Item.create(itemBody)
+    .then((item) => {
+        Item.findOne(item)
+        .select('title')
+        .then(item => {
+                    // file.mv(`${imageFolder}/${item._id}`);
+                    // Item.updateOne({_id:item._id}{
+                    //     images:
+                    // })
                     res.header("Access-Control-Allow-Origin", "*");
                     res.status(201).send(item);
                 })
