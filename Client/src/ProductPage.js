@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 // import ProductImage from './ProductPageSections/ProductImage';
 // import ProductInfo from './ProductPageSections/ProductInfo.js';
 import { Component } from 'react'
@@ -18,8 +18,8 @@ function ProductPage() {
   const handleBuyClick = () => {
     alert("Notification Sent to the owner...")
   }
-  // const { _id } = useParams();       //Destructuring the state parameters
-  // console.log(_id);
+  const _id=useParams()._id;
+  console.log({_id});
 
   return (
     <div>
@@ -57,6 +57,5 @@ function ProductPage() {
     </div>
   )
 }
-
 
 export default ProductPage;

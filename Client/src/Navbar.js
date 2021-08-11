@@ -19,7 +19,7 @@ const Navbar = () => {
         <div>
             <nav className="navbar navbar-expand-xxl navbar-light navbarCustom">
                 <div className="container-fluid">
-                    <Link to="/" style={logoColor}><a className="navbar-brand logo" href="#">4Sale</a></Link>
+                    <Link to="/" style={logoColor} className="navbar-brand logo" >4Sale</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -27,20 +27,20 @@ const Navbar = () => {
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0 e">
                             <div className="container d-flex justify-content:space-around">
                                 <li className="nav-item navBarItems">
-                                    <Link to="/" style={textColor}><a className="nav-link active navBarItems" id="homeTab" aria-current="page" href="/">Home</a></Link>
+                                    <Link to="/" style={textColor} className="nav-link active navBarItems" id="homeTab" aria-current="page" href="/">Home</Link>
                                 </li>
                                 <li className="nav-item navBarItems">
-                                    <Link to="/sell" style={textColor}><a className="nav-link active navBarItems" aria-current="page" href="#">Sell</a></Link>
+                                    <Link to="/sell" style={textColor} className="nav-link active navBarItems" aria-current="page" >Sell</Link>
                                 </li>
                                 <li className="nav-item navBarItems">
-                                    <Link to="/contact-us" style={textColor}><a className="nav-link active navBarItems" aria-current="page" href="#">Contact Us</a></Link>
+                                    <Link to="/contact-us" style={textColor} className="nav-link active navBarItems" aria-current="page" >Contact Us</Link>
                                 </li>
                                 <li className="nav-item navBarItems">
-                                    <Link to="/about-us" style={textColor}><a className="nav-link navBarItems" href="#">About Us</a></Link>
+                                    <Link to="/about-us" style={textColor} className="nav-link navBarItems" >About Us</Link>
                                 </li>
                             </div>
                             <li className="nav-item dropdown">
-                                <a className="nav-link " href="#" id="navbarDropdown" role="button" aria-expanded="false">
+                                <a className="nav-link "  id="navbarDropdown" role="button" aria-expanded="false">
                                     <label id="dropdownlabel">Categories</label>
                                 </a>
                             </li>

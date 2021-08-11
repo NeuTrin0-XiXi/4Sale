@@ -7,28 +7,41 @@ import { getItems } from './actions/ActionCreators';
 import Proptypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 class Home extends Component {
 
+  state = {
+    items: [
+      {
+        _id: '',
+        title: '',
+        price: ''
 
+      }
+    ]
+  }
 
   componentDidMount() {
-    this.props.getItems();
+    axios.get('/api/items')
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+          items:res.data
+        });
+      })
   }
-  //  handelClick=(_id)=>{
-  // this.props.getItem(_id);
-  // }
+
 
   render() {
     // this.props.something.items;
-    const { items } = this.props.product;
+    // const { items } = this.props.product;
 
     const textColor = {
       color: 'black',
       textDecoration: 'none'
     };
-
 
     return (
       <div>
@@ -73,8 +86,8 @@ class Home extends Component {
 
         <div className="card-deck">
           <Container className="ContainerProperties">
-            {items.map(({ _id, title, description, price, category }) => (
-              <Link to={`/item`} className="productRedirect" style={textColor}>
+            {this.state.items.map(({ _id, title, price }) => (
+              <Link to={`/item/${_id}`} className="productRedirect" style={textColor}>
                 <div className="col-lg-4 cardCustom d-inline-block">
                   <div className="card  customCard" key={_id} id="cardBoxOutline">
                     {/* <img className="card-img-top cardImageCustom" src="..." alt="Card image cap" onClick={()=>{this.handelClick({_id})}}/> */}
@@ -82,7 +95,7 @@ class Home extends Component {
                       <h5 className="card-title cardText">{title}</h5>
                       <ul className="list-group list-group-flush">
                         <li className="list-group-item cardText">Rs. {price}</li>
-                        <li className="list-group-item cardText">{category}</li>
+                        {/* <li className="list-group-item cardText">{category}</li> */}
                         <li><a href="#" className="btn btn-primary" style={{ backgroundColor: '#62c1ad', textDecoration: 'none' }}>Add to WishList</a></li>
                       </ul>
                     </div>
@@ -98,13 +111,4 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = {
-  getItems: Proptypes.func.isRequired,
-  // item: Proptypes.object.isRequired
-}
-
-const mapStateToProps = (state) => ({
-  product: state.product
-});
-
-export default connect(mapStateToProps, { getItems })(Home);
+export default Home;
