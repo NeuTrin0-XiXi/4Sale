@@ -16,23 +16,24 @@ class LoginPage extends Component {
                 profilePic: ''
             }
             // console.log(res);
-            const { email, name, imageUrl } = res.profileObj
-            user.name = name;
-            user.email = email;
-            user.profilePic = imageUrl;
+            console.log(res);
+            var profile = res.getBasicProfile();
+            user.name = profile.getName();
+            user.email = profile.getEmail();
+            user.profilePic = profile.getImageUrl();
             axios.post('/api/googlelogin', {
                 googleToken: res.tokenId
             })
                 .then(res => {
-                    // console.log(res);
                     const { favourites, soldItems, _id } = res.data;
                     user.favourites = favourites;
                     user.soldItems = soldItems;
                     user._id = _id;
+                    console.log()
                     this.props.Login(user);
                 })
                 .then(() => {
-                    console.log(this.props.user)
+                    // console.log(this.props);
                 })
         }
         const LoginFail = (res) => {

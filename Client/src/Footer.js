@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Footer2 = () => {
+const Footer = () => {
 
     const textColor = {
         color: 'white',
@@ -10,7 +10,7 @@ const Footer2 = () => {
 
     return (
         <div>
-            <footer className="footer mt-auto py-3 bg-light footerBox">
+            <footer className="footer mt-auto py-3 bg-light footerBox custom-footer">
                 <div className="container-fluid footerText">
                     <div className="row ">
                         <div className="col-md">
@@ -33,4 +33,4 @@ const Footer2 = () => {
     )
 }
 
-export default Footer2
+export default Footer;

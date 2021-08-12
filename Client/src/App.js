@@ -8,18 +8,14 @@ function App() {
   return (
     <Router >
       <div className="App">
-        <div>
-          <Navbar />
-        </div>
+        <Navbar />
         {/* <div>
           <BackgroundImage />
         </div> */}
         <div className="content">
           <Body />
         </div>
-        <div>
-          <Footer />
-        </div>
+          <Footer className="footer-container"/>
       </div>
     </Router>
 

@@ -26,7 +26,7 @@ class Home extends Component {
         this.setState({
           items: res.data
         });
-        console.log(this.state.items);
+        // console.log(this.props);
       })
   }
 

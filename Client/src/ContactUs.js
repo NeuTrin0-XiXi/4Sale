@@ -4,7 +4,8 @@ import './Combined.css';
 
 
 
-const ContactUs = () => {
+const ContactUs = (props) => {
+
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -48,29 +49,29 @@ const ContactUs = () => {
 									<form className="d-flex justify-content-center flex-column bd-highlight mb-3" onSubmit={handleSubmit}>
 										<div className=" col-xxl-7 ">
 											<div className="form-group">
-												<label for="fullName">Full Name</label>
+												<label htmlFor="fullName">Full Name</label>
 												<input type="text" className="form-control" id="fullName" placeholder="Enter full name" />
 											</div>
 											<br />
 										</div>
 										<div className=" col-xxl-7">
 											<div className="form-group">
-												<label for="eMail">Email</label>
+												<label htmlFor="eMail">Email</label>
 												<input type="email" className="form-control" id="eMail" placeholder="Enter email ID" />
 											</div>
 										</div>
 										<br />
 										<div className=" col-xxl-7">
 											<div className="form-group">
-												<label for="phone">Phone</label>
+												<label htmlFor="phone">Phone</label>
 												<input type="text" className="form-control" id="phone" placeholder="Enter phone number" />
 											</div>
 										</div>
 										<br />
 										<div className=" col-xxl-7">
 											<div className="form-group">
-												<label for="enterMessage">Write a Message</label>
-												<textarea className="form-control contactUsMessage" id="phone" placeholder="Enter your message here..." />
+												<label htmlFor="enterMessage">Write a Message</label>
+												<textarea className="form-control contactUsMessage" id="message" placeholder="Enter your message here..." />
 											</div>
 										</div>
 										<br /><br /><br />

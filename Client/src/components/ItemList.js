@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
 function ItemList(props) {
     const { items } = props;
+    console.log(props);
     const textColor = {
         color: 'black',
         textDecoration: 'none'
@@ -23,7 +24,7 @@ function ItemList(props) {
                                     <ul className="list-group list-group-flush">
                                         <li className="list-group-item cardText">Rs. {price}</li>
                                         {/* <li className="list-group-item cardText">{category}</li> */}
-                                        <li><a href="#" className="btn btn-primary" style={{ backgroundColor: '#62c1ad', textDecoration: 'none' }}>Add to WishList</a></li>
+                                        <li><button href="#" className="btn btn-primary" style={{ backgroundColor: '#62c1ad', textDecoration: 'none' }}>Add to WishList</button></li>
                                     </ul>
                                 </div>
                             </div>

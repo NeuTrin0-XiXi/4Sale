@@ -2,27 +2,30 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
 import { connect } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+// import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 
 
 class Sell extends Component {
     render() {
+        
+        //props track:
+        console.log(this.props);
 
         function handleSubmit(e) {
             e.preventDefault();
             const formData = e.target;
             const newItem = new FormData(formData);
             
-            newItem.append('userName', 'Jais');             //Edit User detsils to variables
-            newItem.append('userEmail', 'me@webdev.com');
+            newItem.append('userName', this.props.user.name);             //Edit User detsils to variables
+            newItem.append('userEmail', this.props.user.email);
 
             axios.post('/api/items', newItem)
                 .then(res => {
                     alert(`Posted Ad for ${res.data.title}`);
                     console.log(res.data)
-                    axios.put(`/api/user/sold/611158c5a60e1f1b2887df6e`, {        //Edit user favs id to variable
+                    axios.put(`/api/user/${this.props.user._id}`, {        //Edit user favs id to variable
                         sold: res.data._id
                     })
                     .then((res)=>{

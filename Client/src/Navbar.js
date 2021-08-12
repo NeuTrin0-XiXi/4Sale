@@ -2,10 +2,12 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import ProfileButton from './components/ProfileButton';
 
 
-const Navbar = () => {
-
+const Navbar = (props) => {
+    console.log(props);
     const textColor = {
         color: 'white',
         textDecoration: 'none'
@@ -17,8 +19,8 @@ const Navbar = () => {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-xxl navbar-light navbarCustom">
-                <div className="container-fluid">
+            <nav className="navbar sticky-top navbar-expand-xxl navbar-light navbarCustom">
+                <div className="container-fluid custom-navbar">
                     <Link to="/" style={logoColor} className="navbar-brand logo" >4Sale</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -40,12 +42,12 @@ const Navbar = () => {
                                 </li>
                             </div>
                             <li className="nav-item dropdown">
-                                <a className="nav-link "  id="navbarDropdown" role="button" aria-expanded="false">
+                                <a className="nav-link " id="navbarDropdown" role="button" aria-expanded="false">
                                     <label id="dropdownlabel">Categories</label>
                                 </a>
                             </li>
                             <li>
-                                <select id="ddlist">
+                                <select id="ddlist" htmlFor="dropdownlabel">
                                     <option value="allCategories">All Categories</option>
                                     <option value="sports">Sports</option>
                                     <option value="books">Books</option>
@@ -57,13 +59,16 @@ const Navbar = () => {
                         <form className="d-flex">
                             <input className="form-control me-2" id="navSearchBar" type="search" placeholder="Search" aria-label="Search" />
                             <button className="btn btn-outline-success" id="navSubmitBtn" type="submit">Search</button>
-                            <Link to="/login" style={{ textDecoration: 'none' }}><button className="btn btn-outline-warning " id="navLoginBtn" type="LOGIN">Login</button></Link>
                         </form>
+                        <ProfileButton />
+
                     </div>
                 </div>
             </nav>
         </div>
     )
 }
+
+
 
 export default Navbar;

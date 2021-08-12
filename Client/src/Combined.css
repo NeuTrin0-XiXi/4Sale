@@ -2,6 +2,7 @@
 
 
 
+
 .navBarList{
 display: flex;
 justify-content: space-around;
@@ -84,9 +85,12 @@ flex-wrap: wrap;
 /* Navbar Css Ends Here */
 /* ___________________________________________________________________________________________________________________ */
  /*Footer Css starts Here*/
+ .custom-footer{
+     vertical-align: baseline !important
+ }
 
  .footer{
-    width: 100vw;
+    width: 100%;
     height: 300px;
     background: #333333;
  }
@@ -273,6 +277,8 @@ flex-wrap: wrap;
 
 
 .navbarCustom{
+    position: sticky !important;
+    top:0px !important;
     background-color: #333333 !important;
     height: 6.5rem !important;
 }
@@ -384,6 +390,21 @@ flex-wrap: wrap;
 }
 
 #navSubmitBtn{
+    font-size: 15px;
+    margin-left: 15px;
+    margin-right: 1px !important;
+    margin-top: 0px;
+    margin-bottom: 1px;
+    padding-left: 6px;
+    padding-right: 1px;
+    padding-top: 1;
+    padding-bottom: 5px;
+    height: 46px;
+    width: 72px;
+    border-radius: 7 !important;
+}
+
+#navLoginBtn{
     font-size: 15px;
     margin-left: 15px;
     margin-right: 1px !important;
