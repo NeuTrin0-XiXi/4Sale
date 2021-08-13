@@ -13,7 +13,6 @@ import Buy from './Buy';
 import CategoryPage from './CategoryPage';
 
 function Body(props) {
-    console.log(props);
 
     if (props.Auth) {
         return (

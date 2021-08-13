@@ -7,7 +7,6 @@ import ProfileButton from './components/ProfileButton';
 
 
 const Navbar = (props) => {
-    console.log(props);
     const textColor = {
         color: 'white',
         textDecoration: 'none'
