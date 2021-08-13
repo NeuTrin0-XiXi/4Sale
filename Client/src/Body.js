@@ -62,9 +62,6 @@ function Body(props) {
                 <Route exact path="/category">
                     <CategoryPage />
                 </Route>
-                <Route exact path="/login">
-                    <LoginPage />
-                </Route>
                 <Route exact path="/buy">
                     <Buy />
                 </Route>
