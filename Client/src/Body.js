@@ -9,6 +9,7 @@ import ProductPage from './ProductPage';
 // import BackgroundImage from './BackgroundImage';
 import LoginPage from './LoginPage';
 import Profile from './EditProfile';
+import Buy from './Buy';
 import CategoryPage from './CategoryPage';
 
 function Body(props) {
@@ -35,6 +36,9 @@ function Body(props) {
                 <Route exact path="/profile">
                     <Profile />
                 </Route>
+                <Route exact path="/buy/:query">
+                    <Buy />
+                </Route>
                 <Route exact path="/item/:_id">
                     <ProductPage />
                 </Route>
@@ -60,6 +64,9 @@ function Body(props) {
                 </Route>
                 <Route exact path="/login">
                     <LoginPage />
+                </Route>
+                <Route exact path="/buy">
+                    <Buy />
                 </Route>
                 <Route  exact path="/item/:_id">
                     <ProductPage />

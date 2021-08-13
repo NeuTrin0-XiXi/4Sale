@@ -1,7 +1,25 @@
 /* Navbar */
+#custom-login-button{
+    padding-right :8px !important;
+    padding-left :8px !important;
+}
 
+#profile-button{
+    background-color: #333333 !important; 
+}
 
+#profile-image{
+    border-radius: 50% !important;
+    margin: 0px !important; 
+    width: 50px;
+    height: 50px;
+}
 
+.Navbar-container{
+    position :sticky;
+    top: 0px;
+    z-index:4
+}
 
 .navBarList{
 display: flex;

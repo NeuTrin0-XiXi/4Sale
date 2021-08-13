@@ -18,7 +18,7 @@ const Navbar = (props) => {
     };
 
     return (
-        <div>
+        <div className="Navbar-container">
             <nav className="navbar sticky-top navbar-expand-xxl navbar-light navbarCustom">
                 <div className="container-fluid custom-navbar">
                     <Link to="/" style={logoColor} className="navbar-brand logo" >4Sale</Link>
@@ -47,7 +47,7 @@ const Navbar = (props) => {
                                 </a>
                             </li>
                             <li>
-                                <select id="ddlist" htmlFor="dropdownlabel">
+                                <select id="ddlist" >
                                     <option value="allCategories">All Categories</option>
                                     <option value="sports">Sports</option>
                                     <option value="books">Books</option>

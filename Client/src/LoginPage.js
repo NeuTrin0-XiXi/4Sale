@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import './Combined.css';
 
 class LoginPage extends Component {
 
