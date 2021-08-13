@@ -11,6 +11,7 @@ import LoginPage from './LoginPage';
 import Profile from './EditProfile';
 import Buy from './Buy';
 import CategoryPage from './CategoryPage';
+import Not_Found from './Not_Found';
 
 function Body(props) {
 
@@ -41,6 +42,9 @@ function Body(props) {
                 <Route exact path="/item/:_id">
                     <ProductPage />
                 </Route>
+                <Route>
+                    <Not_Found />
+                </Route>
             </Switch>
         )
     } else {
@@ -53,7 +57,7 @@ function Body(props) {
                     <AboutUs />
                 </Route>
                 <Route exact path="/sell" >
-                    <LoginPage />
+                    <Home />
                 </Route>
                 <Route exact path="/contact-us">
                     <ContactUs />
@@ -64,8 +68,11 @@ function Body(props) {
                 <Route exact path="/buy">
                     <Buy />
                 </Route>
-                <Route  exact path="/item/:_id">
+                <Route exact path="/item/:_id">
                     <ProductPage />
+                </Route>
+                <Route>
+                    <Not_Found />
                 </Route>
             </Switch>
         )

@@ -13,7 +13,7 @@ const imageFolder = require('../staticFolderConfig');
 //GET all items:
 route.get('/', (req, res, next) => {
     Item.find({})
-        .select('title date price')
+        .select('title date price userName userEmail images')
         .sort({ date: 'desc' })
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
@@ -68,13 +68,14 @@ route.get('/:id', (req, res, next) => {
 
 //---------------------------------------------------------------------------//
 
+//POST AN ITEM
 //Middleware:
 route.use(fileUpload());
 //POST Handler:
 route.post('/', (req, res, next) => {
-    // const { file1,file2,file3 } = req.files;
+
     const { body } = req;
-    let setCategories=[];
+    let setCategories = [];
     let index = 0;
     for (let key of Object.keys(body)) {
         var value = body[key];
@@ -92,14 +93,37 @@ route.post('/', (req, res, next) => {
         categories: setCategories
     }
     Item.create(itemBody)
-    .then((item) => {
-        Item.findOne(item)
-        .select('title')
-        .then(item => {
+        .then((item) => {
+            Item.findOne(item)
+                // .select('title')
+                .then(item => {
+                    console.log(item._id);
+                    if (req.files.file1 != null) {
+                        req.files.file1.mv(`${imageFolder}/${item._id}-1`);
+                        let path = { filePath: `uploads/${item._id}-1` };
+                        console.log(path);
+                        Item.updateOne({ _id: item._id },
+                            { "$push": { "images": path.filePath } }
+                        );
+                    };
+                    if (req.files.file2 != null) {
+                        req.files.file2.mv(`${imageFolder}/${item._id}-2`)
+                        let path = { filePath: `uploads/${item._id}-2` };
+                        console.log(path);
+                        Item.updateOne({ _id: item._id },
+                            { "$push": { "images": path.filePath } }
+                        )
+                    };
+                    if (req.files.file3 != null) {
+                        req.files.file3.mv(`${imageFolder}/${item._id}-3`)
+                        let path = { filePath: `uploads/${item._id}-3` };
+                        console.log(path);
+                        Item.updateOne({ _id: item._id },
+                            { "$push": { "images": path.filePath } }
+                        )
+                    };
+
                     // file.mv(`${imageFolder}/${item._id}`);
-                    // Item.updateOne({_id:item._id}{
-                    //     images:
-                    // })
                     res.header("Access-Control-Allow-Origin", "*");
                     res.status(201).send(item);
                 })

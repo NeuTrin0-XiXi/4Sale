@@ -12,20 +12,21 @@ class Sell extends Component {
         
         //props track:
         console.log(this.props);
+        const {user}=this.props;
 
         function handleSubmit(e) {
             e.preventDefault();
             const formData = e.target;
             const newItem = new FormData(formData);
             
-            newItem.append('userName', this.props.user.name);             //Edit User detsils to variables
-            newItem.append('userEmail', this.props.user.email);
+            newItem.append('userName', user.name);
+            newItem.append('userEmail', user.email);
 
             axios.post('/api/items', newItem)
                 .then(res => {
                     alert(`Posted Ad for ${res.data.title}`);
                     console.log(res.data)
-                    axios.put(`/api/user/${this.props.user._id}`, {        //Edit user favs id to variable
+                    axios.put(`/api/user/sold/${user._id}`, {
                         sold: res.data._id
                     })
                     .then((res)=>{
@@ -162,4 +163,4 @@ const mapStateToProps = (state) => ({
     user: state.user
 })
 
-export default connect(mapStateToProps)(Sell);
+export default connect(mapStateToProps,null)(Sell);

@@ -1,8 +1,10 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from 'react-redux';
 import '../Combined.css';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
+import { Link } from 'react-router-dom';
 
 
 function ProfileButton(props) {
@@ -18,14 +20,13 @@ function ProfileButton(props) {
                     Hi {props.profile.name}
                 </button>
                 <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                    <li><a className="dropdown-item active" href="#">Action</a></li>
-                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                    <li><a className="dropdown-item" href="#">Something else here</a></li>
+                    <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
+                    <li><Link className="dropdown-item active" to="/favourites">Favourites</Link></li>
+                    <li><Link className="dropdown-item" to="/sold-items">Sold Items</Link></li>
                     <li><hr className="dropdown-divider" /></li>
-                    <li></li>
+                    <li><LogoutButton /></li>
                 </ul>
             </div>
-            <LogoutButton />
             <div className="nav-item navBarItems" >
                 <img src={props.profile.profilePic} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />
             </div>

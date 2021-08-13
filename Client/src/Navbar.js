@@ -60,7 +60,6 @@ const Navbar = (props) => {
                             <button className="btn btn-outline-success" id="navSubmitBtn" type="submit">Search</button>
                         </form>
                         <ProfileButton />
-
                     </div>
                 </div>
             </nav>
