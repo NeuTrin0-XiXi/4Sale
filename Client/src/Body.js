@@ -34,7 +34,7 @@ function Body(props) {
                 <Route exact path="/buy/:query">
                     <Buy />
                 </Route>
-                <Route exact path="/item/:_id">
+                <Route exact path="/item/:id">
                     <ProductPage />
                 </Route>
                 <Route>
