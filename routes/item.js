@@ -13,8 +13,8 @@ const imageFolder = require('../staticFolderConfig');
 //GET all items:
 route.get('/', (req, res, next) => {
     Item.find({})
-        .select('title date price userName userEmail images')
         .sort({ date: 'desc' })
+        .select('title price')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
@@ -25,17 +25,49 @@ route.get('/', (req, res, next) => {
 
 //GET Items from Search Bar(name):                  
 route.get('/search', (req, res, next) => {
-    Item.find(res.query)
-        .select('title date price')
+    let items = [];
+    const { name } = req.query;
+    const nameLower = name.toLowerCase();
+    Item.find({ title: /name/i })
+        .select('title price')
         .then((item) => {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.status(200).send(item);
+            items = items.concat(item);
+            console.log(items);
+            res.status(200).send(items);
+
         })
         .catch(next);
+    // Item.find({ title: /nameLower/i })
+    //     .select('title date price')
+    //     .then((item) => {
+    //         items = {
+    //             ...items,item
+    //         }
+    //     })
+    //     .catch(next);
+    // Item.find({ categories: { $contains: /name/i } })
+    //     .then(() => {
+    //         items = {
+    //             ...items, item
+    //         }
+    //     })
+    //     .catch(next);
+    // Item.find({ description: /name/i })
+    //     .select('title date price')
+    //     .then((item) => {
+    //         items = {
+    //             ...items, item
+    //         }
+    //     })
+    //     .catch(next);
+    // console.log(items);
+    res.header("Access-Control-Allow-Origin", "*");
 
 });
 
 
+
+//----------------------------------------------------//
 //GET Items from Filters:                           
 route.get('/filter', (req, res, next) => {
     // if (req.query.priceUb != undefined && req.query.priceLb != undefined) {
@@ -44,7 +76,7 @@ route.get('/filter', (req, res, next) => {
     //     delete req.query.priceLb;
     // }
     Item.find(req.query)
-        .select('title date price')
+        .select('title price')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
@@ -56,7 +88,7 @@ route.get('/filter', (req, res, next) => {
 //GET Item details:                             
 route.get('/:id', (req, res, next) => {
     Item.findById(req.params.id)
-        .select('title date price userName')
+        .select('title description date price userName images userEmail')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item)
@@ -95,35 +127,24 @@ route.post('/', (req, res, next) => {
     Item.create(itemBody)
         .then((item) => {
             Item.findOne(item)
-                // .select('title')
+                // .select('_id')
                 .then(item => {
-                    console.log(item._id);
+                    let NumOfImages = 0;
                     if (req.files.file1 != null) {
-                        req.files.file1.mv(`${imageFolder}/${item._id}-1`);
-                        let path = { filePath: `uploads/${item._id}-1` };
-                        console.log(path);
-                        Item.updateOne({ _id: item._id },
-                            { "$push": { "images": path.filePath } }
-                        );
+                        NumOfImages++;
+                        req.files.file1.mv(`${imageFolder}/${item._id}-${NumOfImages}`);
                     };
                     if (req.files.file2 != null) {
-                        req.files.file2.mv(`${imageFolder}/${item._id}-2`)
-                        let path = { filePath: `uploads/${item._id}-2` };
-                        console.log(path);
-                        Item.updateOne({ _id: item._id },
-                            { "$push": { "images": path.filePath } }
-                        )
+                        NumOfImages++;
+                        req.files.file2.mv(`${imageFolder}/${item._id}-${NumOfImages}`);
                     };
                     if (req.files.file3 != null) {
-                        req.files.file3.mv(`${imageFolder}/${item._id}-3`)
-                        let path = { filePath: `uploads/${item._id}-3` };
-                        console.log(path);
-                        Item.updateOne({ _id: item._id },
-                            { "$push": { "images": path.filePath } }
-                        )
+                        NumOfImages++;
+                        req.files.file3.mv(`${imageFolder}/${item._id}-${NumOfImages}`);
                     };
-
-                    // file.mv(`${imageFolder}/${item._id}`);
+                    Item.updateOne({ _id: item._id },
+                        { images: NumOfImages }
+                    )
                     res.header("Access-Control-Allow-Origin", "*");
                     res.status(201).send(item);
                 })

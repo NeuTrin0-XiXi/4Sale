@@ -40,23 +40,32 @@ const Navbar = (props) => {
                                     <Link to="/about-us" style={textColor} className="nav-link navBarItems" >About Us</Link>
                                 </li>
                             </div>
-                            <li className="nav-item dropdown">
-                                <a className="nav-link " id="navbarDropdown" role="button" aria-expanded="false">
-                                    <label id="dropdownlabel">Categories</label>
+                            <li className="nav-item dropdown navBarItems">
+                                <button className="nav-link" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Categories
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="ddlist">
+                                    <li><Link className="dropdown-item custom-cat-link" to="#">Sports</Link></li>
+                                    <li><Link className="dropdown-item custom-cat-link" to="#">Books</Link></li>
+                                    <li><Link className="dropdown-item custom-cat-link" to="#">Games</Link></li>
+                                    <li><Link className="dropdown-item custom-cat-link" to="#">Utilities</Link></li>
+                                    <li><Link className="dropdown-item custom-cat-link" to="#">Other</Link></li>
+                                </ul>
+                                {/* <a className="nav-link" id="navbarDropdown" role="button" aria-expanded="false">
+                                    <label id="dropdownlabel" htmlFor="ddlist">Categories</label>
                                 </a>
-                            </li>
-                            <li>
                                 <select id="ddlist" >
                                     <option value="allCategories">All Categories</option>
                                     <option value="sports">Sports</option>
                                     <option value="books">Books</option>
                                     <option value="games">Games</option>
                                     <option value="utilities">Utilities</option>
-                                </select>
+                                    <option value="other">Other</option>
+                                </select> */}
                             </li>
                         </ul>
                         <form className="d-flex">
-                            <input className="form-control me-2" id="navSearchBar" type="search" placeholder="Search" aria-label="Search" />
+                            <input autoCapitalize="sentences" className="form-control me-2" id="navSearchBar" type="search" placeholder="Search" aria-label="Search" />
                             <button className="btn btn-outline-success" id="navSubmitBtn" type="submit">Search</button>
                         </form>
                         <ProfileButton />

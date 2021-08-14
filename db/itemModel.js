@@ -36,7 +36,7 @@ const itemSchema= new schema({
         required:true
     },
     images:{
-        type:[String]
+        type:Number
     }
 });
 

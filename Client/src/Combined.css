@@ -226,7 +226,6 @@ flex-wrap: wrap;
 /* AboutUs ends here */
 /* __________________________________________________________________________________________________________________________________________________ */
 /* sell page starts here */
-
 #sellTextImage{
     display: flex;
     flex-direction: row;
@@ -371,6 +370,13 @@ flex-wrap: wrap;
 #dropdownlabel{
     color: white;
     font-size: 16px ;
+}
+.custom-cat-link{
+    padding:0px
+}
+
+.custom-profile-button{
+    background-color: #333333 !important;
 }
 
 #ddlist{

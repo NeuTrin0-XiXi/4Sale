@@ -16,7 +16,7 @@ function ProfileButton(props) {
     if (props.Auth) {
         return (<>
             <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2 custom-profile-button"  data-bs-toggle="dropdown" aria-expanded="false">
                     Hi {props.profile.name}
                 </button>
                 <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">

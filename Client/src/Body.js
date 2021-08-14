@@ -56,9 +56,6 @@ function Body(props) {
                 <Route exact path="/about-us">
                     <AboutUs />
                 </Route>
-                <Route exact path="/sell" >
-                    <Home />
-                </Route>
                 <Route exact path="/contact-us">
                     <ContactUs />
                 </Route>

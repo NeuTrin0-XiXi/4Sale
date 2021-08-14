@@ -9,16 +9,16 @@ import axios from 'axios';
 
 class Sell extends Component {
     render() {
-        
+
         //props track:
         console.log(this.props);
-        const {user}=this.props;
+        const { user } = this.props;
 
         function handleSubmit(e) {
             e.preventDefault();
             const formData = e.target;
             const newItem = new FormData(formData);
-            
+
             newItem.append('userName', user.name);
             newItem.append('userEmail', user.email);
 
@@ -29,9 +29,9 @@ class Sell extends Component {
                     axios.put(`/api/user/sold/${user._id}`, {
                         sold: res.data._id
                     })
-                    .then((res)=>{
-                        console.log(res);
-                    });
+                        .then((res) => {
+                            console.log(res);
+                        });
                 })
 
         }
@@ -66,7 +66,7 @@ class Sell extends Component {
                                         <div className="row g-3">
                                             <div className="col-12">
                                                 <label htmlFor="productTitle" className="form-label">Product Title</label>
-                                                <input required type="text" className="form-control" id="productTitle" placeholder="Enter the product title here" required name="title" />
+                                                <input autoCapitalize="sentences" required type="text" className="form-control custom-form" id="productTitle" placeholder="Enter the product title here" name="title" />
                                                 <div className="invalid-feedback">
                                                     Please enter product title.
                                                 </div>
@@ -75,7 +75,7 @@ class Sell extends Component {
                                             <div className="col-12">
                                                 <label htmlFor="description" className="form-label">Product Description</label>
                                                 <div className="input-group has-validation">
-                                                    <textarea required className="form-control" id="description" placeholder="Enter Product Description" required name="description" />
+                                                    <textarea autoCapitalize="sentences" required className="form-control custom-form" id="description" placeholder="Enter Product Description" name="description" />
                                                     <div className="invalid-feedback">
                                                         Please enter product description.
                                                     </div>
@@ -85,7 +85,7 @@ class Sell extends Component {
                                             <div className="d-flex justify-content-center flex-column bd-highlight mb-3">
                                                 <div className="col-6 d-flex justify-content-center flex-column bd-highlight mb-4">
                                                     <label htmlFor="price" className="form-label" required>Price</label>
-                                                    <input min="0" type="number" className="form-control" id="price" placeholder="Set a Price" required name="price" />
+                                                    <input required min="0" type="number" className="form-control" id="price" placeholder="Set a Price" name="price"/>
 
                                                     <div className="invalid-feedback">
                                                         Please enter product price.
@@ -111,6 +111,10 @@ class Sell extends Component {
                                                         <input type="checkbox" className="form-check-input" id="Utilities" name="Utilities" />
                                                         <label className="form-check-label" htmlFor="Utilities">Utilities</label>
                                                     </div>
+                                                    <div className="mb-3 form-check col-2">
+                                                        <input type="checkbox" className="form-check-input" id="Other" name="Other" />
+                                                        <label className="form-check-label" htmlFor="Other">Other</label>
+                                                    </div>
 
                                                     <div className="invalid-feedback">
                                                         Please enter product category.
@@ -119,7 +123,7 @@ class Sell extends Component {
 
                                                 <div className="col-6 d-flex justify-content-center flex-column bd-highlight mb-3">
                                                     <label htmlFor="image1" className="form-label">Upload Images</label>
-                                                    <input type="file" className="form-control" id="image1" placeholder="Enter the category"  name="file1" />
+                                                    <input required type="file" className="form-control" id="image1" placeholder="Enter the category" name="file1" />
                                                     <input type="file" className="form-control" id="image2" placeholder="Enter the category" name="file2" />
                                                     <input type="file" className="form-control" id="image3" placeholder="Enter the category" name="file3" />
                                                     <div className="invalid-feedback">
@@ -163,4 +167,4 @@ const mapStateToProps = (state) => ({
     user: state.user
 })
 
-export default connect(mapStateToProps,null)(Sell);
+export default connect(mapStateToProps, null)(Sell);
