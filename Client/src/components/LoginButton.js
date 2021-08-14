@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../Combined.css';
-import GoogleLogin from 'react-google-login';
+import GoogleLogin, { useGoogleLogout } from 'react-google-login';
 import axios from 'axios';
 
 function LoginButton(props) {
     const LoginSuccess = (res) => {
+        var profile = res.getBasicProfile();
+        console.log(profile);
+        const email = profile.getEmail();
         let user = {
             name: '',
             email: '',
@@ -14,9 +17,7 @@ function LoginButton(props) {
             _id: '',
             profilePic: ''
         }
-        // console.log(res);
         console.log(res);
-        var profile = res.getBasicProfile();
         user.name = profile.getName();
         user.email = profile.getEmail();
         user.profilePic = profile.getImageUrl();
@@ -30,9 +31,6 @@ function LoginButton(props) {
                 user._id = _id;
                 props.Login(user);
             })
-            .then(() => {
-                // console.log(props);
-            })
     };
 
     const LoginFail = (res) => {
@@ -41,14 +39,15 @@ function LoginButton(props) {
     return (
         <div id="custom-login-button">
             <GoogleLogin
-                    clientId="1059582039946-3rije6k0k92ertj2utffkrvdjjgdrkm0.apps.googleusercontent.com"
-                    buttonText="Login"
-                    onSuccess={LoginSuccess}
-                    isSignedIn={true}
-                    onFailure={LoginFail}
-                    cookiePolicy={'single_host_origin'}
-                    className="btn btn-outline-warning" id="custom-login-button"
-                />
+                clientId="1059582039946-3rije6k0k92ertj2utffkrvdjjgdrkm0.apps.googleusercontent.com"
+                buttonText="Login"
+                hostedDomain={"iiti.ac.in"}
+                onSuccess={LoginSuccess}
+                isSignedIn={true}
+                onFailure={LoginFail}
+                cookiePolicy={'single_host_origin'}
+                className="btn btn-outline-warning" id="custom-login-button"
+            />
         </div>
     )
 };
@@ -61,6 +60,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(null,mapDispatchToProps)(LoginButton);
+export default connect(null, mapDispatchToProps)(LoginButton);
 
 
