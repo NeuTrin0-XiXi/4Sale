@@ -7,10 +7,8 @@ import Sell from './Sell';
 import ContactUs from './ContactUs'
 import ProductPage from './ProductPage';
 // import BackgroundImage from './BackgroundImage';
-import LoginPage from './LoginPage';
 import Profile from './EditProfile';
 import Buy from './Buy';
-import CategoryPage from './CategoryPage';
 import Not_Found from './Not_Found';
 
 function Body(props) {
@@ -29,9 +27,6 @@ function Body(props) {
                 </Route>
                 <Route exact path="/contact-us">
                     <ContactUs />
-                </Route>
-                <Route exact path="/category">
-                    <CategoryPage />
                 </Route>
                 <Route exact path="/profile">
                     <Profile />
@@ -58,9 +53,6 @@ function Body(props) {
                 </Route>
                 <Route exact path="/contact-us">
                     <ContactUs />
-                </Route>
-                <Route exact path="/category">
-                    <CategoryPage />
                 </Route>
                 <Route exact path="/buy">
                     <Buy />

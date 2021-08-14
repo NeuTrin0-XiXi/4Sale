@@ -4,7 +4,8 @@ import Navbar from './Navbar';
 import Body from './Body';
 import Footer from './Footer';
 
-function App() {
+function App(props) {
+  console.log(props);
   return (
     <Router >
       <div className="App">
@@ -15,10 +16,9 @@ function App() {
         <div className="content">
           <Body />
         </div>
-          <Footer className="footer-container"/>
+        <Footer className="footer-container" />
       </div>
-    </Router>
-
+    </Router> 
   );
 }
 
