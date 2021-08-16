@@ -1,3 +1,2 @@
-const imageFolder=`${__dirname}/client/public/uploads`
-// const imageFolder=`${__dirname}/client/build/uploads`
+const imageFolder=`${__dirname}/uploads`
 module.exports=imageFolder;

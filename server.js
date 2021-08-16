@@ -24,6 +24,7 @@ mongoose.connect('mongodb://localhost:27017/4sale')
 
 // Static files
     // app.use('/',express.static(__dirname+'/client/build'));
+    // app.use('/',express.static(__dirname+'/uploads'));
     // app.get('/',(req,res)=>{
     //     res.sendFile(path.resolve(__dirname,'client','build','index.html'));
     // });

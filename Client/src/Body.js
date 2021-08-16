@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from './Home';
-import AboutUs from './AboutUs'
+import AboutUs from './aboutus1'
 import Sell from './Sell';
 import ContactUs from './ContactUs'
 import ProductPage from './ProductPage';
@@ -31,11 +31,8 @@ function Body(props) {
                 <Route exact path="/profile">
                     <Profile />
                 </Route>
-                <Route path="/buy/:query">
+                <Route exact path="/buy/:query">
                     <Buy />
-                </Route>
-                <Route exact path="/item/:id">
-                    <ProductPage />
                 </Route>
                 <Route>
                     <Not_Found />
@@ -57,9 +54,6 @@ function Body(props) {
                 <Route exact path="/buy/:query">
                     <Buy />
                 </Route>
-                <Route exact path="/item/:id">
-                    <ProductPage />
-                </Route>
                 <Route>
                     <Not_Found />
                 </Route>
@@ -75,3 +69,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Body);
+
+
+
+

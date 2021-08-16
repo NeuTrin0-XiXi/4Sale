@@ -1,23 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
-import { useParams } from 'react-router-dom';
 
 // import ProductImage from './ProductPageSections/ProductImage';
 // import ProductInfo from './ProductPageSections/ProductInfo.js';
-import { Component } from 'react'
 import axios from 'axios';
 
-function ProductPage(props) {
-  const { id } = useParams();
+function ProductPage() {
+  const id = new URLSearchParams(window.location.search);
   console.log(id);
-  // console.log(_id);
-  // let _id = this.props.match.params._id;
-  // console.log(_id);
-
-  // handleBuyClick(){
-
-  // }
 
   return (
     <div>
