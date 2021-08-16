@@ -16,6 +16,9 @@ function Body(props) {
     if (props.Auth) {
         return (
             <Switch>
+                <Route exact path="/item">
+                    <ProductPage />
+                </Route>
                 <Route exact path="/">
                     <Home />
                 </Route>
@@ -53,6 +56,9 @@ function Body(props) {
                 </Route>
                 <Route exact path="/buy/:query">
                     <Buy />
+                </Route>
+                <Route exact path="/item">
+                    <ProductPage />
                 </Route>
                 <Route>
                     <Not_Found />
