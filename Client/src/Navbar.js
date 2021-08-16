@@ -45,11 +45,11 @@ const Navbar = (props) => {
                                     Categories
                                 </button>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="ddlist">
-                                    <li><Link className="dropdown-item custom-cat-link" to="#">Sports</Link></li>
-                                    <li><Link className="dropdown-item custom-cat-link" to="#">Books</Link></li>
-                                    <li><Link className="dropdown-item custom-cat-link" to="#">Games</Link></li>
-                                    <li><Link className="dropdown-item custom-cat-link" to="#">Utilities</Link></li>
-                                    <li><Link className="dropdown-item custom-cat-link" to="#">Other</Link></li>
+                                    <li><Link className="dropdown-item custom-cat-link" to="/buy/Sports">Sports</Link></li>
+                                    <li><Link className="dropdown-item custom-cat-link" to="/buy/Books">Books</Link></li>
+                                    <li><Link className="dropdown-item custom-cat-link" to="/buy/Games">Games</Link></li>
+                                    <li><Link className="dropdown-item custom-cat-link" to="/buy/Utilities">Utilities</Link></li>
+                                    <li><Link className="dropdown-item custom-cat-link" to="/buy/Other">Other</Link></li>
                                 </ul>
                                 {/* <a className="nav-link" id="navbarDropdown" role="button" aria-expanded="false">
                                     <label id="dropdownlabel" htmlFor="ddlist">Categories</label>

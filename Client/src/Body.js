@@ -31,7 +31,7 @@ function Body(props) {
                 <Route exact path="/profile">
                     <Profile />
                 </Route>
-                <Route exact path="/buy/:query">
+                <Route path="/buy/:query">
                     <Buy />
                 </Route>
                 <Route exact path="/item/:id">
@@ -54,10 +54,10 @@ function Body(props) {
                 <Route exact path="/contact-us">
                     <ContactUs />
                 </Route>
-                <Route exact path="/buy">
+                <Route exact path="/buy/:query">
                     <Buy />
                 </Route>
-                <Route exact path="/item/:_id">
+                <Route exact path="/item/:id">
                     <ProductPage />
                 </Route>
                 <Route>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ItemList from './components/ItemList';
+import { useParams } from 'react-router';
 
-
-class Buy extends Component {
-    state = {
+function Buy() {
+    let state = {
         items: [
             {
                 _id: '',
@@ -16,29 +16,28 @@ class Buy extends Component {
         number: 0
     }
 
-    //   componentDidMount() {
-    //     axios.get(`/api/items/filter?categories=${this.props.query}`)
-    //       .then(res => {
-    //         let size=res.data.length
+    const { query } = useParams();
+    console.log(query);
+    // axios.get(`/api/items/filter?categories=${this.props.query}`)
+    //     .then(res => {
+    //         let size = res.data.length
     //         this.setState({
-    //           items: res.data,
-    //           number:size
+    //             items: res.data,
+    //             number: size
     //         });
-    //       })
-    render() {
-        console.log(this.props);
-        return (
-            <>
-                <div className="results">
-                    Found {this.state.number} resluts...
-                </div>
-                <div>
-                    <ItemList items={this.state.items} />
-                </div>
-            </>
-        )
-    }
-}
+    //     })
 
+    return (
+        <>
+            <div className="results">
+                {/* Found {this.state.number} resluts... */}
+                <h1>Buy Page {query}</h1>
+            </div>
+            <div>
+                {/* <ItemList items={this.state.items} /> */}
+            </div>
+        </>
+    )
+}
 export default Buy;
 

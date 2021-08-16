@@ -19,8 +19,8 @@ function ItemList(props) {
         <div className="card-deck">
             <Container className="ContainerProperties">
                 {items.map(({ _id, title, price }) => (
-                    <Link to={`/item/${_id}`} >
-                        <div className="col-lg-4 cardCustom d-inline-block" key={_id}>
+                    <div className="col-lg-4 cardCustom d-inline-block" key={_id}>
+                        <Link to={`/item/${_id}`} >
                             <div className="card  customCard productRedirect" id="cardBoxOutline" style={textColor}>
                                 <img className="card-img-top cardImageCustom" src={`./uploads/${_id}-1`} alt="Card image cap" />
                                 <div className="card-body  customCard">
@@ -32,8 +32,8 @@ function ItemList(props) {
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                    </Link>
+                        </Link>
+                    </div>
                 ))}
             </Container>
         </div>

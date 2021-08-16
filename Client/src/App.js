@@ -5,7 +5,6 @@ import Body from './Body';
 import Footer from './Footer';
 
 function App(props) {
-  console.log(props);
   return (
     <Router >
       <div className="App">
