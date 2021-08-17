@@ -11,7 +11,6 @@ class Sell extends Component {
     render() {
 
         //props track:
-        console.log(this.props);
         const { user } = this.props;
 
         function handleSubmit(e) {
@@ -25,12 +24,13 @@ class Sell extends Component {
             axios.post('/api/items', newItem)
                 .then(res => {
                     alert(`Posted Ad for ${res.data.title}`);
-                    console.log(res.data)
                     axios.put(`/api/user/sold/${user._id}`, {
                         sold: res.data._id
                     })
                         .then((res) => {
-                            console.log(res);
+                        })
+                        .catch(err=>{
+                            console.log(err);
                         });
                 })
 

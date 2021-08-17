@@ -4,7 +4,7 @@ import ItemList from './components/ItemList';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 
-class Buy extends Component {
+class Search extends Component {
     state = {
         items: [
             {
@@ -19,10 +19,9 @@ class Buy extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props);
-        const category=this.props.location.pathname.slice(5);
-        console.log(category);
-        axios.get(`/api/items/filter?categories=${category}`)
+        console.log(this.props)
+        const query = this.props.location.pathname.slice(8);
+        axios.get(`/api/items/search?name=${query}`)
             .then(res => {
                 let size = res.data.length
                 this.setState({
@@ -33,11 +32,11 @@ class Buy extends Component {
     };
 
     render() {
-        const category = this.props.match.params.category;
+        const query = this.props.match.params.query;
         return (
             <>
                 <div className="results">
-                    <h1>{category}</h1>
+                    <h1>Search: {query}</h1>
                     <h2>Found {this.state.number} results...</h2>
                 </div>
                 <div>
@@ -47,5 +46,5 @@ class Buy extends Component {
         );
     }
 }
-export default withRouter(Buy);
+export default withRouter(Search);
 

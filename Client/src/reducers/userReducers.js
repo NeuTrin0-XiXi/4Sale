@@ -5,7 +5,8 @@ const initialState = {
         favourites: [],
         soldItems: [],
         _id: '',
-        profilePic: ''
+        profilePic: '',
+        mobile:''
     },
     Authorised: false
 }

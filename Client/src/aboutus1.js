@@ -59,7 +59,7 @@ export default function aboutus1() {
             <div className="container bg-light my-5">
                 <br />
                 <h2 className="my-3 text-center fw-bold text-success">OUR TEAM </h2>
-                <div className="row">
+                <div className="row align-centre">
                     <div className="card col-auto mx-3 mb-3" style={{width: "21rem"}}>
 
                         <div className="card-body">

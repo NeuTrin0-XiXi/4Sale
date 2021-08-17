@@ -27,41 +27,29 @@ route.get('/', (req, res, next) => {
 route.get('/search', (req, res, next) => {
     let items = [];
     const { name } = req.query;
-    const nameLower = name.toLowerCase();
-    Item.find({ title: /name/i })
+
+    Item.find({ title: { $regex: name, $options: 'i' } })
         .select('title price')
         .then((item) => {
             items = items.concat(item);
-            console.log(items);
-            res.status(200).send(items);
+            Item.find({ categories: { $regex: name, $options: 'i' } })
+                .select('title price')
+                .then((item) => {
+                    items = items.concat(item);
+                    Item.find({ description: { $regex: name, $options: 'i' } })
+                        .select('title price')
+                        .then((item) => {
+                            items = items.concat(item);
+                            res.header("Access-Control-Allow-Origin", "*");
+                            res.send(items);
 
+                        })
+                        .catch(next);
+
+                })
+                .catch(next);
         })
         .catch(next);
-    // Item.find({ title: /nameLower/i })
-    //     .select('title date price')
-    //     .then((item) => {
-    //         items = {
-    //             ...items,item
-    //         }
-    //     })
-    //     .catch(next);
-    // Item.find({ categories: { $contains: /name/i } })
-    //     .then(() => {
-    //         items = {
-    //             ...items, item
-    //         }
-    //     })
-    //     .catch(next);
-    // Item.find({ description: /name/i })
-    //     .select('title date price')
-    //     .then((item) => {
-    //         items = {
-    //             ...items, item
-    //         }
-    //     })
-    //     .catch(next);
-    // console.log(items);
-    res.header("Access-Control-Allow-Origin", "*");
 
 });
 
@@ -70,11 +58,6 @@ route.get('/search', (req, res, next) => {
 //----------------------------------------------------//
 //GET Items from Filters:                           
 route.get('/filter', (req, res, next) => {
-    // if (req.query.priceUb != undefined && req.query.priceLb != undefined) {
-    //     req.query.price = { $lte: req.query.priceUb, $gte: req.query.priceLb };
-    //     delete req.query.priceUb;
-    //     delete req.query.priceLb;
-    // }
     Item.find(req.query)
         .select('title price')
         .then((item) => {

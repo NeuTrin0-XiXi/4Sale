@@ -7,7 +7,6 @@ import axios from 'axios';
 function LoginButton(props) {
     const LoginSuccess = (res) => {
         var profile = res.getBasicProfile();
-        console.log(profile);
         const email = profile.getEmail();
         let user = {
             name: '',
@@ -17,7 +16,6 @@ function LoginButton(props) {
             _id: '',
             profilePic: ''
         }
-        console.log(res);
         user.name = profile.getName();
         user.email = profile.getEmail();
         user.profilePic = profile.getImageUrl();

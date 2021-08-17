@@ -1,9 +1,11 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
-// import EditProfilecss from './EditProfilecss.css';
+import './EditProfilecss.css';
+import { connect } from 'react-redux';
 
-const EditProfile = () => {
+const EditProfile = (props) => {
+	const { name, email, profilePic,mobile } = props.user
 	return (
 		<div className="container-fluid d-flex justify-content-center flex-column bd-highlight mb-3 ">
 
@@ -17,14 +19,10 @@ const EditProfile = () => {
 									<div className="account-settings">
 										<div className="user-profile">
 											<div className="user-avatar">
-												<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin" />
+												<img src={profilePic} alt="Admin"/>
 											</div>
-											<h5 className="user-name">Yuki Hayashi</h5>
-											<h6 className="user-email">yuki@Maxwell.com</h6>
-										</div>
-										<div className="about">
-											<h5>About</h5>
-											<p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+											<h5 className="user-name">{name}</h5>
+											<h6 className="user-email">{email}</h6>
 										</div>
 									</div>
 								</div>
@@ -37,9 +35,9 @@ const EditProfile = () => {
 							<div className="card h-100">
 								<div className="card-body">
 									<div className="row gutters">
-										<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+										{/* <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
 											<h6 className="mb-2 text-primary">Personal Details</h6>
-										</div>
+										</div> */}
 										<br /><br /><br />
 										<div className="d-flex justify-content-center flex-column bd-highlight mb-3">
 											<div className=" col-xxl-7 ">
@@ -93,4 +91,9 @@ const EditProfile = () => {
 	)
 }
 
-export default EditProfile
+const mapStateToProps = (state) => {
+	return {
+		user: state.user
+	}
+}
+export default connect(mapStateToProps)(EditProfile);

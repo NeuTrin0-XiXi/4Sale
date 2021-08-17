@@ -1,12 +1,36 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
-import {connect} from 'react-redux';
 import { withRouter } from 'react-router';
-
 // import ProductImage from './ProductPageSections/ProductImage';
 // import ProductInfo from './ProductPageSections/ProductInfo.js';
 import axios from 'axios';
+
+
+function ImageCarousel(props) {
+  let items = []
+  function image(i, _id) {
+    if (i === 1) {
+      return (
+        <div key={i} className=" active carousel-item customCarousel">
+          <img src={`./uploads/${_id}-${i}`} className="ProductImage" />
+        </div>
+      )
+    } else {
+      return (
+        <div key={i} className=" carousel-item customCarousel">
+          <img src={`./uploads/${_id}-${i}`} className="ProductImage" />
+        </div>
+      )
+    }
+  }
+  for (var i = 1; i <= props.images; i++) {
+    items.push(
+      image(i, props._id)
+    )
+  }
+  return (items)
+};
 
 class ProductPage extends Component {
 
@@ -22,17 +46,18 @@ class ProductPage extends Component {
   }
   componentDidMount() {
     console.log(this.props)
-    axios.get('/api/items/' + this.props.id)
+    const id=this.props.location.pathname.slice(9);
+    axios.get('/api/items/' + id)
       .then(res => {
         const { data } = res;
-        console.log(data);
         this.setState({
-          data
+          ...data
         })
       })
   }
+
   render() {
-    const { title,description,price,userName,userEmail,date } = this.state;
+    const { _id, title, description, price, userName, userEmail, date, images } = this.state;
     return (
       <div>
         <div>
@@ -44,14 +69,29 @@ class ProductPage extends Component {
               <div style={{ color: "black" }} >
                 <div className="d-sm-flex flex-column justify-content-around">
                   <br /><br />
-                  <div className="productcrousel d-flex justify-content-center">
-                    <img src="https://source.unsplash.com/500x500/?football" className="ProductImage" />
-                  </div >
+                  <div id="myCarousel" className="container-fluid carousel slide crousalCustomEdit" data-bs-ride="carousel">
+                    <div className="carousel-inner crousalCustomEdit">
+                      <ImageCarousel _id={_id} images={images} />
+                    </div>
+                    <button className="carousel-control-prev " type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                      <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span className="visually-hidden">Previous</span>
+                    </button>
+                    <button className="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                      <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span className="visually-hidden">Next</span>
+                    </button>
+                  </div>
                   <br /><br />
                   <div className="p-2"><b><u>Price:</u></b> Rs {price}</div>
                   <br />
+                  <div className="p-2"><u><b>Uploaded On</b></u></div>
+                  <div>{date}</div>
                   <div className="p-2"><u><b>Description</b></u></div>
                   <div>{description}</div>
+                  <div className="p-2"><u><b>Uploaded By</b></u></div>
+                  <div>{userName}</div>
+                  <div>{userEmail}</div>
                   <br /><br />
                 </div>
                 <div>
@@ -68,6 +108,7 @@ class ProductPage extends Component {
     );
   }
 }
+
 
 
 

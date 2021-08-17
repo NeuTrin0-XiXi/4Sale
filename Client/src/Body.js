@@ -11,9 +11,9 @@ import Profile from './EditProfile';
 import Buy from './Buy';
 import Not_Found from './Not_Found';
 import { withRouter } from 'react-router';
+import Search from './Search';
 
 function Body(props) {
-
     if (props.Auth) {
         return (
             <Switch>
@@ -34,6 +34,9 @@ function Body(props) {
                 </Route>
                 <Route exact path="/buy/:category">
                     <Buy />
+                </Route>
+                <Route exact path="/search/:query">
+                    <Search />
                 </Route>
                 <Route exact path="/product/:id">
                     <ProductPage />
@@ -57,6 +60,9 @@ function Body(props) {
                 </Route>
                 <Route exact path="/buy/:category">
                     <Buy />
+                </Route>
+                <Route exact path="/search/:query">
+                    <Search />
                 </Route>
                 <Route exact path="/product/:id">
                     <ProductPage />
