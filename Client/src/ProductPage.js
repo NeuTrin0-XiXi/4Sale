@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router';
 
 // import ProductImage from './ProductPageSections/ProductImage';
 // import ProductInfo from './ProductPageSections/ProductInfo.js';
@@ -20,6 +21,7 @@ class ProductPage extends Component {
     userEmail: ''
   }
   componentDidMount() {
+    console.log(this.props)
     axios.get('/api/items/' + this.props.id)
       .then(res => {
         const { data } = res;
@@ -48,8 +50,6 @@ class ProductPage extends Component {
                   <br /><br />
                   <div className="p-2"><b><u>Price:</u></b> Rs {price}</div>
                   <br />
-                  {/* <div className="p-2"><b><u>Category:</u></b>  {category}</div>
-                  <br /> */}
                   <div className="p-2"><u><b>Description</b></u></div>
                   <div>{description}</div>
                   <br /><br />
@@ -71,10 +71,4 @@ class ProductPage extends Component {
 
 
 
-const mapStateToProps = (state) => {
-  return {
-    id: state._id
-  }
-}
-
-export default connect(mapStateToProps, null)(ProductPage);
+export default withRouter(ProductPage);

@@ -1,8 +1,8 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { NavLink} from 'react-router-dom';
+// import { connect } from 'react-redux';
 import ProfileButton from './components/ProfileButton';
 
 
@@ -20,7 +20,7 @@ const Navbar = (props) => {
         <div className="Navbar-container">
             <nav className="navbar sticky-top navbar-expand-xxl navbar-light navbarCustom">
                 <div className="container-fluid custom-navbar">
-                    <Link to="/" style={logoColor} className="navbar-brand logo" >4Sale</Link>
+                    <NavLink to="/" style={logoColor} className="navbar-brand logo" >4Sale</NavLink>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -28,16 +28,16 @@ const Navbar = (props) => {
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0 e">
                             <div className="container d-flex justify-content:space-around">
                                 <li className="nav-item navBarItems">
-                                    <Link to="/" style={textColor} className="nav-link active navBarItems" id="homeTab" aria-current="page" href="/">Home</Link>
+                                    <NavLink to="/" style={textColor} className="nav-link active navBarItems" id="homeTab" aria-current="page" href="/">Home</NavLink>
                                 </li>
                                 <li className="nav-item navBarItems">
-                                    <Link to="/sell" style={textColor} className="nav-link active navBarItems" aria-current="page" >Sell</Link>
+                                    <NavLink to="/sell" style={textColor} className="nav-link active navBarItems" aria-current="page" >Sell</NavLink>
                                 </li>
                                 <li className="nav-item navBarItems">
-                                    <Link to="/contact-us" style={textColor} className="nav-link active navBarItems" aria-current="page" >Contact Us</Link>
+                                    <NavLink to="/contact-us" style={textColor} className="nav-link active navBarItems" aria-current="page" >Contact Us</NavLink>
                                 </li>
                                 <li className="nav-item navBarItems">
-                                    <Link to="/about-us" style={textColor} className="nav-link navBarItems" >About Us</Link>
+                                    <NavLink to="/about-us" style={textColor} className="nav-link navBarItems" >About Us</NavLink>
                                 </li>
                             </div>
                             <li className="nav-item dropdown navBarItems">
@@ -45,23 +45,12 @@ const Navbar = (props) => {
                                     Categories
                                 </button>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="ddlist">
-                                    <li><Link className="dropdown-item custom-cat-link" to="/buy/Sports">Sports</Link></li>
-                                    <li><Link className="dropdown-item custom-cat-link" to="/buy/Books">Books</Link></li>
-                                    <li><Link className="dropdown-item custom-cat-link" to="/buy/Games">Games</Link></li>
-                                    <li><Link className="dropdown-item custom-cat-link" to="/buy/Utilities">Utilities</Link></li>
-                                    <li><Link className="dropdown-item custom-cat-link" to="/buy/Other">Other</Link></li>
+                                    <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Sports">Sports</NavLink></li>
+                                    <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Books">Books</NavLink></li>
+                                    <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Games">Games</NavLink></li>
+                                    <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Utilities">Utilities</NavLink></li>
+                                    <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Other">Other</NavLink></li>
                                 </ul>
-                                {/* <a className="nav-link" id="navbarDropdown" role="button" aria-expanded="false">
-                                    <label id="dropdownlabel" htmlFor="ddlist">Categories</label>
-                                </a>
-                                <select id="ddlist" >
-                                    <option value="allCategories">All Categories</option>
-                                    <option value="sports">Sports</option>
-                                    <option value="books">Books</option>
-                                    <option value="games">Games</option>
-                                    <option value="utilities">Utilities</option>
-                                    <option value="other">Other</option>
-                                </select> */}
                             </li>
                         </ul>
                         <form className="d-flex">

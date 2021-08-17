@@ -1,7 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
-import EditProfilecss from './EditProfilecss.css';
+// import EditProfilecss from './EditProfilecss.css';
 
 const EditProfile = () => {
 	return (

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import ItemList from './components/ItemList';
-import { useParams } from 'react-router';
+// import { useParams } from 'react-router';
+import axios from 'axios';
+import { withRouter } from 'react-router';
 
-function Buy() {
-    let state = {
+class Buy extends Component {
+    state = {
         items: [
             {
                 _id: '',
@@ -14,30 +16,35 @@ function Buy() {
             }
         ],
         number: 0
+    };
+
+    componentDidMount() {
+        console.log(this.props);
+        const category = this.props.match.params.category;
+        axios.get(`/api/items/filter?categories=${category} `)
+            .then(res => {
+                let size = res.data.length
+                this.setState({
+                    items: res.data,
+                    number: size
+                });
+            })
+    };
+
+    render() {
+        const category = this.props.match.params.category;
+        return (
+            <>
+                <div className="results">
+                    Found {this.state.number} resluts...
+                    <h1>Buy Page {category}</h1>
+                </div>
+                <div>
+                    <ItemList items={this.state.items} />
+                </div>
+            </>
+        );
     }
-
-    const { query } = useParams();
-    console.log(query);
-    // axios.get(`/api/items/filter?categories=${this.props.query}`)
-    //     .then(res => {
-    //         let size = res.data.length
-    //         this.setState({
-    //             items: res.data,
-    //             number: size
-    //         });
-    //     })
-
-    return (
-        <>
-            <div className="results">
-                {/* Found {this.state.number} resluts... */}
-                <h1>Buy Page {query}</h1>
-            </div>
-            <div>
-                {/* <ItemList items={this.state.items} /> */}
-            </div>
-        </>
-    )
 }
-export default Buy;
+export default withRouter(Buy);
 

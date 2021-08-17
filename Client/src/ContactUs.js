@@ -28,9 +28,6 @@ const ContactUs = (props) => {
 									<div className="col-12 contactInfoElement"><strong><u>Phone no</u> :918XXXXXXX</strong></div>
 									<div className="col-12 contactInfoElement"><strong><u>e-mail Id</u>: 4Sale@iiti.ac.in</strong></div>
 									<div className="col-12 contactInfoElement"><strong><u>Location</u> : Khandwa road, Simrol,Indore, M.P. India</strong></div>
-
-
-
 								</div>
 							</div>
 						</div>

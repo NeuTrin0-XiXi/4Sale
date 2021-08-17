@@ -10,15 +10,13 @@ import ProductPage from './ProductPage';
 import Profile from './EditProfile';
 import Buy from './Buy';
 import Not_Found from './Not_Found';
+import { withRouter } from 'react-router';
 
 function Body(props) {
 
     if (props.Auth) {
         return (
             <Switch>
-                <Route exact path="/item">
-                    <ProductPage />
-                </Route>
                 <Route exact path="/">
                     <Home />
                 </Route>
@@ -34,8 +32,11 @@ function Body(props) {
                 <Route exact path="/profile">
                     <Profile />
                 </Route>
-                <Route exact path="/buy/:query">
+                <Route exact path="/buy/:category">
                     <Buy />
+                </Route>
+                <Route exact path="/product/:id">
+                    <ProductPage />
                 </Route>
                 <Route>
                     <Not_Found />
@@ -54,10 +55,10 @@ function Body(props) {
                 <Route exact path="/contact-us">
                     <ContactUs />
                 </Route>
-                <Route exact path="/buy/:query">
+                <Route exact path="/buy/:category">
                     <Buy />
                 </Route>
-                <Route exact path="/item">
+                <Route exact path="/product/:id">
                     <ProductPage />
                 </Route>
                 <Route>
@@ -74,7 +75,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(Body);
+export default withRouter(connect(mapStateToProps)(Body));
 
 
 
