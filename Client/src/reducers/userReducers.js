@@ -1,13 +1,5 @@
 const initialState = {
-    user: {
-        name: '',
-        email: '',
-        favourites: [],
-        soldItems: [],
-        _id: '',
-        profilePic: '',
-        mobile:''
-    },
+    user: {},
     Authorised: false
 }
 

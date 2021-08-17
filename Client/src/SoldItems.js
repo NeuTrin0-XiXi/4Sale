@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ItemList from './components/ItemList';
 import axios from 'axios';
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
 class Buy extends Component {
     state = {
@@ -10,17 +11,14 @@ class Buy extends Component {
                 _id: '',
                 title: '',
                 price: ''
-
             }
         ],
         number: 0
     };
 
     componentDidMount() {
-        console.log(this.props);
-        const category=this.props.location.pathname.slice(5);
-        console.log(category);
-        axios.get(`/api/items/filter?categories=${category}`)
+        const { user } = this.props
+        axios.get(`/api/user/sold/${user}`)
             .then(res => {
                 let size = res.data.length
                 this.setState({
@@ -31,12 +29,10 @@ class Buy extends Component {
     };
 
     render() {
-        const category = this.props.match.params.category;
         return (
             <>
                 <div className="results">
-                    <h1>{category}</h1>
-                    <h2>Found {this.state.number} results...</h2>
+                    <h2>Posted Ad for {this.state.number} items...</h2>
                 </div>
                 <div>
                     <ItemList items={this.state.items} />
@@ -45,5 +41,11 @@ class Buy extends Component {
         );
     }
 }
-export default withRouter(Buy);
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user._id
+    }
+}
+export default withRouter(connect(mapStateToProps)(Buy));
 

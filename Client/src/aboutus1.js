@@ -6,7 +6,7 @@ export default function aboutus1() {
             <div className="container my-5 bg">
                 <div className="row bg-light">
                     <h1 className="col block1aboutUs fw-bold">We are what we deliver</h1>
-                    <img className=" col rounded-pill" src="about-us1.png" />
+                    <img className=" col rounded-pill" alt="" src="about-us1.png" />
 
                 </div>
             </div>
@@ -15,7 +15,7 @@ export default function aboutus1() {
 
             <div className="container ">
                 <div className="row ">
-                    <img className="col rounded-pill" src="about-us2.jpg" />
+                    <img className="col rounded-pill" alt="" src="about-us2.jpg" />
                     <div className="col">
                         <h2 className=" HeaderBox ">Our Vision</h2>
                         <p className="paraAboutUs">We tend to serve the IITI community.Helpful for students to get
@@ -38,7 +38,7 @@ export default function aboutus1() {
                             buying and selling things
                         </p>
                     </div>
-                    <img className="bg-light col rounded-pill" src="about-us3.jpg" />
+                    <img className="bg-light col rounded-pill" alt="" src="about-us3.jpg" />
                 </div>
             </div>
 
@@ -46,7 +46,7 @@ export default function aboutus1() {
 
             <div className="container ">
                 <div className="row ">
-                    <img className="col rounded-pill" src="about-us4.jpg" />
+                    <img className="col rounded-pill" alt="" src="about-us4.jpg" />
                     <div className="col ">
                         <h2 className=" HeaderBox block4 ">Join our Team</h2>
                         <p className="paraAboutUs">Anyone interested can join our team. Below is the list of

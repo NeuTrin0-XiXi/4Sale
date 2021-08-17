@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../Combined.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 function ItemList(props) {
@@ -22,7 +21,7 @@ function ItemList(props) {
                 {items.map(({ _id, title, price }) => (
                     <div className="col-lg-4 cardCustom d-inline-block" key={_id} >
                         <div className="card  customCard productRedirect" id="cardBoxOutline" style={textColor}>
-                            <img onClick={()=>handleClick(_id)} className="card-img-top cardImageCustom" src={`/uploads/${_id}-1`} alt="Card image cap" style={{ cursor: "pointer" }} />
+                            <img onClick={()=>handleClick(_id)} className="card-img-top cardImageCustom" src={`/uploads/${_id}-1`} alt="" style={{ cursor: "pointer" }} />
                             <div className="card-body  customCard">
                                 <h5 className="card-title cardText">{title}</h5>
                                 <ul className="list-group list-group-flush">

@@ -12,6 +12,9 @@ import Buy from './Buy';
 import Not_Found from './Not_Found';
 import { withRouter } from 'react-router';
 import Search from './Search';
+import Favourites from './Favourites';
+import SoldItems from './SoldItems';
+import Notifications from './Notifications';
 
 function Body(props) {
     if (props.Auth) {
@@ -29,13 +32,22 @@ function Body(props) {
                 <Route exact path="/contact-us">
                     <ContactUs />
                 </Route>
+                <Route exact path="/notifications">
+                    <Notifications />
+                </Route>
                 <Route exact path="/profile">
                     <Profile />
+                </Route>
+                <Route exact path="/favourites">
+                    <Favourites />
+                </Route>
+                <Route exact path="/sold-items">
+                    <SoldItems />
                 </Route>
                 <Route exact path="/buy/:category">
                     <Buy />
                 </Route>
-                <Route exact path="/search/:query">
+                <Route exact path="/Search/:query">
                     <Search />
                 </Route>
                 <Route exact path="/product/:id">
@@ -61,7 +73,7 @@ function Body(props) {
                 <Route exact path="/buy/:category">
                     <Buy />
                 </Route>
-                <Route exact path="/search/:query">
+                <Route exact path="/Search/:query">
                     <Search />
                 </Route>
                 <Route exact path="/product/:id">

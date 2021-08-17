@@ -1,20 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import '../Combined.css';
-import GoogleLogin, { useGoogleLogout } from 'react-google-login';
+import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 
 function LoginButton(props) {
     const LoginSuccess = (res) => {
+        console.log(res);
         var profile = res.getBasicProfile();
-        const email = profile.getEmail();
         let user = {
             name: '',
             email: '',
             favourites: [],
             soldItems: [],
             _id: '',
-            profilePic: ''
+            profilePic: '',
+            notifications: []
         }
         user.name = profile.getName();
         user.email = profile.getEmail();
@@ -23,9 +24,11 @@ function LoginButton(props) {
             googleToken: res.tokenId
         })
             .then(res => {
-                const { favourites, soldItems, _id } = res.data;
+                console.log(res.data);
+                const { favourites, soldItems, _id, notifications } = res.data;
                 user.favourites = favourites;
                 user.soldItems = soldItems;
+                user.notifications = notifications;
                 user._id = _id;
                 props.Login(user);
             })

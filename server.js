@@ -1,5 +1,4 @@
 const express = require('express');
-const { request } = require('https');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
@@ -15,7 +14,7 @@ mongoose.connect('mongodb://localhost:27017/4sale')
     .then(() => {
         console.log("mongoDB connected...")
     })
-    .catch((err)=>{
+    .catch((err) => {
         console.log(err.message);
         res.status(500).send(err.message);
     });
@@ -23,10 +22,10 @@ mongoose.connect('mongodb://localhost:27017/4sale')
 
 
 // Static files
-    // app.use('/',express.static(__dirname+'/client/build'));
-    // app.get('/',(req,res)=>{
-    //     res.sendFile(path.resolve(__dirname,'client','build','index.html'));
-    // });
+// app.use('/', express.static(__dirname + '/client/build/'));
+// app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+// });
 
 
 //bodyParser middleware 

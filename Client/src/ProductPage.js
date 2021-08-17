@@ -13,13 +13,13 @@ function ImageCarousel(props) {
     if (i === 1) {
       return (
         <div key={i} className=" active carousel-item customCarousel">
-          <img src={`./uploads/${_id}-${i}`} className="ProductImage" />
+          <img src={`/uploads/${_id}-${i}`} alt="" className="ProductImage" />
         </div>
       )
     } else {
       return (
         <div key={i} className=" carousel-item customCarousel">
-          <img src={`./uploads/${_id}-${i}`} className="ProductImage" />
+          <img src={`/uploads/${_id}-${i}`} alt="" className="ProductImage" />
         </div>
       )
     }
@@ -45,14 +45,14 @@ class ProductPage extends Component {
     userEmail: ''
   }
   componentDidMount() {
-    console.log(this.props)
     const id=this.props.location.pathname.slice(9);
     axios.get('/api/items/' + id)
-      .then(res => {
-        const { data } = res;
-        this.setState({
-          ...data
-        })
+    .then(res => {
+      const { data } = res;
+      this.setState({
+        ...data
+      })
+      console.log(this.state);
       })
   }
 

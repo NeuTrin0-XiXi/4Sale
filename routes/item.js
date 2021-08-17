@@ -127,7 +127,9 @@ route.post('/', (req, res, next) => {
                     };
                     Item.updateOne({ _id: item._id },
                         { images: NumOfImages }
-                    )
+                    ).then(() => {
+                        console.log(NumOfImages);
+                    })
                     res.header("Access-Control-Allow-Origin", "*");
                     res.status(201).send(item);
                 })
@@ -136,12 +138,26 @@ route.post('/', (req, res, next) => {
 });
 
 //--------------------------------------------------------------------------//
+//Send a Buy-Sell Notification 
+route.put('/notify/:id', (req, res, next) => {
+    Item.findById(req.params.id)
+        .select('userID userName')
+        .then((item) => {
+            User.updateOne({ _id: item.userID },
+                { "$push": { notifications: req.body.notification } }
+            )
+                .then(() => {
+                    res.header("Access-Control-Allow-Origin", "*");
+                    res.status(204).end();
+                })
+        })
+})
+
+
 
 //Edit a posted item                               
 route.put('/:id', (req, res, next) => {
     Item.updateOne({ _id: req.params.id }, req.body)
-        .then((item) => {
-        })
         .then(
             Item.findById(req.params.id)
                 .then((item) => {
@@ -155,10 +171,10 @@ route.put('/:id', (req, res, next) => {
 //-------------------------------------------------------------------------//
 
 
-//Delete a posted item                              //Get back item name
+//Delete a posted item                              
 route.delete('/:id', (req, res, next) => {
     Item.deleteOne({ _id: req.params.id })
-        .then((item) => {
+        .then(() => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(`Your Ad has been removed`);
         })

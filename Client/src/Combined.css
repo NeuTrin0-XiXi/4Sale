@@ -100,6 +100,16 @@ flex-wrap: wrap;
     margin-left: -36px;
 }
 
+#notification-bell{
+    padding: 2px;
+}
+
+.NotifButton{
+    height: 35px;
+    width: 35px;
+}
+
+
 /* Navbar Css Ends Here */
 /* ___________________________________________________________________________________________________________________ */
  /*Footer Css starts Here*/

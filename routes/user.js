@@ -8,7 +8,33 @@ const Item = require('../db/models').itemModel;
 //API handlers
 //--------------------------------------------------------------------------//
 //GET requests
-// NIL
+route.get('/favourites/:id', (req, res, next) => {
+    User.findById(req.params.id)
+        .then(user => {
+            Item.find({ _id: { $in: user.favourites } })
+                .select('price title')
+                .sort({ date: 'desc' })
+                .then(items => {
+                    res.header("Access-Control-Allow-Origin", "*");
+                    res.status(200).send(items);
+                })
+        })
+        .catch(next);
+})
+
+route.get('/sold/:id', (req, res, next) => {
+    User.findById(req.params.id)
+        .then(user => {
+            Item.find({ _id: { $in: user.soldItems } })
+                .select('price title')
+                .sort({ date: 'desc' })
+                .then(items => {
+                    res.header("Access-Control-Allow-Origin", "*");
+                    res.status(200).send(items);
+                })
+        })
+        .catch(next);
+})
 //--------------------------------------------------------------------------//
 //POST request:
 //NIL
@@ -21,9 +47,10 @@ route.put('/sold/:id', (req, res, next) => {
     User.updateOne({ _id: req.params.id },
         { "$push": { "soldItems": req.body.sold } }
     )
-    .then(()=>{
-        res.status(200).end();
-    })
+        .then(() => {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.status(200).end();
+        })
         .catch(next);
 })
 
@@ -33,6 +60,7 @@ route.put('/favourites/:id', (req, res, next) => {
         { "$push": { "favourites": req.body.favourite } }
     )
         .then(() => {
+            res.header("Access-Control-Allow-Origin", "*");
             res.send('user updated');
         }).catch(next);
 })
@@ -47,6 +75,7 @@ route.delete('/sold/:id', (req, res, next) => {
         { "$push": { "soldItems": req.body.sold } }
     )
         .then(() => {
+            res.header("Access-Control-Allow-Origin", "*");
             res.send('user updated');
         }).catch(next);
 })
@@ -57,6 +86,7 @@ route.delete('/favourites/:id', (req, res, next) => {
         { "$pull": { "favourites": req.body.favourite } }
     )
         .then(() => {
+            res.header("Access-Control-Allow-Origin", "*");
             res.send('user updated');
         }).catch(next);
 })

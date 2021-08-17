@@ -28,14 +28,19 @@ class Navbar extends Component {
         const handleSubmit = (e) => {
             e.preventDefault();
             console.log(this.state);
-            this.props.history.push(`/search/${this.state.search}`);
-            window.location.reload('forcedReload',true);
+            this.props.history.push(`/Search/${this.state.search}`);
+            window.location.reload('forcedReload', true);
 
         }
         const handleChange = (e) => {
             this.setState({
                 search: e.target.value
             })
+        }
+        const handleCategories = (e) => {
+            setTimeout(() => {
+                window.location.reload('forcedReload', true);
+            }, 100)
         }
 
         return (
@@ -67,11 +72,11 @@ class Navbar extends Component {
                                         Categories
                                     </button>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="ddlist">
-                                        <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Sports">Sports</NavLink></li>
-                                        <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Books">Books</NavLink></li>
-                                        <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Games">Games</NavLink></li>
-                                        <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Utilities">Utilities</NavLink></li>
-                                        <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Other">Other</NavLink></li>
+                                        <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Sports">Sports</NavLink></li>
+                                        <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Books">Books</NavLink></li>
+                                        <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Games">Games</NavLink></li>
+                                        <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Utilities">Utilities</NavLink></li>
+                                        <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Other">Other</NavLink></li>
                                     </ul>
                                 </li>
                             </ul>

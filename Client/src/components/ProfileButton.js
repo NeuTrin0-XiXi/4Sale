@@ -6,17 +6,22 @@ import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import { Link } from 'react-router-dom';
 
-
+function NotifButton(props) {
+    if (props.notifications) {
+        return (
+            <img src="notifications_active.svg" alt="notification-icon" className="NotifButton" />
+        )
+    } else {
+        return (
+            <img src="notifications_inactive.svg" alt="notification-icon" className="NotifButton" />
+        )
+    }
+}
 function ProfileButton(props) {
-    const textColor = {
-        color: 'white',
-        textDecoration: 'none'
-    };
-
     if (props.Auth) {
         return (<>
             <div className="dropdown">
-                <button style={{backgroundColor:"#333333",borderColor:"#333333"}} className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2 custom-profile-button"  data-bs-toggle="dropdown" aria-expanded="false">
+                <button style={{ backgroundColor: "#333333", borderColor: "#333333" }} className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2 custom-profile-button" data-bs-toggle="dropdown" aria-expanded="false">
                     Hi {props.profile.name}
                 </button>
                 <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
@@ -30,6 +35,9 @@ function ProfileButton(props) {
             <div className="nav-item navBarItems" >
                 <img src={props.profile.profilePic} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />
             </div>
+            <Link to="/notifications" style={{ backgroundColor: "#333333", borderColor: "#333333" }} id="notification-bell" >
+                <NotifButton notifications={props.notifications}/>
+            </Link>
         </>
         );
     } else {
@@ -47,9 +55,16 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 const mapStateToProps = (state) => {
+    let flag = false;
+    // for (const [key, value] of state.user.notifications) {
+    //     if (key.read === false) {
+    //         flag = true
+    //     }
+    // }
     return {
         Auth: state.Authorised,
-        profile: state.user
+        profile: state.user,
+        notifications: flag
     }
 }
 

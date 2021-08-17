@@ -31,25 +31,21 @@ class Home extends Component {
 
   render() {
 
-    const textColor = {
-      color: 'black',
-      textDecoration: 'none'
-    };
     return (
       <div>
         <div id="myCarousel" className="container-fluid carousel slide crousalCustomEdit" data-bs-ride="carousel">
           <div className="carousel-inner crousalCustomEdit">
             <div className="carousel-item active crousalCustomEdit ">
-              <img src="https://source.unsplash.com/1600x900/?ocean" className="bd-placeholder-img" />
+              <img src="https://source.unsplash.com/1600x900/?ocean" alt="" className="bd-placeholder-img" />
             </div>
             <div className="carousel-item ">
-              <img src="https://source.unsplash.com/1600x900/?thunder" className="bd-placeholder-img" />
+              <img src="https://source.unsplash.com/1600x900/?thunder" alt="" className="bd-placeholder-img" />
 
               <div className="container ">
                 <div className="carousel-caption text-end ">
                   <h1>One more for good measure.</h1>
                   <p>Some representative placeholder content for the third slide of this carousel.</p>
-                  <p><a className="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                  <p><a className="btn btn-lg btn-primary" >Browse gallery</a></p>
                 </div>
               </div>
             </div>

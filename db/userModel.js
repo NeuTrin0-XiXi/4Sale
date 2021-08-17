@@ -23,7 +23,21 @@ const userSchema = new schema({
     },
     mobile: {
         type: Number
-    }
+    },
+    notifications: [{
+        message: String,
+        userName: String,
+        userEmail: String,
+        mobile: Number,
+        read: {
+            type: Boolean,
+            default: false
+        },
+        date:{
+            type:Date,
+            default: Date.now
+        }
+    }]
 });
 
 const userModel = mongoose.model('user', userSchema);
