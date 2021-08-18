@@ -24,7 +24,6 @@ function LoginButton(props) {
             googleToken: res.tokenId
         })
             .then(res => {
-                console.log(res.data);
                 const { favourites, soldItems, _id, notifications } = res.data;
                 user.favourites = favourites;
                 user.soldItems = soldItems;
@@ -40,6 +39,7 @@ function LoginButton(props) {
     return (
         <div id="custom-login-button">
             <GoogleLogin
+                id="navLoginButton"
                 clientId="1059582039946-3rije6k0k92ertj2utffkrvdjjgdrkm0.apps.googleusercontent.com"
                 buttonText="Login"
                 hostedDomain={"iiti.ac.in"}

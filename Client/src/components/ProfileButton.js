@@ -9,11 +9,11 @@ import { Link } from 'react-router-dom';
 function NotifButton(props) {
     if (props.notifications) {
         return (
-            <img src="notifications_active.svg" alt="notification-icon" className="NotifButton" />
+            <img src="/notifications_active.svg" alt="notification-icon" className="NotifButton" />
         )
     } else {
         return (
-            <img src="notifications_inactive.svg" alt="notification-icon" className="NotifButton" />
+            <img src="/notifications_inactive.svg" alt="notification-icon" className="NotifButton" />
         )
     }
 }

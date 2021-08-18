@@ -7,9 +7,9 @@ function Notifications(props) {
     }
     const { notifications } = props
     return (
-        <div>
+        <div id="notif-card-container">
             {notifications.map(({ message, userName, userEmail, mobile,date }) => (
-                <div className="card">
+                <div className="card" key={Math.random()}>
                     <div className="card-body">
                         <h5 className="card-title">{userName} {message}</h5>
                         <p className="card-text">Email: {userEmail}</p>

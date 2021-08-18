@@ -23,10 +23,10 @@ class Search extends Component {
         const query = this.props.location.pathname.slice(8);
         axios.get(`/api/items/search?name=${query}`)
             .then(res => {
-                let size = res.data.length
+                const unique = [...new Map(res.data.map(item => [item['_id'], item])).values()];
                 this.setState({
-                    items: res.data,
-                    number: size
+                    items: unique,
+                    number: unique.length
                 });
             })
     };

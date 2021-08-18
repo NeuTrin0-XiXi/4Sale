@@ -5,7 +5,8 @@ import { withRouter } from 'react-router';
 // import ProductImage from './ProductPageSections/ProductImage';
 // import ProductInfo from './ProductPageSections/ProductInfo.js';
 import axios from 'axios';
-
+import WishList from './components/WishList';
+import { connect } from 'react-redux';
 
 function ImageCarousel(props) {
   let items = []
@@ -45,19 +46,40 @@ class ProductPage extends Component {
     userEmail: ''
   }
   componentDidMount() {
-    const id=this.props.location.pathname.slice(9);
+    const id = this.props.location.pathname.slice(9);
     axios.get('/api/items/' + id)
-    .then(res => {
-      const { data } = res;
-      this.setState({
-        ...data
-      })
-      console.log(this.state);
+      .then(res => {
+        const { data } = res;
+        this.setState({
+          ...data
+        })
+        console.log(this.state);
       })
   }
 
   render() {
+    const { user } = this.props;
     const { _id, title, description, price, userName, userEmail, date, images } = this.state;
+    let date1 = date.slice(0, 10);
+    const yr = date1.slice(0, 4);
+    const mnth = date1.slice(5, 7);
+    const dte = date1.slice(8, 10);
+
+    const handleBuy = () => {
+      axios.put(`/api/items/notify/${_id}`, {
+        notification: {
+          message: `wants to buy ${title}`,
+          userName: user.name,
+          userEmail: user.email,
+          mobile: user.mobile
+        }
+      })
+        .then(res => {
+          console.log(res);
+          alert("Notified user");
+        })
+    }
+
     return (
       <div>
         <div>
@@ -86,7 +108,7 @@ class ProductPage extends Component {
                   <div className="p-2"><b><u>Price:</u></b> Rs {price}</div>
                   <br />
                   <div className="p-2"><u><b>Uploaded On</b></u></div>
-                  <div>{date}</div>
+                  <div>{dte + '-' + mnth + '-' + yr}</div>
                   <div className="p-2"><u><b>Description</b></u></div>
                   <div>{description}</div>
                   <div className="p-2"><u><b>Uploaded By</b></u></div>
@@ -95,10 +117,8 @@ class ProductPage extends Component {
                   <br /><br />
                 </div>
                 <div>
-                  {/* <button className="col-md-7  customBuyButton" id="BuyButtonId" onClick={this.handleBuyClick} >Buy</button> */}
-                  <br /><br />
-                  <button className="col-md-7  customBuyButton" id="customWishlist" >Add to Wishlist</button>
-                  <br /><br /><br /><br />
+                  <button onClick={handleBuy} className="col-md-7 customBuyButton" id="BuyButtonId"  >Buy</button>
+                  <WishList _id={_id} id="FavButton" />
                 </div>
               </div>
             </div>
@@ -110,6 +130,10 @@ class ProductPage extends Component {
 }
 
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
 
-
-export default withRouter(ProductPage);
+export default withRouter(connect(mapStateToProps)(ProductPage));

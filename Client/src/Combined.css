@@ -382,7 +382,7 @@ flex-wrap: wrap;
     font-size: 16px ;
 }
 .custom-cat-link{
-    padding:0px
+    padding:5px
 }
 
 .custom-profile-button{
@@ -437,7 +437,10 @@ flex-wrap: wrap;
     width: 72px;
     border-radius: 7 !important;
 }
-
+.navCat{
+    background-color: #333333;
+    border: #333333;
+}
 #navLoginBtn{
     font-size: 15px;
     margin-left: 15px;
@@ -466,25 +469,67 @@ flex-wrap: wrap;
 }
 
 .customCard{
-    height: 30rem !important;
+    border: 3px !important;
+    border-color: black;
+    width:32rem !important;
+    height:32rem !important;
+    display: inline-block;
+    margin-top: 55px;
+    margin-left:40px; 
+    margin-right: 40px;
+    /* height: 30rem !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: stretch !important;
-    
+    align-items: stretch !important; */
 };
 
-.ContainerProperties{
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-around !important;
+#image-container{
+    overflow: auto;
+    background-color: gray;
+    padding: 0.5rem !important;
+    display:inline-block;
+    width: 30rem !important;
+    height:22.5rem !important
+}
+
+.customCardbody{
+    padding: 0.5rem !important;
+    display:inline-block;
+    width: 30rem !important;
+    height: 7.5rem !important;
 }
 
 .cardImageCustom{
-    height: 30rem !important;
+    display:inline-block;
+    width: 30rem !important;
+    height:22.5rem !important;
+    object-fit: contain !important;
 }
+
+.ContainerProperties{
+    display: inline-block;
+    /* display: flex !important;
+    flex-direction: row !important; */
+    justify-content: space-around !important;
+}
+
 
 .cardText{
     font-size: 20px !important;
+}
+
+#customViewButton{
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+}
+#customDelButton{
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+}
+#customFavButton{
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+
 }
 
 
@@ -492,6 +537,9 @@ flex-wrap: wrap;
     text-decoration: none !important;
 }
 
+#FavButton{
+    margin-bottom:10px
+}
 .customProductPagTitle{
     font-size: 77px !important;
     margin-top: -41px !important;
@@ -509,9 +557,11 @@ flex-wrap: wrap;
     margin-left: 20px !important;
     
 }
-
+#imageContainer{
+    width: 400px;
+    height: 400px;
+}
 #cardBoxOutline{
-    border: 1px white !important;
     box-shadow: 5px 5px 10px  slategray !important;
 }
 

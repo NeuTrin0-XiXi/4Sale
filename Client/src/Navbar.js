@@ -6,9 +6,10 @@ import { NavLink } from 'react-router-dom';
 import ProfileButton from './components/ProfileButton';
 import { withRouter } from 'react-router';
 import { Component } from 'react';
+import { connect } from 'react-redux';
+import LoginButton from './components/LoginButton';
 
 class Navbar extends Component {
-
     state = {
         search: ''
     }
@@ -22,26 +23,33 @@ class Navbar extends Component {
             textDecoration: 'none'
         };
 
-        // const handleChange=(e)=>{
+        function Sell(props) {
+            console.log(props.auth);
+            if (props.auth) {
+                return <NavLink to="/sell" style={textColor} className="nav-link active navBarItems" aria-current="page" >Sell</NavLink>
+            } else {
+                return <NavLink to="/sell" style={textColor} className="nav-link disabled active navBarItems" tabIndex="-1" aria-disabled="true" aria-current="page" >Sell</NavLink>
+            }
+        };
 
-        // }
         const handleSubmit = (e) => {
             e.preventDefault();
             console.log(this.state);
             this.props.history.push(`/Search/${this.state.search}`);
             window.location.reload('forcedReload', true);
+        };
 
-        }
         const handleChange = (e) => {
             this.setState({
                 search: e.target.value
             })
-        }
+        };
+
         const handleCategories = (e) => {
             setTimeout(() => {
                 window.location.reload('forcedReload', true);
             }, 100)
-        }
+        };
 
         return (
             <div className="Navbar-container">
@@ -55,20 +63,19 @@ class Navbar extends Component {
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0 e">
                                 <div className="container d-flex justify-content:space-around">
                                     <li className="nav-item navBarItems">
-                                        <NavLink to="/" style={textColor} className="nav-link active navBarItems" id="homeTab" aria-current="page" href="/">Home</NavLink>
+                                        <NavLink to="/" style={textColor} className="nav-link navBarItems" id="homeTab" aria-current="page" href="/">Home</NavLink>
                                     </li>
                                     <li className="nav-item navBarItems">
-                                        <NavLink to="/sell" style={textColor} className="nav-link active navBarItems" aria-current="page" >Sell</NavLink>
+                                        <Sell auth={this.props.auth} />
                                     </li>
                                     <li className="nav-item navBarItems">
-                                        <NavLink to="/contact-us" style={textColor} className="nav-link active navBarItems" aria-current="page" >Contact Us</NavLink>
+                                        <NavLink to="/contact-us" style={textColor} className="nav-link navBarItems" aria-current="page" >Contact Us</NavLink>
                                     </li>
                                     <li className="nav-item navBarItems">
                                         <NavLink to="/about-us" style={textColor} className="nav-link navBarItems" >About Us</NavLink>
                                     </li>
-                                </div>
-                                <li className="nav-item dropdown navBarItems">
-                                    <button className="nav-link" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <li className="nav-item navBarItems">
+                                        {/* <button className="nav-link navBarItems" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                         Categories
                                     </button>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="ddlist">
@@ -77,8 +84,21 @@ class Navbar extends Component {
                                         <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Games">Games</NavLink></li>
                                         <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Utilities">Utilities</NavLink></li>
                                         <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Other">Other</NavLink></li>
-                                    </ul>
-                                </li>
+                                    </ul> */}
+                                        <div className="dropdown navBarItems">
+                                            <button className="btn btn-secondary dropdown-toggle navCat" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Categories
+                                            </button>
+                                            <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                                <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Sports">Sports</NavLink></li>
+                                                <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Books">Books</NavLink></li>
+                                                <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Games">Games</NavLink></li>
+                                                <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Utilities">Utilities</NavLink></li>
+                                                <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Other">Other</NavLink></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </div>
                             </ul>
                             <form className="d-flex" onSubmit={handleSubmit}>
                                 <input autoCapitalize="sentences" onChange={handleChange} className="form-control me-2" id="navSearchBar" type="search" placeholder="Search" aria-label="Search" />
@@ -93,6 +113,10 @@ class Navbar extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        auth: state.Authorised
+    }
+}
 
-
-export default withRouter(Navbar);
+export default withRouter(connect(mapStateToProps)(Navbar));

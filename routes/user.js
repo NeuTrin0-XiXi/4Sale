@@ -48,20 +48,28 @@ route.put('/sold/:id', (req, res, next) => {
         { "$push": { "soldItems": req.body.sold } }
     )
         .then(() => {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.status(200).end();
+            User.findById(req.params.id)
+                .select('soldItems')
+                .then(user => {
+                    res.header("Access-Control-Allow-Origin", "*");
+                    res.send(user);
+                })
         })
         .catch(next);
 })
 
-//Marked an Item  favourite
+//Marke an Item  favourite
 route.put('/favourites/:id', (req, res, next) => {
     User.updateOne({ _id: req.params.id },
         { "$push": { "favourites": req.body.favourite } }
     )
         .then(() => {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.send('user updated');
+            User.findById(req.params.id)
+                .select('favourites')
+                .then(user => {
+                    res.header("Access-Control-Allow-Origin", "*");
+                    res.send(user);
+                })
         }).catch(next);
 })
 
@@ -75,8 +83,12 @@ route.delete('/sold/:id', (req, res, next) => {
         { "$push": { "soldItems": req.body.sold } }
     )
         .then(() => {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.send('user updated');
+            User.findById(req.params.id)
+                .select('soldItems')
+                .then(user => {
+                    res.header("Access-Control-Allow-Origin", "*");
+                    res.send(user);
+                })
         }).catch(next);
 })
 
@@ -86,8 +98,12 @@ route.delete('/favourites/:id', (req, res, next) => {
         { "$pull": { "favourites": req.body.favourite } }
     )
         .then(() => {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.send('user updated');
+            User.findById(req.params.id)
+                .select('favourites')
+                .then(user => {
+                    res.header("Access-Control-Allow-Origin", "*");
+                    res.send(user);
+                })
         }).catch(next);
 })
 

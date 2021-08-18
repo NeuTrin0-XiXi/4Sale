@@ -1,5 +1,14 @@
 const initialState = {
-    user: {},
+    user: {
+        email: '',
+        favourites: [],
+        name: '',
+        notifications: '',
+        profilePic: '',
+        soldItems: '',
+        _id: '',
+        mobile: 0
+    },
     Authorised: false
 }
 
@@ -19,6 +28,11 @@ const userReducers = (state = initialState, action) => {
                 Authorised: initialState.Authorised
             }
 
+        case 'UPDATE_USER':
+            return {
+                user: action.payload,
+                Authorised: true
+            }
         default: return state;
     }
 

@@ -17,7 +17,8 @@ class Buy extends Component {
     };
 
     componentDidMount() {
-        const {user}=this.props
+        console.log()
+        const { user } = this.props
         axios.get(`/api/user/favourites/${user}`)
             .then(res => {
                 let size = res.data.length
@@ -29,13 +30,19 @@ class Buy extends Component {
     };
 
     render() {
+        const update = (favs) => {
+            this.setState({
+                items: favs,
+                number: favs.length
+            })
+        }
         return (
             <>
                 <div className="results">
                     <h2>{this.state.number} favourites...</h2>
                 </div>
                 <div>
-                    <ItemList items={this.state.items} />
+                    <ItemList items={this.state.items} update={update} />
                 </div>
             </>
         );

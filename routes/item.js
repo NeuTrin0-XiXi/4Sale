@@ -140,17 +140,22 @@ route.post('/', (req, res, next) => {
 //--------------------------------------------------------------------------//
 //Send a Buy-Sell Notification 
 route.put('/notify/:id', (req, res, next) => {
+    console.log(req.body.notification);
     Item.findById(req.params.id)
         .select('userID userName')
         .then((item) => {
+            console.log(item);
             User.updateOne({ _id: item.userID },
                 { "$push": { notifications: req.body.notification } }
             )
-                .then(() => {
+                .then(a => {
+                    console.log(a);
                     res.header("Access-Control-Allow-Origin", "*");
                     res.status(204).end();
                 })
+                .catch(next);
         })
+        .catch(next);
 })
 
 
