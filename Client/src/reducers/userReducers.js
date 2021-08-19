@@ -2,7 +2,6 @@ import axios from "axios";
 
 const initialState = {
     user: {
-        googleToken: '',
         email: '',
         favourites: [],
         name: '',

@@ -110,8 +110,12 @@ route.delete('/notif/:id', (req, res, next) => {
         { "$pull": { notifications: { _id: req.body.id } } }
     )
         .then(() => {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.status(204).end();
+            User.findById(req.params.id)
+                .select('notifications')
+                .then(user => {
+                    res.header("Access-Control-Allow-Origin", "*");
+                    res.status(200).send(user);
+                })
         })
         .catch(next);
 })

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 
 function Notifications(props) {
+    const { user } = props
     function ApproveButton(props) {
         if (props.message.slice(0, 12) == "wants to buy") {
             return <button type="button" className="btn btn-success customNotifButtons" onClick={() => handleApprove(props.userEmail, props.userName, props.message)}>Approve</button>
@@ -20,9 +21,13 @@ function Notifications(props) {
                 id: _id
             }
         })
-        .then(res=>{
-            console.log(res);
-        })
+            .then(res => {
+                const newUser = {
+                    ...user,
+                    notifications: res.data.notifications
+                }
+                props.Update(newUser);
+            })
     };
 
     const handleApprove = (userEmail, userName, message) => {
@@ -60,6 +65,14 @@ const mapStateToProps = (state) => {
     return {
         user: state.user
     }
-}
+};
 
-export default connect(mapStateToProps)(Notifications);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        Update: (user) => {
+            dispatch({ type: 'UPDATE_USER', payload: user })
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notifications);
