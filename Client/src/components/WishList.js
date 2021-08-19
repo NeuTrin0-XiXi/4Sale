@@ -38,7 +38,7 @@ const WishList = (props) => {
                     }
                     props.Update(newUser);
                     if (props.favs) {
-                        props.update(res.data.favourites)
+                        props.update();
                     }
                 })
         };

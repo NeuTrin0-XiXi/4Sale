@@ -29,12 +29,15 @@ class Buy extends Component {
 
 
     render() {
-        const update = (sold) => {
-            console.log("sold=" + sold)
-            this.setState({
-                items: sold,
-                number: sold.length
-            })
+        const update = () => {
+            const { user } = this.props
+            axios.get(`/api/user/sold/${user}`)
+                .then(res => {
+                    this.setState({
+                        items: res.data,
+                        number: res.data.length
+                    });
+                })
         }
         return (
             <>

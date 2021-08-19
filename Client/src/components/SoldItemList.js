@@ -31,7 +31,7 @@ function ItemList(props) {
                             soldItems: res.data.soldItems
                         }
                         props.Update(newUser);
-                        // props.update(res.data.soldItems);
+                        props.update();
                     })
             })
     };

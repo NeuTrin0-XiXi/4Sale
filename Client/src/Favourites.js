@@ -17,7 +17,6 @@ class Buy extends Component {
     };
 
     componentDidMount() {
-        console.log()
         const { user } = this.props
         axios.get(`/api/user/favourites/${user}`)
             .then(res => {
@@ -31,11 +30,16 @@ class Buy extends Component {
 
     render() {
         const favs = true;
-        const update = (favs) => {
-            this.setState({
-                items: favs,
-                number: favs.length
-            })
+        const update = () => {
+            const { user } = this.props
+            axios.get(`/api/user/favourites/${user}`)
+                .then(res => {
+                    let size = res.data.length
+                    this.setState({
+                        items: res.data,
+                        number: size
+                    });
+                })
         }
         return (
             <>
