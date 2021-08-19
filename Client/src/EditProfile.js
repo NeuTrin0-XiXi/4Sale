@@ -3,9 +3,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
 import './EditProfilecss.css';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 const EditProfile = (props) => {
-	const { name, email, profilePic,/*mobile*/ } = props.user
+	function handleSubmit(e) {
+		e.preventDefault();
+		const newItem = new FormData(e.target);
+		axios.put(`/api/user/${props.user._id}`, newItem)
+			.then(res => {
+				console.log(res);
+			})
+
+	}
+	const { name, email, profilePic, mobile } = props.user
 	return (
 		<div className="container-fluid d-flex justify-content-center flex-column bd-highlight mb-3 ">
 
@@ -34,31 +44,33 @@ const EditProfile = (props) => {
 						<div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
 							<div className="card h-100">
 								<div className="card-body">
-									<div className="row gutters">
-										{/* <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+									<form onSubmit={handleSubmit} id="profile">
+										<div className="row gutters">
+											{/* <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
 											<h6 className="mb-2 text-primary">Personal Details</h6>
 										</div> */}
-										<br /><br /><br />
-										<div className="d-flex justify-content-center flex-column bd-highlight mb-3">
-											<div className=" col-xxl-7">
-												<div className="form-group">
-													<label for="phone">Phone</label>
-													<input type="text" className="form-control" id="phone" placeholder="Enter phone number" />
+											<br /><br /><br />
+											<div className="d-flex justify-content-center flex-column bd-highlight mb-3">
+												<div className=" col-xxl-7">
+													<div className="form-group">
+														<label htmlFor="phone">Phone(Your phone number will be shown to others)</label>
+														<input required type="number" name="mobile" className="form-control" id="phone" placeholder={`${mobile}`} />
+													</div>
+												</div>
+												<br />
+												<br /><br /><br />
+											</div>
+										</div>
+										<br />
+										<div className="row gutters">
+											<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+												<div className="container text-right">
+													<button type="submit" id="submit" name="submit" className="btn btn-success col-md-4 customColor">Update</button><br />
+													<button type="reset" id="cancel" name="cancel" className="btn btn-secondary col-md-4">Cancel</button>
 												</div>
 											</div>
-											<br />
-											<br /><br /><br />
 										</div>
-									</div>
-									<br />
-									<div className="row gutters">
-										<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-											<div className="container text-right">
-												<button type="button" id="submit" name="submit" className="btn btn-success col-md-4 customColor">Update</button><br />
-												<button type="button" id="submit" name="submit" className="btn btn-secondary col-md-4">Cancel</button>
-											</div>
-										</div>
-									</div>
+									</form>
 								</div>
 							</div>
 						</div>

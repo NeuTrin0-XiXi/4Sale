@@ -6,7 +6,7 @@ import axios from 'axios';
 function Notifications(props) {
     const { user } = props
     function ApproveButton(props) {
-        if (props.message.slice(0, 12) == "wants to buy") {
+        if (props.message.slice(0, 12) === "wants to buy") {
             return <button type="button" className="btn btn-success customNotifButtons" onClick={() => handleApprove(props.userEmail, props.userName, props.message)}>Approve</button>
         } else {
             return null

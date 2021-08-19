@@ -5,6 +5,7 @@ import '../Combined.css';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function NotifButton(props) {
     if (props.notifications) {
@@ -18,11 +19,32 @@ function NotifButton(props) {
     }
 }
 function ProfileButton(props) {
+    const handleBell = () => {
+        if (props.notifications) {
+            let newNotifs = [];
+            for (let i = 0; i < props.user.notifications.length; i++) {
+                let newNotif = {
+                    ...props.user.notifications[i],
+                    read: true
+                };
+                newNotifs.push(newNotif);
+            }
+            const newUser = {
+                ...props.user,
+                notifications: newNotifs
+            }
+            props.Update(newUser);
+            axios.put(`/api/user/notifbell/${props.user._id}`)
+                .then(res => {
+                    console.log(res);
+                })
+        }
+    }
     if (props.Auth) {
         return (<>
             <div className="dropdown">
                 <button style={{ backgroundColor: "#333333", borderColor: "#333333" }} className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2 custom-profile-button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Hi {props.profile.name}
+                    Hi {props.user.name}
                 </button>
                 <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                     <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
@@ -33,10 +55,10 @@ function ProfileButton(props) {
                 </ul>
             </div>
             <div className="nav-item navBarItems" >
-                <img src={props.profile.profilePic} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />
+                <img src={props.user.profilePic} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />
             </div>
-            <Link to="/notifications" style={{ backgroundColor: "#333333", borderColor: "#333333" }} id="notification-bell" >
-                <NotifButton notifications={props.notifications}/>
+            <Link onClick={handleBell} to="/notifications" style={{ backgroundColor: "#333333", borderColor: "#333333" }} id="notification-bell" >
+                <NotifButton notifications={props.notifications} user={props.user} />
             </Link>
         </>
         );
@@ -49,22 +71,25 @@ function ProfileButton(props) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        Login: (user) => {
-            dispatch({ type: 'SET_AUTH_TRUE', payload: user })
+        Update: (user) => {
+            dispatch({ type: 'UPDATE_USER', payload: user })
         }
     }
-}
+};
+
 const mapStateToProps = (state) => {
-    let flag = false;
-    // for (const [key, value] of state.user.notifications) {
-    //     if (key.read === false) {
-    //         flag = true
-    //     }
-    // }
+    const flag = () => {
+        for (let i = 0; i < state.user.notifications.length; i++) {
+            if (state.user.notifications[i].read === false) {
+                return true;
+            }
+        };
+        return false;
+    }
     return {
         Auth: state.Authorised,
-        profile: state.user,
-        notifications: flag
+        user: state.user,
+        notifications: flag()
     }
 }
 

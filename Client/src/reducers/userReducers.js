@@ -36,22 +36,22 @@ const userReducers = (state = initialState, action) => {
                 Authorised: true
             };
 
-        case 'UPDATE':
-            axios.post('/api/googlelogin', {
-                googleToken: action.payload
-            })
-                .then(res => {
-                    const { favourites, soldItems, notifications } = res.data;
-                    return {
-                        ...state,
-                        user: {
-                            ...state.user,
-                            favourites: favourites,
-                            soldItems: soldItems,
-                            notifications: notifications
-                        }
-                    }
-                })
+        // case 'UPDATE':
+        //     axios.post('/api/googlelogin', {
+        //         googleToken: action.payload
+        //     })
+        //         .then(res => {
+        //             const { favourites, soldItems, notifications } = res.data;
+        //             return {
+        //                 ...state,
+        //                 user: {
+        //                     ...state.user,
+        //                     favourites: favourites,
+        //                     soldItems: soldItems,
+        //                     notifications: notifications
+        //                 }
+        //             }
+        //         })
         default: return state;
     }
 

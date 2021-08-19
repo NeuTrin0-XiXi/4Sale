@@ -40,7 +40,7 @@ route.get('/sold/:id', (req, res, next) => {
 //NIL
 //-------------------------------------------------------------------------//
 
-
+//Updates:
 //PUT requests
 //SOLD and Item:
 route.put('/sold/:id', (req, res, next) => {
@@ -120,6 +120,34 @@ route.delete('/notif/:id', (req, res, next) => {
         .catch(next);
 })
 
+route.put('/notifbell/:id', (req, res, next) => {
+    User.updateOne(
+        { _id: req.params.id },
+        {
+            $set: {
+                "notifications.$[].read": true
+            }
+        })
+        .then(user => {
+            res.status(204).end();
+        })
+        .catch(next);
+});
+
+route.put('/:id', (req, res, next) => {
+    console.log(req.body);
+    const itemBody = {
+        mobile: req.body.mobile
+    }
+    console.log(itemBody);
+    User.updateOne({ _id: req.params.id }, itemBody)
+        .then(user => {
+            console.log(user);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.status(204).end();
+        })
+        .catch(next);
+})
 //---------------------------------------------------------------------------//
 
 //DELETE requests:

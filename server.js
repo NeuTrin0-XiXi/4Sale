@@ -40,7 +40,7 @@ app.use('/api', require('./api_routes'));
 //Error handeling
 app.use((err, req, res, next) => {
     console.log(err.message);
-    res.status(400).send(err.message);
+    res.status(400).send("Something went wrong...");
 })
 
 
