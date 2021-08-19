@@ -531,6 +531,25 @@ flex-wrap: wrap;
     margin-right: 20px !important;
 
 }
+#customCard{
+    background-color: #f5f6fa;
+};
+.customNotifButtons{
+    margin:10px
+}
+#customCardBody{
+    margin: 20px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    display: inline-block;
+    align-self:center;
+    border-radius: 20px;
+    border: 5px black;
+    width:50%;
+}
+#notif-card-container{
+    height: 100%;
+}
 
 
 .productRedirect{

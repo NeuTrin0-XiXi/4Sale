@@ -25,6 +25,7 @@ const userSchema = new schema({
         type: Number
     },
     notifications: [{
+        _id: schema.Types.ObjectId,
         message: String,
         userName: String,
         userEmail: String,
@@ -32,10 +33,6 @@ const userSchema = new schema({
         read: {
             type: Boolean,
             default: false
-        },
-        date:{
-            type:Date,
-            default: Date.now
         }
     }]
 });

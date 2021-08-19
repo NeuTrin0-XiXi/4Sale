@@ -1,5 +1,5 @@
 //Route module for handeling queries regarding items
-
+const mongoose = require('mongoose')
 const express = require('express');
 const route = express.Router();
 const fileUpload = require('express-fileupload');
@@ -142,14 +142,32 @@ route.put('/notify/:id', (req, res, next) => {
     Item.findById(req.params.id)
         .select('userID userName')
         .then((item) => {
-            User.updateOne({ _id: item.userID },
-                { "$push": { "notifications": req.body.notification } },
-            )
-                .then(user => {
-                    res.header("Access-Control-Allow-Origin", "*");
-                    res.status(204).end();
+            User.findOne({
+                _id: item.userID,
+                notifications: {
+                    $elemMatch: {
+                        message: req.body.notification.message,
+                        userEmail: req.body.notification.userEmail
+                    }
+                }
+            })
+                .then(item1 => {
+                    if (item1 != null) {
+                        res.header("Access-Control-Allow-Origin", "*");
+                        res.status(200).send(`Already notified ${item.userName}`);
+                    } else {
+                        req.body.notification._id = new mongoose.Types.ObjectId();
+                        User.updateOne({ _id: item.userID },
+                            { "$push": { "notifications": req.body.notification } },
+                        )
+                            .then(() => {
+                                res.header("Access-Control-Allow-Origin", "*");
+                                res.status(200).send(`Notified ${item.userName}`);
+                            })
+                            .catch(next);
+
+                    }
                 })
-                .catch(next);
         })
         .catch(next);
 })

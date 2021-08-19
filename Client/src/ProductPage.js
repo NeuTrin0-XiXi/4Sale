@@ -78,7 +78,7 @@ class ProductPage extends Component {
         })
           .then(res => {
             console.log(res);
-            alert("Notified user");
+            alert(res.data);
           })
       }
       else {

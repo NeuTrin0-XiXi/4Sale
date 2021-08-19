@@ -1,5 +1,5 @@
 //Route module for handeling queries regarding user json 
-
+const mongoose = require('mongoose')
 const express = require('express');
 const route = express.Router();
 const User = require('../db/models').userModel;
@@ -73,6 +73,48 @@ route.put('/favourites/:id', (req, res, next) => {
         }).catch(next);
 })
 
+
+//Buy request approved
+route.put('/notif/:userEmail', (req, res, next) => {
+    User.findOne({
+        email: req.params.userEmail,
+        notifications: {
+            $elemMatch: {
+                message: req.body.notification.message,
+                userEmail: req.body.notification.userEmail
+            }
+        }
+    })
+        .then(user => {
+            if (user != null) {
+                res.header("Access-Control-Allow-Origin", "*");
+                res.status(200).send(`Already notified `);
+            } else {
+                req.body.notification._id = new mongoose.Types.ObjectId();
+                User.updateOne({ email: req.params.userEmail },
+                    { "$push": { "notifications": req.body.notification } },
+                )
+                    .then(() => {
+                        res.header("Access-Control-Allow-Origin", "*");
+                        res.status(200).send(`Notified `);
+                    })
+                    .catch(next);
+
+            }
+        })
+        .catch(next);
+})
+
+route.delete('/notif/:id', (req, res, next) => {
+    User.updateOne({ _id: req.params.id },
+        { "$pull": { notifications: { _id: req.body.id } } }
+    )
+        .then(() => {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.status(204).end();
+        })
+        .catch(next);
+})
 
 //---------------------------------------------------------------------------//
 
