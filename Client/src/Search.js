@@ -19,7 +19,6 @@ class Search extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props)
         const query = this.props.location.pathname.slice(8);
         axios.get(`/api/items/search?name=${query}`)
             .then(res => {

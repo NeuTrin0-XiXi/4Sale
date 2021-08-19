@@ -16,6 +16,7 @@ import Favourites from './Favourites';
 import SoldItems from './SoldItems';
 import Notifications from './Notifications';
 
+
 function Body(props) {
     if (props.Auth) {
         return (
@@ -23,34 +24,34 @@ function Body(props) {
                 <Route exact path="/">
                     <Home />
                 </Route>
-                <Route exact path="/about-us">
+                <Route path="/about-us">
                     <AboutUs />
                 </Route>
-                <Route exact path="/sell">
+                <Route path="/Sell">
                     <Sell />
                 </Route>
-                <Route exact path="/contact-us">
+                <Route path="/contact-us">
                     <ContactUs />
                 </Route>
-                <Route exact path="/notifications">
+                <Route path="/notifications">
                     <Notifications />
                 </Route>
-                <Route exact path="/profile">
+                <Route path="/profile">
                     <Profile />
                 </Route>
-                <Route exact path="/favourites">
+                <Route path="/favourites">
                     <Favourites />
                 </Route>
-                <Route exact path="/sold-items">
+                <Route path="/sold-items">
                     <SoldItems />
                 </Route>
-                <Route exact path="/buy/:category">
+                <Route path="/buy/:category">
                     <Buy />
                 </Route>
-                <Route exact path="/Search/:query">
+                <Route path="/Search/:query">
                     <Search />
                 </Route>
-                <Route exact path="/product/:id">
+                <Route path="/product/:id">
                     <ProductPage />
                 </Route>
                 <Route>
@@ -64,19 +65,19 @@ function Body(props) {
                 <Route exact path="/">
                     <Home />
                 </Route>
-                <Route exact path="/about-us">
+                <Route path="/about-us">
                     <AboutUs />
                 </Route>
-                <Route exact path="/contact-us">
+                <Route path="/contact-us">
                     <ContactUs />
                 </Route>
-                <Route exact path="/buy/:category">
+                <Route path="/buy/:category">
                     <Buy />
                 </Route>
-                <Route exact path="/Search/:query">
+                <Route path="/Search/:query">
                     <Search />
                 </Route>
-                <Route exact path="/product/:id">
+                <Route path="/product/:id">
                     <ProductPage />
                 </Route>
                 <Route>

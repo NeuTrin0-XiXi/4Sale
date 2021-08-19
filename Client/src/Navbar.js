@@ -7,7 +7,7 @@ import ProfileButton from './components/ProfileButton';
 import { withRouter } from 'react-router';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import LoginButton from './components/LoginButton';
+// import LoginButton from './components/LoginButton';
 
 class Navbar extends Component {
     state = {
@@ -24,7 +24,6 @@ class Navbar extends Component {
         };
 
         function Sell(props) {
-            console.log(props.auth);
             if (props.auth) {
                 return <NavLink to="/sell" style={textColor} className="nav-link active navBarItems" aria-current="page" >Sell</NavLink>
             } else {
@@ -34,7 +33,7 @@ class Navbar extends Component {
 
         const handleSubmit = (e) => {
             e.preventDefault();
-            console.log(this.state);
+
             this.props.history.push(`/Search/${this.state.search}`);
             window.location.reload('forcedReload', true);
         };
@@ -75,16 +74,6 @@ class Navbar extends Component {
                                         <NavLink to="/about-us" style={textColor} className="nav-link navBarItems" >About Us</NavLink>
                                     </li>
                                     <li className="nav-item navBarItems">
-                                        {/* <button className="nav-link navBarItems" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Categories
-                                    </button>
-                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1" id="ddlist">
-                                        <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Sports">Sports</NavLink></li>
-                                        <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Books">Books</NavLink></li>
-                                        <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Games">Games</NavLink></li>
-                                        <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Utilities">Utilities</NavLink></li>
-                                        <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Other">Other</NavLink></li>
-                                    </ul> */}
                                         <div className="dropdown navBarItems">
                                             <button className="btn btn-secondary dropdown-toggle navCat" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                                                 Categories
