@@ -32,13 +32,14 @@ const WishList = (props) => {
                 }
             })
                 .then(res => {
-                    console.log(res.data);
                     const newUser = {
                         ...user,
                         favourites: res.data.favourites
                     }
                     props.Update(newUser);
-                    props.update(res.data.favourites)
+                    if (props.favs) {
+                        props.update(res.data.favourites)
+                    }
                 })
         };
 

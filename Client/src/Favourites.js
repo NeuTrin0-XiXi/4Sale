@@ -30,6 +30,7 @@ class Buy extends Component {
     };
 
     render() {
+        const favs = true;
         const update = (favs) => {
             this.setState({
                 items: favs,
@@ -42,7 +43,7 @@ class Buy extends Component {
                     <h2>{this.state.number} favourites...</h2>
                 </div>
                 <div>
-                    <ItemList items={this.state.items} update={update} />
+                    <ItemList items={this.state.items} update={update} favs={favs} />
                 </div>
             </>
         );

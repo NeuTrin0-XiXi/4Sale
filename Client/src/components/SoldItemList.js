@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import { withRouter } from 'react-router';
 import axios from 'axios';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 function ItemList(props) {
     const { items } = props;
@@ -18,15 +18,20 @@ function ItemList(props) {
     const Delete = (_id) => {
         axios.delete(`/api/items/${_id}`)
             .then(res => {
-                console.log(res.data);
-                axios.delete(`/api/user/sold/${user._id}`)
+                axios({
+                    method: 'DELETE',
+                    url: `/api/user/sold/${user._id}`,
+                    data: {
+                        sold: _id
+                    }
+                })
                     .then(res => {
                         const newUser = {
                             ...user,
                             soldItems: res.data.soldItems
                         }
                         props.Update(newUser);
-                        props.update(res.data.soldItems)
+                        // props.update(res.data.soldItems);
                     })
             })
     };

@@ -1,46 +1,47 @@
-const mongoose=require('mongoose');
-const schema=mongoose.Schema;
+const mongoose = require('mongoose');
+const schema = mongoose.Schema;
 
 //Schema
-const itemSchema= new schema({
-    title:{
+const itemSchema = new schema({
+    title: {
         type: String,
         required: true,
         unique: false
     },
-    date:{
+    date: {
         type: Date,
         default: Date.now
     },
-    userID:{    //Not provided to frontend  //Only used in case for notifying user for Buy notification
+    userID: {    //Not provided to frontend  //Only used in case for notifying user for Buy notification
         type: schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'user',
+        required: true
     },
-    userName:{
+    userName: {
         type: String,
-        required:true
+        required: true
     },
-    userEmail:{
-        type:String,
-        required:true
+    userEmail: {
+        type: String,
+        required: true
     },
-    price:{
+    price: {
         type: Number,
         required: true
     },
     categories: {
         type: [String]
     },
-    description:{
-        type:String,
-        required:true
+    description: {
+        type: String,
+        required: true
     },
-    images:{
-        type:Number
+    images: {
+        type: Number
     }
 });
 
 
-const itemModel=mongoose.model('items',itemSchema);
+const itemModel = mongoose.model('items', itemSchema);
 
-module.exports=itemModel;
+module.exports = itemModel;

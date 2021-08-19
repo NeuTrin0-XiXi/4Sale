@@ -9,6 +9,7 @@ function LoginButton(props) {
         console.log(res);
         var profile = res.getBasicProfile();
         let user = {
+            googleToken:'',
             name: '',
             email: '',
             favourites: [],
@@ -20,6 +21,7 @@ function LoginButton(props) {
         user.name = profile.getName();
         user.email = profile.getEmail();
         user.profilePic = profile.getImageUrl();
+        user.googleToken = res.tokenId;
         axios.post('/api/googlelogin', {
             googleToken: res.tokenId
         })

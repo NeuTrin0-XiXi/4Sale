@@ -1,5 +1,8 @@
+import axios from "axios";
+
 const initialState = {
     user: {
+        googleToken: '',
         email: '',
         favourites: [],
         name: '',
@@ -26,13 +29,30 @@ const userReducers = (state = initialState, action) => {
             return {
                 user: initialState.user,
                 Authorised: initialState.Authorised
-            }
+            };
 
         case 'UPDATE_USER':
             return {
                 user: action.payload,
                 Authorised: true
-            }
+            };
+
+        case 'UPDATE':
+            axios.post('/api/googlelogin', {
+                googleToken: action.payload
+            })
+                .then(res => {
+                    const { favourites, soldItems, notifications } = res.data;
+                    return {
+                        ...state,
+                        user: {
+                            ...state.user,
+                            favourites: favourites,
+                            soldItems: soldItems,
+                            notifications: notifications
+                        }
+                    }
+                })
         default: return state;
     }
 

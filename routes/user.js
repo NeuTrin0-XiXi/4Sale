@@ -80,7 +80,7 @@ route.put('/favourites/:id', (req, res, next) => {
 //Deleted an Ad
 route.delete('/sold/:id', (req, res, next) => {
     User.updateOne({ _id: req.params.id },
-        { "$push": { "soldItems": req.body.sold } }
+        { "$pull": { "soldItems": req.body.sold } }
     )
         .then(() => {
             User.findById(req.params.id)

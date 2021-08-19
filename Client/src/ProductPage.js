@@ -33,6 +33,7 @@ function ImageCarousel(props) {
   return (items)
 };
 
+//MAIN FUNCTION
 class ProductPage extends Component {
 
   state = {
@@ -66,18 +67,23 @@ class ProductPage extends Component {
     const dte = date1.slice(8, 10);
 
     const handleBuy = () => {
-      axios.put(`/api/items/notify/${_id}`, {
-        notification: {
-          message: `wants to buy ${title}`,
-          userName: user.name,
-          userEmail: user.email,
-          mobile: user.mobile
-        }
-      })
-        .then(res => {
-          console.log(res);
-          alert("Notified user");
+      if (this.props.auth) {
+        axios.put(`/api/items/notify/${_id}`, {
+          notification: {
+            message: `wants to buy ${title}`,
+            userName: user.name,
+            userEmail: user.email,
+            mobile: user.mobile
+          }
         })
+          .then(res => {
+            console.log(res);
+            alert("Notified user");
+          })
+      }
+      else {
+        alert("Please Login ");
+      }
     }
 
     return (
@@ -132,7 +138,8 @@ class ProductPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    auth: state.Authorised
   }
 }
 

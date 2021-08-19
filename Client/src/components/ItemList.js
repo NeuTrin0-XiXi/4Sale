@@ -27,7 +27,7 @@ function ItemList(props) {
                             <h3 className="card-title cardText">{title}</h3>
                             <h4 className="card-title cardText">Rs. {price}</h4>
                             <button onClick={() => View(_id)} type="button" id="customViewButton " className="btn btn-secondary" >View</button>
-                            <WishList _id={_id} update={props.update} />
+                            <WishList _id={_id} update={props.update} favs={props.favs} />
                         </div>
                     </div>
                 ))}

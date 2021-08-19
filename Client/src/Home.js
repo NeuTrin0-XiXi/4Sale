@@ -30,7 +30,7 @@ class Home extends Component {
   }
 
   render() {
-
+    const favs = false;
     return (
       <div>
         <div id="myCarousel" className="container-fluid carousel slide crousalCustomEdit" data-bs-ride="carousel">
@@ -70,7 +70,7 @@ class Home extends Component {
         <div>
           <h3 style={{ fontFamily: 'Poppins' }}><b><u>Recently Added</u></b></h3>
         </div>
-        <ItemList items={this.state.items} />
+        <ItemList items={this.state.items} favs={favs} />
         <br /><br /><br /><br />
       </div>
     )

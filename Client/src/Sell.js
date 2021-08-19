@@ -12,7 +12,6 @@ class Sell extends Component {
 
         //props track:
         const { user } = this.props;
-
         function handleSubmit(e) {
             e.preventDefault();
             const formData = e.target;
@@ -20,6 +19,7 @@ class Sell extends Component {
 
             newItem.append('userName', user.name);
             newItem.append('userEmail', user.email);
+            newItem.append('userID', user._id);
 
             axios.post('/api/items', newItem)
                 .then(res => {
@@ -29,7 +29,7 @@ class Sell extends Component {
                     })
                         .then((res) => {
                         })
-                        .catch(err=>{
+                        .catch(err => {
                             console.log(err);
                         });
                 })
@@ -85,7 +85,7 @@ class Sell extends Component {
                                             <div className="d-flex justify-content-center flex-column bd-highlight mb-3">
                                                 <div className="col-6 d-flex justify-content-center flex-column bd-highlight mb-4">
                                                     <label htmlFor="price" className="form-label" required>Price</label>
-                                                    <input required min="0" type="number" className="form-control" id="price" placeholder="Set a Price" name="price"/>
+                                                    <input required min="0" type="number" className="form-control" id="price" placeholder="Set a Price" name="price" />
 
                                                     <div className="invalid-feedback">
                                                         Please enter product price.
