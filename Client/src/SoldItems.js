@@ -7,11 +7,11 @@ import { connect } from 'react-redux';
 class Buy extends Component {
     state = {
         items: [
-            {
-                _id: '',
-                title: '',
-                price: ''
-            }
+            // {
+            //     _id: '',
+            //     title: '',
+            //     price: ''
+            // }
         ],
         number: 0
     };

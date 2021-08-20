@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 import WishList from './WishList';
 
 function ItemList(props) {
-    const { items } = props;
+    const items = props.items;
 
     const View = (_id) => {
         props.history.push(`/product/${_id}`);

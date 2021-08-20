@@ -6,7 +6,6 @@ import axios from 'axios';
 
 function LoginButton(props) {
     const LoginSuccess = (res) => {
-        console.log(res);
         var profile = res.getBasicProfile();
         let user = {
             name: '',

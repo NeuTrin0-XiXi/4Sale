@@ -9,7 +9,6 @@ import axios from 'axios';
 
 class Sell extends Component {
     render() {
-        console.log(this.props);
         const { user } = this.props;
         const { history } = this.props;
         const { Update } = this.props;
