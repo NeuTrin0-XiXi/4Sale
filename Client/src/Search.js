@@ -29,7 +29,7 @@ class Search extends Component {
             })
     };
     componentDidUpdate(prevProps) {
-        if (this.props.query != prevProps.query) {
+        if (this.props.query !== prevProps.query) {
             const { query } = this.props
             axios.get(`/api/items/search?name=${query}`)
                 .then(res => {

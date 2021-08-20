@@ -7,7 +7,7 @@ import ContactUs from './ContactUs'
 import ProductPage from './ProductPage';
 import Profile from './EditProfile';
 import Buy from './Buy';
-import Not_Found from './Not_Found';
+import NOT_FOUND from './Not_Found';
 import { withRouter } from 'react-router';
 import Search from './Search';
 import Favourites from './Favourites';
@@ -67,7 +67,7 @@ function Body(props) {
                     <ProductPage id={id} />
                 );
             default: return (
-                <Not_Found />
+                <NOT_FOUND />
             )
         }
     } else {
@@ -97,7 +97,7 @@ function Body(props) {
                     <ProductPage id={id} />
                 );
             default: return (
-                <Not_Found />
+                <NOT_FOUND />
             )
         }
     }

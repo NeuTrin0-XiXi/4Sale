@@ -17,7 +17,12 @@ class EditProfile extends Component {
 				mobile: mobile1
 			})
 				.then(res => {
-					console.log(res);
+					const newUser = {
+						...this.props.user,
+						mobile: mobile1
+					}
+					this.props.Update(newUser);
+					alert("Your phone number was updated...")
 				})
 		}
 		const handleChange = (e) => {
@@ -26,7 +31,6 @@ class EditProfile extends Component {
 			})
 		}
 		const { name, email, profilePic, mobile } = this.props.user
-		console.log(mobile);
 		return (
 			<div className="container-fluid d-flex justify-content-center flex-column bd-highlight mb-3 ">
 
@@ -95,5 +99,12 @@ const mapStateToProps = (state) => {
 	return {
 		user: state.user
 	}
-}
-export default connect(mapStateToProps)(EditProfile);
+};
+const mapDispatchToProps = (dispatch) => {
+	return {
+		Update: (user) => {
+			dispatch({ type: 'UPDATE_USER', payload: user })
+		}
+	}
+};
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

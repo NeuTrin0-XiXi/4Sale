@@ -24,11 +24,12 @@ function LoginButton(props) {
             googleToken: res.tokenId
         })
             .then(res => {
-                const { favourites, soldItems, _id, notifications } = res.data;
+                const { favourites, soldItems, _id, notifications, mobile } = res.data;
                 user.favourites = favourites;
                 user.soldItems = soldItems;
                 user.notifications = notifications;
                 user._id = _id;
+                user.mobile = mobile
                 props.Login(user);
             })
     };
@@ -47,7 +48,6 @@ function LoginButton(props) {
                 isSignedIn={true}
                 onFailure={LoginFail}
                 cookiePolicy={'single_host_origin'}
-                className="btn btn-outline-warning" id="custom-login-button"
             />
         </div>
     )

@@ -28,7 +28,7 @@ class Buy extends Component {
             })
     };
     componentDidUpdate(prevProps) {
-        if (this.props.category != prevProps.category) {
+        if (this.props.category !== prevProps.category) {
             const category = this.props.location.pathname.slice(5);
             axios.get(`/api/items/filter?categories=${category}`)
                 .then(res => {

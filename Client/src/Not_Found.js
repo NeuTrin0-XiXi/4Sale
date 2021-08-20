@@ -1,7 +1,7 @@
 import React from 'react';
 import './Combined.css';
 
-export default function Not_Found() {
+export default function NOT_FOUND() {
     return (
         <div>
             <h1>Page Not Found...</h1>
