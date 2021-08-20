@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ItemList from './components/ItemList';
 import axios from 'axios';
 import { withRouter } from 'react-router';
+import store from './store';
 
 class Buy extends Component {
     state = {
@@ -17,9 +18,9 @@ class Buy extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props);
-        const category=this.props.location.pathname.slice(5);
-        console.log(category);
+        const { category } = this.props;
+        // const category=this.props.location.pathname.slice(5);
+        // console.log(category);
         axios.get(`/api/items/filter?categories=${category}`)
             .then(res => {
                 let size = res.data.length
@@ -31,6 +32,8 @@ class Buy extends Component {
     };
 
     render() {
+        store.subscribe(() => {
+        })
         const category = this.props.match.params.category;
         return (
             <>

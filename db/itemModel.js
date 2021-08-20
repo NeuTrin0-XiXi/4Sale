@@ -32,13 +32,11 @@ const itemSchema = new schema({
     categories: {
         type: [String]
     },
+    images: Number,
     description: {
         type: String,
         required: true
     },
-    images: {
-        type: Number
-    }
 });
 
 

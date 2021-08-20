@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
 import { connect } from 'react-redux';
-// import { Link, useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 
 
 class Sell extends Component {
     render() {
-
-        //props track:
+        console.log(this.props);
         const { user } = this.props;
+        const { history } = this.props;
+        const { Update } = this.props;
         function handleSubmit(e) {
             e.preventDefault();
             const formData = e.target;
@@ -28,6 +29,12 @@ class Sell extends Component {
                         sold: res.data._id
                     })
                         .then((res) => {
+                            const newUser = {
+                                ...user,
+                                soldItems: res.data.soldItems
+                            }
+                            history.push('/');
+                            Update(newUser);
                         })
                         .catch(err => {
                             console.log(err);
@@ -163,8 +170,18 @@ class Sell extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    user: state.user
-})
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        Update: (user) => {
+            dispatch({ type: 'UPDATE_USER', payload: user })
+        }
+    }
+};
 
-export default connect(mapStateToProps, null)(Sell);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sell));

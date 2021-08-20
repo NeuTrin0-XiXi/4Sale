@@ -54,7 +54,6 @@ class ProductPage extends Component {
         this.setState({
           ...data
         })
-        console.log(this.state);
       })
   }
 
@@ -77,7 +76,6 @@ class ProductPage extends Component {
           }
         })
           .then(res => {
-            console.log(res);
             alert(res.data);
           })
       }

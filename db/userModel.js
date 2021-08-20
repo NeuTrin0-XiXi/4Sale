@@ -22,7 +22,8 @@ const userSchema = new schema({
         ref: 'item'
     },
     mobile: {
-        type: Number
+        type: Number,
+        default: null
     },
     notifications: [{
         _id: schema.Types.ObjectId,

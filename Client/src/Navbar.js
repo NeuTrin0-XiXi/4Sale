@@ -27,7 +27,7 @@ class Navbar extends Component {
             if (props.auth) {
                 return <NavLink to="/sell" style={textColor} className="nav-link active navBarItems" aria-current="page" >Sell</NavLink>
             } else {
-                return <NavLink to="/sell" style={textColor} className="nav-link disabled active navBarItems" tabIndex="-1" aria-disabled="true" aria-current="page" >Sell</NavLink>
+                return <NavLink to="#" style={textColor} className="nav-link disabled active navBarItems" tabIndex="-1" aria-disabled="true" aria-current="page" >Sell</NavLink>
             }
         };
 
@@ -45,6 +45,7 @@ class Navbar extends Component {
         };
 
         const handleCategories = (e) => {
+            this.props.Update(this.props.user);
             setTimeout(() => {
                 window.location.reload('forcedReload', true);
             }, 100)
@@ -104,8 +105,16 @@ class Navbar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.Authorised
+        auth: state.Authorised,
+        user: state.user
     }
-}
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        Update: (user) => {
+            dispatch({ type: 'UPDATE_USER', payload: user })
+        }
+    }
+};
 
-export default withRouter(connect(mapStateToProps)(Navbar));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));

@@ -22,8 +22,6 @@ const userReducers = (state = initialState, action) => {
                 Authorised: true
             };
 
-
-
         case 'SET_AUTH_FALSE':
             return {
                 user: initialState.user,
@@ -51,7 +49,7 @@ const userReducers = (state = initialState, action) => {
         //                     notifications: notifications
         //                 }
         //             }
-        //         })
+        //         });
         default: return state;
     }
 

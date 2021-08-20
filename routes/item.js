@@ -111,7 +111,7 @@ route.post('/', (req, res, next) => {
     Item.create(itemBody)
         .then((item) => {
             Item.findOne(item)
-                // .select('_id')
+                .select('title')
                 .then(item => {
                     let NumOfImages = 0;
                     if (req.files.file1 != null) {
@@ -128,9 +128,11 @@ route.post('/', (req, res, next) => {
                     };
                     Item.updateOne({ _id: item._id },
                         { images: NumOfImages }
-                    )
-                    res.header("Access-Control-Allow-Origin", "*");
-                    res.status(201).send(item);
+                    ).then(() => {
+                        res.header("Access-Control-Allow-Origin", "*");
+                        res.status(201).send(item);
+
+                    })
                 })
         })
         .catch(next);

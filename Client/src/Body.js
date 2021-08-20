@@ -15,81 +15,171 @@ import Search from './Search';
 import Favourites from './Favourites';
 import SoldItems from './SoldItems';
 import Notifications from './Notifications';
+import store from './store';
 
 
 function Body(props) {
+    let { pathname } = props.location;
+    let id = pathname.slice(9);
+    let category = pathname.slice(5);
+    let query = pathname.slice(8);
+    // store.subscribe(() => {
+    //     pathname = props.location.pathname;
+    //     id = pathname.slice(9);
+    //     category = pathname.slice(5);
+    //     query = pathname.slice(8);
+    //     console.log(pathname);
+    // })
     if (props.Auth) {
-        return (
-            <Switch>
-                <Route exact path="/">
+        switch (pathname) {
+            case '/':
+                return (
                     <Home />
-                </Route>
-                <Route path="/about-us">
+                );
+            case '/about-us':
+                return (
                     <AboutUs />
-                </Route>
-                <Route path="/Sell">
+                );
+            case '/sell':
+                return (
                     <Sell />
-                </Route>
-                <Route path="/contact-us">
+                );
+            case '/contact-us':
+                return (
                     <ContactUs />
-                </Route>
-                <Route path="/notifications">
+                );
+            case '/notifications':
+                return (
                     <Notifications />
-                </Route>
-                <Route path="/profile">
+                );
+            case '/profile':
+                return (
                     <Profile />
-                </Route>
-                <Route path="/favourites">
+                );
+            case '/favourites':
+                return (
                     <Favourites />
-                </Route>
-                <Route path="/sold-items">
+                );
+            case '/sold-items':
+                return (
                     <SoldItems />
-                </Route>
-                <Route path="/buy/:category">
-                    <Buy />
-                </Route>
-                <Route path="/Search/:query">
-                    <Search />
-                </Route>
-                <Route path="/product/:id">
-                    <ProductPage />
-                </Route>
-                <Route>
-                    <Not_Found />
-                </Route>
-            </Switch>
-        )
+                );
+            case `/buy/${category}`:
+                return (
+                    <Buy category={category} />
+                );
+            case `/Search/${query}`:
+                return (
+                    <Search query={query} />
+                );
+            case `/product/${id}`:
+                return (
+                    <ProductPage id={id} />
+                );
+            default: return (
+                <Not_Found />
+            )
+        }
+        // return (
+        //     <Switch>
+        //         <Route exact path="/">
+        //             <Home />
+        //         </Route>
+        //         <Route path="/about-us">
+        //             <AboutUs />
+        //         </Route>
+        //         <Route path="/Sell">
+        //             <Sell />
+        //         </Route>
+        //         <Route path="/contact-us">
+        //             <ContactUs />
+        //         </Route>
+        //         <Route path="/notifications">
+        //             <Notifications />
+        //         </Route>
+        //         <Route path="/profile">
+        //             <Profile />
+        //         </Route>
+        //         <Route path="/favourites">
+        //             <Favourites />
+        //         </Route>
+        //         <Route path="/sold-items">
+        //             <SoldItems />
+        //         </Route>
+        //         <Route path="/buy/:category">
+        //             <Buy />
+        //         </Route>
+        //         <Route path="/Search/:query">
+        //             <Search />
+        //         </Route>
+        //         <Route path="/product/:id">
+        //             <ProductPage />
+        //         </Route>
+        //         <Route>
+        //             <Not_Found />
+        //         </Route>
+        //     </Switch>
+        // )
     } else {
-        return (
-            <Switch>
-                <Route exact path="/">
+        switch (pathname) {
+            case '/':
+                return (
                     <Home />
-                </Route>
-                <Route path="/about-us">
+                );
+            case '/about-us':
+                return (
                     <AboutUs />
-                </Route>
-                <Route path="/contact-us">
+                );
+            case '/contact-us':
+                return (
                     <ContactUs />
-                </Route>
-                <Route path="/buy/:category">
-                    <Buy />
-                </Route>
-                <Route path="/Search/:query">
-                    <Search />
-                </Route>
-                <Route path="/product/:id">
-                    <ProductPage />
-                </Route>
-                <Route>
-                    <Not_Found />
-                </Route>
-            </Switch>
-        )
+                );
+            case `/buy/${category}`:
+                return (
+                    <Buy category={category} />
+                );
+            case `/Search/${query}`:
+                return (
+                    <Search query={query} />
+                );
+            case `/product/${id}`:
+                return (
+                    <ProductPage id={id} />
+                );
+            default: return (
+                <Not_Found />
+            )
+            // return (
+            //     <Switch>
+            //         <Route exact path="/">
+            //             <Home />
+            //         </Route>
+            //         <Route path="/about-us">
+            //             <AboutUs />
+            //         </Route>
+            //         <Route path="/contact-us">
+            //             <ContactUs />
+            //         </Route>
+            //         <Route path="/buy/:category">
+            //             <Buy />
+            //         </Route>
+            //         <Route path="/Search/:query">
+            //             <Search />
+            //         </Route>
+            //         <Route path="/product/:id">
+            //             <ProductPage />
+            //         </Route>
+            //         <Route>
+            //             <Not_Found />
+            //         </Route>
+            //     </Switch>
+            // )
+        }
     }
 }
-
 const mapStateToProps = (state) => {
     return {
+        user: state.user,
         Auth: state.Authorised
     }
 };

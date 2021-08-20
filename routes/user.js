@@ -135,12 +135,7 @@ route.put('/notifbell/:id', (req, res, next) => {
 });
 
 route.put('/:id', (req, res, next) => {
-    console.log(req.body);
-    const itemBody = {
-        mobile: req.body.mobile
-    }
-    console.log(itemBody);
-    User.updateOne({ _id: req.params.id }, itemBody)
+    User.updateOne({ _id: req.params.id }, req.body)
         .then(user => {
             console.log(user);
             res.header("Access-Control-Allow-Origin", "*");
