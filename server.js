@@ -10,7 +10,7 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useCreateIndex', true);
 
-mongoose.connect('mongodb://localhost:27017/4sale_build')
+mongoose.connect('mongodb://localhost:27017/4sale')
     .then(() => {
         console.log("mongoDB connected...")
     })
@@ -28,6 +28,9 @@ app.use(express.json());
 app.use('/api', require('./api_routes'));
 
 // Static files
+// if (process.env.NODE_ENV === 'production') {
+
+// }
 app.use('/', express.static(__dirname + '/client/build/'));
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
