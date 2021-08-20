@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const initialState = {
     user: {
         email: '',
@@ -33,23 +31,6 @@ const userReducers = (state = initialState, action) => {
                 user: action.payload,
                 Authorised: true
             };
-
-        // case 'UPDATE':
-        //     axios.post('/api/googlelogin', {
-        //         googleToken: action.payload
-        //     })
-        //         .then(res => {
-        //             const { favourites, soldItems, notifications } = res.data;
-        //             return {
-        //                 ...state,
-        //                 user: {
-        //                     ...state.user,
-        //                     favourites: favourites,
-        //                     soldItems: soldItems,
-        //                     notifications: notifications
-        //                 }
-        //             }
-        //         });
         default: return state;
     }
 

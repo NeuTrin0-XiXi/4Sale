@@ -57,9 +57,6 @@ class EditProfile extends Component {
 									<div className="card-body">
 										<form onSubmit={handleSubmit} id="profile">
 											<div className="row gutters">
-												{/* <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-												<h6 className="mb-2 text-primary">Personal Details</h6>
-											</div> */}
 												<br /><br /><br />
 												<div className="d-flex justify-content-center flex-column bd-highlight mb-3">
 													<div className=" col-xxl-7">

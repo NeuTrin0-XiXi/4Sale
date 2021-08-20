@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ItemList from './components/ItemList';
-// import { useParams } from 'react-router';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 

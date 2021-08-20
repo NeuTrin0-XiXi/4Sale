@@ -1,12 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from './Home';
 import AboutUs from './AboutUs'
 import Sell from './Sell';
 import ContactUs from './ContactUs'
 import ProductPage from './ProductPage';
-// import BackgroundImage from './BackgroundImage';
 import Profile from './EditProfile';
 import Buy from './Buy';
 import Not_Found from './Not_Found';
@@ -72,46 +70,6 @@ function Body(props) {
                 <Not_Found />
             )
         }
-        // return (
-        //     <Switch>
-        //         <Route exact path="/">
-        //             <Home />
-        //         </Route>
-        //         <Route path="/about-us">
-        //             <AboutUs />
-        //         </Route>
-        //         <Route path="/Sell">
-        //             <Sell />
-        //         </Route>
-        //         <Route path="/contact-us">
-        //             <ContactUs />
-        //         </Route>
-        //         <Route path="/notifications">
-        //             <Notifications />
-        //         </Route>
-        //         <Route path="/profile">
-        //             <Profile />
-        //         </Route>
-        //         <Route path="/favourites">
-        //             <Favourites />
-        //         </Route>
-        //         <Route path="/sold-items">
-        //             <SoldItems />
-        //         </Route>
-        //         <Route path="/buy/:category">
-        //             <Buy />
-        //         </Route>
-        //         <Route path="/Search/:query">
-        //             <Search />
-        //         </Route>
-        //         <Route path="/product/:id">
-        //             <ProductPage />
-        //         </Route>
-        //         <Route>
-        //             <Not_Found />
-        //         </Route>
-        //     </Switch>
-        // )
     } else {
         switch (pathname) {
             case '/':
@@ -141,37 +99,11 @@ function Body(props) {
             default: return (
                 <Not_Found />
             )
-            // return (
-            //     <Switch>
-            //         <Route exact path="/">
-            //             <Home />
-            //         </Route>
-            //         <Route path="/about-us">
-            //             <AboutUs />
-            //         </Route>
-            //         <Route path="/contact-us">
-            //             <ContactUs />
-            //         </Route>
-            //         <Route path="/buy/:category">
-            //             <Buy />
-            //         </Route>
-            //         <Route path="/Search/:query">
-            //             <Search />
-            //         </Route>
-            //         <Route path="/product/:id">
-            //             <ProductPage />
-            //         </Route>
-            //         <Route>
-            //             <Not_Found />
-            //         </Route>
-            //     </Switch>
-            // )
         }
     }
 }
 const mapStateToProps = (state) => {
     return {
-        user: state.user,
         Auth: state.Authorised
     }
 };

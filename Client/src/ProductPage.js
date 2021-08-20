@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
 import { withRouter } from 'react-router';
-// import ProductImage from './ProductPageSections/ProductImage';
-// import ProductInfo from './ProductPageSections/ProductInfo.js';
 import axios from 'axios';
 import WishList from './components/WishList';
 import { connect } from 'react-redux';
@@ -47,7 +45,6 @@ class ProductPage extends Component {
     userEmail: ''
   }
   componentDidMount() {
-    // const id = this.props.location.pathname.slice(9);
     const { id } = this.props
     axios.get('/api/items/' + id)
       .then(res => {

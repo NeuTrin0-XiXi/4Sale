@@ -7,7 +7,6 @@ import ProfileButton from './components/ProfileButton';
 import { withRouter } from 'react-router';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-// import LoginButton from './components/LoginButton';
 
 class Navbar extends Component {
     state = {
@@ -35,20 +34,12 @@ class Navbar extends Component {
             e.preventDefault();
 
             this.props.history.push(`/search/${this.state.search}`);
-            // window.location.reload('forcedReload', true);
         };
 
         const handleChange = (e) => {
             this.setState({
                 search: e.target.value
             })
-        };
-
-        const handleCategories = (e) => {
-            // this.props.Update(this.props.user);
-            // setTimeout(() => {
-            // window.location.reload('forcedReload', true);
-            // }, 100)
         };
 
         return (
@@ -80,11 +71,11 @@ class Navbar extends Component {
                                                 Categories
                                             </button>
                                             <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                                <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Sports">Sports</NavLink></li>
-                                                <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Books">Books</NavLink></li>
-                                                <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Games">Games</NavLink></li>
-                                                <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Utilities">Utilities</NavLink></li>
-                                                <li><NavLink onClick={handleCategories} className="dropdown-item custom-cat-link" to="/buy/Other">Other</NavLink></li>
+                                                <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Sports">Sports</NavLink></li>
+                                                <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Books">Books</NavLink></li>
+                                                <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Games">Games</NavLink></li>
+                                                <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Utilities">Utilities</NavLink></li>
+                                                <li><NavLink className="dropdown-item custom-cat-link" to="/buy/Other">Other</NavLink></li>
                                             </ul>
                                         </div>
                                     </li>

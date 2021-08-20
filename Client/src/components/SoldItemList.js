@@ -12,7 +12,6 @@ function ItemList(props) {
 
     const View = (_id) => {
         props.history.push(`/product/${_id}`);
-        // window.location.reload('forcedReload', true)
     };
 
     const Delete = (_id) => {

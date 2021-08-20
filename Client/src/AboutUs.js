@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function aboutus1() {
+export default function AboutUs() {
     return (
         <>
             <div className="container my-5 bg">
@@ -60,7 +60,7 @@ export default function aboutus1() {
                 <br />
                 <h2 className="my-3 text-center fw-bold text-success">OUR TEAM </h2>
                 <div className="row align-centre">
-                    <div className="card col-auto mx-3 mb-3" style={{width: "21rem"}}>
+                    <div className="card col-auto mx-3 mb-3" style={{ width: "21rem" }}>
 
                         <div className="card-body">
                             <h3 className="card-title mb-3 mt-2">Arush Pradhan</h3>
@@ -71,7 +71,7 @@ export default function aboutus1() {
                         </div>
                     </div>
 
-                    <div className="card col-auto mx-3 mb-3" style={{width: "21rem"}}>
+                    <div className="card col-auto mx-3 mb-3" style={{ width: "21rem" }}>
 
                         <div className="card-body">
                             <h3 className="card-title mb-3 mt-2">Jaisurya Katla</h3>
@@ -81,7 +81,7 @@ export default function aboutus1() {
                         </div>
                     </div>
 
-                    <div className="card col-auto mx-3 mb-3" style={{width: "21rem"}}>
+                    <div className="card col-auto mx-3 mb-3" style={{ width: "21rem" }}>
 
                         <div className="card-body">
                             <h3 className="card-title  mb-3 mt-2">Kanishka Goyal</h3>
@@ -92,5 +92,6 @@ export default function aboutus1() {
                     </div>
                 </div>
             </div>
-        </>)
+        </>
+    )
 }
