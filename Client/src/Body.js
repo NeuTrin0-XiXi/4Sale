@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Home from './Home';
-import AboutUs from './aboutus1'
+import AboutUs from './AboutUs'
 import Sell from './Sell';
 import ContactUs from './ContactUs'
 import ProductPage from './ProductPage';
@@ -15,21 +15,13 @@ import Search from './Search';
 import Favourites from './Favourites';
 import SoldItems from './SoldItems';
 import Notifications from './Notifications';
-import store from './store';
 
 
 function Body(props) {
-    let { pathname } = props.location;
-    let id = pathname.slice(9);
-    let category = pathname.slice(5);
-    let query = pathname.slice(8);
-    // store.subscribe(() => {
-    //     pathname = props.location.pathname;
-    //     id = pathname.slice(9);
-    //     category = pathname.slice(5);
-    //     query = pathname.slice(8);
-    //     console.log(pathname);
-    // })
+    const { pathname } = props.location;
+    const id = pathname.slice(9);
+    const category = pathname.slice(5);
+    const query = pathname.slice(8);
     if (props.Auth) {
         switch (pathname) {
             case '/':
@@ -68,7 +60,7 @@ function Body(props) {
                 return (
                     <Buy category={category} />
                 );
-            case `/Search/${query}`:
+            case `/search/${query}`:
                 return (
                     <Search query={query} />
                 );
@@ -138,7 +130,7 @@ function Body(props) {
                 return (
                     <Buy category={category} />
                 );
-            case `/Search/${query}`:
+            case `/search/${query}`:
                 return (
                     <Search query={query} />
                 );

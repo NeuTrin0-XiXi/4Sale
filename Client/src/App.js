@@ -5,16 +5,13 @@ import Footer from './Footer';
 
 function App(props) {
   return (
-      <div className="App">
-        <Navbar />
-        {/* <div>
-          <BackgroundImage />
-        </div> */}
-        <div className="content">
-          <Body />
-        </div>
-        <Footer className="footer-container" />
+    <div className="App">
+      <Navbar />
+      <div className="content">
+        <Body />
       </div>
+      <Footer className="footer-container" />
+    </div>
   );
 }
 

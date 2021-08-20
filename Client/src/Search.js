@@ -19,7 +19,7 @@ class Search extends Component {
     };
 
     componentDidMount() {
-        const query = this.props.location.pathname.slice(8);
+        const { query } = this.props
         axios.get(`/api/items/search?name=${query}`)
             .then(res => {
                 const unique = [...new Map(res.data.map(item => [item['_id'], item])).values()];
@@ -28,6 +28,19 @@ class Search extends Component {
                     number: unique.length
                 });
             })
+    };
+    componentDidUpdate(prevProps) {
+        if (this.props.query != prevProps.query) {
+            const { query } = this.props
+            axios.get(`/api/items/search?name=${query}`)
+                .then(res => {
+                    const unique = [...new Map(res.data.map(item => [item['_id'], item])).values()];
+                    this.setState({
+                        items: unique,
+                        number: unique.length
+                    });
+                })
+        }
     };
 
     render() {

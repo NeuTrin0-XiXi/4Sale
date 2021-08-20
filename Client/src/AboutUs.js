@@ -1,71 +1,96 @@
-import React from 'react';
-import './Combined.css';
+import React from 'react'
+
+export default function aboutus1() {
+    return (
+        <>
+            <div className="container my-5 bg">
+                <div className="row bg-light">
+                    <h1 className="col block1aboutUs fw-bold">We are what we deliver</h1>
+                    <img className=" col rounded-pill" alt="" src="about-us1.png" />
+
+                </div>
+            </div>
 
 
-function AboutUs() {
-  return (
-    <div>
-      <br /><br /><br />
-      <div className="row featurette">
-        <div className="col-md-7 d-flex align-items-center">
-          <h1 className="featurette-heading block1aboutUs">We are what we deliver</h1>
 
-        </div>
-        <div className="col-md-5">
-          <img className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?people" />
+            <div className="container ">
+                <div className="row ">
+                    <img className="col rounded-pill" alt="" src="about-us2.jpg" />
+                    <div className="col">
+                        <h2 className=" HeaderBox ">Our Vision</h2>
+                        <p className="paraAboutUs">We tend to serve the IITI community.Helpful for students to get
+                            cost effective products without any trouble or hustle-bustle. Students also profit
+                            by getting a chance to sell their used products instead of throwing them in trash.
 
-
-        </div>
-      </div>
-      {/* _______________________ */}
-      <div className="row featurette">
-        <div className="col-md-7 order-md-2 d-flex align-items-center  flex-direction-column">
-          <div className="col-md-4">
-            <h2 className="HeaderBox">Our Vision</h2>
-          </div>
-          <div className="col-md-8">
-            <p className="paraAboutUs">
-              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-            </p>
-          </div>
-        </div>
-        <div className="col-md-5 order-md-1">
-          <img className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?work" />
-
-        </div>
-      </div>
-      <div className="row featurette">
-        <div className="col-md-7 d-flex align-items-center " >
-          <h2 className="featurette-heading" style={{ fontsize: "55px" }}>Who are we? </h2>
-          <p className="lead">We are the students of IIT Indore. This web application is an effort by us to provide buying and selling services withing the IITI community</p>
-        </div>
-        <div className="col-md-5">
-          <img className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?product" />
+                        </p>
+                    </div>
+                </div>
+            </div>
 
 
-        </div>
-      </div>
-      {/* _______________________ */}
-      <div className="row featurette">
-        <div className="col-md-7 order-md-2 d-flex align-items-center  flex-direction-column">
-          <div className="col-md-4">
-            <h2 className="HeaderBox">Join Us</h2>
-          </div>
-          <div className="col-md-8">
-            <p className="paraAboutUs">
-              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-            </p>
-          </div>
-        </div>
-        <div className="col-md-5 order-md-1">
-          <img className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="https://source.unsplash.com/500x500/?company" />
+            <div className="container my-5">
+                <div className="row bg-light">
+                    <div className="col">
+                        <h2 className=" HeaderBox ">Who we are?</h2>
+                        <p className="paraAboutUs">We are a group of undergraduates from IIT Indore. We have
+                            started 4SALE as a course project with the basic idea to create a website which
+                            can solve the most common problems students face during their college life which is
+                            buying and selling things
+                        </p>
+                    </div>
+                    <img className="bg-light col rounded-pill" alt="" src="about-us3.jpg" />
+                </div>
+            </div>
 
 
-        </div>
-      </div>
-      <br /><br /><br />
-    </div>
-  );
+
+            <div className="container ">
+                <div className="row ">
+                    <img className="col rounded-pill" alt="" src="about-us4.jpg" />
+                    <div className="col ">
+                        <h2 className=" HeaderBox block4 ">Join our Team</h2>
+                        <p className="paraAboutUs">Anyone interested can join our team. Below is the list of
+                            our team members. You can contact anyone of us.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="container bg-light my-5">
+                <br />
+                <h2 className="my-3 text-center fw-bold text-success">OUR TEAM </h2>
+                <div className="row align-centre">
+                    <div className="card col-auto mx-3 mb-3" style={{width: "21rem"}}>
+
+                        <div className="card-body">
+                            <h3 className="card-title mb-3 mt-2">Arush Pradhan</h3>
+                            <p className="card-text">Student at Indian Institute of Technology, Indore
+                                <br />Batch : 2020-2024
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div className="card col-auto mx-3 mb-3" style={{width: "21rem"}}>
+
+                        <div className="card-body">
+                            <h3 className="card-title mb-3 mt-2">Jaisurya Katla</h3>
+                            <p className="card-text">Student at Indian Institute of Technology, Indore
+                                <br />Batch : 2020-2024</p>
+
+                        </div>
+                    </div>
+
+                    <div className="card col-auto mx-3 mb-3" style={{width: "21rem"}}>
+
+                        <div className="card-body">
+                            <h3 className="card-title  mb-3 mt-2">Kanishka Goyal</h3>
+                            <p className="card-text">Student at Indian Institute of Technology, Indore
+                                <br />Batch : 2020-2024</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>)
 }
-
-export default AboutUs;

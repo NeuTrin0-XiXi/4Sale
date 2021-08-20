@@ -47,7 +47,8 @@ class ProductPage extends Component {
     userEmail: ''
   }
   componentDidMount() {
-    const id = this.props.location.pathname.slice(9);
+    // const id = this.props.location.pathname.slice(9);
+    const { id } = this.props
     axios.get('/api/items/' + id)
       .then(res => {
         const { data } = res;

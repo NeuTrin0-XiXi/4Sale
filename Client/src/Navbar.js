@@ -34,8 +34,8 @@ class Navbar extends Component {
         const handleSubmit = (e) => {
             e.preventDefault();
 
-            this.props.history.push(`/Search/${this.state.search}`);
-            window.location.reload('forcedReload', true);
+            this.props.history.push(`/search/${this.state.search}`);
+            // window.location.reload('forcedReload', true);
         };
 
         const handleChange = (e) => {
@@ -45,10 +45,10 @@ class Navbar extends Component {
         };
 
         const handleCategories = (e) => {
-            this.props.Update(this.props.user);
-            setTimeout(() => {
-                window.location.reload('forcedReload', true);
-            }, 100)
+            // this.props.Update(this.props.user);
+            // setTimeout(() => {
+            // window.location.reload('forcedReload', true);
+            // }, 100)
         };
 
         return (
