@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import '../Combined.css';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
+import clientID from './googleClient';
 
 function LoginButton(props) {
     const LoginSuccess = (res) => {
@@ -40,7 +41,7 @@ function LoginButton(props) {
         <div id="custom-login-button">
             <GoogleLogin
                 id="navLoginButton"
-                clientId="1059582039946-3rije6k0k92ertj2utffkrvdjjgdrkm0.apps.googleusercontent.com"
+                clientId={clientID}
                 buttonText="Login"
                 hostedDomain={"iiti.ac.in"}
                 onSuccess={LoginSuccess}

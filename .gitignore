@@ -2,3 +2,4 @@ node_modules/
 .vscode/
 comments.txt
 client/public/uploads/
+config.js

@@ -44,10 +44,9 @@ function Notifications(props) {
             })
     }
     const { notifications } = props.user;
-    const notif = notifications.reverse();
     return (
         <div id="notif-card-container">
-            {notif.map(({ _id, message, userName, userEmail, mobile }) => (
+            {notifications.map(({ _id, message, userName, userEmail, mobile }) => (
                 <div className="card" id="customCard" key={_id}>
                     <div className="card-body" id="customCardBody">
                         <h3 className="card-title">{userName} {message}</h3>

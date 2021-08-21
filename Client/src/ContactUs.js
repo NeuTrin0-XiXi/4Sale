@@ -9,7 +9,7 @@ const ContactUs = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		alert("Message Sucessfully Submitted...");
+		alert("This page is not functional...");
 	}
 
 	return (

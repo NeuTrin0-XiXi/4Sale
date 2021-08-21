@@ -6,6 +6,7 @@ const fileUpload = require('express-fileupload');
 const Item = require('../db/models').itemModel;
 const User = require('../db/models').userModel;
 const imageFolder = require('../staticFolderConfig');
+const fs = require('fs');
 //API handlers
 
 
@@ -194,8 +195,16 @@ route.put('/:id', (req, res, next) => {
 
 //Delete a posted item                              
 route.delete('/:id', (req, res, next) => {
+    Item.findById(req.params.id)
+        .select('images')
+        .then(item => {
+            for (let i = 1; i <= item.images; i++) {
+                fs.unlinkSync(`${imageFolder}/${item._id}-${i}`)
+            }
+        });
     Item.deleteOne({ _id: req.params.id })
         .then(() => {
+
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(`Your Ad has been removed`);
         })
