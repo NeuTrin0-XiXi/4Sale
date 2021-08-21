@@ -1,7 +1,7 @@
 /node_modules
 /.pnp
 .pnp.js
-/src/components/googleClient.js
+# /src/components/googleClient.js
 # testing
 /coverage
 

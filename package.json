@@ -5,13 +5,13 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild":""
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jaisxixi/4Sale.git"
   },
-  "author": "",
+  "author": "Arush_Kanishka_Jaisurya",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Jaisxixi/4Sale/issues"
