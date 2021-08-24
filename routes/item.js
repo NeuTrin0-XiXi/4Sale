@@ -8,14 +8,14 @@ const User = require('../db/models').userModel;
 const imageFolder = require('../staticFolderConfig');
 const fs = require('fs');
 //API handlers
-
+const { uploadToCloudinary,parseImage}=require('../config/cloudinary-config')
 
 //GET Handlers:      
 //GET all items:
 route.get('/', (req, res, next) => {
     Item.find({})
         .sort({ date: 'desc' })
-        .select('title price')
+        .select('title price images')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
@@ -88,7 +88,7 @@ route.get('/:id', (req, res, next) => {
 //Middleware:
 route.use(fileUpload());
 //POST Handler:
-route.post('/', (req, res, next) => {
+route.post('/', parseImage,async(req, res, next) => {
 
     const { body } = req;
     let setCategories = [];
@@ -100,6 +100,14 @@ route.post('/', (req, res, next) => {
             index++;
         }
     }
+    let imageLinks=[];
+
+    for (let encoded of req.files.encodedUri){
+        let uploadedUrl=await uploadToCloudinary(encoded);
+        console.log(uploadedUrl);
+        imageLinks.push(uploadedUrl.url);
+    }
+
     const itemBody = {
         title: req.body.title,
         description: req.body.description,
@@ -107,34 +115,15 @@ route.post('/', (req, res, next) => {
         userName: req.body.userName,
         userEmail: req.body.userEmail,
         categories: setCategories,
-        userID: req.body.userID
+        userID: req.body.userID,
+        images:imageLinks
     }
     Item.create(itemBody)
         .then((item) => {
-            Item.findOne(item)
-                .select('title')
-                .then(item => {
-                    let NumOfImages = 0;
-                    if (req.files.file1 != null) {
-                        NumOfImages++;
-                        req.files.file1.mv(`${imageFolder}/${item._id}-${NumOfImages}`);
-                    };
-                    if (req.files.file2 != null) {
-                        NumOfImages++;
-                        req.files.file2.mv(`${imageFolder}/${item._id}-${NumOfImages}`);
-                    };
-                    if (req.files.file3 != null) {
-                        NumOfImages++;
-                        req.files.file3.mv(`${imageFolder}/${item._id}-${NumOfImages}`);
-                    };
-                    Item.updateOne({ _id: item._id },
-                        { images: NumOfImages }
-                    ).then(() => {
-                        res.header("Access-Control-Allow-Origin", "*");
-                        res.status(201).send(item);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.status(201).send(item);
 
-                    })
-                })
+
         })
         .catch(next);
 });

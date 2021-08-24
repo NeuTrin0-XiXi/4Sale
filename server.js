@@ -1,10 +1,11 @@
+require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
-const mongoURI = require('./config');
+const mongoURI = process.env.MONGO_URI;
 
-
+console.log(mongoURI)
 
 //connection to DB
 mongoose.set('useNewUrlParser', true);
@@ -48,7 +49,7 @@ app.use((err, req, res, next) => {
 
 
 //Listening to requests
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
