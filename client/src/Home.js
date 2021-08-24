@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Component } from 'react';
 import axios from 'axios';
 import ItemList from './components/ItemList';
-// import HomePageImage from './HomePageImage';
 
 function List(props) {
   if (props.length !== 0) {
@@ -69,7 +68,6 @@ class Home extends Component {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
-        {/* <HomePageImage /> */}
         <ol className="carousel-indicators ">
           <li type="button" data-target="#myCarousel" data-slide-to="0"  ></li>
           <li type="button" data-target="#myCarousel" data-slide-to="1" className="active" aria-current="true"></li>
