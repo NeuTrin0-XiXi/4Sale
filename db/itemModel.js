@@ -32,7 +32,7 @@ const itemSchema = new schema({
     categories: {
         type: [String]
     },
-    images: Number,
+    images: [String],
     description: {
         type: String,
         required: true
