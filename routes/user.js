@@ -12,7 +12,7 @@ route.get('/favourites/:id', (req, res, next) => {
     User.findById(req.params.id)
         .then(user => {
             Item.find({ _id: { $in: user.favourites } })
-                .select('price title')
+                .select('price title images')
                 .sort({ date: 'desc' })
                 .then(items => {
                     res.header("Access-Control-Allow-Origin", "*");
@@ -26,7 +26,7 @@ route.get('/sold/:id', (req, res, next) => {
     User.findById(req.params.id)
         .then(user => {
             Item.find({ _id: { $in: user.soldItems } })
-                .select('price title')
+                .select('price title images')
                 .sort({ date: 'desc' })
                 .then(items => {
                     res.header("Access-Control-Allow-Origin", "*");

@@ -7,7 +7,7 @@ import WishList from './WishList';
 
 function ItemList(props) {
     const items = props.items;
-
+    console.log(items);
     const View = (_id) => {
         props.history.push(`/product/${_id}`);
     };
@@ -16,10 +16,10 @@ function ItemList(props) {
     return (
         <div className="card-deck ">
             <Container className="ContainerProperties">
-                {items.map(({ _id, title, price }) => (
+                {items.map(({ _id, title, price,images }) => (
                     <div className="card customCard" key={_id}>
                         <div id="image-container">
-                            <img onClick={() => View(_id)} className="card-img-top cardImageCustom" src={`/uploads/${_id}-1`} alt="" style={{ cursor: "pointer" }} />
+                            <img onClick={() => View(_id)} className="card-img-top cardImageCustom" src={images[0]} alt="" style={{ cursor: "pointer" }} />
                         </div>
                         <hr />
                         <div className="card-body customCardbody">

@@ -5,7 +5,6 @@ const path = require('path');
 const app = express();
 const mongoURI = process.env.MONGO_URI;
 
-console.log(mongoURI)
 
 //connection to DB
 mongoose.set('useNewUrlParser', true);
@@ -16,9 +15,9 @@ mongoose.connect(mongoURI)
     .then(() => {
         console.log("mongoDB connected...")
     })
-    .catch((err) => {
+    .catch((err,req,res) => {
         console.log(err.message);
-        res.status(500).send("Something went wrong...");
+        // res.status(500).send("Something went wrong...");
     });
 
 

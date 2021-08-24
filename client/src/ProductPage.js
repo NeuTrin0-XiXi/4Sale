@@ -8,24 +8,24 @@ import { connect } from 'react-redux';
 
 function ImageCarousel(props) {
   let items = []
-  function image(i, _id) {
-    if (i === 1) {
+  function image(i) {
+    if (i === 0) {
       return (
         <div key={i} className=" active carousel-item customCarousel">
-          <img src={`/uploads/${_id}-${i}`} alt="" className="ProductImage" />
+          <img src={props.images[i]} alt="" className="ProductImage" />
         </div>
       )
     } else {
       return (
         <div key={i} className=" carousel-item customCarousel">
-          <img src={`/uploads/${_id}-${i}`} alt="" className="ProductImage" />
+          <img src={props.images[i]} alt="" className="ProductImage" />
         </div>
       )
     }
   }
-  for (var i = 1; i <= props.images; i++) {
+  for (var i = 0; i < props.images.length; i++) {
     items.push(
-      image(i, props._id)
+      image(i)
     )
   }
   return (items)

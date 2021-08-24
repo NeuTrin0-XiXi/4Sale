@@ -512,6 +512,7 @@ flex-wrap: wrap;
 
 .cardText{
     font-size: 20px !important;
+    margin:0px;
 }
 
 #customViewButton{
