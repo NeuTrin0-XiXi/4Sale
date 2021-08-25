@@ -47,7 +47,7 @@ function ProfileButton(props) {
                     <NotifButton notifications={props.notifications} user={props.user} />
                 </Link>
                 {props.user.name ? <div className='mt-auto mx-3' style={{ color: 'white', margin: 'auto 0' }} >  Hi {props.user.name.slice(0, props.user.name.indexOf(' '))} </div> : null}
-                <div className="dropdown">
+                <div className="dropdown dropstart" >
                     <button className="btn btn-transparent p-0 dropdown-toggle" style={{ borderRadius: '100%' }} type="button" id="dropdownMenuButton2 custom-profile-button" data-bs-toggle="dropdown" aria-expanded="false">
 
                         <img src={props.user.profilePic} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />

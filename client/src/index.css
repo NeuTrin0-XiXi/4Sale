@@ -15,6 +15,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.dropdown-toggle::after {
+.dropdown-toggle::before {
     content: none !important;
 }
