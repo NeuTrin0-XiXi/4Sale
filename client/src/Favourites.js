@@ -32,15 +32,11 @@ class Favourites extends Component {
     render() {
         const update = (id) => {
             const newItems = this.state.items.filter(item => item._id !== id);
-            let newState = {
+            this.setState({
                 ...this.state,
                 items: newItems,
                 number: newItems.length
-            };
-            this.setState({
-                ...newState
             });
-            console.log(this.state);
         }
         return (
             <>
@@ -48,7 +44,7 @@ class Favourites extends Component {
                     <h2>{this.state.number} favourites...</h2>
                 </div>
                 <div>
-                    <ItemList items={this.state.items} update={update} favs={true} />
+                    <ItemList items={this.state.items} update={update} removeFav={true} removeSold={false} />
                 </div>
             </>
         );

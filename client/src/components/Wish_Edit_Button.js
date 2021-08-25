@@ -19,17 +19,16 @@ const Wish_Edit_Button = (props) => {
         };
         if (Sold(props._id)) {
             const Delete = (_id) => {
+                if (props.removeSold) {
+                    props.update(_id);
+                }
                 const newUser = {
                     ...user,
                     soldItems: user.soldItems.filter(item => { return item !== _id })
                 }
-                console.log(props.update);
+                props.Update(newUser);
                 axios.delete(`/api/items/${_id}`)
                     .then(() => {
-                        props.Update(newUser);
-                        if (props.fav) {
-                            props.update();
-                        }
                         axios({
                             method: 'DELETE',
                             url: `/api/user/sold/${user._id}`,
@@ -60,14 +59,14 @@ const Wish_Edit_Button = (props) => {
             };
 
             const removeFavourite = (id) => {
+                if (props.removeFav) {
+                    props.update(id);
+                };
                 const newUser = {
                     ...user,
                     favourites: user.favourites.filter(item => item !== id)
-                }
+                };
                 props.Update(newUser);
-                if (props.favs) {
-                    props.update(id);
-                }
                 axios({
                     method: 'DELETE',
                     url: `/api/user/favourites/${user._id}`,

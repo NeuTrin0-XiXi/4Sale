@@ -25,7 +25,7 @@ function ItemList(props) {
                                     Rs. {price}
                                 </Card.Text>
                                 <Button variant="primary" onClick={() => View(_id)} type="button" id="customViewButton " className="btn btn-secondary" >View</Button>
-                                <Wish_Edit_Button _id={_id} update={props.update} favs={props.favs} />
+                                <Wish_Edit_Button _id={_id} update={props.update} removeSold={props.removeSold} removeFav={props.removeFav}/>
                             </Card.Body>
                         </Card>
                     )) : null}

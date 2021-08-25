@@ -11,13 +11,13 @@ route.post('/', (req, res, next) => {
     const { googleToken } = req.body;
     function foundAndSend(user) {
         res.status(200).send(user);
-    }
+    };
     function createdAndSend(user) {
         res.status(200).send(user);
-    }
+    };
     function error(user) {
         res.status(400).send("Something went wrong...");
-    }
+    };
     client.verifyIdToken({ idToken: googleToken, audience: "1059582039946-3rije6k0k92ertj2utffkrvdjjgdrkm0.apps.googleusercontent.com" })
         .then(res => {
             const { email_verified, name, email } = res.payload;
@@ -33,7 +33,7 @@ route.post('/', (req, res, next) => {
                                 })
                         }
                     })
-                    .catch(this.next);      //Error handeling
+                    .catch(next);      //Error handeling
             }
             else {
                 error();

@@ -16,7 +16,15 @@ function uploadToCloudinary(image) {
             if (err) return reject(err);
             return resolve(url);
         })
-            .catch(err => { throw err })
+    });
+}
+
+function removeFromCloudinary(image) {
+    return new Promise((resolve, reject) => {
+        uploader.destroy(image, (err, url) => {
+            if (err) return reject(err);
+            return resolve(url);
+        })
     });
 }
 
@@ -44,5 +52,6 @@ function parseImage(req, res, next) {
 module.exports = {
     cloudinaryConfig,
     uploadToCloudinary,
+    removeFromCloudinary,
     parseImage
 };

@@ -68,8 +68,8 @@ class ProductPage extends Component {
     const dte = date1.slice(8, 10);
 
     function Buy(props) {
-      const handleBuy = () => {
-        if (this.props.auth) {
+      const handleBuy = (auth) => {
+        if (auth) {
           axios.put(`/api/items/notify/${_id}`, {
             notification: {
               message: `wants to buy ${title}`,
@@ -89,18 +89,18 @@ class ProductPage extends Component {
 
       function Contains(_id) {
         let i;
-        for (i = 0; i < user.favourites.length; i++) {
-          if (_id === user.favourites[i]) {
-            return false;
+        for (i = 0; i < user.soldItems.length; i++) {
+          if (_id === user.soldItems[i]) {
+            return true;
           }
         }
-        return true;
+        return false;
       };
 
-      if (Contains(props._id)) {
+      if (Contains(_id)) {
         return null;
       } else {
-        return <button onClick={handleBuy} className="col-md-7 customBuyButton" id="BuyButtonId"  >Buy</button>
+        return <button onClick={() => { handleBuy(props.auth) }} className="col-md-7 customBuyButton" id="BuyButtonId"  >Buy</button>
       }
     };
 
@@ -141,8 +141,8 @@ class ProductPage extends Component {
                   <br /><br />
                 </div>
                 <div>
-                  <Buy _id={_id} />
-                  <Wish_Edit_Button _id={_id} id="FavButton" update={()=>update(this.props.history)} />
+                  <Buy _id={_id} auth={this.props.auth} />
+                  <Wish_Edit_Button _id={_id} id="FavButton" update={() => update(this.props.history)} remove={false} />
                 </div>
               </div>
             </div>
