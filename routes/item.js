@@ -104,7 +104,6 @@ route.post('/', parseImage,async(req, res, next) => {
 
     for (let encoded of req.files.encodedUri){
         let uploadedUrl=await uploadToCloudinary(encoded);
-        console.log(uploadedUrl);
         imageLinks.push(uploadedUrl.url);
     }
 

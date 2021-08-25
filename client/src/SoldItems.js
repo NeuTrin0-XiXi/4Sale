@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SoldItemList from './components/SoldItemList';
+import ItemList from './components/ItemList';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
@@ -11,7 +11,7 @@ class Buy extends Component {
                 _id: '',
                 title: '',
                 price: '',
-                images:''
+                images: ''
             }
         ],
         number: 0
@@ -46,7 +46,7 @@ class Buy extends Component {
                     <h2>Posted Ad for {this.state.number} items...</h2>
                 </div>
                 <div>
-                    <SoldItemList items={this.state.items} update={update} />
+                    <ItemList items={this.state.items} update={update} />
                 </div>
             </>
         );

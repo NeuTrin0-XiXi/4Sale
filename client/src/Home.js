@@ -38,7 +38,6 @@ class Home extends Component {
   }
 
   render() {
-    const favs = false;
     const items = this.state.items;
     return (
       <div>
@@ -79,7 +78,7 @@ class Home extends Component {
         <div>
           <h3 style={{ fontFamily: 'Poppins' }}><b><u>Recently Added</u></b></h3>
         </div>
-        <List length={items.length} items={items} favs={favs} />
+        <List items={items} favs={false} />
         <br /><br /><br /><br />
       </div>
     )
