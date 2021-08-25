@@ -4,6 +4,7 @@
     padding-left :8px !important;
 }
 
+
 #profile-button{
     background-color: #333333 !important; 
 }
@@ -13,12 +14,6 @@
     margin: 0px !important; 
     width: 50px;
     height: 50px;
-}
-
-.Navbar-container{
-    position :sticky;
-    top: 0px;
-    z-index:4
 }
 
 .navBarList{
@@ -299,15 +294,6 @@ flex-wrap: wrap;
     margin-bottom: 10px !important;
     margin-left: -53px !important;
     margin-right: 10px !important;
-}
-
-
-
-.navbarCustom{
-    position: sticky !important;
-    top:0px !important;
-    background-color: #333333 !important;
-    height: 6.5rem !important;
 }
 
 .homeTileBox{

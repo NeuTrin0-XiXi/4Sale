@@ -9,7 +9,7 @@ const Footer = () => {
     };
 
     return (
-        <div>
+        <>
             <footer className="footer mt-auto py-3 bg-light footerBox custom-footer">
                 <div className="container-fluid footerText">
                     <div className="row ">
@@ -29,7 +29,7 @@ const Footer = () => {
 
                 </div>
             </footer>
-        </div>
+        </>
     )
 }
 
