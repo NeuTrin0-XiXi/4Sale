@@ -10,7 +10,8 @@ class Search extends Component {
                 _id: '',
                 title: '',
                 price: '',
-                date: ''
+                date: '',
+                images: []
 
             }
         ],

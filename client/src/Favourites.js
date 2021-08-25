@@ -10,7 +10,8 @@ class Buy extends Component {
             {
                 _id: '',
                 title: '',
-                price: ''
+                price: '',
+                images: []
             }
         ],
         number: 0

@@ -42,24 +42,28 @@ function ProfileButton(props) {
     }
     if (props.Auth) {
         return (<>
-            <div className="dropdown">
-                <button style={{ backgroundColor: "#333333", borderColor: "#333333" }} className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2 custom-profile-button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Hi {props.user.name}
-                </button>
-                <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                    <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
-                    <li><Link className="dropdown-item" to="/favourites">Favourites</Link></li>
-                    <li><Link className="dropdown-item" to="/sold-items">Sold Items</Link></li>
-                    <li><hr className="dropdown-divider" /></li>
-                    <li><LogoutButton /></li>
-                </ul>
+            <div className="profile d-flex justify-content-between ">
+                <Link onClick={handleBell} to="/notifications" className='m-auto mx-2' id="notification-bell" >
+                    <NotifButton notifications={props.notifications} user={props.user} />
+                </Link>
+                {props.user.name ? <div className='mt-auto mx-3' style={{ color: 'white', margin: 'auto 0' }} >  Hi {props.user.name.slice(0, props.user.name.indexOf(' '))} </div> : null}
+                <div className="dropdown">
+                    <button className="btn btn-transparent p-0 dropdown-toggle" style={{ borderRadius: '100%' }} type="button" id="dropdownMenuButton2 custom-profile-button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                        <img src={props.user.profilePic} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />
+                    </button>
+                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
+                        <li><Link className="dropdown-item" to="/favourites">Favourites</Link></li>
+                        <li><Link className="dropdown-item" to="/sold-items">Sold Items</Link></li>
+                        <li><hr className="dropdown-divider" /></li>
+                        <li><LogoutButton /></li>
+                    </ul>
+                </div>
+
             </div>
-            <div className="nav-item navBarItems" >
-                <img src={props.user.profilePic} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />
-            </div>
-            <Link onClick={handleBell} to="/notifications" style={{ backgroundColor: "#333333", borderColor: "#333333" }} id="notification-bell" >
-                <NotifButton notifications={props.notifications} user={props.user} />
-            </Link>
+
+
         </>
         );
     } else {

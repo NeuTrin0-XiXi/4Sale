@@ -5,7 +5,7 @@ const route = express.Router();
 const fileUpload = require('express-fileupload');
 const Item = require('../db/models').itemModel;
 const User = require('../db/models').userModel;
-const imageFolder = require('../staticFolderConfig');
+// const imageFolder = require('../staticFolderConfig');
 const fs = require('fs');
 //API handlers
 const { uploadToCloudinary,parseImage}=require('../config/cloudinary-config')
@@ -30,7 +30,7 @@ route.get('/search', (req, res, next) => {
     const { name } = req.query;
 
     Item.find({ title: { $regex: name, $options: 'i' } })
-        .select('title price')
+        .select('title price images')
         .then((item) => {
             items = items.concat(item);
             Item.find({ categories: { $regex: name, $options: 'i' } })
@@ -60,7 +60,7 @@ route.get('/search', (req, res, next) => {
 //GET Items from Filters:                           
 route.get('/filter', (req, res, next) => {
     Item.find(req.query)
-        .select('title price')
+        .select('title price images')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
@@ -184,13 +184,13 @@ route.put('/:id', (req, res, next) => {
 
 //Delete a posted item                              
 route.delete('/:id', (req, res, next) => {
-    Item.findById(req.params.id)
-        .select('images')
-        .then(item => {
-            for (let i = 1; i <= item.images; i++) {
-                fs.unlinkSync(`${imageFolder}/${item._id}-${i}`)
-            }
-        });
+    // Item.findById(req.params.id)
+    //     .select('images')
+    //     .then(item => {
+    //         for (let i = 1; i <= item.images; i++) {
+    //             fs.unlinkSync(`${imageFolder}/${item._id}-${i}`)
+    //         }
+    //     });
     Item.deleteOne({ _id: req.params.id })
         .then(() => {
 

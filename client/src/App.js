@@ -4,15 +4,16 @@ import Body from './Body';
 import Footer from './Footer';
 
 function App() {
-  return (
-    <>
-      <Navbar />
-   
-        <Body  />
+    return (
+        <>
+            <Navbar />
+            <div style={{minHeight: '90vh'}}>
+                <Body />
+            </div>
 
-      <Footer  />
-    </>
-  );
+            <Footer />
+        </>
+    );
 }
 
 export default App;
