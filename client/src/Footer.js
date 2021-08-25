@@ -7,28 +7,46 @@ const Footer = () => {
         color: 'white',
         textDecoration: 'none'
     };
+    const column = {
+        color: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '15px'
+    }
 
     return (
         <>
-            <footer className="footer mt-auto py-3 bg-light footerBox custom-footer">
-                <div className="container-fluid footerText">
-                    <div className="row ">
-                        <div className="col-md">
+                <div className="container-fluid " style={{backgroundColor: '#333333'}} >
+                    <div className="row">
+                        <div className="col-12 col-md-3" style={column}>
                             <span className="logo"> 4Sale</span>
+                            <span>text text text</span>
+                            <span>text text text</span>
+                            <span>text text text</span>
                         </div>
-                        <div className="col-md">
-                            <Link to="/about-us" style={textColor}><span>About Us</span></Link>
+                        <div className="col-12 col-md-3" style={column}>
+                            <Link to="/about-us" style={textColor}><h3>About Us</h3></Link>
+                            <span>text text text</span>
+                            <span>text text text</span>
+                            <span>text text text</span>
                         </div>
-                        <div className="col-md">
-                            <Link to="/contact-us" style={textColor}><span>Contact Us</span> </Link>
+                        <div className="col-12 col-md-3" style={column}>
+                            <Link to="/contact-us" style={textColor}><h3>Contact Us</h3> </Link>
+                            <span>text text text</span>
+                            <span>text text text</span>
+                            <span>text text text</span>
                         </div>
-                        <div className="col-md">
-                            <span ><a href="https://www.google.com/maps/place/IIT+Indore/@22.5211819,75.9186987,17.97z/data=!4m5!3m4!1s0x3962efcccbce7145:0x784e8cb69818596b!8m2!3d22.5203597!4d75.9207231?hl=en" style={textColor}>Visit Us</a></span>
+                        <div className="col-12 col-md-3" style={column}>
+                            <h3 ><a href="https://www.google.com/maps/place/IIT+Indore/@22.5211819,75.9186987,17.97z/data=!4m5!3m4!1s0x3962efcccbce7145:0x784e8cb69818596b!8m2!3d22.5203597!4d75.9207231?hl=en" style={textColor}>Visit Us</a></h3>
+                            <span>text text text</span>
+                            <span>text text text</span>
+                            <span>text text text</span>
                         </div>
                     </div>
 
                 </div>
-            </footer>
+  
         </>
     )
 }

@@ -24,7 +24,7 @@ function NavbarComponent(props) {
 
     function Sell(props) {
         if (props.auth) {
-            return <Link to="/sell" style={textColor} className="nav-link active navBarItems" aria-current="page" >Sell</Link>
+            return <Link to="/sell" style={textColor} >Sell</Link>
         } else {
             return null
         }
@@ -47,7 +47,8 @@ function NavbarComponent(props) {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Link style={textColor} to="/">Home</Link><hr  className='m-1 text-light'  />
+                        <Link style={textColor} to="/" >Home</Link><hr  className='m-1 text-light'  />
+                        <Sell auth={props.auth} /><hr  className='m-1 text-light'  />
                         <Link style={textColor} to="/about-us">About</Link><hr  className='m-1 text-light'  />
                         <Link style={textColor} to="/contact-us">Contact</Link><hr  className='m-1 text-light'  />
                         <NavDropdown style={textColor} title="Categories" id="collasible-nav-dropdown">
