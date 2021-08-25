@@ -27,7 +27,9 @@ const Wish_Edit_Button = (props) => {
                 axios.delete(`/api/items/${_id}`)
                     .then(() => {
                         props.Update(newUser);
-                        props.update();
+                        if (props.fav) {
+                            props.update();
+                        }
                         axios({
                             method: 'DELETE',
                             url: `/api/user/sold/${user._id}`,
