@@ -4,14 +4,14 @@ import axios from 'axios';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
-class Buy extends Component {
+class Favourites extends Component {
     state = {
         items: [
             {
                 _id: '',
                 title: '',
                 price: '',
-                images: []
+                images: ''
             }
         ],
         number: 0
@@ -19,9 +19,9 @@ class Buy extends Component {
 
     componentDidMount() {
         const { user } = this.props
-        axios.get(`/api/user/favourites/${user}`)
+        axios.get(`/api/user/favourites/${user._id}`)
             .then(res => {
-                let size = res.data.length
+                const size = res.data.length
                 this.setState({
                     items: res.data,
                     number: size
@@ -30,17 +30,13 @@ class Buy extends Component {
     };
 
     render() {
-        const favs = true;
-        const update = () => {
-            const { user } = this.props
-            axios.get(`/api/user/favourites/${user}`)
-                .then(res => {
-                    let size = res.data.length
-                    this.setState({
-                        items: res.data,
-                        number: size
-                    });
-                })
+        const update = (id) => {
+            const newItems = this.state.items.filter(item => item._id !== id);
+            this.setState({
+                ...this.state,
+                items: newItems,
+                number: newItems.length
+            });
         }
         return (
             <>
@@ -48,7 +44,7 @@ class Buy extends Component {
                     <h2>{this.state.number} favourites...</h2>
                 </div>
                 <div>
-                    <ItemList items={this.state.items} update={update} favs={favs} />
+                    <ItemList items={this.state.items} update={update} removeFav={true} removeSold={false} />
                 </div>
             </>
         );
@@ -57,8 +53,16 @@ class Buy extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user._id
+        user: state.user
     }
-}
-export default withRouter(connect(mapStateToProps)(Buy));
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        Update: (user) => {
+            dispatch({ type: 'UPDATE_USER', payload: user })
+        }
+    }
+};
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Favourites));
 

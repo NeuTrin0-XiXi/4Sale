@@ -5,15 +5,15 @@ import { Component } from 'react';
 import axios from 'axios';
 import ItemList from './components/ItemList';
 
-function List(props) {
-  if (props.length !== 0) {
-    return (
-      <ItemList items={props.items} favs={props.favs} />
-    )
-  } else {
-    return null
-  }
-}
+// function List(props) {
+//   if (props.length !== 0) {
+//     return (
+//       <ItemList items={props.items} update={props.update} removeFav={props.remove} />
+//     )
+//   } else {
+//     return null
+//   }
+// }
 class Home extends Component {
 
   state = {
@@ -38,8 +38,14 @@ class Home extends Component {
   }
 
   render() {
-    const favs = false;
     const items = this.state.items;
+    const update = (id) => {
+      this.setState({
+        ...this.state,
+        items: items.filter(item => item._id !== id)
+      });
+    };
+
     return (
       <div>
         <div id="myCarousel" className="container-fluid carousel slide crousalCustomEdit" data-bs-ride="carousel">
@@ -79,7 +85,7 @@ class Home extends Component {
         <div>
           <h3 style={{ fontFamily: 'Poppins' }}><b><u>Recently Added</u></b></h3>
         </div>
-        <List length={items.length} items={items} favs={favs} />
+        <ItemList items={items} update={update} removeFav={false} removeSold={true} />
         <br /><br /><br /><br />
       </div>
     )
