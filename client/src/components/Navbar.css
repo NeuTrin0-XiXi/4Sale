@@ -1,0 +1,15 @@
+.logo{
+    font-family: Poppins !important;
+    font-style: italic !important;
+    font-weight: bold !important;
+    font-size: 40px !important;
+    top: 50px !important;
+    left: 50px !important;
+    color: #62C1AD !important;
+}
+#profile-image{
+    border-radius: 50% !important;
+    margin: 0px !important; 
+    width: 3rem;
+    height: 3rem;
+}

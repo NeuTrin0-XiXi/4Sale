@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import '../Combined.css';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 import clientID from './googleClient';
@@ -38,7 +37,7 @@ function LoginButton(props) {
         console.log(res);
     }
     return (
-        <div id="custom-login-button">
+        <div>
             <GoogleLogin
                 id="navLoginButton"
                 clientId={clientID}

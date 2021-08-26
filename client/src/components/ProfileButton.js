@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from 'react-redux';
-import '../Combined.css';
+// import '../Combined.css';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import { Link } from 'react-router-dom';

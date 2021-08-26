@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Combined.css';
+// import '../Combined.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card, Container } from 'react-bootstrap';
 import { withRouter } from 'react-router';
@@ -54,7 +54,7 @@ function ItemList(props) {
             //                 <WishList _id={_id} update={props.update} favs={props.favs} />
             //             </div>
             //         </div>
-                )): null}
+                )): <div>No Items!</div>}
 
             </Container>
         </div >

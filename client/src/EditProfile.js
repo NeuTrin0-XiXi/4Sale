@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Combined.css';
+// import './Combined.css';
 import './EditProfilecss.css';
 import { connect } from 'react-redux';
 import axios from 'axios';

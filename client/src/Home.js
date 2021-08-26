@@ -1,5 +1,5 @@
 import React from 'react';
-import './Combined.css';
+// import './Combined.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Component } from 'react';
 import axios from 'axios';

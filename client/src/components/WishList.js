@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Combined.css';
+// import '../Combined.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
