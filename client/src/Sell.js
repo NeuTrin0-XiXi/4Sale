@@ -24,6 +24,7 @@ class Sell extends Component {
             axios.post('/api/items', newItem)
                 .then(res => {
                     alert(`Posted Ad for ${res.data.title}`);
+                    history.push('/');
                     axios.put(`/api/user/sold/${user._id}`, {
                         sold: res.data._id
                     })
@@ -32,7 +33,6 @@ class Sell extends Component {
                                 ...user,
                                 soldItems: res.data.soldItems
                             }
-                            history.push('/');
                             Update(newUser);
                         })
                         .catch(err => {

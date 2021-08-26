@@ -36,7 +36,8 @@ const Wish_Edit_Button = (props) => {
                                 sold: _id
                             }
                         })
-                            .then(() => {
+                            .then((res) => {
+                                console.log(res);
                             })
                     })
             };

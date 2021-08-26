@@ -103,6 +103,9 @@ class ProductPage extends Component {
         return <button onClick={() => { handleBuy(props.auth) }} className="col-md-7 customBuyButton" id="BuyButtonId"  >Buy</button>
       }
     };
+    const update = (history) => {
+      history.push('/');
+    }
 
     return (
       <div>
@@ -142,7 +145,7 @@ class ProductPage extends Component {
                 </div>
                 <div>
                   <Buy _id={_id} auth={this.props.auth} />
-                  <Wish_Edit_Button _id={_id} id="FavButton" update={() => update(this.props.history)} remove={false} />
+                  <Wish_Edit_Button _id={_id} id="FavButton" update={() => update(this.props.history)} removeFav={false} removeSold={true} />
                 </div>
               </div>
             </div>
