@@ -18,7 +18,7 @@ mongoose.connect(mongoURI)
     })
     .catch((err, req, res) => {
         console.log(err.message);
-        // res.status(500).send("Something went wrong...");
+        res.status(500).send("Something went wrong...");
     });
 
 
