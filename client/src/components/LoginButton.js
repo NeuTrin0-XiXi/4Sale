@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 import clientID from './googleClient';
+import { toast } from 'react-toastify';
 
 function LoginButton(props) {
     const LoginSuccess = (res) => {
@@ -30,6 +31,7 @@ function LoginButton(props) {
                 user._id = _id;
                 user.mobile = mobile
                 props.Login(user);
+                toast("Logged In")
             })
     };
 

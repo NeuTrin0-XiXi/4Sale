@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import {  toast } from 'react-toastify';
 
 
 
@@ -23,7 +24,7 @@ class Sell extends Component {
 
             axios.post('/api/items', newItem)
                 .then(res => {
-                    alert(`Posted Ad for ${res.data.title}`);
+                    toast(`Posted Ad for ${res.data.title}`);
                     history.push('/');
                     axios.put(`/api/user/sold/${user._id}`, {
                         sold: res.data._id

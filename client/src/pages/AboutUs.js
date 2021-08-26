@@ -70,8 +70,8 @@ export default function AboutUs() {
                     <div className="card col-auto mx-auto mb-3" style={{ width: "18rem", boxShadow: '0 1px 2px  rgba(0,0,0,0.3)' }}>
 
                         <div className="card-body">
-                            <h3 className="card-title mb-3 mt-2 display-6 ">Arush Pradhan</h3>
-                            <p className="card-text lead">Student at Indian Institute of Technology, Indore
+                            <h3 className="card-title mb-3 mt-2  ">Arush Pradhan</h3>
+                            <p className="card-text ">Student at Indian Institute of Technology, Indore
                                 <br />Batch : 2020-2024
                             </p>
 
@@ -81,8 +81,8 @@ export default function AboutUs() {
                     <div className="card col-auto mx-auto mb-3" style={{ width: "18rem", boxShadow: '0 1px 2px  rgba(0,0,0,0.3)' }}>
 
                         <div className="card-body">
-                            <h3 className="card-title mb-3 mt-2  display-6">Jaisurya Katla</h3>
-                            <p className="card-text lead" >Student at Indian Institute of Technology, Indore
+                            <h3 className="card-title mb-3 mt-2  ">Jaisurya Katla</h3>
+                            <p className="card-text " >Student at Indian Institute of Technology, Indore
                                 <br />Batch : 2020-2024</p>
 
                         </div>
@@ -91,8 +91,8 @@ export default function AboutUs() {
                     <div className="card col-auto mx-auto mb-3" style={{ width: "18rem", boxShadow: '0 1px 2px  rgba(0,0,0,0.3)' }}>
 
                         <div className="card-body">
-                            <h3 className="card-title  mb-3 mt-2  display-6">Kanishka Goyal</h3>
-                            <p className="card-text lead">Student at Indian Institute of Technology, Indore
+                            <h3 className="card-title  mb-3 mt-2">Kanishka Goyal</h3>
+                            <p className="card-text ">Student at Indian Institute of Technology, Indore
                                 <br />Batch : 2020-2024</p>
 
                         </div>
