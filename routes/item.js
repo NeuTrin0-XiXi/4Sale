@@ -8,7 +8,7 @@ const User = require('../db/models').userModel;
 // const imageFolder = require('../staticFolderConfig');
 const fs = require('fs');
 //API handlers
-const { uploadToCloudinary,parseImage}=require('../config/cloudinary-config')
+const { uploadToCloudinary, parseImage, removeFromCloudinary } = require('../config/cloudinary-config')
 
 //GET Handlers:      
 //GET all items:
@@ -88,44 +88,46 @@ route.get('/:id', (req, res, next) => {
 //Middleware:
 route.use(fileUpload());
 //POST Handler:
-route.post('/', parseImage,async(req, res, next) => {
-
-    const { body } = req;
-    let setCategories = [];
-    let index = 0;
-    for (let key of Object.keys(body)) {
-        var value = body[key];
-        if (value == 'on') {
-            setCategories[index] = key;
-            index++;
+route.post('/', parseImage, async (req, res, next) => {
+    try {
+        const { body } = req;
+        let setCategories = [];
+        let index = 0;
+        for (let key of Object.keys(body)) {
+            var value = body[key];
+            if (value == 'on') {
+                setCategories[index] = key;
+                index++;
+            }
         }
+        let imageLinks = [];
+
+        for (let encoded of req.files.encodedUri) {
+            let uploadedUrl = await uploadToCloudinary(encoded)
+            imageLinks.push(uploadedUrl.url);
+        }
+
+        const itemBody = {
+            title: req.body.title,
+            description: req.body.description,
+            price: req.body.price,
+            userName: req.body.userName,
+            userEmail: req.body.userEmail,
+            categories: setCategories,
+            userID: req.body.userID,
+            images: imageLinks
+        }
+        Item.create(itemBody)
+            .then((item) => {
+                res.header("Access-Control-Allow-Origin", "*");
+                res.status(201).send(item);
+
+
+            })
+            .catch(next);
+    } catch (err) {
+        next(err);
     }
-    let imageLinks=[];
-
-    for (let encoded of req.files.encodedUri){
-        let uploadedUrl=await uploadToCloudinary(encoded);
-        console.log(uploadedUrl);
-        imageLinks.push(uploadedUrl.url);
-    }
-
-    const itemBody = {
-        title: req.body.title,
-        description: req.body.description,
-        price: req.body.price,
-        userName: req.body.userName,
-        userEmail: req.body.userEmail,
-        categories: setCategories,
-        userID: req.body.userID,
-        images:imageLinks
-    }
-    Item.create(itemBody)
-        .then((item) => {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.status(201).send(item);
-
-
-        })
-        .catch(next);
 });
 
 //--------------------------------------------------------------------------//
@@ -187,8 +189,8 @@ route.delete('/:id', (req, res, next) => {
     // Item.findById(req.params.id)
     //     .select('images')
     //     .then(item => {
-    //         for (let i = 1; i <= item.images; i++) {
-    //             fs.unlinkSync(`${imageFolder}/${item._id}-${i}`)
+    //         for (let image of item.images) {
+    //             removeFromCloudinary(image);
     //         }
     //     });
     Item.deleteOne({ _id: req.params.id })

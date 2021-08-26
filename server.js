@@ -11,11 +11,12 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useCreateIndex', true);
 
-mongoose.connect(mongoURI)
+mongoose.connect("mongodb://localhost:27017/4sale")
+    // mongoose.connect(mongoURI)
     .then(() => {
         console.log("mongoDB connected...")
     })
-    .catch((err,req,res) => {
+    .catch((err, req, res) => {
         console.log(err.message);
         // res.status(500).send("Something went wrong...");
     });
@@ -40,7 +41,7 @@ if (process.env.NODE_ENV === 'production') {
 //Error handeling
 app.use((err, req, res, next) => {
     console.log(err.message);
-    res.status(400).send("Something went wrong...");
+    res.status(500).send("Something went wrong...");
 })
 
 

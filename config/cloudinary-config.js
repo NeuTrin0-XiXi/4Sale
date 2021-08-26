@@ -12,7 +12,16 @@ const cloudinaryConfig = () => config({
 cloudinaryConfig()
 function uploadToCloudinary(image) {
     return new Promise((resolve, reject) => {
-            uploader.upload(image, (err, url) => {
+        uploader.upload(image, (err, url) => {
+            if (err) return reject(err);
+            return resolve(url);
+        })
+    });
+}
+
+function removeFromCloudinary(image) {
+    return new Promise((resolve, reject) => {
+        uploader.destroy(image, (err, url) => {
             if (err) return reject(err);
             return resolve(url);
         })
@@ -20,28 +29,29 @@ function uploadToCloudinary(image) {
 }
 
 function parseImage(req, res, next) {
-    req.files.encodedUri=[];
+    req.files.encodedUri = [];
     const parser = new DatauriParser();
-    
 
 
-    
+
+
     if (req.files.file1) {
         req.files.encodedUri.push(parser.format('.png', req.files.file1.data).content);
     }
-    
+
     if (req.files.file2) {
         req.files.encodedUri.push(parser.format('.png', req.files.file2.data).content);
     }
-    
+
     if (req.files.file3) {
         req.files.encodedUri.push(parser.format('.png', req.files.file3.data).content);
     }
     return next();
-    
+
 }
 module.exports = {
     cloudinaryConfig,
     uploadToCloudinary,
+    removeFromCloudinary,
     parseImage
 };

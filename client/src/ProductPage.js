@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Combined.css';
 import { withRouter } from 'react-router';
 import axios from 'axios';
-import WishList from './components/WishList';
+import Wish_Edit_Button from './components/Wish_Edit_Button';
 import { connect } from 'react-redux';
 
 function ImageCarousel(props) {
@@ -29,6 +29,10 @@ function ImageCarousel(props) {
     )
   }
   return (items)
+};
+
+function update(history) {
+  history.push(`/`);
 };
 
 //MAIN FUNCTION
@@ -63,23 +67,44 @@ class ProductPage extends Component {
     const mnth = date1.slice(5, 7);
     const dte = date1.slice(8, 10);
 
-    const handleBuy = () => {
-      if (this.props.auth) {
-        axios.put(`/api/items/notify/${_id}`, {
-          notification: {
-            message: `wants to buy ${title}`,
-            userName: user.name,
-            userEmail: user.email,
-            mobile: user.mobile
-          }
-        })
-          .then(res => {
-            alert(res.data);
+    function Buy(props) {
+      const handleBuy = (auth) => {
+        if (auth) {
+          axios.put(`/api/items/notify/${_id}`, {
+            notification: {
+              message: `wants to buy ${title}`,
+              userName: user.name,
+              userEmail: user.email,
+              mobile: user.mobile
+            }
           })
+            .then(res => {
+              alert(res.data);
+            })
+        }
+        else {
+          alert("Please Login ");
+        }
+      };
+
+      function Contains(_id) {
+        let i;
+        for (i = 0; i < user.soldItems.length; i++) {
+          if (_id === user.soldItems[i]) {
+            return true;
+          }
+        }
+        return false;
+      };
+
+      if (Contains(_id)) {
+        return null;
+      } else {
+        return <button onClick={() => { handleBuy(props.auth) }} className="col-md-7 customBuyButton" id="BuyButtonId"  >Buy</button>
       }
-      else {
-        alert("Please Login ");
-      }
+    };
+    const update = (history) => {
+      history.push('/');
     }
 
     return (
@@ -119,8 +144,8 @@ class ProductPage extends Component {
                   <br /><br />
                 </div>
                 <div>
-                  <button onClick={handleBuy} className="col-md-7 customBuyButton" id="BuyButtonId"  >Buy</button>
-                  <WishList _id={_id} id="FavButton" />
+                  <Buy _id={_id} auth={this.props.auth} />
+                  <Wish_Edit_Button _id={_id} id="FavButton" update={() => update(this.props.history)} removeFav={false} removeSold={true} />
                 </div>
               </div>
             </div>

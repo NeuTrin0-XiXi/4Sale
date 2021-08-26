@@ -64,12 +64,8 @@ route.put('/favourites/:id', (req, res, next) => {
         { "$push": { "favourites": req.body.favourite } }
     )
         .then(() => {
-            User.findById(req.params.id)
-                .select('favourites')
-                .then(user => {
-                    res.header("Access-Control-Allow-Origin", "*");
-                    res.send(user);
-                })
+            res.header("Access-Control-Allow-Origin", "*");
+            res.status(204).end();
         }).catch(next);
 })
 

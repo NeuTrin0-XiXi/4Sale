@@ -513,6 +513,11 @@ flex-wrap: wrap;
     margin-right: 20px !important;
 
 }
+#customEditButton{
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+
+}
 #customCard{
     background-color: #f5f6fa;
 };
