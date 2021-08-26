@@ -26,7 +26,7 @@ function NavbarComponent(props) {
         if (props.auth) {
             return <Link to="/sell" style={textColor} >Sell</Link>
         } else {
-            return null
+            return <Button style={textColor} variant='transparent' className='disabled' >Sell</Button>
         }
     };
 
