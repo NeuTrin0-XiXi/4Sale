@@ -124,7 +124,7 @@ route.put('/notifbell/:id', (req, res, next) => {
                 "notifications.$[].read": true
             }
         })
-        .then(user => {
+        .then(() => {
             res.status(204).end();
         })
         .catch(next);
@@ -133,7 +133,6 @@ route.put('/notifbell/:id', (req, res, next) => {
 route.put('/:id', (req, res, next) => {
     User.updateOne({ _id: req.params.id }, req.body)
         .then(user => {
-            console.log(user);
             res.header("Access-Control-Allow-Origin", "*");
             res.status(204).end();
         })
@@ -152,7 +151,7 @@ route.delete('/sold/:id', (req, res, next) => {
                 .select('soldItems')
                 .then(user => {
                     res.header("Access-Control-Allow-Origin", "*");
-                    res.send(user);
+                    res.status(204).end();
                 })
         }).catch(next);
 })
@@ -167,7 +166,7 @@ route.delete('/favourites/:id', (req, res, next) => {
                 .select('favourites')
                 .then(user => {
                     res.header("Access-Control-Allow-Origin", "*");
-                    res.send(user);
+                    res.status(204).end();
                 })
         }).catch(next);
 })

@@ -34,11 +34,11 @@ route.get('/search', (req, res, next) => {
         .then((item) => {
             items = items.concat(item);
             Item.find({ categories: { $regex: name, $options: 'i' } })
-                .select('title price')
+                .select('title price images')
                 .then((item) => {
                     items = items.concat(item);
                     Item.find({ description: { $regex: name, $options: 'i' } })
-                        .select('title price')
+                        .select('title price images')
                         .then((item) => {
                             items = items.concat(item);
                             res.header("Access-Control-Allow-Origin", "*");
