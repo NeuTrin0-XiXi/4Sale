@@ -4,7 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 
-const Wish_Edit_Button = (props) => {
+const WISH_EDIT_BUTTON = (props) => {
     const { Auth } = props;
     const { user } = props;
     if (Auth) {
@@ -36,9 +36,6 @@ const Wish_Edit_Button = (props) => {
                                 sold: _id
                             }
                         })
-                            .then((res) => {
-                                console.log(res);
-                            })
                     })
             };
             return (
@@ -116,4 +113,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Wish_Edit_Button);
+export default connect(mapStateToProps, mapDispatchToProps)(WISH_EDIT_BUTTON);

@@ -3,7 +3,7 @@ import '../Combined.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card, Container } from 'react-bootstrap';
 import { withRouter } from 'react-router';
-import Wish_Edit_Button from './Wish_Edit_Button';
+import WISH_EDIT_BUTTON from './Wish_Edit_Button';
 
 function ItemList(props) {
     const items = props.items;
@@ -25,7 +25,7 @@ function ItemList(props) {
                                     Rs. {price}
                                 </Card.Text>
                                 <Button variant="primary" onClick={() => View(_id)} type="button" id="customViewButton " className="btn btn-secondary" >View</Button>
-                                <Wish_Edit_Button _id={_id} update={props.update} removeSold={props.removeSold} removeFav={props.removeFav}/>
+                                <WISH_EDIT_BUTTON _id={_id} update={props.update} removeSold={props.removeSold} removeFav={props.removeFav} />
                             </Card.Body>
                         </Card>
                     )) : null}

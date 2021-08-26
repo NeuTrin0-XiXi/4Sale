@@ -5,7 +5,6 @@ import { GoogleLogout } from 'react-google-login';
 
 function LogoutButton(props) {
     const Logout = () => {
-        // console.log(props);
         props.Logout();
     };
 

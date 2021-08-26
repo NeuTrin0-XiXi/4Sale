@@ -44,7 +44,15 @@ class Search extends Component {
     };
 
     render() {
-        const query = this.props.match.params.query;
+        const { query } = this.props
+        const update = (id) => {
+            const newItems = this.state.items.filter(item => item._id !== id)
+            this.setState({
+                ...this.state,
+                items: newItems,
+                number: newItems.length
+            });
+        };
         return (
             <>
                 <div className="results">
@@ -52,7 +60,7 @@ class Search extends Component {
                     <h2>Found {this.state.number} results...</h2>
                 </div>
                 <div>
-                    <ItemList items={this.state.items} />
+                    <ItemList items={this.state.items} update={update} removeSold={true} removeFav={false} />
                 </div>
             </>
         );

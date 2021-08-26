@@ -52,7 +52,7 @@ function NavbarComponent(props) {
                         <Link style={textColor} to="/about-us">About</Link><hr  className='m-1 text-light'  />
                         <Link style={textColor} to="/contact-us">Contact</Link><hr  className='m-1 text-light'  />
                         <NavDropdown style={textColor} title="Categories" id="collasible-nav-dropdown">
-                            <Link className="dropdown-item" to="/buy/sports">Sports</Link>
+                            <Link className="dropdown-item" to="/buy/Sports">Sports</Link>
                             <Link className="dropdown-item" to="/buy/Books">Books</Link>
                             <Link className="dropdown-item" to="/buy/Games">Games</Link>
                             <Link className="dropdown-item" to="/buy/Utilities">Utilities</Link>

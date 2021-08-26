@@ -15,8 +15,8 @@ route.post('/', (req, res, next) => {
     function createdAndSend(user) {
         res.status(200).send(user);
     };
-    function error(user) {
-        res.status(400).send("Something went wrong...");
+    function error() {
+        next();
     };
     client.verifyIdToken({ idToken: googleToken, audience: "1059582039946-3rije6k0k92ertj2utffkrvdjjgdrkm0.apps.googleusercontent.com" })
         .then(res => {
