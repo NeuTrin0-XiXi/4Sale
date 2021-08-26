@@ -1,11 +1,7 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import './Combined.css';
-
-
+import './ContactUs.css'
 
 const ContactUs = (props) => {
-
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -14,16 +10,13 @@ const ContactUs = (props) => {
 
 	return (
 		<div>
-			<div>
-
-				<br /><br /><br />
-			</div>
+			<br />
 			<div className="container">
 				<div className="row gutters">
 					<div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
 						<div className="card h-100">
 							<div className="card-body">
-								<div className="row row-cols-sm-1 " >
+								<div className="row row-cols-sm-1 text-center" >
 									<div className="col-12 contactInfoElement"><h4><b>Contact Information</b></h4></div>
 									<div className="col-12 contactInfoElement"><strong><u>Phone no</u> :918XXXXXXX</strong></div>
 									<div className="col-12 contactInfoElement"><strong><u>e-mail Id</u>: 4Sale@iiti.ac.in</strong></div>
@@ -42,8 +35,8 @@ const ContactUs = (props) => {
 									<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
 										<h2 className="mb-2 text-primary contactUsTitle"><u>Contact Us</u></h2>
 									</div>
-									<br /><br /><br />
-									<form className="d-flex justify-content-center flex-column bd-highlight mb-3" onSubmit={handleSubmit}>
+									<br /><br />
+									<form className="d-flex justify-content-center align-items-center flex-column bd-highlight mb-3" onSubmit={handleSubmit}>
 										<div className=" col-xxl-7 ">
 											<div className="form-group">
 												<label htmlFor="fullName">Full Name</label>
@@ -71,11 +64,10 @@ const ContactUs = (props) => {
 												<textarea className="form-control contactUsMessage" id="message" placeholder="Enter your message here..." />
 											</div>
 										</div>
-										<br /><br /><br />
+										<br />
 									</form>
 								</div>
 
-								<br />
 								<div className="row gutters">
 									<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 										<div className="container text-right">
@@ -88,7 +80,7 @@ const ContactUs = (props) => {
 					</div>
 				</div>
 			</div>
-			<br /><br /><br /><br />
+			<br /><br />
 		</div>
 
 
