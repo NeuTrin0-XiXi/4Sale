@@ -67,7 +67,7 @@ const ContactUs = (props) => {
 										<div className="row gutters">
 											<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 												<div className="container text-right">
-													<button type="submit" className="btn btn-success col-md-4 customColor">Submit</button>
+													<button type="submit" className="btn btn-success col-md-12 customColor">Submit</button>
 												</div>
 											</div>
 										</div>
