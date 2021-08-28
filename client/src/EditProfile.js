@@ -36,7 +36,7 @@ class EditProfile extends Component {
                 <div className="main-body">
                     <div className="row gutters-sm">
                         <div className="col-md-4 mb-3">
-                            <div className="card">
+                            <div className="profile-card">
                                 <div className="card-body">
                                     <div className="d-flex flex-column align-items-center text-center">
                                         <img src={profilePic} alt="Admin" className="rounded-circle" width={100} />
