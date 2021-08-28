@@ -39,7 +39,7 @@ class Home extends Component {
         Utilities: [
 
         ],
-        Others: [
+        Other: [
 
         ]
     }
@@ -81,17 +81,17 @@ class Home extends Component {
                     Utilities: res.data
                 })
             })
-        axios.get(`/api/items/filter?categories=Others`)
+        axios.get(`/api/items/filter?categories=Other`)
             .then(res => {
                 this.setState({
                     ...this.state,
-                    Others: res.data
+                    Other: res.data
                 })
             })
     }
 
     render() {
-        const { allItems, Sports, Books, Games, Utilities, Others } = this.state;
+        const { allItems, Sports, Books, Games, Utilities, Other } = this.state;
         const update = (id) => {
             this.setState({
                 ...this.state,
@@ -171,7 +171,7 @@ class Home extends Component {
                         <h3 className='text-center' ><b>Others</b></h3>
                     </div>
                     <div>
-                        <Deck items={Others} update={update} removeFav={false} removeSold={true} />
+                        <Deck items={Other} update={update} removeFav={false} removeSold={true} />
                     </div>
                 </div>
 
