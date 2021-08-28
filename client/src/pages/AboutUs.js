@@ -10,6 +10,7 @@ export default function AboutUs() {
                         <h1 className="col display-3">We are what we deliver</h1>
                         <p className="lead">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat alias facere adipisci vel voluptate reprehenderit veritatis nostrum obcaecati quas consequatur assumenda accusamus natus nisi suscipit magnam autem, repellat, quidem labore?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad quidem fugiat reprehenderit error optio facilis unde incidunt exercitationem rerum, nostrum quos! Magni ducimus ullam quidem excepturi itaque, iure voluptatibus aliquid.
                         </p>
                     </div>
                     <div className='py-3'>
@@ -92,6 +93,15 @@ export default function AboutUs() {
 
                         <div className="card-body">
                             <h3 className="card-title  mb-3 mt-2">Kanishka Goyal</h3>
+                            <p className="card-text ">Student at Indian Institute of Technology, Indore
+                                <br />Batch : 2020-2024</p>
+
+                        </div>
+                    </div>
+                    <div className="card col-auto mx-auto mb-3" style={{ width: "18rem", boxShadow: '0 1px 2px  rgba(0,0,0,0.3)' }}>
+
+                        <div className="card-body">
+                            <h3 className="card-title  mb-3 mt-2">Suman Jaiswal</h3>
                             <p className="card-text ">Student at Indian Institute of Technology, Indore
                                 <br />Batch : 2020-2024</p>
 

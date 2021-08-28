@@ -38,7 +38,6 @@ export default function Deck(props) {
                     <Carousel
                         responsive={responsive}
                         draggable
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
                     >
                         {props.items.map((item) =>
                             <Card style={{ width: '16rem', boxShadow: '0 2px 2px 0px rgba(0,0,0,0.5)', margin: '10px auto' }} key={item._id} >

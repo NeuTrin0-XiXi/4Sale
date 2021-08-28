@@ -4,7 +4,7 @@ function HomeSvg() {
     return (
         <div style={{ borderRadius: '100%', overflow: 'hidden'}}>
             <svg
-                style={{position: 'relative', right: '5%'}}
+                // style={{position: 'relative', right: '1%'}}
                 xmlns="http://www.w3.org/2000/svg"
                 height='inherit'
                 version="1.1"

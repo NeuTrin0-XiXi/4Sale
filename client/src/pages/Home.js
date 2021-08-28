@@ -2,7 +2,7 @@ import React from 'react';
 // import './Combined.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Component } from 'react';
-import axios from 'axios';
+import   axios from 'axios'  ;
 import Deck from '../components/Deck';
 import HomeSvg from '../svgs/HomeSvg';
 
@@ -18,6 +18,7 @@ import HomeSvg from '../svgs/HomeSvg';
 class Home extends Component {
 
     state = {
+        loading: true,
         allItems: [
             // {
             // _id: '',
@@ -50,48 +51,54 @@ class Home extends Component {
                 console.log(res.data);
                 this.setState({
                     ...this.state,
-                    allItems: res.data
+                    allItems: res.data,
+                    loading: false
                 });
             });
         axios.get(`/api/items/filter?categories=Sports`)
             .then(res => {
                 this.setState({
                     ...this.state,
-                    Sports: res.data
+                    Sports: res.data,
+                    loading: false
                 })
             })
         axios.get(`/api/items/filter?categories=Books`)
             .then(res => {
                 this.setState({
                     ...this.state,
-                    Books: res.data
+                    Books: res.data,
+                    loading: false
                 })
             })
         axios.get(`/api/items/filter?categories=Games`)
             .then(res => {
                 this.setState({
                     ...this.state,
-                    Games: res.data
+                    Games: res.data,
+                    loading: false
                 })
             })
         axios.get(`/api/items/filter?categories=Utilities`)
             .then(res => {
                 this.setState({
                     ...this.state,
-                    Utilities: res.data
+                    Utilities: res.data,
+                    loading: false
                 })
             })
         axios.get(`/api/items/filter?categories=Other`)
             .then(res => {
                 this.setState({
                     ...this.state,
-                    Other: res.data
+                    Other: res.data,
+                    loading: false
                 })
             })
     }
 
     render() {
-        const { allItems, Sports, Books, Games, Utilities, Other } = this.state;
+        const { allItems, Sports, Books, Games, Utilities, Other, loading } = this.state;
         const update = (id) => {
             this.setState({
                 ...this.state,
@@ -101,8 +108,8 @@ class Home extends Component {
 
         return (
             <>
-                <div className='container-fluid d-flex justify-content-between mb-4 ' style={{
-                    height: '40vw', backgroundColor: '#fff',
+                <div className='container-fluid d-flex justify-content-around mb-4 ' style={{
+                    height: '30vw', backgroundColor: '#fff',
                     backgroundImage: 'url("https://www.transparenttextures.com/patterns/always-grey.png")'
                 }} >
                     <div className="d-flex flex-column" style={{ width: '55vw', padding: '20px 10px' }}>
@@ -112,32 +119,34 @@ class Home extends Component {
                    <HomeSvg/>
                 </div>
 
-           
+            {
+                loading? <div>Loading...</div>:
+                <>
                 <div className='container-fluid py-3' >
-                    <div>
+                    <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
                         <h3 className='text-center' ><b>Recently Added</b></h3>
                     </div>
-                    <div>
+                    <div className='container' >
                         <Deck items={allItems} update={update} removeFav={false} removeSold={true} />
                     </div>
                 </div>
 
            
                 <div className='container-fluid py-3 deep' >
-                    <div>
+                    <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
                         <h3 className='text-center' ><b>Sports</b></h3>
                     </div>
-                    <div>
+                    <div className='container' >
                         <Deck items={Sports} update={update} removeFav={false} removeSold={true} />
                     </div>
                 </div>
 
            
                 <div className='container-fluid py-3' >
-                    <div>
+                    <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
                         <h3 className='text-center' ><b>Books</b></h3>
                     </div>
-                    <div>
+                    <div className='container' >
                         <Deck items={Books} update={update} removeFav={false} removeSold={true} />
                     </div>
                 </div>
@@ -145,10 +154,10 @@ class Home extends Component {
            
                 <div className='container-fluid py-3 deep' >
 
-                    <div>
+                    <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
                         <h3 className='text-center' ><b>Games</b></h3>
                     </div>
-                    <div>
+                    <div className='container' >
                         <Deck items={Games} update={update} removeFav={false} removeSold={true} />
                     </div>
                 </div>
@@ -156,10 +165,10 @@ class Home extends Component {
            
                 <div className='container-fluid py-3' >
 
-                    <div>
+                    <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
                         <h3 className='text-center' ><b>Utilities</b></h3>
                     </div>
-                    <div>
+                    <div className='container' >
                         <Deck items={Utilities} update={update} removeFav={false} removeSold={true} />
                     </div>
                 </div>
@@ -167,13 +176,17 @@ class Home extends Component {
            
                 <div className='container-fluid py-3 deep' >
 
-                    <div>
+                    <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
                         <h3 className='text-center' ><b>Others</b></h3>
                     </div>
-                    <div>
+                    <div className='container' >
                         <Deck items={Other} update={update} removeFav={false} removeSold={true} />
                     </div>
                 </div>
+                </>
+
+            }
+                
 
             </>
         )
