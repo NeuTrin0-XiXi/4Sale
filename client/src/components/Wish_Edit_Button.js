@@ -2,6 +2,12 @@ import React from 'react';
 import '../Combined.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
+import { Button } from 'react-bootstrap';
+
+
 
 
 const WISH_EDIT_BUTTON = (props) => {
@@ -86,9 +92,9 @@ const WISH_EDIT_BUTTON = (props) => {
 
             //Main Function
             if (Contains(props._id)) {
-                return <button onClick={() => removeFavourite(props._id)} type="button" id="customFavButton" className="btn btn-outline-danger" >Remove from WishList</button>
+                return <Button onClick={() => removeFavourite(props._id)} variant='transparent'  id="customFavButton" className="text-danger" ><FontAwesomeIcon size='lg' icon={faHeart} /></Button>
             } else {
-                return <button onClick={() => favourite(props._id)} type="button" id="customFavButton" className="btn btn-outline-success" >Add to WishList</button>
+                return <Button onClick={() => favourite(props._id)}  variant='transparent' id="customFavButton" className="text-danger" ><FontAwesomeIcon size='lg' icon={farHeart} /></Button>
             }
         }
     } else {
