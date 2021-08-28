@@ -14,7 +14,8 @@ class Favourites extends Component {
                 images: ''
             }
         ],
-        number: 0
+        number: 0,
+        loading: true
     };
 
     componentDidMount() {
@@ -24,8 +25,15 @@ class Favourites extends Component {
                 const size = res.data.length
                 this.setState({
                     items: res.data,
-                    number: size
+                    number: size,
+                    loading: false
                 });
+            })
+            .catch(err => {
+                this.setState({
+                    ...this.state,
+                    loading: false
+                })
             })
     };
 
@@ -37,6 +45,13 @@ class Favourites extends Component {
                 items: newItems,
                 number: newItems.length
             });
+        }
+        if (this.state.loading) {
+            return (
+                <div className="loading">
+                    <h3>Loading...</h3>
+                </div>
+            )
         }
         return (
             <>

@@ -5,17 +5,14 @@ import './Combined.css';
 
 
 const ContactUs = (props) => {
-
-
 	const handleSubmit = (e) => {
+		alert("This page is non-functional...");
 		e.preventDefault();
-		alert("This page is not functional...");
 	}
 
 	return (
 		<div>
 			<div>
-
 				<br /><br /><br />
 			</div>
 			<div className="container">
@@ -72,16 +69,15 @@ const ContactUs = (props) => {
 											</div>
 										</div>
 										<br /><br /><br />
-									</form>
-								</div>
-
-								<br />
-								<div className="row gutters">
-									<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-										<div className="container text-right">
-											<button type="submit" className="btn btn-success col-md-4 customColor">Submit</button>
+										<br />
+										<div className="row gutters">
+											<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+												<div className="container text-right">
+													<button type="submit" className="btn btn-success col-md-4 customColor">Submit</button>
+												</div>
+											</div>
 										</div>
-									</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -96,4 +92,4 @@ const ContactUs = (props) => {
 	)
 }
 
-export default ContactUs
+export default ContactUs;
