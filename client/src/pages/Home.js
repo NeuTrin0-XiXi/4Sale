@@ -17,7 +17,7 @@ import Deck from '../components/Deck';
 class Home extends Component {
 
     state = {
-        items: [
+        allItems: [
             // {
             // _id: '',
             // title: '',
@@ -25,24 +25,76 @@ class Home extends Component {
             // date: ''
 
             // }
+        ],
+        Sports: [
+
+        ],
+        Books: [
+
+        ],
+        Games: [
+
+        ],
+        Utilities: [
+
+        ],
+        Others: [
+
         ]
     }
 
     componentDidMount() {
         axios.get('/api/items')
             .then(res => {
+                console.log(res.data);
                 this.setState({
-                    items: res.data
+                    ...this.state,
+                    allItems: res.data
                 });
+            });
+        axios.get(`/api/items/filter?categories=Sports`)
+            .then(res => {
+                this.setState({
+                    ...this.state,
+                    Sports: res.data
+                })
+            })
+        axios.get(`/api/items/filter?categories=Books`)
+            .then(res => {
+                this.setState({
+                    ...this.state,
+                    Books: res.data
+                })
+            })
+        axios.get(`/api/items/filter?categories=Games`)
+            .then(res => {
+                this.setState({
+                    ...this.state,
+                    Games: res.data
+                })
+            })
+        axios.get(`/api/items/filter?categories=Utilities`)
+            .then(res => {
+                this.setState({
+                    ...this.state,
+                    Utilities: res.data
+                })
+            })
+        axios.get(`/api/items/filter?categories=Others`)
+            .then(res => {
+                this.setState({
+                    ...this.state,
+                    Others: res.data
+                })
             })
     }
 
     render() {
-        const items = this.state.items;
+        const { allItems, Sports, Books, Games, Utilities, Others } = this.state;
         const update = (id) => {
             this.setState({
                 ...this.state,
-                items: items.filter(item => item._id !== id)
+                allItems: allItems.filter(item => item._id !== id)
             });
         };
 
@@ -63,7 +115,42 @@ class Home extends Component {
                         <h3 className='text-center' ><b>Recently Added</b></h3>
                     </div>
                     <div>
-                        <Deck items={items} update={update} removeFav={false} removeSold={true} />
+                        <Deck items={allItems} update={update} removeFav={false} removeSold={true} />
+                    </div>
+
+                    <div>
+                        <h3 className='text-center' ><b>Sports</b></h3>
+                    </div>
+                    <div>
+                        <Deck items={Sports} update={update} removeFav={false} removeSold={true} />
+                    </div>
+
+                    <div>
+                        <h3 className='text-center' ><b>Books</b></h3>
+                    </div>
+                    <div>
+                        <Deck items={Books} update={update} removeFav={false} removeSold={true} />
+                    </div>
+
+                    <div>
+                        <h3 className='text-center' ><b>Games</b></h3>
+                    </div>
+                    <div>
+                        <Deck items={Games} update={update} removeFav={false} removeSold={true} />
+                    </div>
+
+                    <div>
+                        <h3 className='text-center' ><b>Utilities</b></h3>
+                    </div>
+                    <div>
+                        <Deck items={Utilities} update={update} removeFav={false} removeSold={true} />
+                    </div>
+
+                    <div>
+                        <h3 className='text-center' ><b>Others</b></h3>
+                    </div>
+                    <div>
+                        <Deck items={Others} update={update} removeFav={false} removeSold={true} />
                     </div>
                 </div>
             </>
