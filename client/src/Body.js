@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Home from './Home';
+import Home from './pages/Home';
 import AboutUs from './pages/AboutUs'
 import Sell from './Sell';
 import ContactUs from './pages/ContactUs'
