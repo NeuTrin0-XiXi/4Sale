@@ -2,7 +2,7 @@ import React from 'react';
 // import './Combined.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Component } from 'react';
-import   axios from 'axios'  ;
+import axios from 'axios';
 import Deck from '../components/Deck';
 import HomeSvg from '../svgs/HomeSvg';
 
@@ -102,7 +102,12 @@ class Home extends Component {
         const update = (id) => {
             this.setState({
                 ...this.state,
-                allItems: allItems.filter(item => item._id !== id)
+                allItems: allItems.filter(item => item._id !== id),
+                Sports: Sports.filter(item => item._id !== id),
+                Books: Books.filter(item => item._id !== id),
+                Games: Games.filter(item => item._id !== id),
+                Utilities: Utilities.filter(item => item._id !== id),
+                Other: Other.filter(item => item._id !== id)
             });
         };
 
@@ -116,77 +121,77 @@ class Home extends Component {
                         <h1 className="" style={{ fontSize: '5vw', fontWeight: 'bold' }} >Every Purchase will be made with pleasure.</h1>
                         <p style={{ fontSize: '3vw' }} >Login with Institude Id.</p>
                     </div>
-                   <HomeSvg/>
+                    <HomeSvg />
                 </div>
 
-            {
-                loading? <div>Loading...</div>:
-                <>
-                <div className='container-fluid py-3' >
-                    <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
-                        <h3 className='text-center' ><b>Recently Added</b></h3>
-                    </div>
-                    <div className='container' >
-                        <Deck items={allItems} update={update} removeFav={false} removeSold={true} />
-                    </div>
-                </div>
+                {
+                    loading ? <div>Loading...</div> :
+                        <>
+                            <div className='container-fluid py-3' >
+                                <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
+                                    <h3 className='text-center' ><b>Recently Added</b></h3>
+                                </div>
+                                <div className='container' >
+                                    <Deck items={allItems} update={update} removeFav={false} removeSold={true} />
+                                </div>
+                            </div>
 
-           
-                <div className='container-fluid py-3 deep' >
-                    <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
-                        <h3 className='text-center' ><b>Sports</b></h3>
-                    </div>
-                    <div className='container' >
-                        <Deck items={Sports} update={update} removeFav={false} removeSold={true} />
-                    </div>
-                </div>
 
-           
-                <div className='container-fluid py-3' >
-                    <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
-                        <h3 className='text-center' ><b>Books</b></h3>
-                    </div>
-                    <div className='container' >
-                        <Deck items={Books} update={update} removeFav={false} removeSold={true} />
-                    </div>
-                </div>
+                            <div className='container-fluid py-3 deep' >
+                                <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
+                                    <h3 className='text-center' ><b>Sports</b></h3>
+                                </div>
+                                <div className='container' >
+                                    <Deck items={Sports} update={update} removeFav={false} removeSold={true} />
+                                </div>
+                            </div>
 
-           
-                <div className='container-fluid py-3 deep' >
 
-                    <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
-                        <h3 className='text-center' ><b>Games</b></h3>
-                    </div>
-                    <div className='container' >
-                        <Deck items={Games} update={update} removeFav={false} removeSold={true} />
-                    </div>
-                </div>
+                            <div className='container-fluid py-3' >
+                                <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
+                                    <h3 className='text-center' ><b>Books</b></h3>
+                                </div>
+                                <div className='container' >
+                                    <Deck items={Books} update={update} removeFav={false} removeSold={true} />
+                                </div>
+                            </div>
 
-           
-                <div className='container-fluid py-3' >
 
-                    <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
-                        <h3 className='text-center' ><b>Utilities</b></h3>
-                    </div>
-                    <div className='container' >
-                        <Deck items={Utilities} update={update} removeFav={false} removeSold={true} />
-                    </div>
-                </div>
-                
-           
-                <div className='container-fluid py-3 deep' >
+                            <div className='container-fluid py-3 deep' >
 
-                    <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
-                        <h3 className='text-center' ><b>Others</b></h3>
-                    </div>
-                    <div className='container' >
-                        <Deck items={Other} update={update} removeFav={false} removeSold={true} />
-                    </div>
-                </div>
-                </>
+                                <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
+                                    <h3 className='text-center' ><b>Games</b></h3>
+                                </div>
+                                <div className='container' >
+                                    <Deck items={Games} update={update} removeFav={false} removeSold={true} />
+                                </div>
+                            </div>
 
-            }
-                
+
+                            <div className='container-fluid py-3' >
+
+                                <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
+                                    <h3 className='text-center' ><b>Utilities</b></h3>
+                                </div>
+                                <div className='container' >
+                                    <Deck items={Utilities} update={update} removeFav={false} removeSold={true} />
+                                </div>
+                            </div>
+
+
+                            <div className='container-fluid py-3 deep' >
+
+                                <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
+                                    <h3 className='text-center' ><b>Others</b></h3>
+                                </div>
+                                <div className='container' >
+                                    <Deck items={Other} update={update} removeFav={false} removeSold={true} />
+                                </div>
+                            </div>
+                        </>
+
+                }
+
 
             </>
         )
