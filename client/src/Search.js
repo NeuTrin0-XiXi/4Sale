@@ -12,10 +12,10 @@ class Search extends Component {
                 price: '',
                 date: '',
                 images: []
-
             }
         ],
-        number: 0
+        number: 0,
+        loading: true
     };
 
     componentDidMount() {
@@ -25,20 +25,38 @@ class Search extends Component {
                 const unique = [...new Map(res.data.map(item => [item['_id'], item])).values()];
                 this.setState({
                     items: unique,
-                    number: unique.length
-                });
+                    number: unique.length,
+                    loading: false
+                })
+            })
+            .catch(err => {
+                this.setState({
+                    ...this.state,
+                    loading: false
+                })
             })
     };
     componentDidUpdate(prevProps) {
         if (this.props.query !== prevProps.query) {
+            this.setState({
+                ...this.state,
+                loading: true
+            });
             const { query } = this.props
             axios.get(`/api/items/search?name=${query}`)
                 .then(res => {
                     const unique = [...new Map(res.data.map(item => [item['_id'], item])).values()];
                     this.setState({
                         items: unique,
-                        number: unique.length
+                        number: unique.length,
+                        loading: false
                     });
+                })
+                .catch(err => {
+                    this.setState({
+                        ...this.state,
+                        loading: false
+                    })
                 })
         }
     };
@@ -53,17 +71,25 @@ class Search extends Component {
                 number: newItems.length
             });
         };
-        return (
-            <>
-                <div className="results">
-                    <h1>Search: {query}</h1>
-                    <h2>Found {this.state.number} results...</h2>
+        if (this.state.loading) {
+            return (
+                <div className="loading">
+                    <h3>Loading...</h3>
                 </div>
-                <div>
-                    <ItemList items={this.state.items} update={update} removeSold={true} removeFav={false} />
-                </div>
-            </>
-        );
+            )
+        } else {
+            return (
+                <>
+                    <div className="results">
+                        <h1>Search: {query}</h1>
+                        <h2>Found {this.state.number} results...</h2>
+                    </div>
+                    <div>
+                        <ItemList items={this.state.items} update={update} removeSold={true} removeFav={false} />
+                    </div>
+                </>
+            );
+        }
     }
 }
 export default withRouter(Search);
