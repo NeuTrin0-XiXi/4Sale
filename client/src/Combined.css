@@ -9,12 +9,7 @@
     background-color: #333333 !important; 
 }
 
-#profile-image{
-    border-radius: 50% !important;
-    margin: 0px !important; 
-    width: 3rem;
-    height: 3rem;
-}
+
 
 .navBarList{
 display: flex;
@@ -49,15 +44,7 @@ flex-wrap: wrap;
     font-size: 18px;
     font-family: Poppins;
 }
-.logo{
-    font-family: Poppins !important;
-    font-style: italic !important;
-    font-weight: bold !important;
-    font-size: 40px !important;
-    top: 50px !important;
-    left: 50px !important;
-    color: #62C1AD !important;
-}
+
 
  .partOfNav{
     font-size: 23px;
@@ -105,51 +92,7 @@ flex-wrap: wrap;
 
 
 /* Navbar Css Ends Here */
-/* ___________________________________________________________________________________________________________________ */
- /*Footer Css starts Here*/
- .custom-footer{
-     vertical-align: baseline !important
- }
-
- .footer{
-    width: 100%;
-    height: 300px;
-    background: #333333;
- }
-
- .footerTextList{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    position:relative;
-    top: 23px;
-    padding: 21px;
-    margin: -5px;
-    font-size: 25px;
-    font-family: Poppins;
-    color: #62C1AD;
-    cursor: pointer;
- }
-
-
- .logoFooter{
-     position: relative;
-     top: 94px;
-     left: -13px;
-    font-family: Poppins;
-    font-style: italic;
-    font-weight: bold;
-    font-size: 61px;
-    line-height: 96px;
-    color: #62C1AD;
-    margin: -53px;
-    padding: 22px;
-    transition: all 0.1s; 
-    cursor: pointer;
- }
-
- /* Footer css ends here */
- /* _______________________________________________________________________________________________ */
+_____________________________________________________________________________________ */
 /* AboutUs Page css starts here */
 
 

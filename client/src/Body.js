@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Home from './Home';
-import AboutUs from './AboutUs'
+import AboutUs from './pages/AboutUs'
 import Sell from './Sell';
-import ContactUs from './ContactUs'
+import ContactUs from './pages/ContactUs'
 import ProductPage from './ProductPage';
 import Profile from './EditProfile';
 import Buy from './Buy';

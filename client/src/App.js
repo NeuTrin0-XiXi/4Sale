@@ -1,7 +1,8 @@
-// import './App.css';
-import Navbar from './Navbar';
+import Navbar from './components/Navbar';
 import Body from './Body';
-import Footer from './Footer';
+import Footer from './components/Footer';
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
             </div>
 
             <Footer />
+            <ToastContainer/>
         </>
     );
 }

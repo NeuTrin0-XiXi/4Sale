@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import '../Combined.css';
 import { GoogleLogout } from 'react-google-login';
 
 function LogoutButton(props) {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import '../Combined.css';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 import clientID from './googleClient';
+import { toast } from 'react-toastify';
 
 function LoginButton(props) {
     const LoginSuccess = (res) => {
@@ -31,6 +31,7 @@ function LoginButton(props) {
                 user._id = _id;
                 user.mobile = mobile
                 props.Login(user);
+                toast("Logged In")
             })
     };
 
@@ -38,7 +39,7 @@ function LoginButton(props) {
         console.log(res);
     }
     return (
-        <div id="custom-login-button">
+        <div>
             <GoogleLogin
                 id="navLoginButton"
                 clientId={clientID}

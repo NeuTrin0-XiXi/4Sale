@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import './Combined.css';
+import './Navbar.css'
 import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
-import ProfileButton from './components/ProfileButton';
+import ProfileButton from './ProfileButton';
 import { Container, Navbar, Form, Button, Nav, NavDropdown } from 'react-bootstrap';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
@@ -26,7 +26,7 @@ function NavbarComponent(props) {
         if (props.auth) {
             return <Link to="/sell" style={textColor} >Sell</Link>
         } else {
-            return null
+            return <Button style={textColor} variant='transparent' className='disabled' >Sell</Button>
         }
     };
 

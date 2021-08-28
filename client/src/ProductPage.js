@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Combined.css';
+// import './Combined.css';
 import { withRouter } from 'react-router';
 import axios from 'axios';
 import WISH_EDIT_BUTTON from './components/Wish_Edit_Button';

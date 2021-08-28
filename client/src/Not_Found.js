@@ -1,5 +1,5 @@
 import React from 'react';
-import './Combined.css';
+// import './Combined.css';
 
 export default function NOT_FOUND() {
     return (

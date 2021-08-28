@@ -1,0 +1,24 @@
+.deep{
+    background-color: #eeeeee;
+}
+.box{
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+.box img{
+    width: 500px;
+    border-radius: 20px;
+}
+@media only screen and  (max-width: 900px) {
+    .box{
+        flex-direction: column;
+        gap: 0;
+    }
+    .box.left{
+        flex-direction: column-reverse;
+    }
+    .box img{
+        width: 300px;
+    }
+}
