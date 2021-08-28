@@ -6,9 +6,9 @@ import Sell from './pages/Sell';
 import ContactUs from './pages/ContactUs'
 import ProductPage from './pages/ProductPage';
 import Profile from './pages/ProfilePage';
-import Buy from './Buy';
-import NOT_FOUND from './Not_Found';
-import { withRouter } from 'react-router';
+import Buy from './pages/Buy';
+import NOT_FOUND from './pages/Not_Found';
+import { Route, Switch } from 'react-router-dom';
 import Search from './Search';
 import Favourites from './Favourites';
 import SoldItems from './SoldItems';
@@ -16,91 +16,24 @@ import Notifications from './Notifications';
 
 
 function Body(props) {
-    const { pathname } = props.location;
-    const id = pathname.slice(9);
-    const category = pathname.slice(5);
-    const query = pathname.slice(8);
-    if (props.Auth) {
-        switch (pathname) {
-            case '/':
-                return (
-                    <Home />
-                );
-            case '/about-us':
-                return (
-                    <AboutUs />
-                );
-            case '/sell':
-                return (
-                    <Sell />
-                );
-            case '/contact-us':
-                return (
-                    <ContactUs />
-                );
-            case '/notifications':
-                return (
-                    <Notifications />
-                );
-            case '/profile':
-                return (
-                    <Profile />
-                );
-            case '/favourites':
-                return (
-                    <Favourites />
-                );
-            case '/sold-items':
-                return (
-                    <SoldItems />
-                );
-            case `/buy/${category}`:
-                return (
-                    <Buy category={category} />
-                );
-            case `/search/${query}`:
-                return (
-                    <Search query={query} />
-                );
-            case `/product/${id}`:
-                return (
-                    <ProductPage id={id} />
-                );
-            default: return (
-                <NOT_FOUND />
-            )
-        }
-    } else {
-        switch (pathname) {
-            case '/':
-                return (
-                    <Home />
-                );
-            case '/about-us':
-                return (
-                    <AboutUs />
-                );
-            case '/contact-us':
-                return (
-                    <ContactUs />
-                );
-            case `/buy/${category}`:
-                return (
-                    <Buy category={category} />
-                );
-            case `/search/${query}`:
-                return (
-                    <Search query={query} />
-                );
-            case `/product/${id}`:
-                return (
-                    <ProductPage id={id} />
-                );
-            default: return (
-                <NOT_FOUND />
-            )
-        }
-    }
+    return (
+        <>
+           <Switch>
+               <Route path='/' exact component={Home}/>
+               <Route path='/about' exact component={AboutUs}/>
+               <Route path='/contact' exact component={ContactUs}/>
+               <Route path='/sell' exact component={Sell}/>
+               <Route path='/notifications' exact component={Notifications}/>
+               <Route path='/profile' exact component={Profile}/>
+               <Route path='/favourites' exact component={Favourites}/>
+               <Route path='/sold-items' exact component={SoldItems}/>
+               <Route path='/buy/:category' exact component={Buy}/>
+               <Route path='/search/:query' exact component={Search}/>
+               <Route path='/product/:id' exact component={ProductPage}/>
+               <Route path={'*'}  component={NOT_FOUND}/>
+           </Switch>
+        </>
+    )
 }
 const mapStateToProps = (state) => {
     return {
@@ -108,7 +41,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default withRouter(connect(mapStateToProps)(Body));
+export default connect(mapStateToProps)(Body);
 
 
 

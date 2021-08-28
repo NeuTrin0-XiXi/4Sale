@@ -1,13 +1,11 @@
 import React from 'react';
-import '../Combined.css';
+// import '../Combined.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { Button } from 'react-bootstrap';
-
-
 
 
 const WISH_EDIT_BUTTON = (props) => {
@@ -45,10 +43,9 @@ const WISH_EDIT_BUTTON = (props) => {
                     })
             };
             return (
-                <>
-                    {/* <button onClick={() => Edit(props._id)} type="button" id="customEditButton" className="btn btn-outline-warning" >Edit</button> */}
-                    <button onClick={() => Delete(props._id)} type="button" id="customDelButton" className="btn btn-danger" >Delete</button>
-                </>
+                <Button onClick={() => Delete(props._id)} variant='transparent' className="non-outlined-btn text-danger">
+                    <FontAwesomeIcon icon={faTrash} size='lg' />
+                </Button>
             )
         } else {
             const favourite = (_id) => {
@@ -92,16 +89,15 @@ const WISH_EDIT_BUTTON = (props) => {
 
             //Main Function
             if (Contains(props._id)) {
-                return <Button onClick={() => removeFavourite(props._id)} variant='transparent'  id="customFavButton" className="text-danger" ><FontAwesomeIcon size='lg' icon={faHeart} /></Button>
+                return <Button onClick={() => removeFavourite(props._id)} variant='transparent' className="non-outlined-btn text-danger" ><FontAwesomeIcon size='lg' icon={faHeart} /></Button>
             } else {
-                return <Button onClick={() => favourite(props._id)}  variant='transparent' id="customFavButton" className="text-danger" ><FontAwesomeIcon size='lg' icon={farHeart} /></Button>
+                return <Button onClick={() => favourite(props._id)} variant='transparent' className="non-outlined-btn text-danger" ><FontAwesomeIcon size='lg' icon={farHeart} /></Button>
             }
         }
     } else {
         return null;
     }
 };
-
 
 
 const mapStateToProps = (state) => {

@@ -49,8 +49,8 @@ function NavbarComponent(props) {
                     <Nav className="me-auto">
                         <Link style={textColor} to="/" >Home</Link><hr  className='m-1 text-light'  />
                         <Sell auth={props.auth} /><hr  className='m-1 text-light'  />
-                        <Link style={textColor} to="/about-us">About</Link><hr  className='m-1 text-light'  />
-                        <Link style={textColor} to="/contact-us">Contact</Link><hr  className='m-1 text-light'  />
+                        <Link style={textColor} to="/about">About</Link><hr  className='m-1 text-light'  />
+                        <Link style={textColor} to="/contact">Contact</Link><hr  className='m-1 text-light'  />
                         <NavDropdown style={textColor} title="Categories" id="collasible-nav-dropdown">
                             <Link className="dropdown-item" to="/buy/Sports">Sports</Link>
                             <Link className="dropdown-item" to="/buy/Books">Books</Link>

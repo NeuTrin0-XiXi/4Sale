@@ -1,5 +1,4 @@
 import React from 'react'
-import './ContactUs.css'
 
 const ContactUs = (props) => {
     const handleSubmit = (e) => {
@@ -29,7 +28,7 @@ const ContactUs = (props) => {
                     <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 contactUsFormPart deep">
                         <div className="card h-100">
                             <div className="card-body deep">
-                                <div className="row gutters">
+                                <div className="row gutters text-center">
                                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                         <h2 className="mb-2 text-primary contactUsTitle">Contact Us</h2><br />
                                     </div>
