@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 
 function LoginButton(props) {
     const LoginSuccess = (res) => {
+        props.LoginLoading();
         var profile = res.getBasicProfile();
         let user = {
             name: '',
@@ -58,6 +59,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         Login: (user) => {
             dispatch({ type: 'SET_AUTH_TRUE', payload: user })
+        },
+        LoginLoading: () => {
+            dispatch({ type: 'SET_AUTH_LOADING' })
         }
     }
 };
