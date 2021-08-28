@@ -20,7 +20,7 @@ function ItemList(props) {
                 <Container className="d-flex flex-wrap justify-content-center gap-4">
                     {items.map(({ _id, title, price, images }) => (
                         <Card style={{ width: '16rem', boxShadow: '0 2px 2px 0px rgba(0,0,0,0.5)' }} key={_id} >
-                            <Card.Img onClick={() => View(_id)} src={images[0]} alt="item-img" style={{ cursor: "pointer" }} />
+                            <Card.Img onClick={() => View(_id)} src={images[0]} alt="item-img" style={{ cursor: "pointer", height: '150px' }} />
                             <Card.Body>
                                 <Card.Title >{title}</Card.Title>
                                 <Card.Text>

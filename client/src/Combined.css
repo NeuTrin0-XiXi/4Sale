@@ -59,38 +59,6 @@ flex-wrap: wrap;
     font-size: 27px ;
 }
 
-#home{
-    margin-left: -24px;
-    margin-right: -62px;
-}
-
-#about{
-    margin-left: 23px;
-    margin-right: 23px;
-}
-#buy{
-    margin-left:-64px ;
-}
-
-#sell{
-    margin-left: -32px;
-}
-
-#contactUs{
-    margin-right: 44px;
-    margin-left: -36px;
-}
-
-#notification-bell{
-    padding: 2px;
-}
-
-.NotifButton{
-    height: 35px;
-    width: 35px;
-}
-
-
 /* Navbar Css Ends Here */
 _____________________________________________________________________________________ */
 /* AboutUs Page css starts here */

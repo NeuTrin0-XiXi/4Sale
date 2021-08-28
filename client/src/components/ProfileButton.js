@@ -6,15 +6,17 @@ import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import BellOn from '../svgs/BellOn';
+import BellOff from '../svgs/BellOff';
 
 function NotifButton(props) {
     if (props.notifications) {
         return (
-            <img src="/notifications_active.svg" alt="notification-icon" className="NotifButton" />
+            <BellOn />
         )
     } else {
         return (
-            <img src="/notifications_inactive.svg" alt="notification-icon" className="NotifButton" />
+            <BellOff />
         )
     }
 }

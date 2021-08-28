@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Component } from 'react';
 import axios from 'axios';
 import Deck from '../components/Deck';
+import HomeSvg from '../svgs/HomeSvg';
 
 // function List(props) {
 //   if (props.length !== 0) {
@@ -108,29 +109,41 @@ class Home extends Component {
                         <h1 className="" style={{ fontSize: '5vw', fontWeight: 'bold' }} >Every Purchase will be made with pleasure.</h1>
                         <p style={{ fontSize: '3vw' }} >Login with Institude Id.</p>
                     </div>
-                    <img src="/home-banner.png" alt="" style={{ height: 'inherit' }} />
+                   <HomeSvg/>
                 </div>
-                <div className='container my-4' >
+
+           
+                <div className='container-fluid py-3' >
                     <div>
                         <h3 className='text-center' ><b>Recently Added</b></h3>
                     </div>
                     <div>
                         <Deck items={allItems} update={update} removeFav={false} removeSold={true} />
                     </div>
+                </div>
 
+           
+                <div className='container-fluid py-3 deep' >
                     <div>
                         <h3 className='text-center' ><b>Sports</b></h3>
                     </div>
                     <div>
                         <Deck items={Sports} update={update} removeFav={false} removeSold={true} />
                     </div>
+                </div>
 
+           
+                <div className='container-fluid py-3' >
                     <div>
                         <h3 className='text-center' ><b>Books</b></h3>
                     </div>
                     <div>
                         <Deck items={Books} update={update} removeFav={false} removeSold={true} />
                     </div>
+                </div>
+
+           
+                <div className='container-fluid py-3 deep' >
 
                     <div>
                         <h3 className='text-center' ><b>Games</b></h3>
@@ -138,6 +151,10 @@ class Home extends Component {
                     <div>
                         <Deck items={Games} update={update} removeFav={false} removeSold={true} />
                     </div>
+                </div>
+
+           
+                <div className='container-fluid py-3' >
 
                     <div>
                         <h3 className='text-center' ><b>Utilities</b></h3>
@@ -145,6 +162,10 @@ class Home extends Component {
                     <div>
                         <Deck items={Utilities} update={update} removeFav={false} removeSold={true} />
                     </div>
+                </div>
+                
+           
+                <div className='container-fluid py-3 deep' >
 
                     <div>
                         <h3 className='text-center' ><b>Others</b></h3>
@@ -153,6 +174,7 @@ class Home extends Component {
                         <Deck items={Others} update={update} removeFav={false} removeSold={true} />
                     </div>
                 </div>
+
             </>
         )
     }
