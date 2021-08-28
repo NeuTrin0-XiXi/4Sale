@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Home from './pages/Home';
 import AboutUs from './pages/AboutUs'
-import Sell from './Sell';
+import Sell from './pages/Sell';
 import ContactUs from './pages/ContactUs'
-import ProductPage from './ProductPage';
-import Profile from './EditProfile';
+import ProductPage from './pages/ProductPage';
+import Profile from './pages/ProfilePage';
 import Buy from './Buy';
 import NOT_FOUND from './Not_Found';
 import { withRouter } from 'react-router';

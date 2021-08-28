@@ -1,35 +1,35 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import './Combined.css';
-import './EditProfilecss.css';
+import './ProfilePage.css';
 import { connect } from 'react-redux';
-import axios from 'axios';
+// import axios from 'axios';
 
 class EditProfile extends Component {
     state = {
         mobile1: ''
     }
     render() {
-        const handleSubmit = (e) => {
-            const { mobile1 } = this.state;
-            e.preventDefault();
-            axios.put(`/api/user/${this.props.user._id}`, {
-                mobile: mobile1
-            })
-                .then(res => {
-                    const newUser = {
-                        ...this.props.user,
-                        mobile: mobile1
-                    }
-                    this.props.Update(newUser);
-                    alert("Your phone number was updated...")
-                })
-        }
-        const handleChange = (e) => {
-            this.setState({
-                mobile1: e.target.value
-            })
-        }
+        // const handleSubmit = (e) => {
+        //     const { mobile1 } = this.state;
+        //     e.preventDefault();
+        //     axios.put(`/api/user/${this.props.user._id}`, {
+        //         mobile: mobile1
+        //     })
+        //         .then(res => {
+        //             const newUser = {
+        //                 ...this.props.user,
+        //                 mobile: mobile1
+        //             }
+        //             this.props.Update(newUser);
+        //             alert("Your phone number was updated...")
+        //         })
+        // }
+        // const handleChange = (e) => {
+        //     this.setState({
+        //         mobile1: e.target.value
+        //     })
+        // }
         const { name, email, profilePic, mobile } = this.props.user
         return (
             <div className="container my-5">
