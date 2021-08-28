@@ -3,7 +3,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Component } from 'react';
 import axios from 'axios';
-import ItemList from '../components/ItemList';
 import Deck from '../components/Deck';
 
 // function List(props) {
@@ -109,7 +108,7 @@ class Home extends Component {
                         <h1 className="" style={{ fontSize: '5vw', fontWeight: 'bold' }} >Every Purchase will be made with pleasure.</h1>
                         <p style={{ fontSize: '3vw' }} >Login with Institude Id.</p>
                     </div>
-                    <img src="/image-1-2.png" alt="" style={{ height: 'inherit' }} />
+                    <img src="/home-banner.png" alt="" style={{ height: 'inherit' }} />
                 </div>
                 <div className='container my-4' >
                     <div>
