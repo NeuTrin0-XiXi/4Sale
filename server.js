@@ -16,7 +16,7 @@ mongoose.connect(mongoURI)
     .then(res => {
         console.log("mongoDB connected...");
     })
-    .catch(err => {
+    .catch((err) => {
         console.log("Failed to connect to mongoDB...")
         console.log(err.message);
         // res.status(500).send("Something went wrong...");

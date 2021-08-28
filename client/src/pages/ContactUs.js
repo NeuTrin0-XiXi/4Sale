@@ -2,10 +2,9 @@ import React from 'react'
 import './ContactUs.css'
 
 const ContactUs = (props) => {
-
 	const handleSubmit = (e) => {
+		alert("This page is non-functional...");
 		e.preventDefault();
-		alert("This page is not functional...");
 	}
 
 	return (
@@ -65,27 +64,23 @@ const ContactUs = (props) => {
 											</div>
 										</div>
 										<br />
-									</form>
-								</div>
-
-								<div className="row gutters">
-									<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-										<div className="container text-right">
-											<button type="submit" className="btn btn-success col-md-4 customColor">Submit</button>
+										<div className="row gutters">
+											<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+												<div className="container text-right">
+													<button type="submit" className="btn btn-success col-md-4 customColor">Submit</button>
+												</div>
+											</div>
 										</div>
-									</div>
+									</form>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<br /><br />
 			</div>
-			<br /><br />
 		</div>
-
-
-
 	)
 }
 
-export default ContactUs
+export default ContactUs;

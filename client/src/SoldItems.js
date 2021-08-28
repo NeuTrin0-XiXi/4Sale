@@ -14,7 +14,8 @@ class Buy extends Component {
                 images: ''
             }
         ],
-        number: 0
+        number: 0,
+        loading: true
     };
 
     componentDidMount() {
@@ -23,8 +24,15 @@ class Buy extends Component {
             .then(res => {
                 this.setState({
                     items: res.data,
-                    number: res.data.length
+                    number: res.data.length,
+                    loading: false
                 });
+            })
+            .catch(err => {
+                this.setState({
+                    ...this.state,
+                    loading: false
+                })
             })
     };
 
@@ -37,16 +45,24 @@ class Buy extends Component {
                 number: newItems.length
             });
         }
-        return (
-            <>
-                <div className="results">
-                    <h2>Posted Ad for {this.state.number} items...</h2>
+        if (this.state.loading) {
+            return (
+                <div className="loading">
+                    <h3>Loading...</h3>
                 </div>
-                <div>
-                    <ItemList items={this.state.items} update={update} removeSold={true} removeFav={false} />
-                </div>
-            </>
-        );
+            )
+        } else {
+            return (
+                <>
+                    <div className="results">
+                        <h2>Posted Ad for {this.state.number} items...</h2>
+                    </div>
+                    <div>
+                        <ItemList items={this.state.items} update={update} removeSold={true} removeFav={false} />
+                    </div>
+                </>
+            );
+        }
     }
 }
 
