@@ -1,61 +1,50 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import './Combined.css';
-import { useParams } from 'react-router-dom';
+import { useParams, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import WISH_EDIT_BUTTON from '../components/Wish_Edit_Button';
 import { connect } from 'react-redux';
 import NOT_FOUND from './Not_Found';
-
-function ImageCarousel(props) {
-    let items = []
-    function image(i) {
-        if (i === 0) {
-            return (
-                <div key={i} className=" active carousel-item customCarousel">
-                    <img src={props.images[i]} alt="" className="ProductImage" />
-                </div>
-            )
-        } else {
-            return (
-                <div key={i} className=" carousel-item customCarousel">
-                    <img src={props.images[i]} alt="" className="ProductImage" />
-                </div>
-            )
-        }
-    }
-    for (var i = 0; i < props.images.length; i++) {
-        items.push(
-            image(i)
-        )
-    }
-    return (items)
-};
+import { Button } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faAngleRight, faRupeeSign } from '@fortawesome/free-solid-svg-icons';
+import Spinner from '../components/Spinner';
 
 //MAIN FUNCTION
 function ProductPage(props) {
+    const { user } = props;
     const { id } = useParams()
-    console.log(id)
     const [productDetails, setProductDetails] = useState({})
+    const [images, setImages] = useState(["/no-image.png", "/no-image.png", "/no-image.png", "/no-image.png"])
     const [loading, setLoading] = useState(true)
     const [err, setErr] = useState(false)
+    const [num, setNum] = useState(0)
+    const [date, setDate] = useState('')
 
     useEffect(() => {
         axios.get('/api/items/' + id)
             .then(res => {
                 setProductDetails(res.data)
                 setLoading(false)
+
+                //date
+                setDate(new Date(res.data.date)) 
+
+                //images
+                const newArray = [...images, ...res.data.images]
+                for (let i = 0; i < res.data.images.length; i++) {
+                    newArray.shift()
+                }
+                newArray.reverse()
+                setImages(newArray)
+        
             })
             .catch(err => {
                 console.log(err)
                 setLoading(false)
                 setErr(true)
             })
-    }, [id])
-
-
-
-    const { user } = props;
+    }, [id, images, productDetails.date])
 
     function Buy(props) {
         const handleBuy = (auth) => {
@@ -90,78 +79,102 @@ function ProductPage(props) {
         if (Contains(id)) {
             return null;
         } else {
-            return <button onClick={() => { handleBuy(props.auth) }} className="col-md-7 customBuyButton" id="BuyButtonId"  >Buy</button>
+            return <Button onClick={() => { handleBuy(props.auth) }} className="col-md-7 customBuyButton" id="BuyButtonId"  >Buy</Button>
         }
     };
 
-    const update = (history) => {
-        history.push('/');
-    }
-
     if (loading) {
         return (
-            <div className="loading">
-                <h3>Loading...</h3>
-            </div>
+            <Spinner />
         )
     } else if (err === true) {
         return (
             <NOT_FOUND />
-           
+
         )
     } else {
         return (
             <>
-            <div> {productDetails.title} </div>
-            <div> {productDetails.description} </div>
-            <div> {productDetails.price} </div>
-            <div> {productDetails.userName} </div>
-            <div> {productDetails.userEmail} </div>
-            <div> {productDetails.date} </div>
-            <div> {productDetails.images? productDetails.images.map((img, i) => <img key={i} src={img} alt='' ></img>) : null} </div>
-            {/* <div>
-                    <div className="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-                        <div className="my-3 py-3">
-                            <p className="display-5 customProductPagTitle">{title}</p>
-                        </div>
-                        <div className="bg-light box-shadow mx-auto" style={{ width: "85%", height: "100%", borderRadius: "21px 21px 0 0" }}>
-                            <div style={{ color: "black" }} >
-                                <div className="d-sm-flex flex-column justify-content-around">
-                                    <br /><br />
-                                    <div id="myCarousel" className="container-fluid carousel slide crousalCustomEdit" data-bs-ride="carousel">
-                                        <div className="carousel-inner crousalCustomEdit">
-                                            <ImageCarousel _id={_id} images={images} />
-                                        </div>
-                                        <button className="carousel-control-prev " type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span className="visually-hidden">Previous</span>
-                                        </button>
-                                        <button className="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span className="visually-hidden">Next</span>
-                                        </button>
+                <section className=" py-3 container-fluid">
+                    <div className="my-5 row ">
+                        <div className="col-md-6 mb-4 mb-md-0">
+                            <div id="mdb-lightbox-ui" />
+                            <div className="mdb-lightbox">
+                                <div className="row product-gallery mx-1">
+                                    <div className="col-1 d-flex m-auto" onClick={() => setNum(prevNum => prevNum > 0 ? prevNum - 1 : prevNum)} >
+                                        <FontAwesomeIcon size='lg' icon={faAngleLeft} />
                                     </div>
-                                    <br /><br />
-                                    <div className="p-2"><b><u>Price:</u></b> Rs {price}</div>
-                                    <br />
-                                    <div className="p-2"><u><b>Uploaded On</b></u></div>
-                                    <div>{dte + '-' + mnth + '-' + yr}</div>
-                                    <div className="p-2"><u><b>Description</b></u></div>
-                                    <div>{description}</div>
-                                    <div className="p-2"><u><b>Uploaded By</b></u></div>
-                                    <div>{userName}</div>
-                                    <div>{userEmail}</div>
-                                    <br /><br />
-                                </div>
-                                <div>
-                                    <Buy _id={_id} auth={this.props.auth} />
-                                    <WISH_EDIT_BUTTON _id={_id} id="FavButton" update={() => update(this.props.history)} removeFav={false} removeSold={true} />
+
+                                    <div className="col-10 mb-0">
+                                        <figure className="text-center view overlay rounded z-depth-1 main-img">
+                                            <a href={images[num]} data-size="710x823" >
+                                                <img alt='' src={images[num]} className="img-fluid z-depth-1" />
+                                            </a>
+                                        </figure>
+                                    </div>
+                                    <div className="col-1 d-flex m-auto" onClick={() => setNum(prevNum => prevNum < 2 ? prevNum + 1 : prevNum)} >
+                                        <FontAwesomeIcon size='lg' icon={faAngleRight} />
+                                    </div>
+                                    <div className="col-12">
+                                        <div className="row p-3">
+                                            {
+                                                images ? images.map((img, i) =>
+                                                    <div onClick={() => setNum(i)} key={i} className="col-3" style={{ cursor: 'pointer', border: '0.5px solid #bbbbbb' }}>
+                                                        <div className="view overlay rounded z-depth-1 gallery-item">
+                                                            <img alt='' src={img} className="img-fluid" />
+                                                            <div className="mask rgba-white-slight" />
+                                                        </div>
+                                                    </div>
+                                                ) : null
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div className="bg-light p-3 col-md-6 bordered" >
+                            <h3>{productDetails.title}</h3>
+                            <p className="mb-2 text-muted text-uppercase small">{productDetails.category}</p>
+                            <p><span className="mr-1 text-success"><FontAwesomeIcon icon={faRupeeSign} /><strong> {productDetails.price}</strong></span></p>
+                            <hr />
+                            <p className="pt-1">{productDetails.description}</p>
+                            <hr />
+                            <div className="table-responsive">
+                                <table className="table table-sm table-borderless mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <th className="pl-0 w-25" scope="row"><strong>Seller:</strong></th>
+                                            <td>{productDetails.userName}</td>
+                                        </tr>
+                                        <tr>
+                                            <th className="pl-0 w-25" scope="row"><strong>Email:</strong></th>
+                                            <td><a href={`mailto:${productDetails.userEmail}`}>{productDetails.userEmail}</a></td>
+                                        </tr>
+                                        <tr>
+                                            <th className="pl-0 w-25" scope="row"><strong>Room No:</strong></th>
+                                            <td>512</td>
+                                        </tr>
+                                        <tr>
+                                            <th className="pl-0 w-25" scope="row"><strong>Date:</strong></th>
+                                            <td><div> {
+                                            date.toString().split(' ')[0] + ', ' +
+                                            date.toString().split(' ')[2] + ' ' +
+                                            date.toString().split(' ')[1] + ' ' +
+                                            date.toString().split(' ')[3] 
+                                            } </div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr />
+                            <Button onClick={Buy} type="button" className="btn-warning btn-md mr-1 mb-2">Buy now</Button>
+                            <span className='ms-2' > <WISH_EDIT_BUTTON _id={productDetails._id} update={props.update} removeSold={props.removeSold} removeFav={props.removeFav} />Add to Favourites </span>
+
+                        </div>
                     </div>
-                </div> */}
-        </>
+                </section>
+
+            </>
         );
     }
 }
@@ -174,4 +187,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ProductPage);
+export default withRouter(connect(mapStateToProps)(ProductPage));

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import ItemList from './components/ItemList';
+import ItemList from '../components/ItemList';
 import axios from 'axios';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
+import Spinner from '../components/Spinner';
 
 class Buy extends Component {
     state = {
@@ -47,9 +48,7 @@ class Buy extends Component {
         }
         if (this.state.loading) {
             return (
-                <div className="loading">
-                    <h3>Loading...</h3>
-                </div>
+                <Spinner/>
             )
         } else {
             return (

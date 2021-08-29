@@ -10,9 +10,9 @@ import Buy from './pages/Buy';
 import NOT_FOUND from './pages/Not_Found';
 import { Route, Switch } from 'react-router-dom';
 import Search from './Search';
-import Favourites from './Favourites';
-import SoldItems from './SoldItems';
-import Notifications from './Notifications';
+import Favourites from './pages/Favourites';
+import SoldItems from './pages/SoldItems';
+import Notifications from './pages/Notifications';
 
 
 function Body(props) {

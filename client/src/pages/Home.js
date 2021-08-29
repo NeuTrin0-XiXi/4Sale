@@ -5,16 +5,8 @@ import { Component } from 'react';
 import   axios from 'axios'  ;
 import Deck from '../components/Deck';
 import HomeSvg from '../svgs/HomeSvg';
+import Spinner from '../components/Spinner';
 
-// function List(props) {
-//   if (props.length !== 0) {
-//     return (
-//       <ItemList items={props.items} update={props.update} removeFav={props.remove} />
-//     )
-//   } else {
-//     return null
-//   }
-// }
 class Home extends Component {
 
     state = {
@@ -120,7 +112,7 @@ class Home extends Component {
                 </div>
 
             {
-                loading? <div>Loading...</div>:
+                loading? <Spinner/>:
                 <>
                 <div style={{minHeight: '300px'}} className='container-fluid py-3' >
                     <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
@@ -132,7 +124,7 @@ class Home extends Component {
                 </div>
 
            
-                <div style={{minHeight: '300px'}} className='container-fluid py-3 deep' >
+                <div style={{minHeight: '300px'}} className='container-fluid py-3 bg-light' >
                     <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
                         <h3 className='text-center' ><b>Sports</b></h3>
                     </div>
@@ -152,7 +144,7 @@ class Home extends Component {
                 </div>
 
            
-                <div style={{minHeight: '300px'}} className='container-fluid py-3 deep' >
+                <div style={{minHeight: '300px'}} className='container-fluid py-3 bg-light' >
 
                     <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
                         <h3 className='text-center' ><b>Games</b></h3>
@@ -174,7 +166,7 @@ class Home extends Component {
                 </div>
                 
            
-                <div style={{minHeight: '300px'}} className='container-fluid py-3 deep' >
+                <div style={{minHeight: '300px'}} className='container-fluid py-3 bg-light' >
 
                     <div className='mt-2 border-bottom- container' style={{borderBottom: '0.5px dotted grey'}} >
                         <h3 className='text-center' ><b>Others</b></h3>

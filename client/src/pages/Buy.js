@@ -3,6 +3,7 @@ import ItemList from '../components/ItemList';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import NOT_FOUND from './Not_Found';
+import Spinner from '../components/Spinner';
 
 function Buy() {
     const { category } = useParams()
@@ -12,6 +13,7 @@ function Buy() {
     const [err, setErr] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
         axios.get(`/api/items/filter?categories=${category}`)
             .then(res => {
                 setItems(res.data)
@@ -21,7 +23,7 @@ function Buy() {
                 setLoading(false)
                 setErr(true)
             })
-    }, [])
+    }, [category])
 
 
     const update = (id) => {
@@ -31,9 +33,7 @@ function Buy() {
 
     if (loading) {
         return (
-            <div className="loading">
-                <h3>Loading...</h3>
-            </div>
+            <Spinner/>
         )
     } else if (err === false) {
         return (
