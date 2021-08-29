@@ -66,7 +66,8 @@ function ProductPage(props) {
                 }
                 Update(newUser);
                 axios.delete(`/api/items/${_id}`)
-                    .then(() => {
+                    .then(res => {
+                        console.log(res);
                         axios({
                             method: 'DELETE',
                             url: `/api/user/sold/${user._id}`,
@@ -214,4 +215,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(ProductPage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductPage));
