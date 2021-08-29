@@ -134,7 +134,7 @@ function ProductPage(props) {
                         </div>
                         <div className="bg-light p-3 col-md-6 bordered" >
                             <h3>{productDetails.title}</h3>
-                            <p className="mb-2 text-muted text-uppercase small">{productDetails.categories.map(cat => cat)}</p>
+                            <p className="mb-2 text-muted text-uppercase small">{productDetails.categories.map((cat, i) => <span key={i} className='me-2'>{cat}</span>)}</p>
                             <p><span className="mr-1 text-success"><FontAwesomeIcon icon={faRupeeSign} /><strong> {productDetails.price}</strong></span></p>
                             <hr />
                             <p className="pt-1">{productDetails.description}</p>
@@ -167,7 +167,7 @@ function ProductPage(props) {
                                 </table>
                             </div>
                             <hr />
-                            <Button onClick={Buy} type="button" className="btn-warning btn-md mr-1 mb-2">Buy now</Button>
+                            <Button onClick={() => Buy} type="button" className="btn-warning btn-md mr-1 mb-2">Buy now</Button>
                             <span className='ms-2' > <WISH_EDIT_BUTTON _id={productDetails._id} update={props.update} removeSold={props.removeSold} removeFav={props.removeFav} />Add to Favourites </span>
 
                         </div>
