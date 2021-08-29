@@ -283,7 +283,7 @@ function HomeSvg() {
                             fillOpacity="0.988"
                             stroke="none"
                             strokeWidth="4.353"
-                            ariaLabel="$"
+                            aria-label="$"
                             filter="url(#filter1863)"
                             fontFamily="Padauk"
                             fontSize="10.583"
@@ -429,7 +429,7 @@ function HomeSvg() {
                             }}
                             fill="#fff"
                             stroke="none"
-                            ariaLabel="$"
+                            aria-label="$"
                             fontFamily="Padauk"
                             fontSize="10.583"
                             fontStretch="normal"

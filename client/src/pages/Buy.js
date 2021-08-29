@@ -43,7 +43,7 @@ function Buy() {
                     <h2>Found {items.length} results...</h2>
                 </div>
                 <div>
-                    <ItemList items={items} update={update} removeSold={true} removeFav={false} />
+                    <ItemList items={items} update={update} removeFav={false} />
                 </div>
             </>
         )

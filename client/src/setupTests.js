@@ -5,17 +5,4 @@
 import '@testing-library/jest-dom';
 
 
-function Body(props) {
-    const { pathname } = props.location;
-    const id = pathname.slice(9);
-    const category = pathname.slice(5);
-    const query = pathname.slice(8);
-    console.log(pathname)
-  
-    
-}
-
-
-
-
 

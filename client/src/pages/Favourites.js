@@ -49,7 +49,7 @@ class Favourites extends Component {
         }
         if (this.state.loading) {
             return (
-               <Spinner/>
+                <Spinner />
             )
         }
         return (
@@ -58,7 +58,7 @@ class Favourites extends Component {
                     <h2>{this.state.number} favourites...</h2>
                 </div>
                 <div>
-                    <ItemList items={this.state.items} update={update} removeFav={true} removeSold={false} />
+                    <ItemList items={this.state.items} update={update} removeFav={true} />
                 </div>
             </>
         );
