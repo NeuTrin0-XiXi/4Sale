@@ -134,7 +134,7 @@ function ProductPage(props) {
                         </div>
                         <div className="bg-light p-3 col-md-6 bordered" >
                             <h3>{productDetails.title}</h3>
-                            <p className="mb-2 text-muted text-uppercase small">{productDetails.category}</p>
+                            <p className="mb-2 text-muted text-uppercase small">{productDetails.categories.map(cat => cat)}</p>
                             <p><span className="mr-1 text-success"><FontAwesomeIcon icon={faRupeeSign} /><strong> {productDetails.price}</strong></span></p>
                             <hr />
                             <p className="pt-1">{productDetails.description}</p>
