@@ -100,6 +100,7 @@ class Home extends Component {
     render() {
         const { allItems, Sports, Books, Games, Utilities, Other, loading } = this.state;
         const update = (id) => {
+            console.log(id);
             this.setState({
                 ...this.state,
                 allItems: allItems.filter(item => item._id !== id),
@@ -109,6 +110,7 @@ class Home extends Component {
                 Utilities: Utilities.filter(item => item._id !== id),
                 Other: Other.filter(item => item._id !== id)
             });
+            console.log(this.state);
         };
 
         return (

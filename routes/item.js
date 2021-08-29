@@ -72,7 +72,7 @@ route.get('/filter', (req, res, next) => {
 //GET Item details:                             
 route.get('/:id', (req, res, next) => {
     Item.findById(req.params.id)
-        .select('title description date price userName images userEmail')
+        .select('title description date price userName images userEmail categories')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item)
