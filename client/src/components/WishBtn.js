@@ -1,5 +1,4 @@
 import React from 'react';
-// import '../Combined.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +7,7 @@ import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { Button } from 'react-bootstrap';
 
 
-const WISH_EDIT_BUTTON = (props) => {
+const WishBtn = (props) => {
     const { Auth } = props;
     const { user } = props;
     if (Auth) {
@@ -66,9 +65,9 @@ const WISH_EDIT_BUTTON = (props) => {
 
             //Main Function
             if (Contains(props._id)) {
-                return <Button onClick={() => removeFavourite(props._id)} variant='transparent' className="non-outlined-btn text-danger" ><FontAwesomeIcon size='lg' icon={faHeart} /></Button>
+                return <Button onClick={() => removeFavourite(props._id)} variant='transparent' className="non-outlined-btn text-success" ><FontAwesomeIcon size='lg' icon={faHeart} /></Button>
             } else {
-                return <Button onClick={() => favourite(props._id)} variant='transparent' className="non-outlined-btn text-danger" ><FontAwesomeIcon size='lg' icon={farHeart} /></Button>
+                return <Button onClick={() => favourite(props._id)} variant='transparent' className="non-outlined-btn text-success" ><FontAwesomeIcon size='lg' icon={farHeart} /></Button>
             }
         }
     } else {
@@ -92,4 +91,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WISH_EDIT_BUTTON);
+export default connect(mapStateToProps, mapDispatchToProps)(WishBtn);

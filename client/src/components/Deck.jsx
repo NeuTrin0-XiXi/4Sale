@@ -4,11 +4,13 @@ import React from 'react'
 import { Button, Card } from 'react-bootstrap';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import WISH_EDIT_BUTTON from './Wish_Edit_Button';
+import DeleteBtn from './DeleteBtn';
+import WishBtn from './WishBtn';
 
-export default function Deck(props) {
-
+function Deck(props) {
+    const { user } = props
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -46,12 +48,24 @@ export default function Deck(props) {
                                         &#8377;    {item.price}
                                     </Card.Text>
                                     <Button variant="warning" as={Link} to={`/product/${item._id}`} type="button" id="customViewButton " ><FontAwesomeIcon icon={faCartPlus} /> Buy</Button>
-                                    <WISH_EDIT_BUTTON _id={item._id} update={props.update} removeFav={props.removeFav} />
+                                    {
+                                        user? user.soldItems.includes(item._id) ? <DeleteBtn /> :
+                                            <WishBtn _id={item._id} update={props.update} removeFav={props.removeFav} />: null
+                                    }
+
                                 </Card.Body>
                             </Card>
                         )}
-                    </Carousel> : <h4 className='text-center text-secondary m-auto' >Nothing on sale!</h4>
+                    </Carousel> : <h4 className='text-center text-secondary mt-5' >Nothing on sale!</h4>
             }
 
         </>)
 }
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        auth: state.Authorised
+    }
+}
+
+export default connect(mapStateToProps)(Deck);
