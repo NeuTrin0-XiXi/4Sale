@@ -5,16 +5,8 @@ import { Component } from 'react';
 import axios from 'axios';
 import Deck from '../components/Deck';
 import HomeSvg from '../svgs/HomeSvg';
+import Spinner from '../components/Spinner';
 
-// function List(props) {
-//   if (props.length !== 0) {
-//     return (
-//       <ItemList items={props.items} update={props.update} removeFav={props.remove} />
-//     )
-//   } else {
-//     return null
-//   }
-// }
 class Home extends Component {
 
     state = {
@@ -121,15 +113,14 @@ class Home extends Component {
                 }} >
                     <div className="d-flex flex-column" style={{ width: '55vw', padding: '20px 10px' }}>
                         <h1 className="" style={{ fontSize: '5vw', fontWeight: 'bold' }} >Every Purchase will be made with pleasure.</h1>
-                        <p style={{ fontSize: '3vw' }} >Login with Institude Id.</p>
+                        <p style={{ fontSize: '3vw' }} >Login with Institute Id.</p>
                     </div>
                     <HomeSvg />
                 </div>
-
                 {
-                    loading ? <div>Loading...</div> :
+                    loading ? <Spinner /> :
                         <>
-                            <div className='container-fluid py-3' >
+                            <div style={{ minHeight: '300px' }} className='container-fluid py-3' >
                                 <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
                                     <h3 className='text-center' ><b>Recently Added</b></h3>
                                 </div>
@@ -139,7 +130,7 @@ class Home extends Component {
                             </div>
 
 
-                            <div className='container-fluid py-3 deep' >
+                            <div style={{ minHeight: '300px' }} className='container-fluid py-3 bg-light' >
                                 <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
                                     <h3 className='text-center' ><b>Sports</b></h3>
                                 </div>
@@ -149,7 +140,7 @@ class Home extends Component {
                             </div>
 
 
-                            <div className='container-fluid py-3' >
+                            <div style={{ minHeight: '300px' }} className='container-fluid py-3' >
                                 <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
                                     <h3 className='text-center' ><b>Books</b></h3>
                                 </div>
@@ -159,7 +150,7 @@ class Home extends Component {
                             </div>
 
 
-                            <div className='container-fluid py-3 deep' >
+                            <div style={{ minHeight: '300px' }} className='container-fluid py-3 bg-light' >
 
                                 <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
                                     <h3 className='text-center' ><b>Games</b></h3>
@@ -170,7 +161,7 @@ class Home extends Component {
                             </div>
 
 
-                            <div className='container-fluid py-3' >
+                            <div style={{ minHeight: '300px' }} className='container-fluid py-3' >
 
                                 <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
                                     <h3 className='text-center' ><b>Utilities</b></h3>
@@ -181,7 +172,7 @@ class Home extends Component {
                             </div>
 
 
-                            <div className='container-fluid py-3 deep' >
+                            <div style={{ minHeight: '300px' }} className='container-fluid py-3 bg-light' >
 
                                 <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
                                     <h3 className='text-center' ><b>Others</b></h3>
@@ -191,9 +182,7 @@ class Home extends Component {
                                 </div>
                             </div>
                         </>
-
                 }
-
 
             </>
         )

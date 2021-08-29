@@ -1,5 +1,4 @@
 import React from 'react'
-import './ContactUs.css'
 
 const ContactUs = (props) => {
     const handleSubmit = (e) => {
@@ -9,7 +8,7 @@ const ContactUs = (props) => {
 
     return (
         <>
-            <div className="container my-5 deep " style={{borderRadius: '10px'}}>
+            <div className="container my-5 bg-light " style={{borderRadius: '10px'}}>
                 <div className="row gutters">
                     <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                         <div className="card h-100">
@@ -26,10 +25,10 @@ const ContactUs = (props) => {
 
                     {/* ___ */}
 
-                    <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 contactUsFormPart deep">
+                    <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 bg-light">
                         <div className="card h-100">
-                            <div className="card-body deep">
-                                <div className="row gutters">
+                            <div className="card-body bg-light">
+                                <div className="row gutters text-center">
                                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                         <h2 className="mb-2 text-primary contactUsTitle">Contact Us</h2><br />
                                     </div>
