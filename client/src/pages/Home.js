@@ -40,7 +40,6 @@ class Home extends Component {
     componentDidMount() {
         axios.get('/api/items')
             .then(res => {
-                console.log(res.data);
                 this.setState({
                     ...this.state,
                     allItems: res.data,
@@ -92,7 +91,6 @@ class Home extends Component {
     render() {
         const { allItems, Sports, Books, Games, Utilities, Other, loading } = this.state;
         const update = (id) => {
-            console.log(id);
             this.setState({
                 ...this.state,
                 allItems: allItems.filter(item => item._id !== id),
@@ -102,7 +100,6 @@ class Home extends Component {
                 Utilities: Utilities.filter(item => item._id !== id),
                 Other: Other.filter(item => item._id !== id)
             });
-            console.log(this.state);
         };
 
         return (
@@ -178,7 +175,7 @@ class Home extends Component {
                                     <h3 className='text-center' ><b>Others</b></h3>
                                 </div>
                                 <div className='container' >
-                                    <Deck items={Other} update={update} removeFav={false} removeSold={true} />
+                                    <Deck items={Other} update={update} removeFav={false}/>
                                 </div>
                             </div>
                         </>

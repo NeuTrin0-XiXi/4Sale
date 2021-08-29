@@ -85,7 +85,7 @@ class Search extends Component {
                         <h2>Found {this.state.number} results...</h2>
                     </div>
                     <div>
-                        <ItemList items={this.state.items} update={update} removeSold={true} removeFav={false} />
+                        <ItemList items={this.state.items} update={update} removeFav={false} />
                     </div>
                 </>
             );

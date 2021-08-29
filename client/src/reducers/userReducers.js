@@ -24,7 +24,7 @@ const userReducers = (state = initialState, action) => {
         case 'SET_AUTH_LOADING':
             return {
                 user: initialState.user,
-                Authorised: true,
+                Authorised: false,
                 loading: true
             };
 

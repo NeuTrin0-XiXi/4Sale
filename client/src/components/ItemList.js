@@ -27,7 +27,7 @@ function ItemList(props) {
                                    &#8377;    {price}
                                 </Card.Text>
                                 <Button variant="warning" onClick={() => View(_id)} type="button" id="customViewButton " ><FontAwesomeIcon icon={faCartPlus}/> Buy</Button>
-                                <WISH_EDIT_BUTTON _id={_id} update={props.update} removeSold={props.removeSold} removeFav={props.removeFav} />
+                                <WISH_EDIT_BUTTON _id={_id} update={props.update} removeFav={props.removeFav} />
                             </Card.Body>
                         </Card>
                     )) }

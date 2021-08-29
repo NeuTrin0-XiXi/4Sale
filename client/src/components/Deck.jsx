@@ -39,14 +39,14 @@ export default function Deck(props) {
                     >
                         {props.items.map((item) =>
                             <Card style={{ width: '16rem', boxShadow: '0 2px 2px 0px rgba(0,0,0,0.5)', margin: '10px auto' }} key={item._id} >
-                                <Card.Img  src={item.images[0]} alt="item-img" style={{ cursor: "pointer", height: '150px' }} />
+                                <Link to={`/product/${item._id}`}><Card.Img src={item.images[0]} alt="item-img" style={{ cursor: "pointer", height: '150px' }} /></Link>
                                 <Card.Body>
                                     <Card.Title >{item.title}</Card.Title>
                                     <Card.Text>
                                         &#8377;    {item.price}
                                     </Card.Text>
                                     <Button variant="warning" as={Link} to={`/product/${item._id}`} type="button" id="customViewButton " ><FontAwesomeIcon icon={faCartPlus} /> Buy</Button>
-                                    <WISH_EDIT_BUTTON _id={item._id} update={props.update} removeSold={props.removeSold} removeFav={props.removeFav} />
+                                    <WISH_EDIT_BUTTON _id={item._id} update={props.update} removeFav={props.removeFav} />
                                 </Card.Body>
                             </Card>
                         )}

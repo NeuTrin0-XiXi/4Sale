@@ -7,12 +7,13 @@ import { connect } from 'react-redux';
 import NOT_FOUND from './Not_Found';
 import { Button } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faAngleRight, faRupeeSign } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faAngleRight, faRupeeSign, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Spinner from '../components/Spinner';
 
 //MAIN FUNCTION
 function ProductPage(props) {
     const { user } = props;
+    const { Update } = props;
     const { id } = useParams()
     const [productDetails, setProductDetails] = useState({})
     const [images, setImages] = useState(["/no-image.png", "/no-image.png", "/no-image.png", "/no-image.png"])
@@ -28,7 +29,7 @@ function ProductPage(props) {
                 setLoading(false)
 
                 //date
-                setDate(new Date(res.data.date)) 
+                setDate(new Date(res.data.date))
 
                 //images
                 const newArray = [...images, ...res.data.images]
@@ -37,7 +38,7 @@ function ProductPage(props) {
                 }
                 newArray.reverse()
                 setImages(newArray)
-        
+
             })
             .catch(err => {
                 console.log(err)
@@ -46,40 +47,60 @@ function ProductPage(props) {
             })
     }, [id, images, productDetails.date])
 
-    function Buy(props) {
-        const handleBuy = (auth) => {
-            if (auth) {
-                axios.put(`/api/items/notify/${id}`, {
-                    notification: {
-                        message: `wants to buy ${productDetails.title}`,
-                        userName: user.name,
-                        userEmail: user.email,
-                        mobile: user.mobile
-                    }
-                })
-                    .then(res => {
-                        alert(res.data);
-                    })
-            }
-            else {
-                alert("Please Login ");
-            }
-        };
-
-        function Contains(id) {
+    function BUY_DELETE(props) {
+        const Sold = (_id) => {
             let i;
             for (i = 0; i < user.soldItems.length; i++) {
-                if (id === user.soldItems[i]) {
+                if (_id === user.soldItems[i]) {
                     return true;
                 }
             }
             return false;
         };
 
-        if (Contains(id)) {
-            return null;
+        if (Sold(id)) {
+            const Delete = (_id) => {
+                const newUser = {
+                    ...user,
+                    soldItems: user.soldItems.filter(item => { return item !== _id })
+                }
+                Update(newUser);
+                axios.delete(`/api/items/${_id}`)
+                    .then(() => {
+                        axios({
+                            method: 'DELETE',
+                            url: `/api/user/sold/${user._id}`,
+                            data: {
+                                sold: _id
+                            }
+                        })
+                    })
+            };
+            return (
+                <Button onClick={() => Delete(props._id)} variant='transparent' className="non-outlined-btn text-danger">
+                    <FontAwesomeIcon icon={faTrash} size='lg' />
+                </Button>
+            );
         } else {
-            return <Button onClick={() => { handleBuy(props.auth) }} className="col-md-7 customBuyButton" id="BuyButtonId"  >Buy</Button>
+            const handleBuy = (auth) => {
+                if (auth) {
+                    axios.put(`/api/items/notify/${id}`, {
+                        notification: {
+                            message: `wants to buy ${productDetails.title}`,
+                            userName: user.name,
+                            userEmail: user.email,
+                            mobile: user.mobile
+                        }
+                    })
+                        .then(res => {
+                            alert(res.data);
+                        })
+                }
+                else {
+                    alert("Please Login ");
+                }
+            };
+            return <Button onClick={() => { handleBuy(props.auth) }} type="button" className="btn-warning btn-md mr-1 mb-2">Buy now</Button>
         }
     };
 
@@ -90,7 +111,6 @@ function ProductPage(props) {
     } else if (err === true) {
         return (
             <NOT_FOUND />
-
         )
     } else {
         return (
@@ -157,18 +177,18 @@ function ProductPage(props) {
                                         <tr>
                                             <th className="pl-0 w-25" scope="row"><strong>Date:</strong></th>
                                             <td><div> {
-                                            date.toString().split(' ')[0] + ', ' +
-                                            date.toString().split(' ')[2] + ' ' +
-                                            date.toString().split(' ')[1] + ' ' +
-                                            date.toString().split(' ')[3] 
+                                                date.toString().split(' ')[0] + ', ' +
+                                                date.toString().split(' ')[2] + ' ' +
+                                                date.toString().split(' ')[1] + ' ' +
+                                                date.toString().split(' ')[3]
                                             } </div></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <hr />
-                            <Button onClick={Buy} type="button" className="btn-warning btn-md mr-1 mb-2">Buy now</Button>
-                            <span className='ms-2' > <WISH_EDIT_BUTTON _id={productDetails._id} update={props.update} removeSold={props.removeSold} removeFav={props.removeFav} />Add to Favourites </span>
+                            <BUY_DELETE auth={props.auth} />
+                            <span className='ms-2' > <WISH_EDIT_BUTTON _id={productDetails._id} update={props.update} removeSold={false} removeFav={false} />{/*Add to Favourites */}</span>
 
                         </div>
                     </div>
@@ -185,6 +205,13 @@ const mapStateToProps = (state) => {
         user: state.user,
         auth: state.Authorised
     }
-}
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        Update: (user) => {
+            dispatch({ type: 'UPDATE_USER', payload: user })
+        }
+    }
+};
 
-export default withRouter(connect(mapStateToProps)(ProductPage));
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(ProductPage));

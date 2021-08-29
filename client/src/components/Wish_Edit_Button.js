@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { Button } from 'react-bootstrap';
 
@@ -21,32 +21,9 @@ const WISH_EDIT_BUTTON = (props) => {
             }
             return false;
         };
+        
         if (Sold(props._id)) {
-            const Delete = (_id) => {
-                if (props.removeSold) {
-                    props.update(_id);
-                }
-                const newUser = {
-                    ...user,
-                    soldItems: user.soldItems.filter(item => { return item !== _id })
-                }
-                props.Update(newUser);
-                axios.delete(`/api/items/${_id}`)
-                    .then(() => {
-                        axios({
-                            method: 'DELETE',
-                            url: `/api/user/sold/${user._id}`,
-                            data: {
-                                sold: _id
-                            }
-                        })
-                    })
-            };
-            return (
-                <Button onClick={() => Delete(props._id)} variant='transparent' className="non-outlined-btn text-danger">
-                    <FontAwesomeIcon icon={faTrash} size='lg' />
-                </Button>
-            )
+            return null;
         } else {
             const favourite = (_id) => {
                 const newUser = {
