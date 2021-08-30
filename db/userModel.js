@@ -31,6 +31,7 @@ const userSchema = new schema({
         userName: String,
         userEmail: String,
         mobile: Number,
+        dp: String,
         read: {
             type: Boolean,
             default: false
