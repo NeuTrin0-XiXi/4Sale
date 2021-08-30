@@ -3,7 +3,7 @@ const initialState = {
         email: '',
         favourites: [],
         name: '',
-        notifications: '',
+        notifications: [],
         profilePic: '',
         soldItems: [],
         _id: '',

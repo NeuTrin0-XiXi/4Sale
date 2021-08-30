@@ -6,6 +6,8 @@ import axios from 'axios';
 import Deck from '../components/Deck';
 import HomeSvg from '../svgs/HomeSvg';
 import Spinner from '../components/Spinner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBasketballBall, faBook, faGamepad, faReceipt, faShoppingCart, faSplotch } from '@fortawesome/free-solid-svg-icons';
 
 class Home extends Component {
 
@@ -116,10 +118,10 @@ class Home extends Component {
                 </div>
                 {
                     loading ? <Spinner /> :
-                        <>
-                            <div style={{ minHeight: '300px' }} className='container-fluid py-3' >
-                                <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
-                                    <h3 className='text-center' ><b>Recently Added</b></h3>
+                        <section className='container-fluid' >
+                            <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
+                                <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
+                                    <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faReceipt} /> Recently Added</b></h4>
                                 </div>
                                 <div className='container' >
                                     <Deck items={allItems} update={update} removeFav={false} removeSold={true} />
@@ -127,9 +129,9 @@ class Home extends Component {
                             </div>
 
 
-                            <div style={{ minHeight: '300px' }} className='container-fluid py-3 bg-light' >
-                                <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
-                                    <h3 className='text-center' ><b>Sports</b></h3>
+                            <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
+                                <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
+                                    <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faBasketballBall} /> Sports</b></h4>
                                 </div>
                                 <div className='container' >
                                     <Deck items={Sports} update={update} removeFav={false} removeSold={true} />
@@ -137,9 +139,9 @@ class Home extends Component {
                             </div>
 
 
-                            <div style={{ minHeight: '300px' }} className='container-fluid py-3' >
-                                <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
-                                    <h3 className='text-center' ><b>Books</b></h3>
+                            <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
+                                <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
+                                    <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faBook} /> Books</b></h4>
                                 </div>
                                 <div className='container' >
                                     <Deck items={Books} update={update} removeFav={false} removeSold={true} />
@@ -147,10 +149,10 @@ class Home extends Component {
                             </div>
 
 
-                            <div style={{ minHeight: '300px' }} className='container-fluid py-3 bg-light' >
+                            <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
 
-                                <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
-                                    <h3 className='text-center' ><b>Games</b></h3>
+                                <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
+                                    <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faGamepad} /> Games</b></h4>
                                 </div>
                                 <div className='container' >
                                     <Deck items={Games} update={update} removeFav={false} removeSold={true} />
@@ -158,10 +160,10 @@ class Home extends Component {
                             </div>
 
 
-                            <div style={{ minHeight: '300px' }} className='container-fluid py-3' >
+                            <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
 
-                                <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
-                                    <h3 className='text-center' ><b>Utilities</b></h3>
+                                <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
+                                    <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faSplotch} /> Utilities</b></h4>
                                 </div>
                                 <div className='container' >
                                     <Deck items={Utilities} update={update} removeFav={false} removeSold={true} />
@@ -169,16 +171,16 @@ class Home extends Component {
                             </div>
 
 
-                            <div style={{ minHeight: '300px' }} className='container-fluid py-3 bg-light' >
+                            <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
 
-                                <div className='mt-2 border-bottom- container' style={{ borderBottom: '0.5px dotted grey' }} >
-                                    <h3 className='text-center' ><b>Others</b></h3>
+                                <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
+                                    <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faShoppingCart} /> Others</b></h4>
                                 </div>
                                 <div className='container' >
                                     <Deck items={Other} update={update} removeSold={true} removeFav={false} />
                                 </div>
                             </div>
-                        </>
+                        </section>
                 }
 
             </>

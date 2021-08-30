@@ -1,0 +1,140 @@
+html {
+	 box-sizing: border-box;
+	 -moz-box-sizing: border-box;
+	 -webkit-box-sizing: border-box;
+	 background: #eee;
+	 overflow-x: hidden;
+	 font-family: 'Roboto', sans-serif;
+}
+ *, *:before, *:after {
+	 box-sizing: inherit;
+	 margin: 0;
+	 padding: 0;
+}
+ .section {
+	 width: 100%;
+	 position: relative;
+	 margin: 30px 0;
+}
+ .section__container {
+	 width: 1010px;
+	 margin: 0 auto;
+	 position: relative;
+}
+ @media screen and (max-width: 1050px) {
+	 .section__container {
+		 width: 100%;
+	}
+}
+ .section__container .notification-list {
+	 width: 95%;
+	 height: 100px;
+	 margin: 20px auto;
+	 position: relative;
+	 border-radius: 3px;
+	 background: #ddd;
+}
+ .section__container .notification-list:hover {
+	 box-shadow: 0px 5px 15px 0px rgba(50, 50, 50, 0.15);
+}
+ @media screen and (max-width: 533px) {
+	 .section__container .notification-list {
+		 height: 90px;
+	}
+}
+ .section__container .notification-list__image {
+	 width: 80px;
+	 height: 80px;
+	 margin: 10px;
+	 display: inline-block;
+	 background: #fff;
+	 border-radius: 3px;
+	 box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.25);
+}
+ @media screen and (max-width: 533px) {
+	 .section__container .notification-list__image {
+		 width: 50px;
+		 height: 50px;
+	}
+}
+ .section__container .notification-list__info {
+	 width: calc(94% - 80px);
+	 height: 80px;
+	 margin: 10px 0;
+	 display: inline-block;
+	 vertical-align: top;
+}
+ @media screen and (max-width: 533px) {
+	 .section__container .notification-list__info {
+		 width: calc(92% - 80px);
+	}
+}
+ @media screen and (max-width: 414px) {
+	 .section__container .notification-list__info {
+		 width: calc(90% - 80px);
+	}
+}
+ .section__container .notification-list__info h2 {
+	 margin: 0;
+	 font-size: 1.5em;
+	 font-weight: 300;
+	 color: #222;
+}
+ @media screen and (max-width: 768px) {
+	 .section__container .notification-list__info h2 {
+		 font-size: 1.3em;
+	}
+}
+ @media screen and (max-width: 533px) {
+	 .section__container .notification-list__info h2 {
+		 font-size: 1.1em;
+	}
+}
+ .section__container .notification-list__info .hour, .section__container .notification-list__info .date {
+	 font-size: 0.7em;
+	 font-weight: 600;
+	 border-radius: 3px;
+}
+ @media screen and (max-width: 533px) {
+	 .section__container .notification-list__info .hour, .section__container .notification-list__info .date {
+		 font-size: 0.6em;
+	}
+}
+ .section__container .notification-list__info .hour {
+	 color: #f24b0c;
+	 margin-right: 10px;
+}
+ .section__container .notification-list__info .date {
+	 color: #ff802e;
+}
+ .section__container .notification-list__info .delete {
+	 position: absolute;
+	 right: 30px;
+	 top: 0;
+	 bottom: 0;
+	 margin: auto;
+	 width: 20px;
+	 height: 20px;
+}
+ @media screen and (max-width: 533px) {
+	 .section__container .notification-list__info .delete {
+		 right: 10px;
+		 bottom: 10px;
+		 margin: 0;
+		 top: auto;
+	}
+}
+ .section__container .notification-list__info .delete img {
+	 width: 20px;
+	 height: 20px;
+	 position: relative;
+	 display: block;
+	 cursor: pointer;
+}
+ @media screen and (max-width: 533px) {
+	 .section__container .notification-list__info .delete img {
+		 width: 15px;
+		 height: 15px;
+	}
+}
+ 

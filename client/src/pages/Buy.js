@@ -49,10 +49,10 @@ function Buy() {
         return (
             <>
                 <section>
-                    <div className="container-fluid my-5 pe-5">
+                    <div className="container-fluid my-5 px-4">
                         <div className="row">
                             <div className="col-12 col-md-4">
-                                <div className="row p-4 pe-1">
+                                <div className="row px-2">
                                     <div className="col-12 d-grid"><Button as={Link} to='/buy/All' className='non-outlined-btn' variant='transparent'><FontAwesomeIcon size='lg' icon={faStore} /> <span className='h4 ms-2'>All</span> </Button> </div>
                                     <hr />
                                     <div className="col-12 d-grid"><Button as={Link} to='/buy/Sports' className='non-outlined-btn' variant='transparent'><FontAwesomeIcon size='lg' icon={faBasketballBall} /> <span className='h4 ms-2'>Sports</span> </Button> </div>

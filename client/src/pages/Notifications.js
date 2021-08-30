@@ -1,19 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import './Notification.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleRight, faTrash } from '@fortawesome/free-solid-svg-icons';
+import NOT_FOUND from './Not_Found';
+import { toast } from 'react-toastify';
 
 
 function Notifications(props) {
-    const { user } = props
+    console.log(props)
+    const { user, authorised } = props
     function ApproveButton(props) {
         if (props.message.slice(0, 12) === "wants to buy") {
-            return <button type="button" className="btn btn-success customNotifButtons" onClick={() => handleApprove(props.userEmail, props.userName, props.message)}>Approve</button>
+            return <button type="button" className="btn p-0 non-outlined-btn btn-transparent btn" onClick={() => handleApprove(props.userEmail, props.userName, props.message)}> <FontAwesomeIcon icon={faArrowAltCircleRight} className='text-success'/> Approve</button>
         } else {
             return null
         }
     };
 
     const handleDelete = (_id) => {
+        const newUser = {
+            ...user,
+            notifications: user.notifications.filter(notif => notif._id !== _id)
+        }
+        props.Update(newUser);
         axios({
             method: 'DELETE',
             url: `/api/user/notif/${props.user._id}`,
@@ -22,11 +33,7 @@ function Notifications(props) {
             }
         })
             .then(res => {
-                const newUser = {
-                    ...user,
-                    notifications: res.data.notifications
-                }
-                props.Update(newUser);
+               toast('deleted Successfully')
             })
     };
 
@@ -44,26 +51,42 @@ function Notifications(props) {
             })
     }
     const { notifications } = props.user;
-    return (
-        <div id="notif-card-container">
-            {notifications.map(({ _id, message, userName, userEmail, mobile }) => (
-                <div className="card" id="customCard" key={_id}>
-                    <div className="card-body" id="customCardBody">
-                        <h3 className="card-title">{userName} {message}</h3>
-                        <p className="card-text">Email: {userEmail}</p>
-                        <p className="card-text">Mobile no.  {mobile}</p>
-                        <ApproveButton message={message} userEmail={userEmail} userName={userName} />
-                        <button type="button" className="btn btn-danger customNotifButtons" onClick={() => handleDelete(_id)}>Delete</button>
+    return (<>
+        <section class="section">
+            <div class="section__container">
+                { authorised ? notifications.length > 0 ? notifications.map(({ _id, message, userName, userEmail, mobile, dp }) => (
+                    <div class="notification-list bg-light" key={_id}>
+                        <div class="notification-list__image">
+                            <img src={dp} alt="" />
+                        </div>
+                        <div class="notification-list__info">
+                            <h2>{userName}{' '} {message} </h2>
+                            <span class="hour">
+                                {userEmail}
+                            </span>
+                            <span class="date">
+                                {mobile}
+                            </span>
+                            <div className="" onClick={() => handleDelete(_id)}>
+                            <ApproveButton message={message} userEmail={userEmail} userName={userName} />
+                            </div>
+                            <div className="delete btn" onClick={() => handleDelete(_id)}>
+                               <FontAwesomeIcon icon={faTrash} className='text-danger'/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            ))}
-        </div>
+                )): <div className="text-center">No Notifications!</div> : <NOT_FOUND/>}
+            </div>
+        </section>
+    </>
+
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        authorised: state.Authorised
     }
 };
 

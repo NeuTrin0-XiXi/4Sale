@@ -13,7 +13,8 @@ function BuyBtn(props) {
                     message: `wants to buy ${props.title}`,
                     userName: user.name,
                     userEmail: user.email,
-                    mobile: user.mobile
+                    mobile: user.mobile,
+                    dp: user.profilePic
                 }
             })
                 .then(res => {
