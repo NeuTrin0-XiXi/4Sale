@@ -67,7 +67,7 @@ function Notifications(props) {
                             <span class="date">
                                 {mobile}
                             </span>
-                            <div className="" onClick={() => handleDelete(_id)}>
+                            <div>
                             <ApproveButton message={message} userEmail={userEmail} userName={userName} />
                             </div>
                             <div className="delete btn" onClick={() => handleDelete(_id)}>
