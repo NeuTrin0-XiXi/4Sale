@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 function ItemList(props) {
-    const { user, items } = props
+    const { user, items, auth } = props
 
     if (items.length === 1 && items[0]._id === '') {
         return <div>No Items!</div>;
@@ -29,7 +29,7 @@ function ItemList(props) {
                                 </Card.Text>
                                 <Button variant="warning" as={Link} to={`/product${_id}`} ><FontAwesomeIcon icon={faCartPlus} /> Buy</Button>
                                 {
-                                    user ? user.soldItems.includes(_id) ? <DeleteBtn /> :
+                                    auth ? user.soldItems.includes(_id) ? <DeleteBtn update={props.update} removeSold={props.removeSold} id={_id} /> :
                                         <WishBtn _id={_id} update={props.update} removeFav={props.removeFav} /> : null
                                 }
                             </Card.Body>

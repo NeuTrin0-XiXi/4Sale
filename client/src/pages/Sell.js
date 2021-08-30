@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+// import { Redirect } from 'react-router';
 
 
 
@@ -38,6 +39,7 @@ function Sell(props) {
                         console.log(err);
                     });
             })
+        // return <Redirect to={'/'} />
 
     }
     if (props.AuthLoading) {

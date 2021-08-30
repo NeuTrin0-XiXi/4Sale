@@ -167,11 +167,11 @@ function ProductPage(props) {
                                 </table>
                             </div>
                             <hr />{
-                                user ? user.soldItems.includes(id) ? <DeleteBtn /> :
+                                props.auth ? user.soldItems.includes(id) ? <DeleteBtn toHome={true} id={id} /> :
                                     <>
-                                        <BuyBtn />
-                                        <span className='ms-2' > <WishBtn _id={productDetails._id} update={props.update} removeSold={props.removeSold} removeFav={props.removeFav} />Add to Favourites </span>
-                                    </> : null
+                                        <BuyBtn id={id} title={productDetails.title} />
+                                        <span className='ms-2' > <WishBtn _id={productDetails._id} removeFav={false} />Add to Favourites </span>
+                                    </> : <BuyBtn />
                             }
 
                         </div>
