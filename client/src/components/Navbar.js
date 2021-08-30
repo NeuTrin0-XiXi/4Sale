@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom';
-// import { connect } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import { Container, Navbar, Form, Button, Nav, NavDropdown } from 'react-bootstrap';
+import { Container, Navbar, Form, Button, Nav, NavDropdown, Dropdown } from 'react-bootstrap';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -47,23 +46,27 @@ function NavbarComponent(props) {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Link style={textColor} to="/" >Home</Link><hr  className='m-1 text-light'  />
-                        <Sell auth={props.auth} /><hr  className='m-1 text-light'  />
-                        <Link style={textColor} to="/about">About</Link><hr  className='m-1 text-light'  />
-                        <Link style={textColor} to="/contact">Contact</Link><hr  className='m-1 text-light'  />
-                        <NavDropdown style={textColor} title="Categories" id="collasible-nav-dropdown">
-                            <Link className="dropdown-item" to="/buy/Sports">Sports</Link>
-                            <Link className="dropdown-item" to="/buy/Books">Books</Link>
-                            <Link className="dropdown-item" to="/buy/Games">Games</Link>
-                            <Link className="dropdown-item" to="/buy/Utilities">Utilities</Link>
-                            <NavDropdown.Divider />
-                            <Link className="dropdown-item" to="/buy/Other">Others</Link>
-                        </NavDropdown><hr  className='m-1 text-light'  />
+                        <Link style={textColor} to="/" >Home</Link><hr className='m-1 text-light' />
+                        <Sell auth={props.auth} /><hr className='m-1 text-light' />
+                        <Link style={textColor} to="/about">About</Link><hr className='m-1 text-light' />
+                        <Link style={textColor} to="/contact">Contact</Link><hr className='m-1 text-light' />
+                        <Dropdown style={textColor} id="collasible-nav-dropdown">
+                            <Dropdown.Toggle className='non-outlined-btn btn-warning ' >Buy</Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item as={Link} to="/buy/Sports">Sports</Dropdown.Item>
+                                <Dropdown.Item as={Link} to="/buy/Books">Books</Dropdown.Item>
+                                <Dropdown.Item as={Link} to="/buy/Games">Games</Dropdown.Item>
+                                <Dropdown.Item as={Link} to="/buy/Utilities">Utilities</Dropdown.Item>
+                                <NavDropdown.Divider />
+                                <Dropdown.Item as={Link} to="/buy/Other">Others</Dropdown.Item>
+                            </Dropdown.Menu>
+
+                        </Dropdown><hr className='m-1 text-light' />
                     </Nav>
-                    <Form className="d-flex" onSubmit={handleSubmit} style={{height: '40px'}}>
+                    <Form className="d-flex" onSubmit={handleSubmit} style={{ height: '40px' }}>
                         <Form.Control autoCapitalize="sentences" onChange={handleChange} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <Button variant='transparent' className='text-light'  size='sm' type="submit"><FontAwesomeIcon icon={faSearch}/></Button>
-                    </Form><hr  className='m-1 text-light'  />
+                        <Button variant='transparent' className='text-light' size='sm' type="submit"><FontAwesomeIcon icon={faSearch} /></Button>
+                    </Form><hr className='m-1 text-light' />
                     <Nav className='mx-2' >
                         <ProfileButton />
                     </Nav>
@@ -99,11 +102,11 @@ function NavbarComponent(props) {
                                         Categories
                                     </button>
                                     <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                        <Link className="dropdown-item" to="/buy/Sports">Sports</Link>
-                                        <Link className="dropdown-item" to="/buy/Books">Books</Link>
-                                        <Link className="dropdown-item" to="/buy/Games">Games</Link>
-                                        <Link className="dropdown-item" to="/buy/Utilities">Utilities</Link>
-                                        <Link className="dropdown-item" to="/buy/Other">Other</Link>
+                                        <Link to="/buy/Sports">Sports</Link>
+                                        <Link to="/buy/Books">Books</Link>
+                                        <Link to="/buy/Games">Games</Link>
+                                        <Link to="/buy/Utilities">Utilities</Link>
+                                        <Link to="/buy/Other">Other</Link>
                                     </ul>
                                 </div>
                             </li>

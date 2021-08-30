@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap'
 
 export default function DeleteBtn() {
     return (
-        <Button variant='light'  className='text-danger' >
+        <Button variant='transparent'  className='text-danger' >
             <FontAwesomeIcon size='lg' icon={faTrash} />
         </Button>
 

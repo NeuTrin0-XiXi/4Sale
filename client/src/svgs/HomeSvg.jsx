@@ -6,7 +6,7 @@ function HomeSvg() {
             <svg
                 // style={{position: 'relative', right: '1%'}}
                 xmlns="http://www.w3.org/2000/svg"
-                height='inherit'
+                height='100%'
                 version="1.1"
                 viewBox="0 0 648.229 529.167"
             >

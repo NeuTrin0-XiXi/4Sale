@@ -10,7 +10,7 @@ const initialState = {
         mobile: 0
     },
     Authorised: false,
-    loading: false
+    loading: true
 }
 
 const userReducers = (state = initialState, action) => {
@@ -25,13 +25,13 @@ const userReducers = (state = initialState, action) => {
             return {
                 user: initialState.user,
                 Authorised: false,
-                loading: true
+                loading: false
             };
 
         case 'SET_AUTH_FALSE':
             return {
                 user: initialState.user,
-                Authorised: initialState.Authorised,
+                Authorised: false,
                 loading: false
             };
 

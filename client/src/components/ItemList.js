@@ -7,17 +7,19 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import DeleteBtn from './DeleteBtn';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import EmptySvg from '../svgs/EmptySvg';
 
 function ItemList(props) {
     const { user, items } = props
 
-    if (items.length === 1 && items[0]._id === '') {
-        return <div>No Items!</div>;
+    if (items.length === 0) {
+        return <> <div style={{width: '10%', margin: '50px auto 20px auto'}} ><EmptySvg/>
+        </div>  <h3 className='text-center' >No Items!</h3></>;
     } else {
         return (
             <div className="card-deck ">
                 <Container className="d-flex flex-wrap justify-content-center gap-4">
-                    {items.map(({ _id, title, price, images }) => (
+                    {items && items.map(({ _id, title, price, images }) => (
                         <Card style={{ width: '16rem', boxShadow: '0 2px 2px 0px rgba(0,0,0,0.5)' }} key={_id} >
                             <Button as={Link} variant='transparent' to={`/product${_id}`}>
                                 <Card.Img src={images[0]} alt="item-img" style={{ cursor: "pointer", height: '150px' }} />
@@ -27,7 +29,7 @@ function ItemList(props) {
                                 <Card.Text>
                                     &#8377;    {price}
                                 </Card.Text>
-                                <Button variant="warning" as={Link} to={`/product${_id}`} ><FontAwesomeIcon icon={faCartPlus} /> Buy</Button>
+                                <Button variant="warning" as={Link} to={`/product/${_id}`} ><FontAwesomeIcon icon={faCartPlus} /> Buy</Button>
                                 {
                                     user ? user.soldItems.includes(_id) ? <DeleteBtn /> :
                                         <WishBtn _id={_id} update={props.update} removeFav={props.removeFav} /> : null
