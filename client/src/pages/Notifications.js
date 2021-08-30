@@ -9,7 +9,6 @@ import { toast } from 'react-toastify';
 
 
 function Notifications(props) {
-    console.log(props)
     const { user, authorised } = props
     function ApproveButton(props) {
         if (props.message.slice(0, 12) === "wants to buy") {
@@ -25,6 +24,7 @@ function Notifications(props) {
             notifications: user.notifications.filter(notif => notif._id !== _id)
         }
         props.Update(newUser);
+
         axios({
             method: 'DELETE',
             url: `/api/user/notif/${props.user._id}`,
@@ -33,7 +33,7 @@ function Notifications(props) {
             }
         })
             .then(res => {
-               toast('deleted Successfully')
+               toast.success('deleted Successfully')
             })
     };
 
@@ -41,9 +41,10 @@ function Notifications(props) {
         axios.put(`/api/user/notif/${userEmail}`, {
             notification: {
                 message: `approved buy-request for ${message.slice(13)}`,
-                userName: props.user.name,
-                userEmail: props.user.email,
-                mobile: props.user.mobile
+                userName: user.name,
+                userEmail: user.email,
+                mobile: user.mobile,
+                dp: user.profilePic
             }
         })
             .then(res => {
@@ -51,6 +52,7 @@ function Notifications(props) {
             })
     }
     const { notifications } = props.user;
+    
     return (<>
         <section class="section">
             <div class="section__container">

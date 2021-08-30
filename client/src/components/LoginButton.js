@@ -32,7 +32,7 @@ function LoginButton(props) {
                 user._id = _id;
                 user.mobile = mobile
                 props.Login(user);
-                toast("Logged In")
+                toast.success("Logged In")
             })
     };
 

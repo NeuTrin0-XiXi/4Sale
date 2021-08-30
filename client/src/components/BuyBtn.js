@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function BuyBtn(props) {
     const { user, auth } = props;
@@ -18,15 +19,15 @@ function BuyBtn(props) {
                 }
             })
                 .then(res => {
-                    alert(res.data);
+                    toast.success(res.data);
                 })
         }
         else {
-            alert("Please Login ");
+            toast.error("Please Login first ");
         }
     };
     return (
-        <Button onClick={() => { handleBuy() }} type="button" className="btn-warning btn-md mr-1 mb-2">Buy now</Button>
+        <Button onClick={() => { handleBuy() }} type="button" className="btn-warning non-outlined-btn btn-md mr-1 mb-2">Buy now</Button>
     )
 }
 

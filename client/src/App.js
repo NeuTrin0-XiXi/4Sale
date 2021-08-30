@@ -21,7 +21,15 @@ function App(props) {
                 </div>
                 <ScrollToTop />
                 <Footer />
-                <ToastContainer />
+                <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                draggable
+                pauseOnHover
+                />
             </>
         );
     }
