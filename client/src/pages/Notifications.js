@@ -12,7 +12,7 @@ function Notifications(props) {
     const { user, authorised } = props
     function ApproveButton(props) {
         if (props.message.slice(0, 12) === "wants to buy") {
-            return <button type="button" className="btn p-0 non-outlined-btn btn-transparent btn" onClick={() => handleApprove(props.userEmail, props.userName, props.message)}> <FontAwesomeIcon icon={faArrowAltCircleRight} className='text-success'/> Approve</button>
+            return <button type="button" style={{fontSize: '12px'}}  className="btn p-0 non-outlined-btn btn-transparent" onClick={() => handleApprove(props.userEmail, props.userName, props.message)}> <FontAwesomeIcon icon={faArrowAltCircleRight} className='text-success me-2'/>Approve</button>
         } else {
             return null
         }
@@ -33,7 +33,7 @@ function Notifications(props) {
             }
         })
             .then(res => {
-               toast.success('deleted Successfully')
+               toast.success('Deleted Successfully')
             })
     };
 
@@ -52,14 +52,14 @@ function Notifications(props) {
             })
     }
     const { notifications } = props.user;
-    
+
     return (<>
         <section class="section">
             <div class="section__container">
                 { authorised ? notifications.length > 0 ? notifications.map(({ _id, message, userName, userEmail, mobile, dp }) => (
                     <div class="notification-list bg-light" key={_id}>
                         <div class="notification-list__image">
-                            <img src={dp} alt="" />
+                            <img src={dp} alt="" style={{width: 'inherit', height: 'inherit'}} />
                         </div>
                         <div class="notification-list__info">
                             <h2>{userName}{' '} {message} </h2>
@@ -69,9 +69,9 @@ function Notifications(props) {
                             <span class="date">
                                 {mobile}
                             </span>
-                            <div>
+                            <div  >
                             <ApproveButton message={message} userEmail={userEmail} userName={userName} />
-                            </div>
+                            </div >
                             <div className="delete btn" onClick={() => handleDelete(_id)}>
                                <FontAwesomeIcon icon={faTrash} className='text-danger'/>
                             </div>

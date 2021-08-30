@@ -87,7 +87,7 @@ html {
 }
  @media screen and (max-width: 533px) {
 	 .section__container .notification-list__info h2 {
-		 font-size: 1.1em;
+		 font-size: 0.8em;
 	}
 }
  .section__container .notification-list__info .hour, .section__container .notification-list__info .date {
@@ -106,6 +106,7 @@ html {
 }
  .section__container .notification-list__info .date {
 	 color: #ff802e;
+     margin-right: 10px;
 }
  .section__container .notification-list__info .delete {
 	 position: absolute;
