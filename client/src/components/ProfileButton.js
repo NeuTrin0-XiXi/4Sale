@@ -1,13 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from 'react-redux';
-// import '../Combined.css';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import BellOn from '../svgs/BellOn';
 import BellOff from '../svgs/BellOff';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faCertificate, faUser } from '@fortawesome/free-solid-svg-icons';
 
 function NotifButton(props) {
     if (props.notifications) {
@@ -52,11 +53,11 @@ function ProfileButton(props) {
                         <img src={props.user.profilePic} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />
                     </button>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                        <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
-                        <li><Link className="dropdown-item" to="/favourites">Favourites</Link></li>
-                        <li><Link className="dropdown-item" to="/sold-items">Sold Items</Link></li>
+                        <li> <Link className="dropdown-item" to="/profile"><FontAwesomeIcon icon={faUser} /> {' '}  Profile</Link></li>
+                        <li>  <Link className="dropdown-item" to="/favourites"><FontAwesomeIcon icon={faHeart} /> {' '} Favourites</Link></li>
+                        <li>  <Link className="dropdown-item" to="/sold-items"><FontAwesomeIcon icon={faCertificate} /> {' '} Sold Items</Link></li>
                         <li><hr className="dropdown-divider" /></li>
-                        <li><LogoutButton /></li>
+                        <li> <LogoutButton /></li>
                     </ul>
                 </div>
 

@@ -53,6 +53,7 @@ function NavbarComponent(props) {
                         <Dropdown style={textColor} id="collasible-nav-dropdown">
                             <Dropdown.Toggle className='non-outlined-btn btn-warning ' >Buy</Dropdown.Toggle>
                             <Dropdown.Menu>
+                                <Dropdown.Item as={Link} to="/buy/All">All</Dropdown.Item>
                                 <Dropdown.Item as={Link} to="/buy/Sports">Sports</Dropdown.Item>
                                 <Dropdown.Item as={Link} to="/buy/Books">Books</Dropdown.Item>
                                 <Dropdown.Item as={Link} to="/buy/Games">Games</Dropdown.Item>

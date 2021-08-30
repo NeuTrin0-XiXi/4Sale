@@ -1,5 +1,4 @@
 import React from 'react';
-// import './Combined.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Component } from 'react';
 import axios from 'axios';
@@ -8,11 +7,13 @@ import HomeSvg from '../svgs/HomeSvg';
 import Spinner from '../components/Spinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBasketballBall, faBook, faGamepad, faReceipt, faShoppingCart, faSplotch } from '@fortawesome/free-solid-svg-icons';
+import NOT_FOUND from './Not_Found';
 
 class Home extends Component {
 
     state = {
         loading: true,
+        error: false,
         allItems: [
             // {
             // _id: '',
@@ -46,13 +47,27 @@ class Home extends Component {
                     ...this.state,
                     allItems: res.data,
                     loading: false
-                });
-            });
+                })
+            })
+            .catch(err => {
+                this.setState({
+                    ...this.state,
+                    error: true,
+                    loading: false
+                })
+            })
         axios.get(`/api/items/filter?categories=Sports`)
             .then(res => {
                 this.setState({
                     ...this.state,
                     Sports: res.data,
+                    loading: false
+                })
+            })
+            .catch(err => {
+                this.setState({
+                    ...this.state,
+                    error: true,
                     loading: false
                 })
             })
@@ -64,11 +79,25 @@ class Home extends Component {
                     loading: false
                 })
             })
+            .catch(err => {
+                this.setState({
+                    ...this.state,
+                    error: true,
+                    loading: false
+                })
+            })
         axios.get(`/api/items/filter?categories=Games`)
             .then(res => {
                 this.setState({
                     ...this.state,
                     Games: res.data,
+                    loading: false
+                })
+            })
+            .catch(err => {
+                this.setState({
+                    ...this.state,
+                    error: true,
                     loading: false
                 })
             })
@@ -80,6 +109,13 @@ class Home extends Component {
                     loading: false
                 })
             })
+            .catch(err => {
+                this.setState({
+                    ...this.state,
+                    error: true,
+                    loading: false
+                })
+            })
         axios.get(`/api/items/filter?categories=Other`)
             .then(res => {
                 this.setState({
@@ -88,10 +124,17 @@ class Home extends Component {
                     loading: false
                 })
             })
+            .catch(err => {
+                this.setState({
+                    ...this.state,
+                    error: true,
+                    loading: false
+                })
+            })
     }
 
     render() {
-        const { allItems, Sports, Books, Games, Utilities, Other, loading } = this.state;
+        const { allItems, Sports, Books, Games, Utilities, Other, loading, error } = this.state;
         const update = (id) => {
             this.setState({
                 ...this.state,
@@ -117,7 +160,7 @@ class Home extends Component {
                     <HomeSvg />
                 </div>
                 {
-                    loading ? <Spinner /> :
+                    loading ? <Spinner /> : error === false ?
                         <section className='container-fluid' >
                             <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
                                 <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
@@ -180,7 +223,8 @@ class Home extends Component {
                                     <Deck items={Other} update={update} removeSold={true} removeFav={false} />
                                 </div>
                             </div>
-                        </section>
+                        </section> :
+                        <NOT_FOUND />
                 }
 
             </>

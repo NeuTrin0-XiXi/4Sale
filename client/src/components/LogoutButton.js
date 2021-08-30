@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { GoogleLogout } from 'react-google-login';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 function LogoutButton(props) {
     const Logout = () => {
@@ -13,7 +15,7 @@ function LogoutButton(props) {
             <GoogleLogout
                 clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
                 render={renderProps => (
-                    <button className="dropdown-item" onClick={renderProps.onClick} disabled={renderProps.disabled}>Logout</button>
+                    <button className="dropdown-item" onClick={renderProps.onClick} style={{color: 'rgba(var(--bs-danger-rgb),var(--bs-text-opacity))!important'}} disabled={renderProps.disabled}><FontAwesomeIcon icon={faPowerOff}/>{' '} Logout</button>
                 )}
                 buttonText="Logout"
                 onLogoutSuccess={Logout}
