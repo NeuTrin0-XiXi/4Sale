@@ -57,7 +57,7 @@ class Buy extends Component {
                         <h2>Posted Ad for {this.state.number} items...</h2>
                     </div>
                     <div>
-                        <ItemList items={this.state.items} update={update} removeFav={false} />
+                        <ItemList items={this.state.items} update={update} removeSold={true}  removeFav={false} />
                     </div>
                 </>
             );

@@ -175,7 +175,7 @@ class Home extends Component {
                                     <h3 className='text-center' ><b>Others</b></h3>
                                 </div>
                                 <div className='container' >
-                                    <Deck items={Other} update={update} removeFav={false}/>
+                                    <Deck items={Other} update={update} removeSold={true} removeFav={false} />
                                 </div>
                             </div>
                         </>

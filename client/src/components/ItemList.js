@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import EmptySvg from '../svgs/EmptySvg';
 
 function ItemList(props) {
-    const { user, items } = props
+    const { user, items, auth } = props
 
     if (items.length === 0) {
         return <> <div style={{width: '10%', margin: '50px auto 20px auto'}} ><EmptySvg/>
@@ -31,7 +31,7 @@ function ItemList(props) {
                                 </Card.Text>
                                 <Button variant="warning" as={Link} to={`/product/${_id}`} ><FontAwesomeIcon icon={faCartPlus} /> Buy</Button>
                                 {
-                                    user ? user.soldItems.includes(_id) ? <DeleteBtn /> :
+                                    auth ? user.soldItems.includes(_id) ? <DeleteBtn update={props.update} removeSold={props.removeSold} id={_id} /> :
                                         <WishBtn _id={_id} update={props.update} removeFav={props.removeFav} /> : null
                                 }
                             </Card.Body>

@@ -58,7 +58,7 @@ class Favourites extends Component {
                     <h2>{this.state.number} favourites...</h2>
                 </div>
                 <div>
-                    <ItemList items={this.state.items} update={update} removeFav={true} />
+                    <ItemList items={this.state.items} update={update} removeSold={false} removeFav={true} />
                 </div>
             </>
         );
