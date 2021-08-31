@@ -21,6 +21,9 @@ function BuyBtn(props) {
                 .then(res => {
                     toast.success(res.data);
                 })
+                .catch(err=>{
+                    toast.error("Failed to notify")
+                })
         }
         else {
             toast.error("Please Login first ");

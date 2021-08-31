@@ -11,6 +11,7 @@ import Spinner from '../components/Spinner';
 import BuyBtn from '../components/BuyBtn';
 import DeleteBtn from '../components/DeleteBtn';
 import Deck from '../components/Deck';
+import { toast } from 'react-toastify';
 
 //MAIN FUNCTION
 function ProductPage(props) {
@@ -35,12 +36,10 @@ function ProductPage(props) {
     }
 
     useEffect(() => {
-        console.log('call')
         axios.get('/api/items/' + id)
             .then(res => {
                 setProductDetails(res.data)
                 setLoading(false)
-
                 //date
                 setDate(new Date(res.data.date))
 
@@ -49,9 +48,10 @@ function ProductPage(props) {
 
             })
             .catch(err => {
-                console.log(err)
-                setLoading(false)
+                console.log(err);
+                toast.error("Failed to load product")
                 setErr(true)
+                setLoading(false)
             })
     }, [id])
 
@@ -72,7 +72,6 @@ function ProductPage(props) {
     } else if (err === true) {
         return (
             <NOT_FOUND />
-
         )
     } else {
         return (

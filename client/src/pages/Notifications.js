@@ -54,19 +54,19 @@ function Notifications(props) {
     const { notifications } = props.user;
 
     return (<>
-        <section class="section">
-            <div class="section__container">
+        <section className="section">
+            <div className="section__container">
                 { authorised ? notifications.length > 0 ? notifications.map(({ _id, message, userName, userEmail, mobile, dp }) => (
-                    <div class="notification-list bg-light" key={_id}>
-                        <div class="notification-list__image">
+                    <div className="notification-list bg-light" key={_id}>
+                        <div className="notification-list__image">
                             <img src={dp} alt="" style={{width: 'inherit', height: 'inherit'}} />
                         </div>
-                        <div class="notification-list__info">
+                        <div className="notification-list__info">
                             <h2>{userName}{' '} {message} </h2>
-                            <span class="hour">
+                            <span className="hour">
                                 {userEmail}
                             </span>
-                            <span class="date">
+                            <span className="date">
                                 {mobile}
                             </span>
                             <div  >

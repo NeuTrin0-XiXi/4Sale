@@ -9,8 +9,7 @@ const initialState = {
         _id: '',
         mobile: 0
     },
-    Authorised: false,
-    loading: true
+    Authorised: false
 }
 
 const userReducers = (state = initialState, action) => {
@@ -18,28 +17,18 @@ const userReducers = (state = initialState, action) => {
         case 'SET_AUTH_TRUE':
             return {
                 user: action.payload,
-                Authorised: true,
-                loading: false
+                Authorised: true
             };
-        case 'SET_AUTH_LOADING':
-            return {
-                user: initialState.user,
-                Authorised: false,
-                loading: false
-            };
-
         case 'SET_AUTH_FALSE':
             return {
                 user: initialState.user,
-                Authorised: false,
-                loading: false
+                Authorised: false
             };
 
         case 'UPDATE_USER':
             return {
                 user: action.payload,
-                Authorised: true,
-                loading: false
+                Authorised: true
             };
         default: return state;
     }

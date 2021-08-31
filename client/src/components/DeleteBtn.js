@@ -5,11 +5,11 @@ import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { toast } from 'react-toastify';
 
 function DeleteBtn(props) {
     const { id, toHome } = props;
     const { user } = props;
-    console.log(props);
     const Delete = () => {
         if (props.removeSold) {
             props.update(id);
@@ -30,6 +30,14 @@ function DeleteBtn(props) {
                     data: {
                         sold: id
                     }
+                })
+                    .then(() => {
+                        toast.success("Deleted Ad")
+                    })
+            })
+            .catch(() => {
+                toast.catch(() => {
+                    toast.error("COuldn't delete Ad")
                 })
             })
     };
