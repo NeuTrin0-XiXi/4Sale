@@ -26,41 +26,18 @@ route.get('/', (req, res, next) => {
 
 //GET Items from Search Bar(name):                  
 route.get('/search', (req, res, next) => {
-    let items = [];
-    let uniqueItems = [];
     const { name } = req.query;
-
-    Item.find({ title: { $regex: name, $options: 'i' } })
+    Item.find({
+        $or: [
+            { title: { $regex: name, $options: 'i' } },
+            { categories: { $regex: name, $options: 'i' } },
+            { description: { $regex: name, $options: 'i' } }
+        ]
+    })
         .select('title price images')
         .then((item) => {
-            items = items.concat(item);
-            Item.find({ categories: { $regex: name, $options: 'i' } })
-                .select('title price images')
-                .then((item) => {
-                    items = items.concat(item);
-                    Item.find({ description: { $regex: name, $options: 'i' } })
-                        .select('title price images')
-                        .then((item) => {
-                            items = items.concat(item);
-                            for (let i = 0; i < items.length - 1; i++) {
-                                let flag = true;
-                                for (let j = i + 1; j < items.length; j++) {
-                                    if (items[i]._id === items[j]._id) {
-                                        flag = false;
-                                    }
-                                };
-                                if (flag) {
-                                    uniqueItems.push(items[i])
-                                }
-                            };
-                            res.header("Access-Control-Allow-Origin", "*");
-                            res.send(uniqueItems);
-
-                        })
-                        .catch(next);
-
-                })
-                .catch(next);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.send(item);
         })
         .catch(next);
 

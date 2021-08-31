@@ -46,6 +46,9 @@ function parseImage(req, res, next) {
     if (req.files.file3) {
         req.files.encodedUri.push(parser.format('.png', req.files.file3.data).content);
     }
+    if (req.files.file4) {
+        req.files.encodedUri.push(parser.format('.png', req.files.file4.data).content);
+    }
     return next();
 
 }
