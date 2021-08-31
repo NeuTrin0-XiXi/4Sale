@@ -17,14 +17,25 @@ function ProductPage(props) {
     const { user } = props;
     const { id } = useParams()
     const [productDetails, setProductDetails] = useState({})
-    const [images, setImages] = useState(["/no-image.png", "/no-image.png", "/no-image.png", "/no-image.png"])
+    const [images, setImages] = useState([])
     const [loading, setLoading] = useState(true)
     const [err, setErr] = useState(false)
     const [num, setNum] = useState(0)
     const [date, setDate] = useState('')
     const [similarItems, setSimilarItems] = useState([])
 
+    function handleImages(){
+        const newArray = [ ...images, "/no-image.png", "/no-image.png", "/no-image.png", "/no-image.png"]
+        newArray.reverse()
+        for (let i = 0; i < images.length; i++) {
+            newArray.shift()
+        }
+        newArray.reverse()
+        return newArray
+    }
+
     useEffect(() => {
+        console.log('call')
         axios.get('/api/items/' + id)
             .then(res => {
                 setProductDetails(res.data)
@@ -34,12 +45,7 @@ function ProductPage(props) {
                 setDate(new Date(res.data.date))
 
                 //images
-                const newArray = [...images, ...res.data.images]
-                for (let i = 0; i < res.data.images.length; i++) {
-                    newArray.shift()
-                }
-                newArray.reverse()
-                setImages(newArray)
+                setImages(res.data.images)
 
             })
             .catch(err => {
@@ -47,16 +53,16 @@ function ProductPage(props) {
                 setLoading(false)
                 setErr(true)
             })
-    }, [id, images, productDetails.date])
+    }, [id])
 
     useEffect(() => {
         axios.get(`/api/items/filter?categories=${productDetails.categories}`)
-        .then(res => {
-           setSimilarItems(res.data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                setSimilarItems(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [productDetails.categories])
 
     if (loading) {
@@ -94,9 +100,12 @@ function ProductPage(props) {
                                     <div className="col-12">
                                         <div className="row p-3">
                                             {
-                                                images ? images.map((img, i) =>
-                                                    <div onClick={() => setNum(i)} key={i} className="col-3 p-2" style={{ cursor: 'pointer', border: '0.5px solid #bbbbbb' }}>
-                                                        <img alt='' src={img} style={{width: '100%', margin: 'auto'}} />
+                                                images.length>0 ? handleImages().map((img, i) =>
+                                                    <div onClick={() => setNum(i)} key={i} className="col-3" style={{
+                                                        cursor: 'pointer',
+                                                        border: '0.5px solid #bbbbbb',
+                                                    }}>
+                                                        <img alt='' src={img} className='img-fluid' />
                                                     </div>
                                                 ) : null
                                             }
@@ -150,7 +159,7 @@ function ProductPage(props) {
                         </div>
                     </div>
                     <div className="h3 px-5">Similar Items</div>
-                    <Deck items={similarItems}removeSold={true} removeFav={false} />
+                    <Deck items={similarItems} removeSold={true} removeFav={false} />
                 </section>
 
             </>

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import './Combined.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 // import { Redirect } from 'react-router';
 
 
@@ -12,7 +13,10 @@ function Sell(props) {
     const { user } = props;
     const { history } = props;
     const { Update } = props;
+    const [posting, setPosting] = useState(null)
+
     function handleSubmit(e) {
+        setPosting(true)
         e.preventDefault();
         const formData = e.target;
         const newItem = new FormData(formData);
@@ -21,9 +25,12 @@ function Sell(props) {
         newItem.append('userEmail', user.email);
         newItem.append('userID', user._id);
 
+        console.log(newItem)
+
         axios.post('/api/items', newItem)
             .then(res => {
-                alert(`Posted Ad for ${res.data.title}`);
+                setPosting(false)
+                toast.success(`Posted Ad for ${res.data.title}`);
                 history.push('/');
                 axios.put(`/api/user/sold/${user._id}`, {
                     sold: res.data._id
@@ -36,8 +43,13 @@ function Sell(props) {
                         Update(newUser);
                     })
                     .catch(err => {
+                        setPosting(false)
                         console.log(err);
                     });
+            })
+            .catch(err => {
+                setPosting(false)
+                console.log(err)
             })
         // return <Redirect to={'/'} />
 
@@ -50,8 +62,16 @@ function Sell(props) {
         )
     } else {
         return (
-            <div>
-                <div className="container-fluid ">
+            <>
+            {
+               posting === true ? <div style={{
+                   width: '100vw',
+                   height: '100vh',
+                   display: 'flex',
+                   alignItems: 'center',
+                   justifyContent: 'center'
+               }} ><h2 className="text-center">Posting...</h2></div> :
+               <div className="container-fluid ">
                     <main>
 
                         <div className='container-fluid d-flex justify-content-between mb-4 ' style={{
@@ -64,9 +84,6 @@ function Sell(props) {
                             </div>
                             <img src="/sell.jpg" alt="" style={{ height: 'inherit' }} />
                         </div>
-
-
-
 
                         <div className="container px-1 ">
                             <hr />
@@ -141,6 +158,7 @@ function Sell(props) {
                                                 <input required type="file" className="form-control" id="image1" placeholder="Enter the category" name="file1" />
                                                 <input type="file" className="form-control" id="image2" placeholder="Enter the category" name="file2" />
                                                 <input type="file" className="form-control" id="image3" placeholder="Enter the category" name="file3" />
+                                                <input type="file" className="form-control" id="image4" placeholder="Enter the category" name="file4" />
                                                 <div className="invalid-feedback">
                                                     Please upload an image.
                                                 </div>
@@ -161,25 +179,18 @@ function Sell(props) {
                                 </div>
 
                             </div>
-
                         </div>
-
-
                     </main>
-
-                    <br />
-                    <br />
                     <br />
                     <br />
                 </div>
+            }
 
-
+               
+                
                 <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossOrigin="anonymous"></script>
-
                 <script src="form-validation.js"></script>
-
-
-            </div>
+            </>
         )
     }
 }
