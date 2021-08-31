@@ -89,12 +89,12 @@ function ProductPage(props) {
 
                                     <div className="col-10 mb-0">
                                         <figure className="text-center view overlay rounded z-depth-1 main-img">
-                                            <a href={images[num]} data-size="710x823" >
-                                                <img alt='' src={images[num]} className="img-fluid z-depth-1" />
+                                            <a href={handleImages()[num]} data-size="710x823" >
+                                                <img alt='' src={handleImages()[num]} className="img-fluid z-depth-1" />
                                             </a>
                                         </figure>
                                     </div>
-                                    <div className="col-1 d-flex m-auto" onClick={() => setNum(prevNum => prevNum < 2 ? prevNum + 1 : prevNum)} >
+                                    <div className="col-1 d-flex m-auto" onClick={() => setNum(prevNum => prevNum < 3 ? prevNum + 1 : prevNum)} >
                                         <FontAwesomeIcon size='lg' icon={faAngleRight} />
                                     </div>
                                     <div className="col-12">
