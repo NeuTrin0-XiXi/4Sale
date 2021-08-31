@@ -55,9 +55,9 @@ class Favourites extends Component {
         return (
             <>
                 <div className="results">
-                    <h2>{this.state.number} favourites...</h2>
+                    <h2 className='text-center py-3' >Favourites</h2>
                 </div>
-                <div>
+                <div className='pb-5'>
                     <ItemList items={this.state.items} update={update} removeSold={false} removeFav={true} />
                 </div>
             </>

@@ -10,6 +10,7 @@ import { faAngleLeft, faAngleRight, faRupeeSign } from '@fortawesome/free-solid-
 import Spinner from '../components/Spinner';
 import BuyBtn from '../components/BuyBtn';
 import DeleteBtn from '../components/DeleteBtn';
+import Deck from '../components/Deck';
 
 //MAIN FUNCTION
 function ProductPage(props) {
@@ -21,6 +22,7 @@ function ProductPage(props) {
     const [err, setErr] = useState(false)
     const [num, setNum] = useState(0)
     const [date, setDate] = useState('')
+    const [similarItems, setSimilarItems] = useState([])
 
     useEffect(() => {
         axios.get('/api/items/' + id)
@@ -46,42 +48,16 @@ function ProductPage(props) {
                 setErr(true)
             })
     }, [id, images, productDetails.date])
-    // function Buy(props) {
-    //     const handleBuy = (auth) => {
-    //         if (auth) {
-    //             axios.put(`/api/items/notify/${id}`, {
-    //                 notification: {
-    //                     message: `wants to buy ${productDetails.title}`,
-    //                     userName: user.name,
-    //                     userEmail: user.email,
-    //                     mobile: user.mobile
-    //                 }
-    //             })
-    //                 .then(res => {
-    //                     alert(res.data);
-    //                 })
-    //         }
-    //         else {
-    //             alert("Please Login ");
-    //         }
-    //     };
 
-    //     function Contains(id) {
-    //         let i;
-    //         for (i = 0; i < user.soldItems.length; i++) {
-    //             if (id === user.soldItems[i]) {
-    //                 return true;
-    //             }
-    //         }
-    //         return false;
-    //     };
-
-    //     if (Contains(id)) {
-    //         return null;
-    //     } else {
-    //         return <Button onClick={() => { handleBuy(props.auth) }} className="col-md-7 customBuyButton" id="BuyButtonId"  >Buy</Button>
-    //     }
-    // };
+    useEffect(() => {
+        axios.get(`/api/items/filter?categories=${productDetails.categories}`)
+        .then(res => {
+           setSimilarItems(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }, [productDetails.categories])
 
     if (loading) {
         return (
@@ -96,7 +72,7 @@ function ProductPage(props) {
         return (
             <>
                 <section className=" py-3 container-fluid">
-                    <div className="my-5 row ">
+                    <div className="my-3 row ">
                         <div className="col-md-6 mb-4 mb-md-0">
                             <div id="mdb-lightbox-ui" />
                             <div className="mdb-lightbox">
@@ -119,11 +95,8 @@ function ProductPage(props) {
                                         <div className="row p-3">
                                             {
                                                 images ? images.map((img, i) =>
-                                                    <div onClick={() => setNum(i)} key={i} className="col-3" style={{ cursor: 'pointer', border: '0.5px solid #bbbbbb' }}>
-                                                        <div className="view overlay rounded z-depth-1 gallery-item">
-                                                            <img alt='' src={img} className="img-fluid" />
-                                                            <div className="mask rgba-white-slight" />
-                                                        </div>
+                                                    <div onClick={() => setNum(i)} key={i} className="col-3 p-2" style={{ cursor: 'pointer', border: '0.5px solid #bbbbbb' }}>
+                                                        <img alt='' src={img} style={{width: '100%', margin: 'auto'}} />
                                                     </div>
                                                 ) : null
                                             }
@@ -176,6 +149,8 @@ function ProductPage(props) {
 
                         </div>
                     </div>
+                    <div className="h3 px-5">Similar Items</div>
+                    <Deck items={similarItems}removeSold={true} removeFav={false} />
                 </section>
 
             </>

@@ -54,9 +54,9 @@ class Buy extends Component {
             return (
                 <>
                     <div className="results">
-                        <h2>Posted Ad for {this.state.number} items...</h2>
+                        <h2 className='text-center py-3'  >Your Ad</h2>
                     </div>
-                    <div>
+                    <div className='pb-5'>
                         <ItemList items={this.state.items} update={update} removeSold={true}  removeFav={false} />
                     </div>
                 </>

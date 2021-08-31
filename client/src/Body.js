@@ -9,7 +9,7 @@ import Profile from './pages/ProfilePage';
 import Buy from './pages/Buy';
 import NOT_FOUND from './pages/Not_Found';
 import { Route, Switch } from 'react-router-dom';
-import Search from './Search';
+import Search from './pages/Search';
 import Favourites from './pages/Favourites';
 import SoldItems from './pages/SoldItems';
 import Notifications from './pages/Notifications';
