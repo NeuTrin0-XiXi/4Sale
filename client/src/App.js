@@ -22,7 +22,7 @@ function App(props) {
                 <ScrollToTop />
                 <Footer />
                 <ToastContainer
-                position="top-right"
+                position="bottom-right"
                 autoClose={3000}
                 newestOnTop={false}
                 closeOnClick
