@@ -32,12 +32,12 @@ function DeleteBtn(props) {
                     }
                 })
                     .then(() => {
-                        toast.success("Deleted Ad")
+                        toast.success("Ad deleted successfully")
                     })
             })
             .catch(() => {
                 toast.catch(() => {
-                    toast.error("COuldn't delete Ad")
+                    toast.error("Couldn't delete Ad!")
                 })
             })
     };
