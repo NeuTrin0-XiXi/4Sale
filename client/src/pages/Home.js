@@ -46,7 +46,7 @@ class Home extends Component {
             .then(res => {
                 this.setState({
                     ...this.state,
-                    allItems: res.data,
+                    allItems: res.data.splice(0, 8),
                     loading: false
                 })
             })
