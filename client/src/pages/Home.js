@@ -41,6 +41,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
+    
         axios.get('/api/items')
             .then(res => {
                 this.setState({
@@ -134,6 +135,7 @@ class Home extends Component {
     }
 
     render() {
+        console.log('call')
         const { allItems, Sports, Books, Games, Utilities, Other, loading, error } = this.state;
         const update = (id) => {
             this.setState({

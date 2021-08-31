@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import './Combined.css';
 import { connect } from 'react-redux';
@@ -10,17 +10,30 @@ import { toast } from 'react-toastify';
 
 
 function Sell(props) {
-    const { user } = props;
+    const { user, authorised } = props;
     const { history } = props;
     const { Update } = props;
     const [posting, setPosting] = useState(null)
+    console.log(authorised)
+
+    useEffect(() => {
+        if (!authorised) {
+            toast.warn('You need to login first!')
+            return
+        }
+    }, [authorised])
 
     function handleSubmit(e) {
+
+        if (!authorised) {
+            toast.warn('You need to login first!')
+            return
+        }
+
         setPosting(true)
         e.preventDefault();
         const formData = e.target;
         const newItem = new FormData(formData);
-
         newItem.append('userName', user.name);
         newItem.append('userEmail', user.email);
         newItem.append('userID', user._id);
@@ -51,7 +64,6 @@ function Sell(props) {
                 console.log(err);
                 toast.error("Failed to post");
             })
-        // return <Redirect to={'/'} />
 
     }
     return (
@@ -189,7 +201,8 @@ function Sell(props) {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        authorised: state.Authorised
     }
 };
 const mapDispatchToProps = (dispatch) => {
