@@ -16,23 +16,27 @@ import Notifications from './pages/Notifications';
 
 
 function Body(props) {
+    const restrictedRoutes = [
+        <Route key={0} path='/notifications' exact component={Notifications} />,
+        <Route key={1} path='/profile' exact component={Profile} />,
+        <Route key={2} path='/favourites' exact component={Favourites} />,
+        <Route key={3} path='/sold-items' exact component={SoldItems} />
+    ]
     return (
-        <>
-           <Switch>
-               <Route path='/' exact component={Home}/>
-               <Route path='/about' exact component={AboutUs}/>
-               <Route path='/contact' exact component={ContactUs}/>
-               <Route path='/sell' exact component={Sell}/>
-               <Route path='/notifications' exact component={Notifications}/>
-               <Route path='/profile' exact component={Profile}/>
-               <Route path='/favourites' exact component={Favourites}/>
-               <Route path='/sold-items' exact component={SoldItems}/>
-               <Route path='/buy/:category' exact component={Buy}/>
-               <Route path='/search/:query' exact component={Search}/>
-               <Route path='/product/:id' exact component={ProductPage}/>
-               <Route path={'*'}  component={NOT_FOUND}/>
-           </Switch>
-        </>
+        <Switch>
+            <Route path='/' exact component={Home} />
+            <Route path='/about' exact component={AboutUs} />
+            <Route path='/contact' exact component={ContactUs} />
+            <Route path='/buy/:category' exact component={Buy} />
+            <Route path='/search/:query' exact component={Search} />
+            <Route path='/product/:id' exact component={ProductPage} />
+            <Route path='/sell' exact component={Sell} />
+            {props.Auth ?
+                restrictedRoutes.map(routes => routes)
+                : null
+            }
+            <Route path={'*'} component={NOT_FOUND} />
+        </Switch>
     )
 }
 const mapStateToProps = (state) => {

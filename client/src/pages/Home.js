@@ -41,7 +41,6 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        console.log('call')
         axios.get('/api/items')
             .then(res => {
                 this.setState({

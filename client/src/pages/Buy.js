@@ -18,17 +18,6 @@ function Buy() {
     useEffect(() => {
         setLoading(true)
         category === 'All' ? axios.get('/api/items')
-        .then(res => {
-            console.log(res.data)
-            setItems(res.data)
-            setLoading(false)
-        })
-        .catch(err => {
-            setLoading(false)
-            setErr(true)
-        })
-        :
-        axios.get(`/api/items/filter?categories=${category}`)
             .then(res => {
                 setItems(res.data)
                 setLoading(false)
@@ -37,6 +26,16 @@ function Buy() {
                 setLoading(false)
                 setErr(true)
             })
+            :
+            axios.get(`/api/items/filter?categories=${category}`)
+                .then(res => {
+                    setItems(res.data)
+                    setLoading(false)
+                })
+                .catch(err => {
+                    setLoading(false)
+                    setErr(true)
+                })
     }, [category])
 
 
@@ -71,12 +70,12 @@ function Buy() {
                                     <div className="col-12 h2 p-3 text-center bg-light rounded" style={{ borderBottom: '1px solid #aaaaaa' }} >
                                         <span>{category + ' '}</span>
                                         {
-                                            items.length > 0 ? <span>{'('}{items.length}{')'}</span>: null
+                                            items.length > 0 ? <span>{'('}{items.length}{')'}</span> : null
                                         }
-                                     </div>
+                                    </div>
                                     <div className="col-12 pt-3 pb-4" >
                                         {
-                                            loading ? <Spinner /> : <ItemList items={items} update={update} removeFav={false} />
+                                            loading ? <Spinner /> : <ItemList items={items} update={update} removeSold={true} removeFav={false} />
                                         }
                                     </div>
                                 </div>
