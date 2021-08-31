@@ -16,8 +16,7 @@ function Search() {
         setLoading(true)
         axios.get(`/api/items/search?name=${query}`)
             .then(res => {
-                const unique = [...new Map(res.data.map(item => [item['_id'], item])).values()];
-                setItems(unique)
+                setItems(res.data)
                 setLoading(false)
             })
             .catch(err => {
