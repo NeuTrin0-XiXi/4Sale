@@ -28,7 +28,11 @@ function ProductPage(props) {
     const [orderStatus, setStatus] = useState([])
 
     useEffect(() => {
-      setStatus(user.orders.filter(order => order._id = id))
+        for (const elem of user.orders) {
+            if (elem._id === id) {
+                setStatus([elem]);
+            }
+        }
     }, [id, user.orders])
 
     // function handleImages(){
@@ -158,7 +162,7 @@ function ProductPage(props) {
                                 props.auth ? user.soldItems.includes(id) ? <DeleteBtn toHome={true} id={id} /> :
                                     <>
                                         {
-                                            orderStatus.length>0 && orderStatus[0].success === false?  <Button className="btn-warning non-outlined-btn btn-md mr-1 mb-2" disabled  >Notified</Button> :   orderStatus.length>0 && orderStatus[0].success === true? <Button className="btn-warning non-outlined-btn btn-md mr-1 mb-2" disabled  >Approved</Button> : <BuyBtn id={id} title={productDetails.title} />
+                                            orderStatus.length > 0 && orderStatus[0].success === false ? <Button className="btn-warning non-outlined-btn btn-md mr-1 mb-2" disabled  >Notified</Button> : orderStatus.length > 0 && orderStatus[0].success === true ? <Button className="btn-success non-outlined-btn btn-md mr-1 mb-2" disabled  >Approved</Button> : <BuyBtn id={id} title={productDetails.title} />
 
                                         }
                                         <span className='ms-2' > <WishBtn _id={productDetails._id} removeFav={false} />Add to Favourites </span>
