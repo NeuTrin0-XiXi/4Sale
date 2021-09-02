@@ -6,10 +6,9 @@ import { toast } from 'react-toastify';
 
 function BuyBtn(props) {
     const { user, auth } = props;
-    console.log(user)
     const { id } = props;
     const handleBuy = () => {
-      
+
         if (auth) {
             axios.put(`/api/items/notify/${id}`, {
                 notification: {
@@ -25,9 +24,17 @@ function BuyBtn(props) {
                     axios.put(`/api/user/order/${user._id}`, {
                         order: id
                     })
-                    .then(res => {
-                        ///upadate user in userReducer here after clicking buy btn
-                    })
+                        .then(res => {
+                            ///upadate user in userReducer here after clicking buy btn
+                            const newUser = {
+                                ...user,
+                                orders: [
+                                    ...user.orders,
+                                    { _id: id, success: false }
+                                ]
+                            };
+                            props.Update(newUser);
+                        })
                     toast.success(res.data);
                 })
                 .catch(err => {
@@ -48,6 +55,13 @@ const mapStateToProps = (state) => {
         user: state.user,
         auth: state.Authorised
     }
-}
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        Update: (user) => {
+            dispatch({ type: 'UPDATE_USER', payload: user })
+        }
+    }
+};
 
-export default connect(mapStateToProps)(BuyBtn);
+export default connect(mapStateToProps, mapDispatchToProps)(BuyBtn);
