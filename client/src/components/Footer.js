@@ -22,7 +22,7 @@ const Footer = () => {
                         <div className="col-12 col-md-3" style={column}>
                             <span className="logo"> 4Sale</span>
                         </div>
-                        <div className = "col-12 col-md-3" style = {{ position:"relative" , top: "31px" , fontSize: "21px" , color: "white" , fontFamily: "Poppins" , padding: "0px" , width: "427px" }} >
+                        <div className = "col-12 col-md-6 text-light my-auto" style = {{ fontFamily: "Poppins", fontSize: '35px' }} >
                             An Initiative by Student Gymkhana , IIT Indore ...
                         </div>
 {/* <div className="col-12 col-md-3" style={column}>
