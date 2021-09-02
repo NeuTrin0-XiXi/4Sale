@@ -152,7 +152,7 @@ class Home extends Component {
         return (
             <>
                 <div className='container-fluid d-flex justify-content-around mb-4 ' style={{
-                    height: '30vw', backgroundColor: '#fff',
+                    height: '42vw', backgroundColor: '#fff',
                     backgroundImage: 'url("https://www.transparenttextures.com/patterns/always-grey.png")'
                 }} >
                     <div className="d-flex flex-column" style={{ width: '55vw', padding: '20px 10px' }}>

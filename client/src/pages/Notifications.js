@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import './Notification.css'
@@ -9,6 +9,14 @@ import { toast } from 'react-toastify';
 
 
 function Notifications(props) {
+    const { notifications  } = props.user;
+
+    const [notifs, setNotifs] = useState([])
+
+    useEffect(() => {
+        setNotifs(notifications.reverse())
+    }, [notifications])
+
     const { user, authorised } = props
     function ApproveButton(props) {
         if (props.message.slice(0, 12) === "wants to buy") {
@@ -52,12 +60,11 @@ function Notifications(props) {
                 toast.success(res.data + `${userName}`)
             })
     }
-    const { notifications } = props.user;
 
     return (<>
         <section className="section">
             <div className="section__container">
-                {authorised ? notifications.length > 0 ? notifications.map(({ _id, message, userName, userEmail, mobile, dp, itemId }) => (
+                {authorised ? notifications.length > 0 ? notifs.map(({ _id, message, userName, userEmail, mobile, dp, itemId }) => (
                     <div className="notification-list bg-light" key={_id}>
                         <div className="notification-list__image">
                             <img src={dp} alt="" style={{ width: 'inherit', height: 'inherit' }} />

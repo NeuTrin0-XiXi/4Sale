@@ -70,7 +70,7 @@ function Buy() {
                                     <div className="col-12 h2 p-3 text-center bg-light rounded" style={{ borderBottom: '1px solid #aaaaaa' }} >
                                         <span>{category + ' '}</span>
                                         {
-                                            items.length > 0 ? <span>{'('}{items.length}{')'}</span> : null
+                                            items.length > 0 && loading === false ?  <span>{'('}{items.length}{')'}</span> : null
                                         }
                                     </div>
                                     <div className="col-12 pt-3 pb-4" >

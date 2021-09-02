@@ -7,7 +7,8 @@ const initialState = {
         profilePic: '',
         soldItems: [],
         _id: '',
-        mobile: 0
+        mobile: 0,
+        orders:[]
     },
     Authorised: false
 }

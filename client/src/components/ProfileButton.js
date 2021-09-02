@@ -55,7 +55,7 @@ function ProfileButton(props) {
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                         <li> <Link className="dropdown-item" to="/profile"><FontAwesomeIcon icon={faUser} /> {' '}  Profile</Link></li>
                         <li>  <Link className="dropdown-item" to="/favourites"><FontAwesomeIcon icon={faHeart} /> {' '} Favourites</Link></li>
-                        <li>  <Link className="dropdown-item" to="/sold-items"><FontAwesomeIcon icon={faCertificate} /> {' '} Sold Items</Link></li>
+                        <li>  <Link className="dropdown-item" to="/sold-items"><FontAwesomeIcon icon={faCertificate} /> {' '} Your Ad</Link></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li> <LogoutButton /></li>
                     </ul>

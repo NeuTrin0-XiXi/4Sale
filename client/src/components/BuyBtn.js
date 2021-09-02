@@ -6,8 +6,10 @@ import { toast } from 'react-toastify';
 
 function BuyBtn(props) {
     const { user, auth } = props;
+    console.log(user)
     const { id } = props;
     const handleBuy = () => {
+      
         if (auth) {
             axios.put(`/api/items/notify/${id}`, {
                 notification: {
@@ -23,6 +25,9 @@ function BuyBtn(props) {
                     axios.put(`/api/user/order/${user._id}`, {
                         order: id
                     })
+                    .then(res => {
+                        ///upadate user in userReducer here after clicking buy btn
+                    })
                     toast.success(res.data);
                 })
                 .catch(err => {
@@ -34,7 +39,7 @@ function BuyBtn(props) {
         }
     };
     return (
-        <Button onClick={() => { handleBuy() }} type="button" className="btn-warning non-outlined-btn btn-md mr-1 mb-2">Buy now</Button>
+        <Button onClick={() => handleBuy()} type="button" className="btn-warning non-outlined-btn btn-md mr-1 mb-2">Buy now</Button>
     )
 }
 

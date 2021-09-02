@@ -12,6 +12,7 @@ import BuyBtn from '../components/BuyBtn';
 import DeleteBtn from '../components/DeleteBtn';
 import Deck from '../components/Deck';
 import { toast } from 'react-toastify';
+import { Button } from 'react-bootstrap';
 
 //MAIN FUNCTION
 function ProductPage(props) {
@@ -24,16 +25,21 @@ function ProductPage(props) {
     const [num, setNum] = useState(0)
     const [date, setDate] = useState('')
     const [similarItems, setSimilarItems] = useState([])
+    const [orderStatus, setStatus] = useState([])
 
-    function handleImages(){
-        const newArray = [ ...images, "/no-image.png", "/no-image.png", "/no-image.png", "/no-image.png"]
-        newArray.reverse()
-        for (let i = 0; i < images.length; i++) {
-            newArray.shift()
-        }
-        newArray.reverse()
-        return newArray
-    }
+    useEffect(() => {
+      setStatus(user.orders.filter(order => order._id = id))
+    }, [id, user.orders])
+
+    // function handleImages(){
+    //     const newArray = [ ...images, "/no-image.png", "/no-image.png", "/no-image.png", "/no-image.png"]
+    //     newArray.reverse()
+    //     for (let i = 0; i < images.length; i++) {
+    //         newArray.shift()
+    //     }
+    //     newArray.reverse()
+    //     return newArray
+    // }
 
     useEffect(() => {
         axios.get('/api/items/' + id)
@@ -88,14 +94,15 @@ function ProductPage(props) {
 
                                     <div className="col-10 mb-0">
                                         <figure className="text-center view overlay rounded z-depth-1 main-img">
-                                            <a href={handleImages()[num]} data-size="710x823" >
-                                                <img alt='' src={handleImages()[num]} className="img-fluid z-depth-1" />
+                                            <a href={images[num]} data-size="710x823"  >
+                                                <img alt='' src={images[num]} className="img-fluid z-depth-1" />
                                             </a>
                                         </figure>
                                     </div>
-                                    <div className="col-1 d-flex m-auto" onClick={() => setNum(prevNum => prevNum < 3 ? prevNum + 1 : prevNum)} >
+                                    <div className="col-1 d-flex m-auto" onClick={() => setNum(prevNum => prevNum < images.length - 1 ? prevNum + 1 : prevNum)} >
                                         <FontAwesomeIcon size='lg' icon={faAngleRight} />
                                     </div>
+                                    <div className="col-12 text-center">{num + 1} / {images.length}</div>
                                     {/* <div className="col-12">
                                         <div className="row p-3">
                                             {
@@ -150,7 +157,10 @@ function ProductPage(props) {
                             <hr />{
                                 props.auth ? user.soldItems.includes(id) ? <DeleteBtn toHome={true} id={id} /> :
                                     <>
-                                        <BuyBtn id={id} title={productDetails.title} />
+                                        {
+                                            orderStatus.length>0 && orderStatus[0].success === false?  <Button className="btn-warning non-outlined-btn btn-md mr-1 mb-2" disabled  >Notified</Button> :   orderStatus.length>0 && orderStatus[0].success === true? <Button className="btn-warning non-outlined-btn btn-md mr-1 mb-2" disabled  >Approved</Button> : <BuyBtn id={id} title={productDetails.title} />
+
+                                        }
                                         <span className='ms-2' > <WishBtn _id={productDetails._id} removeFav={false} />Add to Favourites </span>
                                     </> : <BuyBtn />
                             }

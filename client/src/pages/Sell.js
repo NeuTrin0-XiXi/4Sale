@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import './Combined.css';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 // import { Redirect } from 'react-router';
@@ -75,7 +75,7 @@ function Sell(props) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
-                }} ><h2 className="text-center">Posting...</h2></div> :
+                }} ><h2 className="text-center">Posting...</h2></div> : !authorised ?  <Redirect to='/'/>:
                     <div className="container-fluid ">
                         <main>
 

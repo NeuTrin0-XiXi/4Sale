@@ -20,3 +20,18 @@ h1,h2,h3,h4,h5,h6{
     outline: none !important;
     box-shadow: none !important;
 }
+/* .main-img{
+    height: 500px;
+    width: 500px;
+}
+.product-img{
+    height: 500px;
+    width: inherit;
+}
+
+@media only screen and (max-width: 400px) {
+    .product-img{
+        height: 200px;
+    }
+    
+} */
