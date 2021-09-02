@@ -99,7 +99,7 @@ function Sell(props) {
                                     <form className="needs-validation" id="itemForm" noValidate="" onSubmit={handleSubmit} >
                                         <div className="row g-4">
                                             <div className="col-12">
-                                                <label htmlFor="productTitle" className="form-label">Product Title</label>
+                                                <label htmlFor="productTitle" className="form-label">Product Title<span className='text-danger fw-bold'>*</span></label>
                                                 <input autoCapitalize="sentences" required type="text" className="form-control custom-form" id="productTitle" placeholder="Enter the product title here" name="title" />
                                                 <div className="invalid-feedback">
                                                     Please enter product title.
@@ -107,7 +107,7 @@ function Sell(props) {
                                             </div>
 
                                             <div className="col-12">
-                                                <label htmlFor="description" className="form-label">Product Description</label>
+                                                <label htmlFor="description" className="form-label">Product Description<span className='text-danger fw-bold'>*</span> </label>
                                                 <div className="input-group has-validation">
                                                     <textarea autoCapitalize="sentences" required className="form-control custom-form" id="description" placeholder="Enter Product Description" name="description" />
                                                     <div className="invalid-feedback">
@@ -117,18 +117,9 @@ function Sell(props) {
                                             </div>
 
                                             <div className="d-flex justify-content-center flex-column bd-highlight mb-3">
-                                                <div className="col-6 d-flex justify-content-center flex-column bd-highlight mb-4">
-                                                    <label htmlFor="price" className="form-label" required>Price</label>
-                                                    <input required min="0" type="tel" className="form-control" id="price" placeholder="Set a Price" name="price" />
-
-                                                    <div className="invalid-feedback">
-                                                        Please enter product price.
-                                                    </div>
-                                                </div>
-
-
+                                              
                                                 <div className="col-12 d-flex justify-content-center flex-column bd-highlight mb-3">
-                                                    <label className="form-label">Categories</label>
+                                                    <label className="form-label">Categories<span className='text-danger fw-bold'>*</span></label>
                                                     <div className="row ms-3">
                                                         <div className="me-3 form-check col-12 col-md-2">
                                                             <input type="checkbox" className="form-check-input" id="Sports" name="Sports" />
@@ -158,12 +149,21 @@ function Sell(props) {
                                                     </div>
                                                 </div>
 
+                                                <div className="col-6 d-flex justify-content-center flex-column bd-highlight mb-4">
+                                                    <label htmlFor="price" className="form-label" required>Price<span className='text-danger fw-bold'>*</span></label>
+                                                    <input required min="0" type="tel" className="form-control" id="price" placeholder="Set a Price" name="price" />
+
+                                                    <div className="invalid-feedback">
+                                                        Please enter product price.
+                                                    </div>
+                                                </div>
+
                                                 <div className="col-12 col-md-6 d-flex justify-content-center flex-column bd-highlight mb-3">
-                                                    <label htmlFor="image1" className="form-label">Upload Images</label>
-                                                    <input required type="file" className="form-control" id="image1" placeholder="Enter the category" name="file1" />
-                                                    <input type="file" className="form-control" id="image2" placeholder="Enter the category" name="file2" />
-                                                    <input type="file" className="form-control" id="image3" placeholder="Enter the category" name="file3" />
-                                                    <input type="file" className="form-control" id="image4" placeholder="Enter the category" name="file4" />
+                                                    <label htmlFor="image1" className="form-label">Upload Images<span className='text-danger fw-bold'>*</span> (atleast 1st one)</label>
+                                                    <input required type="file" className="form-control" id="image1" placeholder="Required" name="file1" />
+                                                    <input type="file" className="form-control" id="image2" name="file2" />
+                                                    <input type="file" className="form-control" id="image3" name="file3" />
+                                                    <input type="file" className="form-control" id="image4" name="file4" />
                                                     <div className="invalid-feedback">
                                                         Please upload an image.
                                                     </div>

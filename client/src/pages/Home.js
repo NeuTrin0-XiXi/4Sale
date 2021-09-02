@@ -41,7 +41,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-    
+
         axios.get('/api/items')
             .then(res => {
                 this.setState({
@@ -164,67 +164,85 @@ class Home extends Component {
                 {
                     loading ? <Spinner /> : error === false ?
                         <section className='container-fluid' >
-                            <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
-                                <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
-                                    <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faReceipt} /> Recently Added</b></h4>
-                                </div>
-                                <div className='container' >
-                                    <Deck items={allItems} update={update} removeFav={false} removeSold={true} />
-                                </div>
-                            </div>
+                            {
+                                allItems.length > 0 ?
+                                    <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
+                                        <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
+                                            <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faReceipt} /> Recently Added</b></h4>
+                                        </div>
+                                        <div className='container' >
+                                            <Deck items={allItems} update={update} removeFav={false} removeSold={true} />
+                                        </div>
+                                    </div> : null
+                            }
 
 
-                            <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
-                                <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
-                                    <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faBasketballBall} /> Sports</b></h4>
-                                </div>
-                                <div className='container' >
-                                    <Deck items={Sports} update={update} removeFav={false} removeSold={true} />
-                                </div>
-                            </div>
+                            {
+                                Sports.length > 0 ?
+                                    <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
+                                        <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
+                                            <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faBasketballBall} /> Sports</b></h4>
+                                        </div>
+                                        <div className='container' >
+                                            <Deck items={Sports} update={update} removeFav={false} removeSold={true} />
+                                        </div>
+                                    </div> : null
+                            }
 
 
-                            <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
-                                <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
-                                    <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faBook} /> Books</b></h4>
-                                </div>
-                                <div className='container' >
-                                    <Deck items={Books} update={update} removeFav={false} removeSold={true} />
-                                </div>
-                            </div>
+                            {
+                                Books.length > 0 ?
+                                    <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
+                                        <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
+                                            <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faBook} /> Books</b></h4>
+                                        </div>
+                                        <div className='container' >
+                                            <Deck items={Books} update={update} removeFav={false} removeSold={true} />
+                                        </div>
+                                    </div> : null
+                            }
 
 
-                            <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
+                            {
+                                Games.length > 0 ?
+                                    <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
 
-                                <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
-                                    <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faGamepad} /> Games</b></h4>
-                                </div>
-                                <div className='container' >
-                                    <Deck items={Games} update={update} removeFav={false} removeSold={true} />
-                                </div>
-                            </div>
+                                        <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
+                                            <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faGamepad} /> Games</b></h4>
+                                        </div>
+                                        <div className='container' >
+                                            <Deck items={Games} update={update} removeFav={false} removeSold={true} />
+                                        </div>
+                                    </div> : null
+                            }
+
+                            {
+                                Utilities.length > 0 ?
+                                    <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
+
+                                        <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
+                                            <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faSplotch} /> Utilities</b></h4>
+                                        </div>
+                                        <div className='container' >
+                                            <Deck items={Utilities} update={update} removeFav={false} removeSold={true} />
+                                        </div>
+                                    </div> : null
+                            }
 
 
-                            <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
+                            {
+                                Other.length > 0 ?
+                                    <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
 
-                                <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
-                                    <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faSplotch} /> Utilities</b></h4>
-                                </div>
-                                <div className='container' >
-                                    <Deck items={Utilities} update={update} removeFav={false} removeSold={true} />
-                                </div>
-                            </div>
+                                        <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
+                                            <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faShoppingCart} /> Others</b></h4>
+                                        </div>
+                                        <div className='container' >
+                                            <Deck items={Other} update={update} removeSold={true} removeFav={false} />
+                                        </div>
+                                    </div> : null
+                            }
 
-
-                            <div style={{ minHeight: '300px' }} className='container py-3 bg-light' >
-
-                                <div className='py-2 bg-secondary text-warning container' style={{ borderBottom: '0.5px dotted grey', borderRadius: '10px 10px 0 0' }} >
-                                    <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faShoppingCart} /> Others</b></h4>
-                                </div>
-                                <div className='container' >
-                                    <Deck items={Other} update={update} removeSold={true} removeFav={false} />
-                                </div>
-                            </div>
                         </section> :
                         <NOT_FOUND />
                 }

@@ -15,9 +15,9 @@ const ContactUs = (props) => {
                             <div className="card-body">
                                 <div className="row row-cols-sm-1 text-center" >
                                     <div className="col-12 contactInfoElement"><h4><b>Contact Information</b></h4></div>
-                                    <div className="col-12 contactInfoElement"><strong><u>Phone no</u> :918XXXXXXX</strong></div>
-                                    <div className="col-12 contactInfoElement"><strong><u>e-mail Id</u>: 4Sale@iiti.ac.in</strong></div>
-                                    <div className="col-12 contactInfoElement"><strong><u>Location</u> : Khandwa road, Simrol,Indore, M.P. India</strong></div>
+                                    <div className="col-12 contactInfoElement"><strong>Phone no :918XXXXXXX</strong></div>
+                                    <div className="col-12 contactInfoElement"><strong>e-mail Id: 4Sale@iiti.ac.in</strong></div>
+                                    <div className="col-12 contactInfoElement"><strong>Location : Khandwa road, Simrol,Indore, M.P. India</strong></div>
                                 </div>
                             </div>
                         </div>
@@ -28,12 +28,12 @@ const ContactUs = (props) => {
                     <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 bg-light">
                         <div className="card h-100">
                             <div className="card-body bg-light">
-                                <div className="row gutters text-center">
+                                <div className="row gutters">
                                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                        <h2 className="mb-2 text-primary contactUsTitle">Contact Us</h2><br />
+                                        <h2 className="mb-2  text-center"><u>Contact Us</u></h2><br />
                                     </div>
                                     <br /><br />
-                                    <form className="d-flex justify-content-center align-items-center flex-column bd-highlight mb-3" onSubmit={handleSubmit}>
+                                    <form className="d-flex flex-column bd-highlight mb-3" onSubmit={handleSubmit}>
                                         <div className=" col-12 ">
                                             <div className="form-group">
                                                 <label htmlFor="fullName">Full Name</label>
@@ -63,7 +63,7 @@ const ContactUs = (props) => {
                                         </div>
                                         <br />
                                         <div className="col-12">
-                                            <div className="">
+                                            <div className="text-center">
                                                 <button type="submit" className="btn btn-success col-md-4 customColor">Submit</button>
                                             </div>
                                         </div>
