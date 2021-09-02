@@ -21,11 +21,11 @@ const Footer = () => {
                     <div className="row">
                         <div className="col-12 col-md-3" style={column}>
                             <span className="logo"> 4Sale</span>
-                            <span>text text text</span>
-                            <span>text text text</span>
-                            <span>text text text</span>
                         </div>
-                        <div className="col-12 col-md-3" style={column}>
+                        <div className = "col-12 col-md-3" style = {{ position:"relative" , top: "31px" , fontSize: "21px" , color: "white" , fontFamily: "Poppins" , padding: "0px" , width: "427px" }} >
+                            An Initiative by Student Gymkhana , IIT Indore ...
+                        </div>
+{/* <div className="col-12 col-md-3" style={column}>
                             <Link to="/about-us" style={textColor}><h3>About Us</h3></Link>
                              <div>
                             <span><strong><u>Our Team</u></strong></span>
@@ -52,7 +52,7 @@ const Footer = () => {
                             <span>text text text</span>
                             <span>text text text</span>
                             <span>text text text</span>
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>

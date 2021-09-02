@@ -96,7 +96,7 @@ function ProductPage(props) {
                                     <div className="col-1 d-flex m-auto" onClick={() => setNum(prevNum => prevNum < 3 ? prevNum + 1 : prevNum)} >
                                         <FontAwesomeIcon size='lg' icon={faAngleRight} />
                                     </div>
-                                    <div className="col-12">
+                                    {/* <div className="col-12">
                                         <div className="row p-3">
                                             {
                                                 images.length>0 ? handleImages().map((img, i) =>
@@ -109,7 +109,7 @@ function ProductPage(props) {
                                                 ) : null
                                             }
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

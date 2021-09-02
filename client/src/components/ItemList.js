@@ -20,7 +20,7 @@ function ItemList(props) {
             <div className="card-deck ">
                 <Container className="d-flex flex-wrap justify-content-center gap-4">
                     {items && items.map(({ _id, title, price, images }) => (
-                        <Card style={{ width: '16rem', boxShadow: '0 2px 2px 0px rgba(0,0,0,0.5)' }} key={_id} >
+                        <Card style={{ width: '16rem', height: '320px', boxShadow: '0 2px 2px 0px rgba(0,0,0,0.5)' }} key={_id} >
                             <Button as={Link} variant='transparent' to={`/product/${_id}`}>
                                 <Card.Img src={images[0]} alt="item-img" style={{ cursor: "pointer", height: '150px' }} />
                             </Button>

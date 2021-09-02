@@ -21,14 +21,6 @@ function NavbarComponent(props) {
         textDecoration: 'none'
     };
 
-    function Sell(props) {
-        if (props.auth) {
-            return <Link to="/sell" style={textColor} >Sell</Link>
-        } else {
-            return <Button style={textColor} variant='transparent' className='disabled' >Sell</Button>
-        }
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -47,7 +39,7 @@ function NavbarComponent(props) {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Link style={textColor} to="/" >Home</Link><hr className='m-1 text-light' />
-                        <Sell auth={props.auth} /><hr className='m-1 text-light' />
+                        <Link to="/sell" style={textColor} >Sell</Link><hr className='m-1 text-light' />
                         <Link style={textColor} to="/about">About</Link><hr className='m-1 text-light' />
                         <Link style={textColor} to="/contact">Contact</Link><hr className='m-1 text-light' />
                         <Dropdown style={textColor} id="collasible-nav-dropdown">
