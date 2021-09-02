@@ -15,7 +15,8 @@ function LoginButton(props) {
             soldItems: [],
             _id: '',
             profilePic: '',
-            notifications: []
+            notifications: [],
+            orders: []
         }
         user.name = profile.getName();
         user.email = profile.getEmail();
@@ -24,12 +25,13 @@ function LoginButton(props) {
             googleToken: res.tokenId
         })
             .then(res => {
-                const { favourites, soldItems, _id, notifications, mobile } = res.data;
+                const { favourites, soldItems, _id, notifications, mobile, orders } = res.data;
                 user.favourites = favourites;
                 user.soldItems = soldItems;
                 user.notifications = notifications;
                 user._id = _id;
                 user.mobile = mobile
+                user.orders = orders
                 props.Login(user);
                 toast.success("Logged In")
             })

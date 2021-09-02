@@ -15,13 +15,17 @@ function BuyBtn(props) {
                     userName: user.name,
                     userEmail: user.email,
                     mobile: user.mobile,
-                    dp: user.profilePic
+                    dp: user.profilePic,
+                    itemId: id
                 }
             })
                 .then(res => {
+                    axios.put(`/api/user/order/${user._id}`, {
+                        order: id
+                    })
                     toast.success(res.data);
                 })
-                .catch(err=>{
+                .catch(err => {
                     toast.error("Failed to notify")
                 })
         }
