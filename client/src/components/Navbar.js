@@ -10,6 +10,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 function NavbarComponent(props) {
     const [search, setSearch] = useState('')
+    const [expanded, setExpanded] = useState(false)
 
     const textColor = {
         color: 'white',
@@ -32,33 +33,33 @@ function NavbarComponent(props) {
     };
 
     return (<>
-        <Navbar collapseOnSelect expand="lg" sticky='top' style={{ backgroundColor: '#333333' }} variant="dark" className='py-1 px-3'>
+        <Navbar expanded={expanded} onToggle={() => setExpanded(!expanded)} expand="lg" sticky='top' style={{ backgroundColor: '#333333' }} variant="dark" className='py-1 px-3'>
             <Container fluid >
                 <Link to="/" style={logoColor} className="navbar-brand logo" >4Sale</Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Link style={textColor} to="/" >Home</Link><hr className='m-1 text-light' />
-                        <Link to="/sell" style={textColor} >Sell</Link><hr className='m-1 text-light' />
-                        <Link style={textColor} to="/about">About</Link><hr className='m-1 text-light' />
-                        <Link style={textColor} to="/contact">Contact</Link><hr className='m-1 text-light' />
+                        <Link className='nav-item' onClick={() => setExpanded(!expanded)} style={textColor} to="/" >Home</Link><hr className='m-1 text-light' />
+                        <Link className='nav-item' onClick={() => setExpanded(!expanded)} to="/sell" style={textColor} >Sell</Link><hr className='m-1 text-light' />
+                        <Link className='nav-item' onClick={() => setExpanded(!expanded)} style={textColor} to="/about">About</Link><hr className='m-1 text-light' />
+                        <Link className='nav-item' onClick={() => setExpanded(!expanded)} style={textColor} to="/contact">Contact</Link><hr className='m-1 text-light' />
                         <Dropdown style={textColor} id="collasible-nav-dropdown">
                             <Dropdown.Toggle className='non-outlined-btn btn-warning ' >Buy</Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item as={Link} to="/buy/All">All</Dropdown.Item>
-                                <Dropdown.Item as={Link} to="/buy/Sports">Sports</Dropdown.Item>
-                                <Dropdown.Item as={Link} to="/buy/Books">Books</Dropdown.Item>
-                                <Dropdown.Item as={Link} to="/buy/Games">Games</Dropdown.Item>
-                                <Dropdown.Item as={Link} to="/buy/Utilities">Utilities</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setExpanded(!expanded)} as={Link} to="/buy/All">All</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setExpanded(!expanded)} as={Link} to="/buy/Sports">Sports</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setExpanded(!expanded)} as={Link} to="/buy/Books">Books</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setExpanded(!expanded)} as={Link} to="/buy/Games">Games</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setExpanded(!expanded)} as={Link} to="/buy/Utilities">Utilities</Dropdown.Item>
                                 <NavDropdown.Divider />
-                                <Dropdown.Item as={Link} to="/buy/Other">Others</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setExpanded(!expanded)} as={Link} to="/buy/Other">Others</Dropdown.Item>
                             </Dropdown.Menu>
 
                         </Dropdown><hr className='m-1 text-light' />
                     </Nav>
                     <Form className="d-flex" onSubmit={handleSubmit} style={{ height: '40px' }}>
                         <Form.Control autoCapitalize="sentences" onChange={handleChange} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <Button variant='transparent' className='text-light' size='sm' type="submit"><FontAwesomeIcon icon={faSearch} /></Button>
+                        <Button  onClick={() => setExpanded(!expanded)} variant='transparent' className='text-light' size='sm' type="submit"><FontAwesomeIcon icon={faSearch} /></Button>
                     </Form><hr className='m-1 text-light' />
                     <Nav className='mx-2' >
                         <ProfileButton />
@@ -66,6 +67,7 @@ function NavbarComponent(props) {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
+        <script src="../scripts/collapse.js"></script>
 
     </>
 
