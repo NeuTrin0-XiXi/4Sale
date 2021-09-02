@@ -12,7 +12,7 @@ function Notifications(props) {
     const { user, authorised } = props
     function ApproveButton(props) {
         if (props.message.slice(0, 12) === "wants to buy") {
-            return <button type="button" style={{fontSize: '12px'}}  className="btn p-0 non-outlined-btn btn-transparent" onClick={() => handleApprove(props.userEmail, props.userName, props.message)}> <FontAwesomeIcon icon={faArrowAltCircleRight} className='text-success me-2'/>Approve</button>
+            return <button type="button" style={{ fontSize: '12px' }} className="btn p-0 non-outlined-btn btn-transparent" onClick={() => handleApprove(props.userEmail, props.userName, props.message, props.itemId)}> <FontAwesomeIcon icon={faArrowAltCircleRight} className='text-success me-2' />Approve</button>
         } else {
             return null
         }
@@ -33,11 +33,11 @@ function Notifications(props) {
             }
         })
             .then(res => {
-               toast.success('Deleted Successfully')
+                toast.success('Deleted Successfully')
             })
     };
 
-    const handleApprove = (userEmail, userName, message) => {
+    const handleApprove = (userEmail, userName, message, itemId) => {
         axios.put(`/api/user/notif/${userEmail}`, {
             notification: {
                 message: `approved buy-request for ${message.slice(13)}`,
@@ -45,10 +45,11 @@ function Notifications(props) {
                 userEmail: user.email,
                 mobile: user.mobile,
                 dp: user.profilePic
-            }
+            },
+            itemId: itemId
         })
             .then(res => {
-                alert(res.data + `${userName}`)
+                toast.success(res.data + `${userName}`)
             })
     }
     const { notifications } = props.user;
@@ -56,10 +57,10 @@ function Notifications(props) {
     return (<>
         <section className="section">
             <div className="section__container">
-                { authorised ? notifications.length > 0 ? notifications.map(({ _id, message, userName, userEmail, mobile, dp }) => (
+                {authorised ? notifications.length > 0 ? notifications.map(({ _id, message, userName, userEmail, mobile, dp, itemId }) => (
                     <div className="notification-list bg-light" key={_id}>
                         <div className="notification-list__image">
-                            <img src={dp} alt="" style={{width: 'inherit', height: 'inherit'}} />
+                            <img src={dp} alt="" style={{ width: 'inherit', height: 'inherit' }} />
                         </div>
                         <div className="notification-list__info">
                             <h2>{userName}{' '} {message} </h2>
@@ -70,14 +71,14 @@ function Notifications(props) {
                                 {mobile}
                             </span>
                             <div  >
-                            <ApproveButton message={message} userEmail={userEmail} userName={userName} />
+                                <ApproveButton message={message} userEmail={userEmail} userName={userName} itemId={itemId} />
                             </div >
                             <div className="delete btn" onClick={() => handleDelete(_id)}>
-                               <FontAwesomeIcon icon={faTrash} className='text-danger'/>
+                                <FontAwesomeIcon icon={faTrash} className='text-danger' />
                             </div>
                         </div>
                     </div>
-                )): <div className="text-center">No Notifications!</div> : <NOT_FOUND/>}
+                )) : <div className="text-center">No Notifications!</div> : <NOT_FOUND />}
             </div>
         </section>
     </>

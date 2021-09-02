@@ -58,7 +58,7 @@ route.put('/sold/:id', (req, res, next) => {
         .catch(next);
 })
 
-//Marke an Item  favourite
+//Mark an Item  favourite
 route.put('/favourites/:id', (req, res, next) => {
     User.updateOne({ _id: req.params.id },
         { "$push": { "favourites": req.body.favourite } }
@@ -69,8 +69,19 @@ route.put('/favourites/:id', (req, res, next) => {
         }).catch(next);
 })
 
+//Mark an item for order
+route.put('/order/:id', (req, res, next) => {
+    User.updateOne({ _id: req.params.id },
+        { "$push": { "orders": { _id: req.body.order } } }
+    )
+        .then(a => {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.status(204).end();
+        }).catch(next);
+})
 
-//Buy request approved
+
+//Buy request/Approve Buy request
 route.put('/notif/:userEmail', (req, res, next) => {
     User.findOne({
         email: req.params.userEmail,
@@ -88,9 +99,18 @@ route.put('/notif/:userEmail', (req, res, next) => {
             } else {
                 req.body.notification._id = new mongoose.Types.ObjectId();
                 User.updateOne({ email: req.params.userEmail },
-                    { "$push": { "notifications": req.body.notification } },
+                    {
+                        "$push": { "notifications": req.body.notification },
+                        $set: {
+                            "orders.$[elem].success": true
+                        }
+                    },
+                    {
+                        arrayFilters: [{ "elem._id": req.body.itemId }]
+                    }
                 )
-                    .then(() => {
+                    .then(a => {
+                        console.log(a)
                         res.header("Access-Control-Allow-Origin", "*");
                         res.status(200).send(`Notified `);
                     })
@@ -101,6 +121,7 @@ route.put('/notif/:userEmail', (req, res, next) => {
         .catch(next);
 })
 
+//Delete Notification
 route.delete('/notif/:id', (req, res, next) => {
     User.updateOne({ _id: req.params.id },
         { "$pull": { notifications: { _id: req.body.id } } }
@@ -116,6 +137,7 @@ route.delete('/notif/:id', (req, res, next) => {
         .catch(next);
 })
 
+//Set notifications to read
 route.put('/notifbell/:id', (req, res, next) => {
     User.updateOne(
         { _id: req.params.id },
@@ -130,6 +152,8 @@ route.put('/notifbell/:id', (req, res, next) => {
         .catch(next);
 });
 
+
+//Update user info
 route.put('/:id', (req, res, next) => {
     User.updateOne({ _id: req.params.id }, req.body)
         .then(user => {

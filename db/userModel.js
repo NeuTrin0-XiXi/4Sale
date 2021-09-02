@@ -25,8 +25,16 @@ const userSchema = new schema({
         type: Number,
         default: null
     },
+    orders: [{
+        _id: schema.Types.ObjectId,
+        success: {
+            type: Boolean,
+            default: false
+        }
+    }],
     notifications: [{
         _id: schema.Types.ObjectId,
+        itemId: schema.Types.ObjectId,
         message: String,
         userName: String,
         userEmail: String,
