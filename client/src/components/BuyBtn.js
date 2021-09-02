@@ -8,7 +8,6 @@ function BuyBtn(props) {
     const { user, auth } = props;
     const { id } = props;
     const handleBuy = () => {
-
         if (auth) {
             axios.put(`/api/items/notify/${id}`, {
                 notification: {
@@ -46,7 +45,7 @@ function BuyBtn(props) {
         }
     };
     return (
-        <Button onClick={() => handleBuy()} type="button" className="btn-warning non-outlined-btn btn-md mr-1 mb-2">Buy now</Button>
+        <Button onClick={handleBuy} type="button" className="btn-warning non-outlined-btn btn-md mr-1 mb-2">Buy now</Button>
     )
 }
 

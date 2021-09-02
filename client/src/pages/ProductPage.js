@@ -28,7 +28,11 @@ function ProductPage(props) {
     const [orderStatus, setStatus] = useState([])
 
     useEffect(() => {
-        setStatus(user.orders.filter(order => order._id = id))
+        for (const elem of user.orders) {
+            if (elem._id === id) {
+                setStatus([elem]);
+            }
+        }
     }, [id, user.orders])
 
     // function handleImages(){
