@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
 const mongoURI = process.env.MONGO_URI;
+const socket = require("socket.io");
 
 
 //connection to DB
@@ -51,6 +52,13 @@ app.use((err, req, res, next) => {
 
 //Listening to requests
 const port = process.env.PORT || 5000;
-app.listen(port, () => {
+var server=app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+const io = require('./config/socket').init(server);
+io.on('connection', function (socket) {
+    socket.on('join', function (data) {
+        socket.join(data.email);
+        //{email:"sadads@gmail.com"}
+    });
+})
