@@ -43,7 +43,7 @@ function DeleteBtn(props) {
     };
     return (
         <Button onClick={Delete} variant='light' className='text-danger' >
-            <FontAwesomeIcon size='lg' icon={faTrash} />
+            <FontAwesomeIcon icon={faTrash} />
         </Button>
 
     )
