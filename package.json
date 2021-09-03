@@ -25,6 +25,7 @@
     "express-fileupload": "^1.2.1",
     "google-auth-library": "^7.6.2",
     "mongoose": "^5.13.7",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "socket.io": "^4.2.0"
   }
 }
