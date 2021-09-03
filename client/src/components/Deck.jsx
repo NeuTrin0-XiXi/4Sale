@@ -30,7 +30,6 @@ function Deck(props) {
             items: 1
         }
     };
-
     return (
         <>
             {
@@ -40,11 +39,11 @@ function Deck(props) {
                         autoPlaySpeed={2000}
                         autoPlay={true}
                         infinite={true}
-                     
+
                     >
                         {props.items.map((item) =>
                             <Card style={{ width: '16rem', height: '320px', boxShadow: '0 2px 2px 0px rgba(0,0,0,0.5)', margin: '20px auto' }} key={item._id} >
-                                <Link to={`/product/${item._id}`}><Card.Img src={item.images[0]} alt="item-img" style={{ cursor: "pointer", height: '150px' }} /></Link>
+                                <Link to={`/product/${item._id}`}><Card.Img src={item.images[0].url} alt="item-img" style={{ cursor: "pointer", height: '150px' }} /></Link>
                                 <Card.Body>
                                     <Card.Title >{item.title}</Card.Title>
                                     <Card.Text>

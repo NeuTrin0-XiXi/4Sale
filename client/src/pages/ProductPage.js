@@ -19,7 +19,7 @@ function ProductPage(props) {
     const { user } = props;
     const { id } = useParams()
     const [productDetails, setProductDetails] = useState({})
-    const [images, setImages] = useState([])
+    const [images, setImages] = useState([{ url: null }])
     const [loading, setLoading] = useState(true)
     const [err, setErr] = useState(false)
     const [num, setNum] = useState(0)
@@ -98,8 +98,8 @@ function ProductPage(props) {
 
                                     <div className="col-10 mb-0">
                                         <figure className="text-center view overlay rounded z-depth-1 main-img">
-                                            <a href={images[num]} data-size="710x823"  >
-                                                <img alt='' src={images[num]} className="img-fluid z-depth-1" />
+                                            <a href={images[num].url} data-size="710x823"  >
+                                                <img alt='' src={images[num].url} className="img-fluid z-depth-1" />
                                             </a>
                                         </figure>
                                     </div>

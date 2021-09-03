@@ -93,7 +93,10 @@ route.post('/', parseImage, async (req, res, next) => {
 
         for (let encoded of req.files.encodedUri) {
             let uploadedUrl = await uploadToCloudinary(encoded)
-            imageLinks.push(uploadedUrl.url);
+            imageLinks.push({
+                url: uploadedUrl.url,
+                public_id: uploadedUrl.public_id
+            });
         }
 
         const itemBody = {
@@ -110,8 +113,6 @@ route.post('/', parseImage, async (req, res, next) => {
             .then((item) => {
                 res.header("Access-Control-Allow-Origin", "*");
                 res.status(201).send(item);
-
-
             })
             .catch(next);
     } catch (err) {
@@ -175,13 +176,13 @@ route.put('/:id', (req, res, next) => {
 
 //Delete a posted item                              
 route.delete('/:id', (req, res, next) => {
-    // Item.findById(req.params.id)
-    //     .select('images')
-    //     .then(item => {
-    //         for (let image of item.images) {
-    //             removeFromCloudinary(image);
-    //         }
-    //     });
+    Item.findById(req.params.id)
+        .select('images')
+        .then(item => {
+            for (let image of item.images) {
+                removeFromCloudinary(image.public_id);
+            }
+        });
     Item.deleteOne({ _id: req.params.id })
         .then(() => {
 

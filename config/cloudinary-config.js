@@ -19,9 +19,9 @@ function uploadToCloudinary(image) {
     });
 }
 
-function removeFromCloudinary(image) {
+function removeFromCloudinary(public_id) {
     return new Promise((resolve, reject) => {
-        uploader.destroy(image, (err, url) => {
+        uploader.destroy(public_id, (err, url) => {
             if (err) return reject(err);
             return resolve(url);
         })
@@ -31,9 +31,6 @@ function removeFromCloudinary(image) {
 function parseImage(req, res, next) {
     req.files.encodedUri = [];
     const parser = new DatauriParser();
-
-
-
 
     if (req.files.file1) {
         req.files.encodedUri.push(parser.format('.png', req.files.file1.data).content);
