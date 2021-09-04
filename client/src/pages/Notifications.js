@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import './Notification.css'
@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faTrash } from '@fortawesome/free-solid-svg-icons';
 import NOT_FOUND from './Not_Found';
 import { toast } from 'react-toastify';
-import { SocketContext } from '../contexts/socketContext';
+import SocketContext from '../contexts/socketContext';
 
 
 function Notifications(props) {
-    const { notifications  } = props.user;
+    const { notifications } = props.user;
     const socket = useContext(SocketContext)
     const [notifs, setNotifs] = useState([])
     console.log(socket)
@@ -19,10 +19,11 @@ function Notifications(props) {
         setNotifs(notifications.reverse())
     }, [notifications])
 
-    useEffect(()=>{
+    useEffect(() => {
         socket.on('notification', (notif) => {
-            setNotifs(prevnotif => [ notif, ...prevnotif])
-            toast.success(notif)
+            console.log(notif);
+            setNotifs(prevnotif => [...prevnotif, notif])
+            toast.success(notif.userName + ' ' + notif.message)
         })
     }, [socket])
 

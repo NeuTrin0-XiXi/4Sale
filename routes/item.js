@@ -140,10 +140,16 @@ route.put('/notify/:id', (req, res, next) => {
                         res.header("Access-Control-Allow-Origin", "*");
                         res.status(200).send(`Already notified ${item.userName}`);
                     } else {
-                        const io = require('../config/socket').get();
-                        io.to(user.userEmail).emit('notification', { msg: req.body.notification })
-
+                        req.body.notification.read = false;
                         req.body.notification._id = new mongoose.Types.ObjectId();
+
+                        User.findOne({ _id: item.userID })
+                            .then(user1 => {
+                                const io = require('../config/socket').get();
+                                io.to(user1.email).emit('notification', req.body.notification)
+                            })
+                            .catch(next);
+
                         User.updateOne({ _id: item.userID },
                             { "$push": { "notifications": req.body.notification } },
                         )

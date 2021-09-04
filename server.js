@@ -20,7 +20,6 @@ mongoose.connect(mongoURI)
     .catch((err) => {
         console.log("Failed to connect to mongoDB...")
         console.log(err.message);
-        // res.status(500).send("Something went wrong...");
     });
 
 
@@ -52,13 +51,13 @@ app.use((err, req, res, next) => {
 
 //Listening to requests
 const port = process.env.PORT || 5000;
-var server=app.listen(port, () => {
+var server = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 const io = require('./config/socket').init(server);
 io.on('connection', function (socket) {
-    socket.on('join', function (data) {
-        socket.join(data.email);
+    socket.on('join', function (email) {
+        socket.join(email);
         //{email:"sadads@gmail.com"}
     });
 })

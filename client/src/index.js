@@ -6,7 +6,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './store';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { SocketProvider } from './contexts/socketContext';
+import SocketProvider from './contexts/socketProvider';
 
 
 ReactDOM.render(
