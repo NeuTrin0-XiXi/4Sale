@@ -69,8 +69,6 @@ function NavbarComponent(props) {
         <script src="../scripts/collapse.js"></script>
 
     </>
-
-
     )
 }
 
