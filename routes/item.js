@@ -146,7 +146,7 @@ route.put('/notify/:id', (req, res, next) => {
                         )
                             .then(() => {
                                 const io = require('./config/socket').get();
-                                io.to(item1.email).emit('notification', { msg: req.body.notification });
+                                io.to(item1.userEmail).emit('notification', { msg: req.body.notification });
                                 res.header("Access-Control-Allow-Origin", "*");
                                 res.status(200).send(`Notified ${item.userName}`);
                             })

@@ -1,31 +1,36 @@
 {
-  "name": "4sale",
-  "version": "1.0.0",
-  "description": "Buying and selling website",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jaisxixi/4Sale.git"
-  },
-  "author": "Arush_Kanishka_Jaisurya_Suman",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Jaisxixi/4Sale/issues"
-  },
-  "homepage": "https://github.com/Jaisxixi/4Sale#readme",
-  "dependencies": {
-    "cloudinary": "^1.26.3",
-    "datauri": "^4.1.0",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "express-fileupload": "^1.2.1",
-    "google-auth-library": "^7.6.2",
-    "mongoose": "^5.13.7",
-    "nodemon": "^2.0.12",
-    "socket.io": "^4.2.0"
-  }
+    "name": "4sale",
+    "version": "1.0.0",
+    "description": "Buying and selling website",
+    "main": "server.js",
+    "scripts": {
+        "client-install": "npm install --prefix client",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server": "nodemon server.js",
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+        "client": "npm start --prefix client",
+        "dev": "concurrently \"npm server\" \"npm run client\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Jaisxixi/4Sale.git"
+    },
+    "author": "Arush_Kanishka_Jaisurya_Suman",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Jaisxixi/4Sale/issues"
+    },
+    "homepage": "https://github.com/Jaisxixi/4Sale#readme",
+    "dependencies": {
+        "cloudinary": "^1.26.3",
+        "concurrently": "^6.2.1",
+        "datauri": "^4.1.0",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-fileupload": "^1.2.1",
+        "google-auth-library": "^7.6.2",
+        "mongoose": "^5.13.7",
+        "nodemon": "^2.0.12",
+        "socket.io": "^4.2.0"
+    }
 }

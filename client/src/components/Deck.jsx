@@ -49,7 +49,7 @@ function Deck(props) {
                                     <Card.Text>
                                         &#8377;    {item.price}
                                     </Card.Text>
-                                    <Button variant="warning" as={Link} to={`/product/${item._id}`} type="button" id="customViewButton " ><FontAwesomeIcon icon={faCartPlus} /> Buy</Button>
+                                    <Button variant="warning" as={Link} to={`/product/${item._id}`} type="button" id="customViewButton " ><FontAwesomeIcon icon={faCartPlus} /> View </Button>
                                     {
                                         auth ? user.soldItems.includes(item._id) ? <DeleteBtn update={props.update} removeSold={props.removeSold} id={item._id} /> :
                                             <WishBtn _id={item._id} update={props.update} removeFav={props.removeFav} /> : null

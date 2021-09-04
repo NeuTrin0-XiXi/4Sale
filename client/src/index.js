@@ -6,15 +6,18 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './store';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { SocketProvider } from './contexts/socketContext';
 
 
 ReactDOM.render(
-  <React.StrictMode>
+
     <Provider store={store}>
-      <Router >
-        <App />
-      </Router>
+        <SocketProvider>
+            <Router >
+                <App />
+            </Router>
+        </SocketProvider>
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    ,
+    document.getElementById('root')
 );
