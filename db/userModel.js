@@ -23,6 +23,8 @@ const userSchema = new schema({
     },
     mobile: {
         type: Number,
+        minimum: 1000000000,
+        maximum: 9999999999,
         default: null
     },
     orders: [{
