@@ -90,7 +90,7 @@ function EditProfile(props) {
                                         <div className="row" style={{ display: visibility ? 'block' : 'none' }} >
                                             <form action="" >
                                                 <label htmlFor="tel">Edit your mobile number</label>
-                                                <input className='form-control' type="tel" id='tel' placeholder={'xxxxxxxxxx'} onChange={handleChange} />
+                                                <input className='form-control' type="tel" maxLength='10' id='tel' placeholder={'xxxxxxxxxx'} onChange={handleChange} />
                                                 <hr />
                                                 <>
                                                     <button type='submit' className="btn btn-primary non-outlined-btn " onClick={handleSubmit} >Save</button>

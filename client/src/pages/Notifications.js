@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import './Notification.css'
@@ -6,16 +6,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faTrash } from '@fortawesome/free-solid-svg-icons';
 import NOT_FOUND from './Not_Found';
 import { toast } from 'react-toastify';
+import { SocketContext } from '../contexts/socketContext';
 
 
 function Notifications(props) {
     const { notifications  } = props.user;
-
+    const socket = useContext(SocketContext)
     const [notifs, setNotifs] = useState([])
+    console.log(socket)
 
     useEffect(() => {
         setNotifs(notifications.reverse())
     }, [notifications])
+
+    useEffect(()=>{
+        socket.on('notification', (notif) => {
+            setNotifs(prevnotif => [ notif, ...prevnotif])
+            toast.success(notif)
+        })
+    }, [socket])
 
     const { user, authorised } = props
     function ApproveButton(props) {

@@ -142,7 +142,7 @@ route.put('/notify/:id', (req, res, next) => {
                     } else {
                         const io = require('../config/socket').get();
                         io.to(user.userEmail).emit('notification', { msg: req.body.notification })
-                        
+
                         req.body.notification._id = new mongoose.Types.ObjectId();
                         User.updateOne({ _id: item.userID },
                             { "$push": { "notifications": req.body.notification } },

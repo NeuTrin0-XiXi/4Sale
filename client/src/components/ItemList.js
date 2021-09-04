@@ -29,7 +29,7 @@ function ItemList(props) {
                                 <Card.Text>
                                     &#8377;    {price}
                                 </Card.Text>
-                                <Button variant="warning" size='sm' as={Link} to={`/product/${_id}`} ><FontAwesomeIcon icon={faCartPlus} /> Buy</Button>
+                                <Button variant="warning" size='sm' as={Link} to={`/product/${_id}`} ><FontAwesomeIcon icon={faCartPlus} /> View </Button>
                                 {
                                     auth ? user.soldItems.includes(_id) ? <DeleteBtn update={props.update} removeSold={props.removeSold} id={_id} /> :
                                         <WishBtn _id={_id} update={props.update} removeFav={props.removeFav} /> : null
