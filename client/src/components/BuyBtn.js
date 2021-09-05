@@ -24,7 +24,6 @@ function BuyBtn(props) {
                         order: id
                     })
                         .then(res => {
-                            ///upadate user in userReducer here after clicking buy btn
                             const newUser = {
                                 ...user,
                                 orders: [
