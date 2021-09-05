@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import './Notification.css'
@@ -6,28 +6,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleRight, faTrash } from '@fortawesome/free-solid-svg-icons';
 import NOT_FOUND from './Not_Found';
 import { toast } from 'react-toastify';
-import SocketContext from '../contexts/socketContext';
 
 
 function Notifications(props) {
-    const { notifications } = props.user;
-    const socket = useContext(SocketContext)
+    const { user, authorised, Update } = props
+    const { notifications  } = props.user;
     const [notifs, setNotifs] = useState([])
-    console.log(socket)
 
     useEffect(() => {
         setNotifs(notifications.reverse())
     }, [notifications])
 
-    useEffect(() => {
-        socket.on('notification', (notif) => {
-            console.log(notif);
-            setNotifs(prevnotif => [...prevnotif, notif])
-            toast.success(notif.userName + ' ' + notif.message)
-        })
-    }, [socket])
-
-    const { user, authorised } = props
+   
     function ApproveButton(props) {
         if (props.message.slice(0, 12) === "wants to buy") {
             return <button type="button" style={{ fontSize: '12px' }} className="btn p-0 non-outlined-btn btn-transparent" onClick={() => handleApprove(props.userEmail, props.userName, props.message, props.itemId)}> <FontAwesomeIcon icon={faArrowAltCircleRight} className='text-success me-2' />Approve</button>
@@ -41,7 +31,7 @@ function Notifications(props) {
             ...user,
             notifications: user.notifications.filter(notif => notif._id !== _id)
         }
-        props.Update(newUser);
+        Update(newUser);
 
         axios({
             method: 'DELETE',
