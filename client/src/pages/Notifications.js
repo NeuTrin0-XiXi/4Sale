@@ -10,14 +10,14 @@ import { toast } from 'react-toastify';
 
 function Notifications(props) {
     const { user, authorised, Update } = props
-    const { notifications  } = props.user;
+    const { notifications } = props.user;
     const [notifs, setNotifs] = useState([])
 
     useEffect(() => {
         setNotifs(notifications.reverse())
     }, [notifications])
 
-   
+
     function ApproveButton(props) {
         if (props.message.slice(0, 12) === "wants to buy") {
             return <button type="button" style={{ fontSize: '12px' }} className="btn p-0 non-outlined-btn btn-transparent" onClick={() => handleApprove(props.userEmail, props.userName, props.message, props.itemId)}> <FontAwesomeIcon icon={faArrowAltCircleRight} className='text-success me-2' />Approve</button>
