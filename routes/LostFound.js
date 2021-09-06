@@ -13,7 +13,7 @@ const { uploadToCloudinary, parseImage, removeFromCloudinary } = require('../con
 route.get('/', (req, res, next) => {
     LostFound.find({})
         .sort({ date: 'desc' })
-        .select('title images date description')
+        .select('title images date description userName userEmail status claimed')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
@@ -41,19 +41,6 @@ route.get('/', (req, res, next) => {
 
 // });
 
-//GET Item details:                             
-route.get('/:id', (req, res, next) => {
-    LostFound.findById(req.params.id)
-        .select('title description date userName images userEmail status claimed')
-        .then((item) => {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.status(200).send(item)
-        })
-        .catch(next);
-});
-
-
-
 //---------------------------------------------------------------------------//
 
 //POST AN ITEM
@@ -62,25 +49,24 @@ route.use(fileUpload());
 //POST Handler:
 route.post('/', parseImage, async (req, res, next) => {
     try {
-        let imageLinks = [];
-
-        for (let encoded of req.files.encodedUri) {
-            let uploadedUrl = await uploadToCloudinary(encoded)
-            imageLinks.push({
-                url: uploadedUrl.url,
-                public_id: uploadedUrl.public_id
-            });
-        }
-
-        const itemBody = {
+        let itemBody = {
             title: req.body.title,
             description: req.body.description,
             userName: req.body.userName,
             userEmail: req.body.userEmail,
-            userID: req.body.userID,
-            images: imageLinks,
             status: req.body.status
         }
+
+        if (req.files) {
+            let imageLinks = {};
+            let uploadedUrl = await uploadToCloudinary(req.files.encodedUri[0])
+            imageLinks = {
+                url: uploadedUrl.url,
+                public_id: uploadedUrl.public_id
+            };
+            itemBody.images = imageLinks
+        }
+
         LostFound.create(itemBody)
             .then((item) => {
                 res.header("Access-Control-Allow-Origin", "*");
@@ -97,7 +83,7 @@ route.post('/', parseImage, async (req, res, next) => {
 //Send a Claim Notification 
 route.put('/notify/:id', (req, res, next) => {
     LostFound.findById(req.params.id)
-        .select('userID userName')
+        .select('userEmail userName')
         .then((item) => {
             LostFound.updateOne({ _id: req.params.id },
                 { $set: { claimed: true } }
@@ -105,7 +91,7 @@ route.put('/notify/:id', (req, res, next) => {
                 .catch(next);
 
             User.findOne({
-                _id: item.userID,
+                email: item.userEmail,
                 notifications: {
                     $elemMatch: {
                         message: req.body.notification.message,
@@ -121,14 +107,14 @@ route.put('/notify/:id', (req, res, next) => {
                         req.body.notification.read = false;
                         req.body.notification._id = new mongoose.Types.ObjectId();
 
-                        User.findOne({ _id: item.userID })
+                        User.findOne({ email: item.userEmail })
                             .then(user1 => {
                                 const io = require('../config/socket').get();
                                 io.to(user1.email).emit('notification', req.body.notification)
                             })
                             .catch(next);
 
-                        User.updateOne({ _id: item.userID },
+                        User.updateOne({ email: item.userEmail },
                             { "$push": { "notifications": req.body.notification } },
                         )
                             .then(user => {

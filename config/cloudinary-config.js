@@ -29,22 +29,24 @@ function removeFromCloudinary(public_id) {
 }
 
 function parseImage(req, res, next) {
-    req.files.encodedUri = [];
-    const parser = new DatauriParser();
+    if (req.files) {
+        req.files.encodedUri = [];
+        const parser = new DatauriParser();
 
-    if (req.files.file1) {
-        req.files.encodedUri.push(parser.format('.png', req.files.file1.data).content);
-    }
+        if (req.files.file1) {
+            req.files.encodedUri.push(parser.format('.png', req.files.file1.data).content);
+        }
 
-    if (req.files.file2) {
-        req.files.encodedUri.push(parser.format('.png', req.files.file2.data).content);
-    }
+        if (req.files.file2) {
+            req.files.encodedUri.push(parser.format('.png', req.files.file2.data).content);
+        }
 
-    if (req.files.file3) {
-        req.files.encodedUri.push(parser.format('.png', req.files.file3.data).content);
-    }
-    if (req.files.file4) {
-        req.files.encodedUri.push(parser.format('.png', req.files.file4.data).content);
+        if (req.files.file3) {
+            req.files.encodedUri.push(parser.format('.png', req.files.file3.data).content);
+        }
+        if (req.files.file4) {
+            req.files.encodedUri.push(parser.format('.png', req.files.file4.data).content);
+        }
     }
     return next();
 

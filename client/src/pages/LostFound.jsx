@@ -1,15 +1,29 @@
 import { connect } from 'react-redux'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Tab, Tabs } from 'react-bootstrap'
 import { withRouter } from 'react-router'
+import axios from 'axios'
+import { toast } from 'react-toastify';
 
 function LostFound(props) {
 
-    const { user } = props
+    const { user } = props;
 
-    const array = [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-    ]
+    const [lost, setLost] = useState([]);
+    const [found, setFound] = useState([]);
+
+    useEffect(() => {
+        axios.get('/api/lost-found/')
+            .then(res => {
+                setLost([
+                    ...res.data.filter(item => { return item.status === 'lost' })
+                ]);
+
+                setFound([
+                    ...res.data.filter(item => { return item.status === 'found' })
+                ]);
+            })
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -18,9 +32,42 @@ function LostFound(props) {
 
         newItem.append('userName', user.name);
         newItem.append('userEmail', user.email);
-        newItem.append('userID', user._id);
-    }
 
+        axios.post('/api/lost-found', newItem)
+            .then(res => {
+                toast.success(`Posted Ad for ${res.data.title}`);
+            })
+            .catch(err => {
+                console.log(err);
+                toast.error("Failed to post");
+            })
+    };
+
+    function Data(props) {
+        return (
+            <div className="container">
+                {
+                    props.status.map((item) =>
+                        <div className="jumburton row my-2 gap-3 gap-md-0" key={item._id} >
+                            <div className="col-12 col-md-3">
+                                {
+                                    item.images ? <img src={item.images.url} alt="Item found" style={{ height: '200px' }} />
+                                        : <div>Some fancy graphic if the lost item's pic is unavailable</div>
+                                }
+                            </div>
+                            <div className="col-12 col-md-9">
+                                <h4>{item.title}</h4>
+                                <p>{item.description}</p>
+                                <p>{item.date}</p>
+                                <span>Found by {item.userName} </span> {'  Email: '} <span>{item.userEmail}</span>
+                            </div>
+                            <hr />
+                        </div>
+                    )
+                }
+            </div>
+        )
+    }
     return (
         <div className="my-4 container-lg">
             <Tabs
@@ -30,29 +77,10 @@ function LostFound(props) {
                 className="mb-3"
             >
                 <Tab eventKey="lost" title="Lost">
-                    <div className="container">
-                        {
-                            array.map((el, i) =>
-                                <div className="jumburton row my-2 gap-3 gap-md-0" key={i} >
-                                    <div className="col-12 col-md-3">
-                                        <img src="/about-us3.jpg" alt="" style={{ height: '200px' }} />
-                                    </div>
-                                    <div className="col-12 col-md-9">
-                                        <h4>Heading</h4>
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi placeat illum molestiae hic qui rerum nam aperiam rem veniam, est fugit ea maxime fugiat quos iste culpa iusto dolor corporis cum. Voluptatibus animi iste eaque libero.</p>
-                                        <p>date</p>
-                                        <span>Found by xxxxx </span> {'  Email: '} <span>xxxxxxxxx@gmail.com</span>
-                                    </div>
-                                    <hr />
-                                </div>
-
-                            )
-                        }
-                    </div>
-
+                    <Data status={lost} />
                 </Tab>
                 <Tab eventKey="found" title="Found">
-                    found
+                    <Data status={found} />
                 </Tab>
                 <Tab eventKey="add" title="Add" >
                     <div className="d-flex flex-wrap justify-content-center">
@@ -74,12 +102,12 @@ function LostFound(props) {
 
                                     <div className="col-12  d-flex justify-content-center flex-column bd-highlight mb-3">
 
-                                        <label htmlFor='status' className="form-label">Status<span className='text-danger fw-bold'>*</span></label>
+                                        <label htmlFor='status' className="form-label">I ___ this <span className='text-danger fw-bold'>*</span></label>
 
-                                        <select class="form-select" aria-label="Default select example" name="status" id="status" required>
+                                        <select className="form-select" aria-label="Default select example" name="status" id="status" required>
                                             <option value="">...</option>
-                                            <option value="lost">Lost</option>
-                                            <option value="found">Found</option>
+                                            <option value="lost">lost</option>
+                                            <option value="found">found</option>
                                         </select>
                                     </div>
 
@@ -89,8 +117,8 @@ function LostFound(props) {
                                     </div>
 
                                     <div className="col-12 col-md-6 d-flex justify-content-center flex-column bd-highlight mb-3">
-                                        <label htmlFor="image1" className="form-label">Upload Image<span className='text-danger fw-bold'>*</span></label>
-                                        <input required type="file" className="form-control" id="image1" placeholder="Required" name="file1" />
+                                        <label htmlFor="image1" className="form-label">Upload Image</label>
+                                        <input type="file" className="form-control" id="image1" placeholder="Required" name="file1" />
                                     </div>
                                 </div>
                             </div>

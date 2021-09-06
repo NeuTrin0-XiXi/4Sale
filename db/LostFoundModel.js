@@ -12,11 +12,6 @@ const LostFoundSchema = new schema({
         type: Date,
         default: Date.now
     },
-    userID: {    //Not provided to frontend  //Only used in case for notifying user for Claim notification
-        type: schema.Types.ObjectId,
-        ref: 'user',
-        required: true
-    },
     userName: {
         type: String,
         required: true
@@ -25,10 +20,13 @@ const LostFoundSchema = new schema({
         type: String,
         required: true
     },
-    images: [{
+    images: {
         url: String,
-        public_id: String
-    }],
+        public_id: String,
+        default: {
+            url: ''
+        }
+    },
     description: {
         type: String,
         required: true
