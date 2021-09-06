@@ -13,6 +13,7 @@ import Search from './pages/Search';
 import Favourites from './pages/Favourites';
 import SoldItems from './pages/SoldItems';
 import Notifications from './pages/Notifications';
+import Orders from './pages/Orders';
 
 
 function Body(props) {
@@ -20,7 +21,8 @@ function Body(props) {
         <Route key={0} path='/notifications' exact component={Notifications} />,
         <Route key={1} path='/profile' exact component={Profile} />,
         <Route key={2} path='/favourites' exact component={Favourites} />,
-        <Route key={3} path='/sold-items' exact component={SoldItems} />
+        <Route key={3} path='/sold-items' exact component={SoldItems} />,
+        <Route key={4} path='/orders' exact component={Orders} />
     ]
     return (
         <Switch>
