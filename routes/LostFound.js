@@ -78,7 +78,8 @@ route.post('/', parseImage, async (req, res, next) => {
             userName: req.body.userName,
             userEmail: req.body.userEmail,
             userID: req.body.userID,
-            images: imageLinks
+            images: imageLinks,
+            status: req.body.status
         }
         LostFound.create(itemBody)
             .then((item) => {
