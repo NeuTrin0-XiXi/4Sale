@@ -14,6 +14,7 @@ import Favourites from './pages/Favourites';
 import SoldItems from './pages/SoldItems';
 import Notifications from './pages/Notifications';
 import Orders from './pages/Orders';
+import LostFound from './pages/LostFound';
 
 
 function Body(props) {
@@ -33,6 +34,7 @@ function Body(props) {
             <Route path='/search/:query' exact component={Search} />
             <Route path='/product/:id' exact component={ProductPage} />
             <Route path='/sell' exact component={Sell} />
+            <Route path='/lost-found' exact component={LostFound} />
             {props.Auth ?
                 restrictedRoutes.map(routes => routes)
                 : null

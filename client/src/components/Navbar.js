@@ -42,16 +42,17 @@ function NavbarComponent(props) {
                         <Nav.Link eventKey='2' as={Link}  style={textColor} to="/sell"  >Sell</Nav.Link><hr className='m-1 text-light' />
                         <Nav.Link eventKey='3' as={Link}  style={textColor} to="/about">About</Nav.Link><hr className='m-1 text-light' />
                         <Nav.Link eventKey='4' as={Link}  style={textColor} to="/contact">Contact</Nav.Link><hr className='m-1 text-light' />
+                        <Nav.Link eventKey='5' as={Link}  style={textColor} to="/lost-found">Lost/Found</Nav.Link><hr className='m-1 text-light' />
                         <Dropdown style={textColor} id="collasible-nav-dropdown">
                             <Dropdown.Toggle className='non-outlined-btn btn-warning ' >Buy</Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item  eventKey='5' as={Link} to="/buy/All">All</Dropdown.Item>
-                                <Dropdown.Item  eventKey='6' as={Link} to="/buy/Sports">Sports</Dropdown.Item>
-                                <Dropdown.Item  eventKey='7' as={Link} to="/buy/Books">Books</Dropdown.Item>
-                                <Dropdown.Item  eventKey='8' as={Link} to="/buy/Games">Games</Dropdown.Item>
-                                <Dropdown.Item  eventKey='9' as={Link} to="/buy/Utilities">Utilities</Dropdown.Item>
+                                <Dropdown.Item  eventKey='6' as={Link} to="/buy/All">All</Dropdown.Item>
+                                <Dropdown.Item  eventKey='7' as={Link} to="/buy/Sports">Sports</Dropdown.Item>
+                                <Dropdown.Item  eventKey='8' as={Link} to="/buy/Books">Books</Dropdown.Item>
+                                <Dropdown.Item  eventKey='9' as={Link} to="/buy/Games">Games</Dropdown.Item>
+                                <Dropdown.Item  eventKey='10' as={Link} to="/buy/Utilities">Utilities</Dropdown.Item>
                                 <NavDropdown.Divider />
-                                <Dropdown.Item  eventKey='10' as={Link} to="/buy/Other">Others</Dropdown.Item>
+                                <Dropdown.Item  eventKey='11' as={Link} to="/buy/Other">Others</Dropdown.Item>
                             </Dropdown.Menu>
 
                         </Dropdown><hr className='m-1 text-light' />
