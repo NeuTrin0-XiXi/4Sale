@@ -36,7 +36,6 @@ function Sell(props) {
         const newItem = new FormData(formData);
         newItem.append('userName', user.name);
         newItem.append('userEmail', user.email);
-        newItem.append('userID', user._id);
 
         axios.post('/api/items', newItem)
             .then(res => {
