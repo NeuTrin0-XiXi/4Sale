@@ -11,6 +11,7 @@ function LostFound(props) {
     const { user } = props;
     const [posting, setPosting] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [statusInput, setStatusInput] = useState('')
     const [lost, setLost] = useState([]);
     const [found, setFound] = useState([]);
 
@@ -34,7 +35,7 @@ function LostFound(props) {
     }, [])
 
     const handleClaim = (id) => {
-       /// do change claim status in backend and then also update in frontend.
+        /// do change claim status in backend and then also update in frontend.
     }
 
     const handleSubmit = (e) => {
@@ -145,7 +146,7 @@ function LostFound(props) {
 
                                                     <label htmlFor='status' className="form-label">I ___ this <span className='text-danger fw-bold'>*</span></label>
 
-                                                    <select className="form-select" aria-label="Default select example" name="status" id="status" required>
+                                                    <select onChange={(e) => setStatusInput(e.target.value)} className="form-select" aria-label="Default select example" name="status" id="status" required>
                                                         <option value="">...</option>
                                                         <option value="lost">lost</option>
                                                         <option value="found">found</option>
@@ -159,7 +160,7 @@ function LostFound(props) {
 
                                                 <div className="col-12 col-md-6 d-flex justify-content-center flex-column bd-highlight mb-3">
                                                     <label htmlFor="image1" className="form-label">Upload Image</label>
-                                                    <input type="file" className="form-control" id="image1" placeholder="Required" name="file1" />
+                                                    <input type="file" className="form-control" id="image1" placeholder="Required" name="file1" required={statusInput === 'found' ? true : false} />
                                                 </div>
                                             </div>
                                         </div>
