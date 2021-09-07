@@ -12,11 +12,6 @@ const itemSchema = new schema({
         type: Date,
         default: Date.now
     },
-    userID: {    //Not provided to frontend  //Only used in case for notifying user for Buy notification
-        type: schema.Types.ObjectId,
-        ref: 'user',
-        required: true
-    },
     userName: {
         type: String,
         required: true

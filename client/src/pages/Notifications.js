@@ -20,7 +20,7 @@ function Notifications(props) {
 
     function ApproveButton(props) {
         if (props.message.slice(0, 12) === "wants to buy") {
-            return <button type="button" style={{ fontSize: '12px' }} className="btn p-0 non-outlined-btn btn-transparent" onClick={() => handleApprove(props.userEmail, props.userName, props.message, props.itemId)}> <FontAwesomeIcon icon={faArrowAltCircleRight} className='text-success me-2' />Approve</button>
+            return <button type="button" style={{ fontSize: '12px' }} className="btn p-0 non-outlined-btn btn-transparent" onClick={() => handleApprove(props.userEmail, props.userName, props.message)}> <FontAwesomeIcon icon={faArrowAltCircleRight} className='text-success me-2' />Approve</button>
         } else {
             return null
         }
@@ -45,7 +45,7 @@ function Notifications(props) {
             })
     };
 
-    const handleApprove = (userEmail, userName, message, itemId) => {
+    const handleApprove = (userEmail, userName, message) => {
         axios.put(`/api/user/notif/${userEmail}`, {
             notification: {
                 message: `approved buy-request for ${message.slice(13)}`,
@@ -53,8 +53,7 @@ function Notifications(props) {
                 userEmail: user.email,
                 mobile: user.mobile,
                 dp: user.profilePic
-            },
-            itemId: itemId
+            }
         })
             .then(res => {
                 toast.success(res.data + `${userName}`)

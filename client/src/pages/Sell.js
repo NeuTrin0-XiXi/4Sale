@@ -14,7 +14,6 @@ function Sell(props) {
     const { history } = props;
     const { Update } = props;
     const [posting, setPosting] = useState(null)
-    console.log(authorised)
 
     useEffect(() => {
         if (!authorised) {
@@ -36,7 +35,6 @@ function Sell(props) {
         const newItem = new FormData(formData);
         newItem.append('userName', user.name);
         newItem.append('userEmail', user.email);
-        newItem.append('userID', user._id);
 
         axios.post('/api/items', newItem)
             .then(res => {

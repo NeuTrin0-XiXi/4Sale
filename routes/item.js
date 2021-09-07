@@ -104,7 +104,6 @@ route.post('/', parseImage, async (req, res, next) => {
             userName: req.body.userName,
             userEmail: req.body.userEmail,
             categories: setCategories,
-            userID: req.body.userID,
             images: imageLinks
         }
         Item.create(itemBody)
@@ -122,10 +121,10 @@ route.post('/', parseImage, async (req, res, next) => {
 //Send a Buy-Sell Notification 
 route.put('/notify/:id', (req, res, next) => {
     Item.findById(req.params.id)
-        .select('userID userName')
+        .select('userEmail userName')
         .then((item) => {
             User.findOne({
-                _id: item.userID,
+                email: item.userEmail,
                 notifications: {
                     $elemMatch: {
                         message: req.body.notification.message,
@@ -141,17 +140,17 @@ route.put('/notify/:id', (req, res, next) => {
                         req.body.notification.read = false;
                         req.body.notification._id = new mongoose.Types.ObjectId();
 
-                        User.findOne({ _id: item.userID })
+                        User.findOne({ email: item.userEmail })
                             .then(user1 => {
                                 const io = require('../config/socket').get();
                                 io.to(user1.email).emit('notification', req.body.notification)
                             })
                             .catch(next);
 
-                        User.updateOne({ _id: item.userID },
+                        User.updateOne({ email: item.userEmail },
                             { "$push": { "notifications": req.body.notification } },
                         )
-                            .then(user => {
+                            .then(() => {
                                 res.header("Access-Control-Allow-Origin", "*");
                                 res.status(200).send(`Notified ${item.userName}`);
                             })
