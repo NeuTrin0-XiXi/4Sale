@@ -14,7 +14,6 @@ function Sell(props) {
     const { history } = props;
     const { Update } = props;
     const [posting, setPosting] = useState(null)
-    console.log(authorised)
 
     useEffect(() => {
         if (!authorised) {
