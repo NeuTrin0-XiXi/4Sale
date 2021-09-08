@@ -16,7 +16,7 @@ function DeleteBtn(props) {
         }
         const newUser = {
             ...user,
-            soldItems: user.soldItems.filter(item => { return item !== id })
+            soldItems: user.soldItems.filter(item => { return item._id !== id })
         }
         props.Update(newUser);
         axios.delete(`/api/items/${id}`)

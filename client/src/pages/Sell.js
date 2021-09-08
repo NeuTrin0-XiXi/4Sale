@@ -47,7 +47,7 @@ function Sell(props) {
                     .then((res) => {
                         const newUser = {
                             ...user,
-                            soldItems: res.data.soldItems
+                            soldItems: res.data
                         }
                         Update(newUser);
                     })

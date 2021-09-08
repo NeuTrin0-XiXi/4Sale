@@ -8,19 +8,19 @@ const Item = require('../db/models').itemModel;
 //API handlers
 //--------------------------------------------------------------------------//
 //GET requests
-route.get('/favourites/:id', (req, res, next) => {
-    User.findById(req.params.id)
-        .then(user => {
-            Item.find({ _id: { $in: user.favourites } })
-                .select('price title images')
-                .sort({ date: 'desc' })
-                .then(items => {
-                    res.header("Access-Control-Allow-Origin", "*");
-                    res.status(200).send(items);
-                })
-        })
-        .catch(next);
-})
+// route.get('/favourites/:id', (req, res, next) => {
+//     User.findById(req.params.id)
+//         .then(user => {
+//             Item.find({ _id: { $in: user.favourites } })
+//                 .select('price title images')
+//                 .sort({ date: 'desc' })
+//                 .then(items => {
+//                     res.header("Access-Control-Allow-Origin", "*");
+//                     res.status(200).send(items);
+//                 })
+//         })
+//         .catch(next);
+// })
 
 route.get('/sold/:id', (req, res, next) => {
     User.findById(req.params.id)
@@ -51,9 +51,15 @@ route.put('/sold/:id', (req, res, next) => {
             User.findById(req.params.id)
                 .select('soldItems')
                 .then(user => {
-                    res.header("Access-Control-Allow-Origin", "*");
-                    res.send(user);
+                    Item.find({ _id: { $in: user.soldItems } })
+                        .select('title images price')
+                        .then(items => {
+                            res.header("Access-Control-Allow-Origin", "*");
+                            res.send(items);
+                        })
+                        .catch(next);
                 })
+                .catch(next);
         })
         .catch(next);
 })

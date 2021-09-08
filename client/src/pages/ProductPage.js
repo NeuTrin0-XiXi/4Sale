@@ -159,13 +159,13 @@ function ProductPage(props) {
                                 </table>
                             </div>
                             <hr />{
-                                props.auth ? user.soldItems.includes(id) ? <DeleteBtn toHome={true} id={id} /> :
+                                props.auth ? user.soldItems.filter(item1 => { return item1._id === productDetails._id }).length > 0 ? <DeleteBtn toHome={true} id={id} /> :
                                     <>
                                         {
                                             orderStatus.length > 0 && orderStatus[0].success === false ? <Button className="btn-warning non-outlined-btn btn-md mr-1 mb-2" disabled  >Notified</Button> : orderStatus.length > 0 && orderStatus[0].success === true ? <Button className="btn-success non-outlined-btn btn-md mr-1 mb-2" disabled  >Approved</Button> : <BuyBtn id={id} title={productDetails.title} />
 
                                         }
-                                        <span className='ms-2' > <WishBtn _id={productDetails._id} removeFav={false} />Add to Favourites </span>
+                                        <span className='ms-2' > <WishBtn item={productDetails}/>Add to Favourites </span>
                                     </> : <BuyBtn />
                             }
 

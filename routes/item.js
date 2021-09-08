@@ -15,11 +15,23 @@ route.get('/', (req, res, next) => {
         .sort({ date: 'desc' })
         .select('title price images')
         .then((item) => {
-            res.header("Access-Control-Allow-Origin", "*");
+            // res.header("Access-Control-Allow-Origin", "https://iitisoc-4sale.herokuapp.com/");
             res.status(200).send(item);
         })
         .catch(next);
 });
+
+//GET an array of Items:
+route.get('/find', (req, res, next) => {
+    Item.find({ _id: req.body.items })
+        .sort({ date: 'desc' })
+        .select('title price images')
+        .then(items => {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.status(200).send(item);
+        })
+        .catch(next);
+})
 
 
 //GET Items from Search Bar(name):                  
@@ -186,7 +198,6 @@ route.delete('/:id', (req, res, next) => {
         });
     Item.deleteOne({ _id: req.params.id })
         .then(() => {
-
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(`Your Ad has been removed`);
         })

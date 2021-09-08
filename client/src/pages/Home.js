@@ -183,7 +183,7 @@ class Home extends Component {
                                             <h4 className='text-center mb-0' ><b><FontAwesomeIcon icon={faBasketballBall} /> Sports</b></h4>
                                         </div>
                                         <div className='container' >
-                                            <Deck items={Sports} update={update} removeFav={false} removeSold={true} />
+                                            <Deck items={Sports} update={update} removeSold={true} />
                                         </div>
                                     </div> : null
                             }

@@ -29,14 +29,6 @@ class Orders extends Component {
     };
 
     render() {
-        const update = (id) => {
-            const newItems = this.state.items.filter(item => item._id !== id);
-            this.setState({
-                ...this.state,
-                items: newItems,
-                number: newItems.length
-            });
-        }
         if (this.state.loading) {
             return (
                 <Spinner />
@@ -48,7 +40,7 @@ class Orders extends Component {
                     <h2 className='text-center py-3' >Your Orders</h2>
                 </div>
                 <div className='pb-5'>
-                    <ItemList items={this.state.orders} update={update} removeSold={false} removeFav={true} />
+                    <ItemList items={this.state.orders} removeSold={false}/>
                 </div>
             </>
         );

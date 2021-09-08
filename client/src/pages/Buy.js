@@ -107,7 +107,7 @@ function Buy() {
                                     </div>
                                     <div className="col-12 pt-3 pb-4" style={{height: '75vh' , overflowY: 'scroll'}} >
                                         {
-                                            loading ? <Spinner /> : <ItemList items={items} update={update} removeSold={true} removeFav={false} />
+                                            loading ? <Spinner /> : <ItemList items={items} update={update} removeSold={true} />
                                         }
                                     </div>
                                 </div>
