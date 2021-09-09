@@ -59,7 +59,6 @@ route.get('/filter', (req, res, next) => {
 //GET Item details:                             
 route.get('/:id', (req, res, next) => {
     Item.findById(req.params.id)
-        .select('title description date price userName images userEmail categories')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item)
@@ -140,12 +139,8 @@ route.put('/notify/:id', (req, res, next) => {
                         req.body.notification.read = false;
                         req.body.notification._id = new mongoose.Types.ObjectId();
 
-                        User.findOne({ email: item.userEmail })
-                            .then(user1 => {
-                                const io = require('../config/socket').get();
-                                io.to(user1.email).emit('notification', req.body.notification)
-                            })
-                            .catch(next);
+                        const io = require('../config/socket').get();
+                        io.to(item.userEmail).emit('notification', req.body.notification)
 
                         User.updateOne({ email: item.userEmail },
                             { "$push": { "notifications": req.body.notification } },

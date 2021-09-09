@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 
 function LostFound(props) {
 
-    const { user } = props;
+    const { user, auth } = props;
     const [posting, setPosting] = useState(false)
     const [loading, setLoading] = useState(true)
     const [lost, setLost] = useState([]);
@@ -33,8 +33,40 @@ function LostFound(props) {
             })
     }, [])
 
-    const handleClaim = (id) => {
-        /// do change claim status in backend and then also update in frontend.
+    const handleClaim = (id, status, title) => {
+        if (auth) {
+            let notification = {
+                userName: user.name,
+                userEmail: user.email,
+                mobile: user.mobile,
+                dp: user.profilePic
+            }
+            if (status === 'lost') {
+                notification['message'] = `found your ${title}`
+            } else {
+                notification['message'] = `wants to claim ${title}`
+            }
+            axios.put(`/api/lost-found/notify/${id}`, { notification: notification })
+                .then(res => {
+                    const updated = {
+                        ...res.data.item,
+                        claimed: true
+                    }
+                    if (status === 'lost') {
+                        setLost(prev => [...prev.filter(item => { return item._id !== id }), updated])
+                    } else {
+                        setFound(prev => [...prev.filter(item => { return item._id !== id }), updated])
+                    }
+                    toast.success(res.data.message);
+                })
+                .catch(err => {
+                    console.log(err);
+                    toast.error("Failed to notify");
+                })
+        }
+        else {
+            toast.error("Please Login first ");
+        }
     }
 
     const handleSubmit = (e) => {
@@ -77,7 +109,7 @@ function LostFound(props) {
                                     <div className="row my-2 gap-3 gap-md-0" key={item._id} >
                                         <div className="col-12 col-md-3">
                                             {
-                                                <img src={item.images ? item.images.url : `${item.status}.jpg`} alt="Item found" style={{ height: '200px', width: '90%' }} />
+                                                <img src={item.images ? item.images.url : `${item.status}.jpg`} alt="Item" style={{ height: '200px', width: '90%' }} />
                                             }
                                         </div>
                                         <div className="col-12 col-md-9">
@@ -87,7 +119,12 @@ function LostFound(props) {
                                             <div>Added by {item.userName} </div>
                                             <div className="row">
                                                 <div className='col-12 col-md-10' >Email: {item.userEmail}</div>
-                                                <div className='col-12 col-md-2 mt-2' ><Button size='sm' onClick={handleClaim(item._id)} > {item.status === 'lost' ? 'I found' : 'Claim'} </Button></div>
+                                                <div className='col-12 col-md-2 mt-2' >
+                                                    {
+                                                        item.claimed ? <Button disabled size='sm' onClick={() => handleClaim(item._id, item.status, item.title)} > {item.status === 'lost' ? 'Found' : 'Claimed'} </Button>
+                                                            : <Button size='sm' onClick={() => handleClaim(item._id, item.status, item.title)} > {item.status === 'lost' ? 'I found' : 'Claim'} </Button>
+                                                    }
+                                                </div>
                                             </div>
                                             <hr />
                                         </div>
@@ -181,7 +218,7 @@ function LostFound(props) {
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        authorised: state.Authorised
+        auth: state.Authorised
     }
 };
 

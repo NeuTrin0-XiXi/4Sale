@@ -13,7 +13,6 @@ const { uploadToCloudinary, parseImage, removeFromCloudinary } = require('../con
 route.get('/', (req, res, next) => {
     LostFound.find({})
         .sort({ date: 'desc' })
-        .select('title images date description userName userEmail status claimed')
         .then((item) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
@@ -64,7 +63,7 @@ route.post('/', parseImage, async (req, res, next) => {
                 url: uploadedUrl.url,
                 public_id: uploadedUrl.public_id
             };
-            itemBody.images = imageLinks
+            itemBody['images'] = imageLinks
         }
 
         LostFound.create(itemBody)
@@ -83,7 +82,6 @@ route.post('/', parseImage, async (req, res, next) => {
 //Send a Claim Notification 
 route.put('/notify/:id', (req, res, next) => {
     LostFound.findById(req.params.id)
-        .select('userEmail userName')
         .then((item) => {
             LostFound.updateOne({ _id: req.params.id },
                 { $set: { claimed: true } }
@@ -107,20 +105,20 @@ route.put('/notify/:id', (req, res, next) => {
                         req.body.notification.read = false;
                         req.body.notification._id = new mongoose.Types.ObjectId();
 
-                        User.findOne({ email: item.userEmail })
-                            .then(user1 => {
-                                const io = require('../config/socket').get();
-                                io.to(user1.email).emit('notification', req.body.notification)
-                            })
-                            .catch(next);
+                        const io = require('../config/socket').get();
+                        io.to(item.userEmail).emit('notification', req.body.notification)
 
                         User.updateOne({ email: item.userEmail },
                             { "$push": { "notifications": req.body.notification } },
                         )
-                            .then(user => {
+                            .then(() => {
                                 res.header("Access-Control-Allow-Origin", "*");
-                                res.status(200).send(`Notified ${item.userName}`);
+                                res.status(200).send({
+                                    item,
+                                    message: `Notified ${item.userName}`
+                                });
                             })
+                            .catch(next);
                     }
                 })
                 .catch(next);
@@ -151,9 +149,7 @@ route.delete('/:id', (req, res, next) => {
     LostFound.findById(req.params.id)
         .select('images')
         .then(item => {
-            for (let image of item.images) {
-                removeFromCloudinary(image.public_id);
-            }
+            removeFromCloudinary(item.images.public_id);
         });
     LostFound.deleteOne({ _id: req.params.id })
         .then(() => {
