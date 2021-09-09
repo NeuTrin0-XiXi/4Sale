@@ -5,6 +5,7 @@ const path = require('path');
 const app = express();
 const mongoURI = process.env.MONGO_URI;
 const socket = require("socket.io");
+const cors = require('cors');
 
 
 //connection to DB
@@ -26,6 +27,10 @@ mongoose.connect(mongoURI)
 //bodyParser middleware 
 app.use(express.json());
 
+//CORS middleware
+app.use(cors({
+    origin: ''
+}));
 
 //Using the API routes
 app.use('/api', require('./api_routes'));

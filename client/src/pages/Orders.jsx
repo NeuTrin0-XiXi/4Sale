@@ -13,18 +13,13 @@ class Orders extends Component {
 
     componentDidMount() {
         const { user } = this.props
-        for (let i = 0; i < user.orders.length; i++) {
-            const element = user.orders[i];
-
-            axios.get(`/api/items/${element._id}`)
-                .then(res => {
-                    this.setState({
-                        orders: [...this.state.orders, res.data],
-                        loading: false
-                    })
+        axios.get(`/api/user/orders/${user._id}`)
+            .then(res => {
+                this.setState({
+                    orders: [...this.state.orders, ...res.data],
+                    loading: false
                 })
-
-        }
+            })
 
     };
 
@@ -40,7 +35,7 @@ class Orders extends Component {
                     <h2 className='text-center py-3' >Your Orders</h2>
                 </div>
                 <div className='pb-5'>
-                    <ItemList items={this.state.orders} removeSold={false}/>
+                    <ItemList items={this.state.orders} removeSold={false} />
                 </div>
             </>
         );

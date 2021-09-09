@@ -23,7 +23,7 @@ route.post('/', (req, res, next) => {
             .sort({ date: 'desc' })
             .then(items => {
                 user1.soldItems = items;
-            })
+            });
         res.status(200).send(user1);
     };
 
