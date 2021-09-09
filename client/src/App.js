@@ -16,7 +16,7 @@ function App(props) {
 
     useEffect(() => {
         if (auth) {
-            const ENDPOINT = 'http://localhost:5000';
+            const ENDPOINT = 'https://iitisoc-4sale.herokuapp.com/';
             socket = io(ENDPOINT, { transports: ['websocket', 'polling'] })
             socket.emit('join', user.email);
             console.log("Connected to room: " + user.email)

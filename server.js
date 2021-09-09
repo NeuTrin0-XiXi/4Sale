@@ -29,7 +29,7 @@ app.use(express.json());
 
 //CORS middleware
 app.use(cors({
-    origin: ''
+    origin: '*'
 }));
 
 //Using the API routes
