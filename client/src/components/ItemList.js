@@ -22,7 +22,7 @@ function ItemList(props) {
                     {items && items.map(({ _id, title, price, images }) => (
                         <Card style={{ width: '14rem', height: '320px', boxShadow: '0 2px 2px 0px rgba(0,0,0,0.5)' }} key={_id} >
                             <Link to={`/product/${_id}`}>
-                                <Card.Img src={images[0].url} alt="item-img" style={{ cursor: "pointer", height: '150px' }} />
+                                <Card.Img src={images && images[0].url} alt="item-img" style={{ cursor: "pointer", height: '150px' }} />
                             </Link>
                             <Card.Body>
                                 <Card.Title >{title}</Card.Title>

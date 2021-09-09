@@ -4,11 +4,13 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import Spinner from '../components/Spinner';
 import axios from 'axios';
+import NOT_FOUND from './Not_Found'
 
 class Orders extends Component {
     state = {
         orders: [],
-        loading: true
+        loading: true,
+        error: false
     };
 
     componentDidMount() {
@@ -18,9 +20,19 @@ class Orders extends Component {
 
             axios.get(`/api/items/${element._id}`)
                 .then(res => {
+                    console.log(res.data)
                     this.setState({
+                        ...this.state,
                         orders: [...this.state.orders, res.data],
                         loading: false
+                    })
+                })
+                .catch(e => {
+                    console.log(e)
+                    this.setState({
+                        ...this.state,
+                        loading: false,
+                        error: true
                     })
                 })
 
@@ -42,16 +54,21 @@ class Orders extends Component {
                 <Spinner />
             )
         }
-        return (
-            <>
-                <div className="results">
-                    <h2 className='text-center py-3' >Your Orders</h2>
-                </div>
-                <div className='pb-5'>
-                    <ItemList items={this.state.orders} update={update} removeSold={false} removeFav={true} />
-                </div>
-            </>
-        );
+        else if (!this.state.error)
+            return (
+                <>
+                    <div className="results">
+                        <h2 className='text-center py-3' >Your Orders</h2>
+                    </div>
+                    <div className='pb-5'>
+                        <ItemList items={this.state.orders} update={update} removeSold={false} removeFav={true} />
+                    </div>
+                </>
+            )
+        else
+         return(
+             <NOT_FOUND/>
+         )    
     }
 }
 
