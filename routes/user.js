@@ -98,7 +98,7 @@ route.put('/order/:id', (req, res, next) => {
 
 
 //Buy request/Approve Buy request
-route.put('/notif/:userEmail', (req, res, next) => {
+route.put('/approve/:userEmail', (req, res, next) => {
     User.findOne({
         email: req.params.userEmail,
         notifications: {
@@ -121,19 +121,32 @@ route.put('/notif/:userEmail', (req, res, next) => {
                 User.updateOne({ email: req.params.userEmail },
                     {
                         "$push": { "notifications": req.body.notification },
-                        $set: {
+                        "$set": {
                             "orders.$[elem].success": true
                         }
                     },
                     {
-                        arrayFilters: [{ "elem._id": req.body.itemId }]
+                        arrayFilters: [{ "elem": { _id: req.body.notification.itemId } }]
                     }
                 )
                     .then(a => {
-                        res.status(200).send(`Notified `);
+                        User.updateOne({ _id: req.body._id },
+                            { "$pull": { notifications: { itemId: req.body.notification.itemId, userEmail: { $ne: req.body.notification.userEmail } } } }
+                        ).then(() => {
+                            User.findById(req.body._id)
+                                .select('notifications name')
+                                .then(user => {
+                                    Item.updateOne({ _id: req.body.notification.itemId }, {
+                                        $set: { sold: true }
+                                    })
+                                        .catch(next);
+                                    res.status(200).send({ msg: `Notified ${user.name}`, notifications: user.notifications });
+                                })
+                                .catch(next);
+                        })
+                            .catch(next);
                     })
                     .catch(next);
-
             }
         })
         .catch(next);
@@ -203,7 +216,7 @@ route.delete('/favourites/:id', (req, res, next) => {
         .then(() => {
             User.findById(req.params.id)
                 .select('favourites')
-                .then(user => {
+                .then(() => {
                     res.status(204).end();
                 })
         }).catch(next);

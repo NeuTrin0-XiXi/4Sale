@@ -11,7 +11,8 @@ function BuyBtn(props) {
         if (auth) {
             axios.put(`/api/items/notify/${id}`, {
                 notification: {
-                    message: `wants to buy ${props.title}`,
+                    message: "wants to buy",
+                    itemTitle: props.title,
                     userName: user.name,
                     userEmail: user.email,
                     mobile: user.mobile,

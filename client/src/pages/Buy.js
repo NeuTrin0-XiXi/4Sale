@@ -10,7 +10,6 @@ import { faBasketballBall, faBook, faGamepad, faShoppingCart, faSplotch, faStore
 
 function Buy() {
     const { category } = useParams()
-    console.log(category)
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true)
     const [err, setErr] = useState(false)

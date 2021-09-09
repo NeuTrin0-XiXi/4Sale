@@ -13,7 +13,7 @@ const { uploadToCloudinary, parseImage, removeFromCloudinary } = require('../con
 route.get('/', (req, res, next) => {
     Item.find({})
         .sort({ date: 'desc' })
-        .select('title price images')
+        .select('title price images approved')
         .then((item) => {
             res.status(200).send(item);
         })
@@ -30,7 +30,7 @@ route.get('/search', (req, res, next) => {
             { description: { $regex: name, $options: 'i' } }
         ]
     })
-        .select('title price images')
+        .select('title price images approved')
         .then((item) => {
             res.send(item);
         })
@@ -44,7 +44,7 @@ route.get('/search', (req, res, next) => {
 //GET Items from Filters:                           
 route.get('/filter', (req, res, next) => {
     Item.find(req.query)
-        .select('title price images')
+        .select('title price images approved')
         .then((item) => {
             res.status(200).send(item);
         })

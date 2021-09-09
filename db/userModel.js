@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
-//Schema
+//User Schema
 const userSchema = new schema({
     name: {
         type: String,
@@ -13,14 +13,14 @@ const userSchema = new schema({
         required: true,
         unique: true
     },
-    favourites: {
-        type: [schema.Types.ObjectId],
+    favourites: [{
+        type: schema.Types.ObjectId,
         ref: 'item'
-    },
-    soldItems: {
-        type: [schema.Types.ObjectId],
+    }],
+    soldItems: [{
+        type: schema.Types.ObjectId,
         ref: 'item'
-    },
+    }],
     mobile: {
         type: Number,
         minimum: 1000000000,
@@ -37,6 +37,7 @@ const userSchema = new schema({
     notifications: [{
         _id: schema.Types.ObjectId,
         itemId: schema.Types.ObjectId,
+        itemTitle: String,
         message: String,
         userName: String,
         userEmail: String,

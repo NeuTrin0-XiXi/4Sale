@@ -35,7 +35,7 @@ const itemSchema = new schema({
         type: String,
         required: true
     },
-    approved: {
+    sold: {
         type: Boolean,
         default: false
     }
