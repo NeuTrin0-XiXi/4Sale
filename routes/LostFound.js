@@ -142,15 +142,16 @@ route.put('/notify/:id', (req, res, next) => {
 
 
 //Delete a posted item                              
-route.delete('/:id', (req, res, next) => {
-    LostFound.findById(req.params.id)
+route.delete('/:id', async (req, res, next) => {
+    await LostFound.findById(req.params.id)
         .select('images')
         .then(item => {
-            removeFromCloudinary(item.images.public_id);
+            if (item) {
+                removeFromCloudinary(item.images.public_id);
+            }
         });
     LostFound.deleteOne({ _id: req.params.id })
         .then(() => {
-
             res.status(200).send(`Your Ad has been removed`);
         })
         .catch(next);

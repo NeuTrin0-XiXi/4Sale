@@ -140,7 +140,7 @@ route.put('/approve/:userEmail', (req, res, next) => {
                                         $set: { sold: true }
                                     })
                                         .catch(next);
-                                    res.status(200).send({ msg: `Notified ${user.name}`, notifications: user.notifications });
+                                    res.status(200).send({ msg: `Notified ${req.body.notification.userName}`, notifications: user.notifications });
                                 })
                                 .catch(next);
                         })

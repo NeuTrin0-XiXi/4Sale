@@ -5,6 +5,8 @@ import Spinner from '../components/Spinner'
 import { withRouter } from 'react-router'
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function LostFound(props) {
 
@@ -82,7 +84,6 @@ function LostFound(props) {
 
         axios.post('/api/lost-found', newItem)
             .then(res => {
-                console.log(res.data)
                 toast.success(`Posted Ad for ${res.data.title}`);
                 const { status } = res.data
                 if (status === 'lost') {
@@ -99,6 +100,22 @@ function LostFound(props) {
 
             })
     };
+
+    const Delete = (id, status) => {
+        axios.delete(`/api/lost-found/${id}`)
+            .then(res => {
+                if (status === 'lost') {
+                    setLost(prev => [...prev.filter(item => { return item._id !== id })])
+                } else {
+                    setFound(prev => [...prev.filter(item => { return item._id !== id })])
+                }
+                toast.success(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+                toast.error("Couldn't delete Ad");
+            })
+    }
 
     function Data(props) {
         return (
@@ -123,8 +140,9 @@ function LostFound(props) {
                                                 <div className='col-12 col-md-10' >Email: {item.userEmail}</div>
                                                 <div className='col-12 col-md-2 mt-2' >
                                                     {
-                                                        item.claimed ? <Button disabled size='sm' onClick={() => handleClaim(item._id, item.status, item.title)} > {item.status === 'lost' ? 'Found' : 'Claimed'} </Button>
-                                                            : <Button size='sm' onClick={() => handleClaim(item._id, item.status, item.title)} > {item.status === 'lost' ? 'I found' : 'Claim'} </Button>
+                                                        item.userEmail === user.email ? <Button size='lg' onClick={() => Delete(item._id, item.status)} variant='light' className='text-danger'><FontAwesomeIcon icon={faTrash} /></Button>
+                                                            : item.claimed ? <Button disabled size='lg' > {item.status === 'lost' ? 'Found' : 'Claimed'} </Button>
+                                                                : <Button size='lg' onClick={() => handleClaim(item._id, item.status, item.title)} > {item.status === 'lost' ? 'I found' : 'Claim'} </Button>
                                                     }
                                                 </div>
                                             </div>
