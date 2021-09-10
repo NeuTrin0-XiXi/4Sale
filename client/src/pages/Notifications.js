@@ -54,7 +54,7 @@ function Notifications(props) {
                 userName: user.name,
                 userEmail: user.email,
                 mobile: user.mobile,
-                dp: user.profilePic,
+                dp: user.imageUrl,
                 itemId: itemId
             }
         })

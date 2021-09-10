@@ -19,15 +19,18 @@ function App(props) {
         if (auth) {
             socket.current.emit('join', user.email);
             console.log("Connected to room: " + user.email)
-            socket.current.on('notification', (notif) => {
-                Update({
-                    ...user,
-                    notifications: [...notifications, notif]
-                })
-                toast.success(notif.userName + ' ' + notif.message)
-            })
         }
-    }, [auth, user.email, Update, notifications, user]);
+    }, [ auth, user.email]);
+
+    useEffect(() => {
+        socket.current.on('notification', (notif) => {
+            Update({
+                ...user,
+                notifications: [...notifications, notif]
+            })
+            toast.success(notif.userName + ' ' + notif.message)
+        })
+    }, [Update, user, notifications])
 
     return (
         <>

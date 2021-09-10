@@ -11,7 +11,6 @@ function Orders(props) {
     const [loading, setLoading] = useState(true)
     const [err, setErr] = useState(false)
     const { userId } = props
-    console.log(userId)
 
     useEffect(() => {
 
