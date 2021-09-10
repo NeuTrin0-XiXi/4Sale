@@ -20,7 +20,7 @@ function App(props) {
             socket.current.emit('join', user.email);
             console.log("Connected to room: " + user.email)
         }
-    }, [ auth, user.email]);
+    }, [auth, user.email]);
 
     useEffect(() => {
         socket.current.on('notification', (notif) => {
@@ -56,7 +56,7 @@ function App(props) {
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        auth: state.Authorised,
+        auth: state.Authorised
     }
 };
 

@@ -22,7 +22,7 @@ function LoginButton(props) {
         })
             .then(res => {
                 const { favourites, soldItems, _id, notifications, mobile, orders } = res.data;
-                
+
                 user.favourites = favourites;
                 user.soldItems = soldItems;
                 user.notifications = notifications;

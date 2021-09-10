@@ -69,8 +69,10 @@ function Notifications(props) {
                     notifications: res.data.notifications
                 }
                 Update(newUser)
-                // setNotifs(res.data.notifications);
                 toast.success(res.data.msg)
+            })
+            .catch(err => {
+                toast.error("Couldn't notify")
             })
     }
 
