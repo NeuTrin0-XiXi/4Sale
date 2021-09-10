@@ -7,7 +7,6 @@ import clientID from './googleClient';
 function LoginButton(props) {
     
     const LoginSuccess = (res) => {
-        console.log(res)
         var basicProfile = res.profileObj;
         let user = {
             ...basicProfile,
@@ -17,7 +16,7 @@ function LoginButton(props) {
             notifications: [],
             orders: []
         }
-        props.authorise(user)
+        props.login(user)
         axios.post('/api/googlelogin', {
             googleToken: res.tokenId
         })
@@ -29,7 +28,7 @@ function LoginButton(props) {
                 user._id = _id;
                 user.mobile = mobile
                 user.orders = orders
-                props.Login(user);
+                props.login(user)
             })
     };
 
@@ -55,14 +54,11 @@ function LoginButton(props) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        Login: (fullProfile) => {
-            dispatch({ type: 'SET_AUTH_FULL', payload: fullProfile })
-        },
-        authorise: (basicProfile) =>{
-            dispatch({type: 'SET_AUTH_BASIC', payload: basicProfile })
+        login: (user) => {
+            dispatch({ type: 'SET_USER', payload: user })
         },
         loading: (value) => {
-            dispatch({type: 'SET_LOADING_FALSE', payload: value})
+            dispatch({type: 'SET_LOADING', payload: value})
         }
     }
 };
