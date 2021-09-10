@@ -28,6 +28,7 @@ function LoginButton(props) {
                 user._id = _id;
                 user.mobile = mobile
                 user.orders = orders
+                props.login(user)
             })
     };
 

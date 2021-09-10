@@ -1,51 +1,62 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import ItemList from '../components/ItemList';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import Spinner from '../components/Spinner';
 import axios from 'axios';
 
-class Orders extends Component {
-    state = {
-        orders: [],
-        loading: true,
-        error: false
-    };
+function Orders(props) {
 
-    componentDidMount() {
-        const { user } = this.props
-        axios.get(`/api/user/orders/${user._id}`)
-            .then(res => {
-                this.setState({
-                    orders: [...this.state.orders, ...res.data],
-                    loading: false
+    const [orders, setOrders] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [err, setErr] = useState(false)
+    const { userId } = props
+    console.log(userId)
+
+    useEffect(() => {
+
+        if (userId !== '') {
+            axios.get(`/api/user/orders/${userId}`)
+                .then(res => {
+                    setOrders(res.data)
+                    setLoading(false)
+                    console.log(res.data)
                 })
-            })
-
-    };
-
-    render() {
-        if (this.state.loading) {
-            return (
-                <Spinner />
-            )
+                .catch(e => {
+                    setLoading(false)
+                    setErr(true)
+                    console.log(e)
+                })
         }
-        return (
-            <>
-                <div className="results">
-                    <h2 className='text-center py-3' >Your Orders</h2>
-                </div>
-                <div className='pb-5'>
-                    <ItemList items={this.state.orders} removeSold={false} />
-                </div>
-            </>
-        );
-    }
+
+    }, [userId])
+
+    return (
+        <>
+            {
+                loading ? <Spinner /> :
+                    err ? null :
+                        <>
+                            {
+                                err ? null :
+                                    <>  <div className="results">
+                                        <h2 className='text-center py-3' >Your Orders</h2>
+                                    </div>
+                                        <div className='pb-5'>
+                                            <ItemList items={orders} removeSold={false} />
+                                        </div>
+                                    </>
+                            }
+                        </>
+
+            }
+        </>
+    )
 }
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        userId: state.user._id
     }
 };
 
