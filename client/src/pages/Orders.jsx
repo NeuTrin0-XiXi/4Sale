@@ -8,7 +8,8 @@ import axios from 'axios';
 class Orders extends Component {
     state = {
         orders: [],
-        loading: true
+        loading: true,
+        error: false
     };
 
     componentDidMount() {

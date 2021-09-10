@@ -50,12 +50,12 @@ function ProfileButton(props) {
                 <div className="dropdown dropstart" >
                     <button className="btn btn-transparent p-0 dropdown-toggle" style={{ borderRadius: '100%' }} type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
 
-                        <img src={props.user.profilePic} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />
+                        <img src={props.user.imageUrl} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />
                     </button>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                         <li> <Link className="dropdown-item" to="/profile"><FontAwesomeIcon icon={faUser} /> {' '}  Profile</Link></li>
                         <li>  <Link className="dropdown-item" to="/favourites"><FontAwesomeIcon icon={faHeart} /> {' '} Favourites</Link></li>
-                        <li>  <Link className="dropdown-item" to="/sold-items"><FontAwesomeIcon icon={faCertificate} /> {' '} Your Ads</Link></li>
+                        <li>  <Link className="dropdown-item" to="/your-ads"><FontAwesomeIcon icon={faCertificate} /> {' '} Your Ads</Link></li>
                         <li>  <Link className="dropdown-item" to="/orders"><FontAwesomeIcon icon={faShoppingBag} /> {' '} Your Orders</Link></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li> <LogoutButton /></li>

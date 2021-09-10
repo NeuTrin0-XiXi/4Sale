@@ -7,7 +7,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 function EditProfile(props) {
-    const { name, email, profilePic, mobile, _id } = props.user
+    const { name, email, imageUrl, mobile, _id } = props.user
     const [mobileInput, setMobileInput] = useState('')
     const [visibility, setVisibility] = useState(false)
 
@@ -43,7 +43,7 @@ function EditProfile(props) {
                         <div className="profile-card">
                             <div className="card-body">
                                 <div className="d-flex flex-column align-items-center text-center">
-                                    <img src={profilePic} alt="Admin" className="rounded-circle" width={100} />
+                                    <img src={imageUrl} alt="Admin" className="rounded-circle" width={100} />
                                     <div className="mt-3">
                                         <h4>{name}</h4>
                                         <p className="text-secondary mb-1">IIT Indore Student</p>

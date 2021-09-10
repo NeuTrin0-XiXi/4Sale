@@ -3,24 +3,21 @@ import { connect } from 'react-redux';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 import clientID from './googleClient';
-import { toast } from 'react-toastify';
 
 function LoginButton(props) {
+    
     const LoginSuccess = (res) => {
-        var profile = res.getBasicProfile();
+        console.log(res)
+        var basicProfile = res.profileObj;
         let user = {
-            name: '',
-            email: '',
+            ...basicProfile,
             favourites: [],
             soldItems: [],
             _id: '',
-            profilePic: '',
             notifications: [],
             orders: []
         }
-        user.name = profile.getName();
-        user.email = profile.getEmail();
-        user.profilePic = profile.getImageUrl();
+        props.authorise(user)
         axios.post('/api/googlelogin', {
             googleToken: res.tokenId
         })
@@ -33,7 +30,6 @@ function LoginButton(props) {
                 user.mobile = mobile
                 user.orders = orders
                 props.Login(user);
-                toast.success("Logged In")
             })
     };
 
@@ -51,6 +47,7 @@ function LoginButton(props) {
                 isSignedIn={true}
                 onFailure={LoginFail}
                 cookiePolicy={'single_host_origin'}
+                onAutoLoadFinished={() => props.loading(false)}
             />
         </div>
     )
@@ -58,8 +55,14 @@ function LoginButton(props) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        Login: (user) => {
-            dispatch({ type: 'SET_AUTH_TRUE', payload: user })
+        Login: (fullProfile) => {
+            dispatch({ type: 'SET_AUTH_FULL', payload: fullProfile })
+        },
+        authorise: (basicProfile) =>{
+            dispatch({type: 'SET_AUTH_BASIC', payload: basicProfile })
+        },
+        loading: (value) => {
+            dispatch({type: 'SET_LOADING_FALSE', payload: value})
         }
     }
 };

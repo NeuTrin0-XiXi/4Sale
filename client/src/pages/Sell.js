@@ -149,7 +149,7 @@ function Sell(props) {
 
                                                 <div className="col-6 d-flex justify-content-center flex-column bd-highlight mb-4">
                                                     <label htmlFor="price" className="form-label" required>Price<span className='text-danger fw-bold'>*</span></label>
-                                                    <input required min="0" type="tel" className="form-control" id="price" placeholder="Set a Price" name="price" />
+                                                    <input required min='0' type="tel" className="form-control" id="price" placeholder="Set a Price" name="price" />
 
                                                     <div className="invalid-feedback">
                                                         Please enter product price.

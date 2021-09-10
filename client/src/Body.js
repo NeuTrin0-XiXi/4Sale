@@ -15,6 +15,7 @@ import SoldItems from './pages/SoldItems';
 import Notifications from './pages/Notifications';
 import Orders from './pages/Orders';
 import LostFound from './pages/LostFound';
+import Spinner from './components/Spinner';
 
 
 function Body(props) {
@@ -22,30 +23,36 @@ function Body(props) {
         <Route key={0} path='/notifications' exact component={Notifications} />,
         <Route key={1} path='/profile' exact component={Profile} />,
         <Route key={2} path='/favourites' exact component={Favourites} />,
-        <Route key={3} path='/sold-items' exact component={SoldItems} />,
+        <Route key={3} path='/your-ads' exact component={SoldItems} />,
         <Route key={4} path='/orders' exact component={Orders} />
     ]
-    return (
-        <Switch>
-            <Route path='/' exact component={Home} />
-            <Route path='/about' exact component={AboutUs} />
-            <Route path='/contact' exact component={ContactUs} />
-            <Route path='/buy/:category' exact component={Buy} />
-            <Route path='/search/:query' exact component={Search} />
-            <Route path='/product/:id' exact component={ProductPage} />
-            <Route path='/sell' exact component={Sell} />
-            <Route path='/lost-found' exact component={LostFound} />
-            {props.Auth ?
-                restrictedRoutes.map(routes => routes)
-                : null
-            }
-            <Route path={'*'} component={NOT_FOUND} />
-        </Switch>
+    return (<>
+        {
+            props.loading ? <Spinner /> :
+                <Switch>
+                    <Route path='/' exact component={Home} />
+                    <Route path='/about' exact component={AboutUs} />
+                    <Route path='/contact' exact component={ContactUs} />
+                    <Route path='/buy/:category' exact component={Buy} />
+                    <Route path='/search/:query' exact component={Search} />
+                    <Route path='/product/:id' exact component={ProductPage} />
+                    <Route path='/sell' exact component={Sell} />
+                    <Route path='/lost-found' exact component={LostFound} />
+                    {props.Auth ?
+                        restrictedRoutes.map(routes => routes)
+                        : null
+                    }
+                    <Route path={'*'} component={NOT_FOUND} />
+                </Switch>
+        }
+    </>
+
     )
 }
 const mapStateToProps = (state) => {
     return {
-        Auth: state.Authorised
+        Auth: state.Authorised,
+        loading: state.loading
     }
 };
 
