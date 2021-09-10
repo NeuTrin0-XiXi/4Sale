@@ -15,7 +15,7 @@ function LogoutButton(props) {
             <GoogleLogout
                 clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
                 render={renderProps => (
-                    <button className="dropdown-item" onClick={renderProps.onClick} style={{color: 'rgba(var(--bs-danger-rgb),var(--bs-text-opacity))!important'}} disabled={renderProps.disabled}><FontAwesomeIcon icon={faPowerOff}/>{' '} Logout</button>
+                    <button className="dropdown-item text-danger" onClick={renderProps.onClick}  disabled={renderProps.disabled}><FontAwesomeIcon icon={faPowerOff}/>{' '} Logout</button>
                 )}
                 buttonText="Logout"
                 onLogoutSuccess={Logout}
@@ -27,7 +27,7 @@ function LogoutButton(props) {
 const mapDispatchToProps = (dispatch) => {
     return {
         Logout: () => {
-            dispatch({ type: 'SET_AUTH_FALSE' })
+            dispatch({ type: 'CLEAR_USER' })
         }
     }
 };

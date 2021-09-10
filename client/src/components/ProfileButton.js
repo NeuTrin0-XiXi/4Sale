@@ -53,10 +53,10 @@ function ProfileButton(props) {
                         <img src={props.user.imageUrl} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />
                     </button>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                        <li> <Link className="dropdown-item" to="/profile"><FontAwesomeIcon icon={faUser} /> {' '}  Profile</Link></li>
-                        <li>  <Link className="dropdown-item" to="/favourites"><FontAwesomeIcon icon={faHeart} /> {' '} Favourites</Link></li>
-                        <li>  <Link className="dropdown-item" to="/your-ads"><FontAwesomeIcon icon={faCertificate} /> {' '} Your Ads</Link></li>
-                        <li>  <Link className="dropdown-item" to="/orders"><FontAwesomeIcon icon={faShoppingBag} /> {' '} Your Orders</Link></li>
+                        <li> <Link className="dropdown-item" to="/profile"><FontAwesomeIcon className='me-2' icon={faUser} />Profile</Link></li>
+                        <li>  <Link className="dropdown-item" to="/favourites"><FontAwesomeIcon className='me-2' icon={faHeart} />Favourites</Link></li>
+                        <li>  <Link className="dropdown-item" to="/your-ads"><FontAwesomeIcon className='me-2' icon={faCertificate} />Your Ads</Link></li>
+                        <li>  <Link className="dropdown-item" to="/orders"><FontAwesomeIcon className='me-2' icon={faShoppingBag} />Your Orders</Link></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li> <LogoutButton /></li>
                     </ul>

@@ -6,26 +6,20 @@ import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTop from './components/ScrollToTop';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 function App(props) {
     const { user, Update, auth } = props
     const { notifications } = props.user;
 
-    let socket = null
+    const ENDPOINT = 'https://iitisoc-4sale.herokuapp.com/';
+    const socket = useRef(io(ENDPOINT, { transports: ['websocket', 'polling'] }))
 
     useEffect(() => {
         if (auth) {
-            const ENDPOINT = 'https://iitisoc-4sale.herokuapp.com/';
-            socket = io(ENDPOINT, { transports: ['websocket', 'polling'] })
-            socket.emit('join', user.email);
+            socket.current.emit('join', user.email);
             console.log("Connected to room: " + user.email)
-        }
-    }, [auth]);
-
-    useEffect(() => {
-        if (socket !== null) {
-            socket.on('notification', (notif) => {
+            socket.current.on('notification', (notif) => {
                 Update({
                     ...user,
                     notifications: [...notifications, notif]
@@ -33,8 +27,7 @@ function App(props) {
                 toast.success(notif.userName + ' ' + notif.message)
             })
         }
-    })
-
+    }, [auth, user.email, Update, notifications, user]);
 
     return (
         <>

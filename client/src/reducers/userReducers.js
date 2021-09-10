@@ -16,18 +16,13 @@ const initialState = {
 
 const userReducers = (state = initialState, action) => {
     switch (action.type) {
-        case 'SET_AUTH_BASIC':
-            return {
-                user: action.payload,
-                Authorised: true
-            };
-        case 'SET_AUTH_FULL':
+        case 'SET_USER':
             return {
                 user: action.payload,
                 Authorised: true
             };
         
-        case 'SET_AUTH_FALSE':
+        case 'CLEAR_USER':
             return {
                 user: initialState.user,
                 Authorised: false
@@ -38,11 +33,13 @@ const userReducers = (state = initialState, action) => {
                 user: action.payload,
                 Authorised: true
             };
-        case 'SET_LOADING_FALSE':
+
+        case 'SET_LOADING':
             return {
                 ...state,
                 loading: action.payload
             };
+            
         default: return state;
     }
 
