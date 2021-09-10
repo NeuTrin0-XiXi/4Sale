@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box; 
     font-family: 'Varela Round', sans-serif;
+    scroll-behavior: auto !important;
 }
 
 code {
@@ -12,7 +13,6 @@ code {
 .dropdown-toggle::before {
     content: none !important;
 }
-
 
 h1,h2,h3,h4,h5,h6{
     font-family: 'Varela Round', sans-serif;
