@@ -36,15 +36,16 @@ function LostFound(props) {
     const handleClaim = (id, status, title) => {
         if (auth) {
             let notification = {
+                itemTitle: title,
                 userName: user.name,
                 userEmail: user.email,
                 mobile: user.mobile,
                 dp: user.profilePic
             }
             if (status === 'lost') {
-                notification['message'] = `found your ${title}`
+                notification['message'] = `found your`
             } else {
-                notification['message'] = `wants to claim ${title}`
+                notification['message'] = `wants to claim`
             }
             axios.put(`/api/lost-found/notify/${id}`, { notification: notification })
                 .then(res => {
@@ -65,7 +66,7 @@ function LostFound(props) {
                 })
         }
         else {
-            toast.error("Please Login first ");
+            toast.error("Please Login first");
         }
     }
 

@@ -42,7 +42,7 @@ function Search() {
                     <h1 className='text-center' >Results for {query}: </h1>
                 </div>
                 <div>
-                    <ItemList items={items} update={update} removeSold={true} removeFav={false} />
+                    <ItemList items={items} update={update} removeSold={true}/>
                 </div>
             </>
         )

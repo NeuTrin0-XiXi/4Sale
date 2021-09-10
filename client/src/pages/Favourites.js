@@ -1,73 +1,41 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import ItemList from '../components/ItemList';
-import axios from 'axios';
+// import axios from 'axios';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import Spinner from '../components/Spinner';
 
-class Favourites extends Component {
-    state = {
-        items: [
-            {
-                _id: '',
-                title: '',
-                price: '',
-                images: ''
-            }
-        ],
-        number: 0,
-        loading: true
-    };
+function Favourites(props) {
+    const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const { user } = props;
 
-    componentDidMount() {
-        const { user } = this.props
-        axios.get(`/api/user/favourites/${user._id}`)
-            .then(res => {
-                const size = res.data.length
-                this.setState({
-                    items: res.data,
-                    number: size,
-                    loading: false
-                });
-            })
-            .catch(err => {
-                this.setState({
-                    ...this.state,
-                    loading: false
-                })
-            })
-    };
-
-    render() {
-        const update = (id) => {
-            const newItems = this.state.items.filter(item => item._id !== id);
-            this.setState({
-                ...this.state,
-                items: newItems,
-                number: newItems.length
-            });
-        }
-        if (this.state.loading) {
-            return (
-                <Spinner />
-            )
-        }
+    useEffect(() => {
+        setItems(user.favourites);
+        setLoading(false);
+    }, [user.favourites]);
+    
+    if (loading) {
         return (
-            <>
-                <div className="results">
-                    <h2 className='text-center py-3' >Favourites</h2>
-                </div>
-                <div className='pb-5'>
-                    <ItemList items={this.state.items} update={update} removeSold={false} removeFav={true} />
-                </div>
-            </>
-        );
+            <Spinner />
+        )
     }
+    return (
+        <>
+            <div className="results">
+                <h2 className='text-center py-3' >Favourites</h2>
+            </div>
+            <div className='pb-5'>
+                <ItemList items={items} removeSold={false} />
+            </div>
+        </>
+    );
 }
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        auth: state.Authorised
     }
 };
 

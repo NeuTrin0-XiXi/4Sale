@@ -11,31 +11,28 @@ const WishBtn = (props) => {
     const { Auth } = props;
     const { user } = props;
     if (Auth) {
-        const favourite = (_id) => {
+        const favourite = (item) => {
             const newUser = {
                 ...user
             };
-            newUser.favourites.push(_id)
+            newUser.favourites.push(item)
             props.Update(newUser);
             axios.put(`/api/user/favourites/${user._id}`, {
-                favourite: _id
+                favourite: item._id
             })
         };
 
-        const removeFavourite = (id) => {
-            if (props.removeFav) {
-                props.update(id);
-            };
+        const removeFavourite = (item) => {
             const newUser = {
                 ...user,
-                favourites: user.favourites.filter(item => item !== id)
+                favourites: user.favourites.filter(item1 => item1._id !== item._id)
             };
             props.Update(newUser);
             axios({
                 method: 'DELETE',
                 url: `/api/user/favourites/${user._id}`,
                 data: {
-                    favourite: id
+                    favourite: item._id
                 }
             })
         }
@@ -43,7 +40,7 @@ const WishBtn = (props) => {
         function Contains(_id) {
             let i;
             for (i = 0; i < user.favourites.length; i++) {
-                if (_id === user.favourites[i]) {
+                if (_id === user.favourites[i]._id) {
                     return true;
                 }
             }
@@ -51,10 +48,10 @@ const WishBtn = (props) => {
         };
 
         //Main Function
-        if (Contains(props._id)) {
-            return <Button onClick={() => removeFavourite(props._id)} variant='transparent' className="non-outlined-btn text-success" ><FontAwesomeIcon size='lg' icon={faHeart} /></Button>
+        if (Contains(props.item._id)) {
+            return <Button onClick={() => removeFavourite(props.item)} variant='transparent' className="non-outlined-btn text-success" ><FontAwesomeIcon size='lg' icon={faHeart} /></Button>
         } else {
-            return <Button onClick={() => favourite(props._id)} variant='transparent' className="non-outlined-btn text-success" ><FontAwesomeIcon size='lg' icon={farHeart} /></Button>
+            return <Button onClick={() => favourite(props.item)} variant='transparent' className="non-outlined-btn text-success" ><FontAwesomeIcon size='lg' icon={farHeart} /></Button>
         }
     } else {
         return null;

@@ -8,28 +8,41 @@ const Item = require('../db/models').itemModel;
 //API handlers
 //--------------------------------------------------------------------------//
 //GET requests
-route.get('/favourites/:id', (req, res, next) => {
-    User.findById(req.params.id)
-        .then(user => {
-            Item.find({ _id: { $in: user.favourites } })
-                .select('price title images')
-                .sort({ date: 'desc' })
-                .then(items => {
-                    res.header("Access-Control-Allow-Origin", "*");
-                    res.status(200).send(items);
-                })
-        })
-        .catch(next);
-})
+// route.get('/favourites/:id', (req, res, next) => {
+//     User.findById(req.params.id)
+//         .then(user => {
+//             Item.find({ _id: { $in: user.favourites } })
+//                 .select('price title images')
+//                 .sort({ date: 'desc' })
+//                 .then(items => {
+//                     res.header("Access-Control-Allow-Origin", "*");
+//                     res.status(200).send(items);
+//                 })
+//         })
+//         .catch(next);
+// })
 
-route.get('/sold/:id', (req, res, next) => {
+// route.get('/sold/:id', (req, res, next) => {
+//     User.findById(req.params.id)
+//         .then(user => {
+//             Item.find({ _id: { $in: user.soldItems } })
+//                 .select('price title images')
+//                 .sort({ date: 'desc' })
+//                 .then(items => {
+//                     res.status(200).send(items);
+//                 })
+//         })
+//         .catch(next);
+// })
+
+//Get orders
+route.get('/orders/:id', (req, res, next) => {
     User.findById(req.params.id)
         .then(user => {
-            Item.find({ _id: { $in: user.soldItems } })
+            Item.find({ _id: { $in: user.orders } })
                 .select('price title images')
                 .sort({ date: 'desc' })
                 .then(items => {
-                    res.header("Access-Control-Allow-Origin", "*");
                     res.status(200).send(items);
                 })
         })
@@ -51,9 +64,14 @@ route.put('/sold/:id', (req, res, next) => {
             User.findById(req.params.id)
                 .select('soldItems')
                 .then(user => {
-                    res.header("Access-Control-Allow-Origin", "*");
-                    res.send(user);
+                    Item.find({ _id: { $in: user.soldItems } })
+                        .select('title images price')
+                        .then(items => {
+                            res.send(items);
+                        })
+                        .catch(next);
                 })
+                .catch(next);
         })
         .catch(next);
 })
@@ -64,7 +82,6 @@ route.put('/favourites/:id', (req, res, next) => {
         { "$push": { "favourites": req.body.favourite } }
     )
         .then(() => {
-            res.header("Access-Control-Allow-Origin", "*");
             res.status(204).end();
         }).catch(next);
 })
@@ -75,14 +92,13 @@ route.put('/order/:id', (req, res, next) => {
         { "$push": { "orders": { _id: req.body.order } } }
     )
         .then(a => {
-            res.header("Access-Control-Allow-Origin", "*");
             res.status(204).end();
         }).catch(next);
 })
 
 
 //Buy request/Approve Buy request
-route.put('/notif/:userEmail', (req, res, next) => {
+route.put('/approve/:userEmail', (req, res, next) => {
     User.findOne({
         email: req.params.userEmail,
         notifications: {
@@ -94,7 +110,6 @@ route.put('/notif/:userEmail', (req, res, next) => {
     })
         .then(user => {
             if (user != null) {
-                res.header("Access-Control-Allow-Origin", "*");
                 res.status(200).send(`Already notified `);
             } else {
                 req.body.notification.read = false;
@@ -106,20 +121,32 @@ route.put('/notif/:userEmail', (req, res, next) => {
                 User.updateOne({ email: req.params.userEmail },
                     {
                         "$push": { "notifications": req.body.notification },
-                        $set: {
+                        "$set": {
                             "orders.$[elem].success": true
                         }
                     },
                     {
-                        arrayFilters: [{ "elem._id": req.body.itemId }]
+                        arrayFilters: [{ "elem": { _id: req.body.notification.itemId } }]
                     }
                 )
                     .then(a => {
-                        res.header("Access-Control-Allow-Origin", "*");
-                        res.status(200).send(`Notified `);
+                        User.updateOne({ _id: req.body._id },
+                            { "$pull": { notifications: { itemId: req.body.notification.itemId, userEmail: { $ne: req.body.notification.userEmail } } } }
+                        ).then(() => {
+                            User.findById(req.body._id)
+                                .select('notifications name')
+                                .then(user => {
+                                    Item.updateOne({ _id: req.body.notification.itemId }, {
+                                        $set: { sold: true }
+                                    })
+                                        .catch(next);
+                                    res.status(200).send({ msg: `Notified ${user.name}`, notifications: user.notifications });
+                                })
+                                .catch(next);
+                        })
+                            .catch(next);
                     })
                     .catch(next);
-
             }
         })
         .catch(next);
@@ -134,7 +161,6 @@ route.delete('/notif/:id', (req, res, next) => {
             User.findById(req.params.id)
                 .select('notifications')
                 .then(user => {
-                    res.header("Access-Control-Allow-Origin", "*");
                     res.status(200).send(user);
                 })
         })
@@ -161,7 +187,6 @@ route.put('/notifbell/:id', (req, res, next) => {
 route.put('/:id', (req, res, next) => {
     User.updateOne({ _id: req.params.id }, req.body)
         .then(user => {
-            res.header("Access-Control-Allow-Origin", "*");
             res.status(204).end();
         })
         .catch(next);
@@ -178,7 +203,6 @@ route.delete('/sold/:id', (req, res, next) => {
             User.findById(req.params.id)
                 .select('soldItems')
                 .then(user => {
-                    res.header("Access-Control-Allow-Origin", "*");
                     res.status(204).end();
                 })
         }).catch(next);
@@ -192,8 +216,7 @@ route.delete('/favourites/:id', (req, res, next) => {
         .then(() => {
             User.findById(req.params.id)
                 .select('favourites')
-                .then(user => {
-                    res.header("Access-Control-Allow-Origin", "*");
+                .then(() => {
                     res.status(204).end();
                 })
         }).catch(next);

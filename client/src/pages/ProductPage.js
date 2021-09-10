@@ -25,12 +25,12 @@ function ProductPage(props) {
     const [num, setNum] = useState(0)
     const [date, setDate] = useState('')
     const [similarItems, setSimilarItems] = useState([])
-    const [orderStatus, setStatus] = useState([])
+    const [orderStatus, setStatus] = useState(null)
 
     useEffect(() => {
         for (const elem of user.orders) {
             if (elem._id === id) {
-                setStatus([elem]);
+                setStatus(elem);
             }
         }
     }, [id, user.orders])
@@ -159,13 +159,21 @@ function ProductPage(props) {
                                 </table>
                             </div>
                             <hr />{
-                                props.auth ? user.soldItems.includes(id) ? <DeleteBtn toHome={true} id={id} /> :
+                                props.auth ? user.soldItems.filter(item1 => { return item1._id === productDetails._id }).length > 0 ? <DeleteBtn toHome={true} id={id} /> :
                                     <>
                                         {
-                                            orderStatus.length > 0 && orderStatus[0].success === false ? <Button className="btn-warning non-outlined-btn btn-md mr-1 mb-2" disabled  >Notified</Button> : orderStatus.length > 0 && orderStatus[0].success === true ? <Button className="btn-success non-outlined-btn btn-md mr-1 mb-2" disabled  >Approved</Button> : <BuyBtn id={id} title={productDetails.title} />
+                                            orderStatus !== null ?
+                                                orderStatus.success ?
+                                                    <Button className="btn-success non-outlined-btn btn-md mr-1 mb-2" disabled  >Approved</Button>
+                                                    : productDetails.sold ?
+                                                        <Button className="btn-danger non-outlined-btn btn-md mr-1 mb-2" disabled  >Sold!</Button>
+                                                        : <Button className="btn-warning non-outlined-btn btn-md mr-1 mb-2" disabled  >Notified</Button>
+                                                : productDetails.sold ?
+                                                    <Button className="btn-danger non-outlined-btn btn-md mr-1 mb-2" disabled  >Sold!</Button>
+                                                    : <BuyBtn id={id} title={productDetails.title} />
 
                                         }
-                                        <span className='ms-2' > <WishBtn _id={productDetails._id} removeFav={false} />Add to Favourites </span>
+                                        <span className='ms-2' > <WishBtn item={productDetails} />Add to Favourites </span>
                                     </> : <BuyBtn />
                             }
 

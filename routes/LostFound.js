@@ -68,7 +68,6 @@ route.post('/', parseImage, async (req, res, next) => {
 
         LostFound.create(itemBody)
             .then((item) => {
-                res.header("Access-Control-Allow-Origin", "*");
                 res.status(201).send(item);
             })
             .catch(next);
@@ -99,7 +98,6 @@ route.put('/notify/:id', (req, res, next) => {
             })
                 .then(user => {
                     if (user != null) {
-                        res.header("Access-Control-Allow-Origin", "*");
                         res.status(200).send(`Already notified ${item.userName}`);
                     } else {
                         req.body.notification.read = false;
@@ -112,7 +110,6 @@ route.put('/notify/:id', (req, res, next) => {
                             { "$push": { "notifications": req.body.notification } },
                         )
                             .then(() => {
-                                res.header("Access-Control-Allow-Origin", "*");
                                 res.status(200).send({
                                     item,
                                     message: `Notified ${item.userName}`
@@ -154,7 +151,6 @@ route.delete('/:id', (req, res, next) => {
     LostFound.deleteOne({ _id: req.params.id })
         .then(() => {
 
-            res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(`Your Ad has been removed`);
         })
         .catch(next);

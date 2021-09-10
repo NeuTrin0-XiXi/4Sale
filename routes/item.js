@@ -13,14 +13,12 @@ const { uploadToCloudinary, parseImage, removeFromCloudinary } = require('../con
 route.get('/', (req, res, next) => {
     Item.find({})
         .sort({ date: 'desc' })
-        .select('title price images')
+        .select('title price images approved')
         .then((item) => {
-            res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
         })
         .catch(next);
 });
-
 
 //GET Items from Search Bar(name):                  
 route.get('/search', (req, res, next) => {
@@ -32,9 +30,8 @@ route.get('/search', (req, res, next) => {
             { description: { $regex: name, $options: 'i' } }
         ]
     })
-        .select('title price images')
+        .select('title price images approved')
         .then((item) => {
-            res.header("Access-Control-Allow-Origin", "*");
             res.send(item);
         })
         .catch(next);
@@ -47,9 +44,8 @@ route.get('/search', (req, res, next) => {
 //GET Items from Filters:                           
 route.get('/filter', (req, res, next) => {
     Item.find(req.query)
-        .select('title price images')
+        .select('title price images approved')
         .then((item) => {
-            res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item);
         })
         .catch(next);
@@ -60,7 +56,6 @@ route.get('/filter', (req, res, next) => {
 route.get('/:id', (req, res, next) => {
     Item.findById(req.params.id)
         .then((item) => {
-            res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(item)
         })
         .catch(next);
@@ -107,7 +102,6 @@ route.post('/', parseImage, async (req, res, next) => {
         }
         Item.create(itemBody)
             .then((item) => {
-                res.header("Access-Control-Allow-Origin", "*");
                 res.status(201).send(item);
             })
             .catch(next);
@@ -146,7 +140,6 @@ route.put('/notify/:id', (req, res, next) => {
                             { "$push": { "notifications": req.body.notification } },
                         )
                             .then(() => {
-                                res.header("Access-Control-Allow-Origin", "*");
                                 res.status(200).send(`Notified ${item.userName}`);
                             })
 
@@ -165,7 +158,6 @@ route.put('/:id', (req, res, next) => {
         .then(
             Item.findById(req.params.id)
                 .then((item) => {
-                    res.header("Access-Control-Allow-Origin", "*");
                     res.status(200).send(`Your Ad, ${item.name} has been updated`);
                 })
         )
@@ -176,8 +168,8 @@ route.put('/:id', (req, res, next) => {
 
 
 //Delete a posted item                              
-route.delete('/:id', (req, res, next) => {
-    Item.findById(req.params.id)
+route.delete('/:id', async (req, res, next) => {
+    await Item.findById(req.params.id)
         .select('images')
         .then(item => {
             for (let image of item.images) {
@@ -186,8 +178,6 @@ route.delete('/:id', (req, res, next) => {
         });
     Item.deleteOne({ _id: req.params.id })
         .then(() => {
-
-            res.header("Access-Control-Allow-Origin", "*");
             res.status(200).send(`Your Ad has been removed`);
         })
         .catch(next);

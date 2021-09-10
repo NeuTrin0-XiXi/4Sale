@@ -1,73 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import ItemList from '../components/ItemList';
-import axios from 'axios';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import Spinner from '../components/Spinner';
 
-class Buy extends Component {
-    state = {
-        items: [
-            {
-                _id: '',
-                title: '',
-                price: '',
-                images: ''
-            }
-        ],
-        number: 0,
-        loading: true
-    };
+function Buy(props) {
+    const { user } = props;
+    const [loading, setLoading] = useState(true);
+    const [items, setItems] = useState(user.soldItems);
 
-    componentDidMount() {
-        const { user } = this.props
-        axios.get(`/api/user/sold/${user}`)
-            .then(res => {
-                this.setState({
-                    items: res.data,
-                    number: res.data.length,
-                    loading: false
-                });
-            })
-            .catch(err => {
-                this.setState({
-                    ...this.state,
-                    loading: false
-                })
-            })
-    };
+    useEffect(() => {
+        setLoading(true);
+        setItems(user.soldItems);
+        setLoading(false);
+    }, [user.soldItems]);
 
-
-    render() {
-        const update = (id) => {
-            const newItems = this.state.items.filter(item => item._id !== id);
-            this.setState({
-                items: newItems,
-                number: newItems.length
-            });
-        }
-        if (this.state.loading) {
-            return (
-                <Spinner/>
-            )
-        } else {
-            return (
-                <>
-                    <div className="results">
-                        <h2 className='text-center py-3'  >Your Ad</h2>
-                    </div>
-                    <div className='pb-5'>
-                        <ItemList items={this.state.items} update={update} removeSold={true}  removeFav={false} />
-                    </div>
-                </>
-            );
-        }
+    if (loading) {
+        return (
+            <Spinner />
+        )
+    } else {
+        return (
+            <>
+                <div className="results">
+                    <h2 className='text-center py-3'  >Your Ad</h2>
+                </div>
+                <div className='pb-5'>
+                    <ItemList items={items} removeSold={false} />
+                </div>
+            </>
+        );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user._id
+        user: state.user
     }
 }
 export default withRouter(connect(mapStateToProps)(Buy));

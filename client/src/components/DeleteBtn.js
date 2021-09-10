@@ -11,19 +11,22 @@ function DeleteBtn(props) {
     const { id, toHome } = props;
     const { user } = props;
     const Delete = () => {
-        if (props.removeSold) {
-            props.update(id);
-        }
-        const newUser = {
-            ...user,
-            soldItems: user.soldItems.filter(item => { return item !== id })
-        }
-        props.Update(newUser);
         axios.delete(`/api/items/${id}`)
             .then(() => {
                 if (toHome) {
                     props.history.push('/');
                 }
+
+                if (props.removeSold) {
+                    props.update(id);
+                }
+
+                const newUser = {
+                    ...user,
+                    soldItems: user.soldItems.filter(item => { return item._id !== id })
+                }
+                props.Update(newUser);
+
                 axios({
                     method: 'DELETE',
                     url: `/api/user/sold/${user._id}`,

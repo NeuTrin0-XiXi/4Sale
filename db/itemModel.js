@@ -35,6 +35,10 @@ const itemSchema = new schema({
         type: String,
         required: true
     },
+    sold: {
+        type: Boolean,
+        default: false
+    }
 });
 
 
