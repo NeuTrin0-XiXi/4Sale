@@ -104,13 +104,19 @@ route.put('/approve/:userEmail', (req, res, next) => {
         notifications: {
             $elemMatch: {
                 message: req.body.notification.message,
-                userEmail: req.body.notification.userEmail
+                userEmail: req.body.notification.userEmail,
+                itemTitle: req.body.notification.itemTitle
             }
         }
     })
         .then(user => {
             if (user != null) {
-                res.status(200).send(`Already notified `);
+                User.findById(req.body._id)
+                    .select('notifications name')
+                    .then(user => {
+                        res.status(200).send({ msg: `Already notified ${req.body.notification.userName}`, notifications: user.notifications });
+                    })
+                    .catch(next);
             } else {
                 req.body.notification.read = false;
                 req.body.notification._id = new mongoose.Types.ObjectId();

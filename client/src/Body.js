@@ -28,7 +28,7 @@ function Body(props) {
     ]
     return (<>
         {
-            props.loading ? <Spinner /> :
+            (props.Auth) || (!props.Auth && !props.loading) ?
                 <Switch>
                     <Route path='/' exact component={Home} />
                     <Route path='/about' exact component={AboutUs} />
@@ -44,6 +44,7 @@ function Body(props) {
                     }
                     <Route path={'*'} component={NOT_FOUND} />
                 </Switch>
+                : <Spinner />
         }
     </>
 

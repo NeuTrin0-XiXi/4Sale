@@ -33,6 +33,8 @@ route.post('/', (req, res, next) => {
     function error() {
         next();
     };
+
+    //Main function
     client.verifyIdToken({ idToken: googleToken, audience: "1059582039946-3rije6k0k92ertj2utffkrvdjjgdrkm0.apps.googleusercontent.com" })
         .then(res => {
             const { email_verified, name, email } = res.payload;

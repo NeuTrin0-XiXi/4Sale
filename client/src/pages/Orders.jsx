@@ -10,27 +10,22 @@ function Orders(props) {
     const [orders, setOrders] = useState([])
     const [loading, setLoading] = useState(true)
     const [err, setErr] = useState(false)
-    const { userId } = props
-    console.log(userId)
+    const { user } = props
 
     useEffect(() => {
-
-        if (userId !== '') {
-            axios.get(`/api/user/orders/${userId}`)
+        if (!props.loading) {
+            axios.get(`/api/user/orders/${user._id}`)
                 .then(res => {
                     setOrders(res.data)
                     setLoading(false)
-                    console.log(res.data)
                 })
                 .catch(e => {
-                    setLoading(false)
                     setErr(true)
                     console.log(e)
                 })
         }
 
-    }, [userId])
-
+    }, [user._id, props.loading, user.orders])
     return (
         <>
             {
@@ -48,7 +43,6 @@ function Orders(props) {
                                     </>
                             }
                         </>
-
             }
         </>
     )
@@ -56,7 +50,8 @@ function Orders(props) {
 
 const mapStateToProps = (state) => {
     return {
-        userId: state.user._id
+        user: state.user,
+        loading: state.loading
     }
 };
 

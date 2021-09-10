@@ -10,17 +10,14 @@ function Buy(props) {
     const [items, setItems] = useState(user.soldItems);
 
     useEffect(() => {
-        setLoading(true);
-        setItems(user.soldItems);
-        setLoading(false);
-    }, [user.soldItems]);
+        if (!props.loading) {
+            setItems(user.soldItems);
+            setLoading(false);
+        }
+    }, [user.soldItems, props.loading]);
 
-    if (loading) {
-        return (
-            <Spinner />
-        )
-    } else {
-        return (
+    return (
+        loading ? <Spinner /> :
             <>
                 <div className="results">
                     <h2 className='text-center py-3'  >Your Ad</h2>
@@ -29,13 +26,13 @@ function Buy(props) {
                     <ItemList items={items} removeSold={false} />
                 </div>
             </>
-        );
-    }
+    );
 }
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        loading: state.loading
     }
 }
 export default withRouter(connect(mapStateToProps)(Buy));

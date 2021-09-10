@@ -11,31 +11,30 @@ function Favourites(props) {
     const { user } = props;
 
     useEffect(() => {
-        setItems(user.favourites);
-        setLoading(false);
-    }, [user.favourites]);
-    
-    if (loading) {
-        return (
-            <Spinner />
-        )
-    }
+        if (!props.loading) {
+            setItems(user.favourites);
+            setLoading(false);
+        }
+    }, [user.favourites, props.loading]);
+
     return (
-        <>
-            <div className="results">
-                <h2 className='text-center py-3' >Favourites</h2>
-            </div>
-            <div className='pb-5'>
-                <ItemList items={items} removeSold={false} />
-            </div>
-        </>
+        loading ? <Spinner /> :
+            <>
+                <div className="results">
+                    <h2 className='text-center py-3' >Favourites</h2>
+                </div>
+                <div className='pb-5'>
+                    <ItemList items={items} removeSold={false} />
+                </div>
+            </>
     );
 }
 
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        auth: state.Authorised
+        auth: state.Authorised,
+        loading: state.loading
     }
 };
 

@@ -22,6 +22,7 @@ const itemSchema = new schema({
     },
     price: {
         type: Number,
+        minimum: 0,
         required: true
     },
     categories: {

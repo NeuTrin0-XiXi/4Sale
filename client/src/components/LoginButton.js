@@ -5,7 +5,7 @@ import axios from 'axios';
 import clientID from './googleClient';
 
 function LoginButton(props) {
-    
+
     const LoginSuccess = (res) => {
         var basicProfile = res.profileObj;
         let user = {
@@ -16,19 +16,20 @@ function LoginButton(props) {
             notifications: [],
             orders: []
         }
-        props.login(user)
+        props.login({ user: user, loading: true })
         axios.post('/api/googlelogin', {
             googleToken: res.tokenId
         })
             .then(res => {
                 const { favourites, soldItems, _id, notifications, mobile, orders } = res.data;
+                
                 user.favourites = favourites;
                 user.soldItems = soldItems;
                 user.notifications = notifications;
                 user._id = _id;
                 user.mobile = mobile
                 user.orders = orders
-                props.login(user)
+                props.login({ user: user, loading: false });
             })
     };
 
@@ -58,7 +59,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({ type: 'SET_USER', payload: user })
         },
         loading: (value) => {
-            dispatch({type: 'SET_LOADING', payload: value})
+            dispatch({ type: 'SET_LOADING', payload: value })
         }
     }
 };

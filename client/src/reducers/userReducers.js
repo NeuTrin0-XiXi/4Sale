@@ -4,11 +4,11 @@ const initialState = {
         favourites: [],
         name: '',
         notifications: [],
-        profilePic: '',
+        imageUrl: '',
         soldItems: [],
         _id: '',
         mobile: 0,
-        orders:[]
+        orders: []
     },
     Authorised: false,
     loading: true
@@ -18,20 +18,23 @@ const userReducers = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_USER':
             return {
-                user: action.payload,
-                Authorised: true
+                user: action.payload.user,
+                Authorised: true,
+                loading: action.payload.loading
             };
-        
+
         case 'CLEAR_USER':
             return {
                 user: initialState.user,
-                Authorised: false
+                Authorised: false,
+                loading: false
             };
 
         case 'UPDATE_USER':
             return {
                 user: action.payload,
-                Authorised: true
+                Authorised: true,
+                loading: false
             };
 
         case 'SET_LOADING':
@@ -39,7 +42,7 @@ const userReducers = (state = initialState, action) => {
                 ...state,
                 loading: action.payload
             };
-            
+
         default: return state;
     }
 
