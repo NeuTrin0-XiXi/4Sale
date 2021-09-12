@@ -148,7 +148,7 @@ function Sell(props) {
                                                 </div>
 
                                                 <div className="col-6 d-flex justify-content-center flex-column bd-highlight mb-4">
-                                                    <label htmlFor="price" className="form-label" required>Price<span className='text-danger fw-bold'>*</span></label>
+                                                    <label htmlFor="price" className="form-label" required>Price<span className='text-danger fw-bold'>*</span> <i className='text-danger' > (value must be greater than or equal to 0!)</i></label>
                                                     <input required min='0' type="number" className="form-control" id="price" placeholder="Set a Price" name="price" />
 
                                                     <div className="invalid-feedback">
@@ -157,7 +157,7 @@ function Sell(props) {
                                                 </div>
 
                                                 <div className="col-12 col-md-6 d-flex justify-content-center flex-column bd-highlight mb-3">
-                                                    <label htmlFor="image1" className="form-label">Upload Images<span className='text-danger fw-bold'>*</span> (atleast 1st one)</label>
+                                                    <label htmlFor="image1" className="form-label">Upload Images<span className='text-danger fw-bold'>*</span>  <i className='text-danger' > (atleast first image required!)</i></label>
                                                     <input required type="file" className="form-control" id="image1" placeholder="Required" name="file1" />
                                                     <input type="file" className="form-control" id="image2" name="file2" />
                                                     <input type="file" className="form-control" id="image3" name="file3" />
