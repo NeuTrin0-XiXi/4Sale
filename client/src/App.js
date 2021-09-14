@@ -12,27 +12,57 @@ function App(props) {
     const { user, Update, auth } = props
     const { notifications } = props.user;
 
-    const ENDPOINT = 'https://iitisoc-4sale.herokuapp.com/';
-    const socket = useRef(io(ENDPOINT, { transports: ['websocket', 'polling'] }))
+    const socket = useRef(null);
+    useEffect(() => {
+        const ENDPOINT = 'https://iitisoc-4sale.herokuapp.com/';
+        socket.current = io(ENDPOINT, { transports: ['websocket', 'polling'] });
+    }, []);
 
     useEffect(() => {
         if (auth) {
-            socket.current.emit('join', user.email);
-            console.log("Connected to room: " + user.email)
+            socket.current.emit('join', user.email, () => {
+                socket.current.on('notification', (notif) => {
+                    console.log(notif)
+                    Update({
+                        ...user,
+                        notifications: [...notifications, notif]
+                    })
+                    toast.success(notif.userName + ' ' + notif.message + ' ' + notif.itemTitle)
+                });
+            });
+            console.log(`connected to ${user.email}`)
         }
     }, [auth, user.email]);
 
-    useEffect(() => {
-        socket.current.on('notification', (notif) => {
-            if (user.email !== '') {
-                Update({
-                    ...user,
-                    notifications: [...notifications, notif]
-                })
-                toast.success(notif.userName + ' ' + notif.message + ' ' + notif.itemTitle)
-            }
-        })
-    }, [Update, user, notifications])
+
+    // const socket = useRef(null);
+    // useEffect(() => {
+    //     const ENDPOINT = 'https://iitisoc-4sale.herokuapp.com/';
+    //     socket.current = io(ENDPOINT, { transports: ['websocket', 'polling'] });
+    //     console.log("connection")
+    // }, [])
+
+    // useEffect(() => {
+    //     if (auth && socket.current !== null) {
+    //         socket.current.emit('join', user.email);
+    //         console.log("Connected to room: " + user.email)
+    //     }
+    // }, [auth, user.email]);
+
+    // useEffect(prevProps => {
+    //     if (socket.current !== null) {
+    //         socket.current.on('notification', (notif) => {
+    //             console.log(notif);
+    //             if (user.email !== '') {
+    //                 Update({
+    //                     ...user,
+    //                     notifications: [...notifications, notif]
+    //                 })
+    //                 toast.success(notif.userName + ' ' + notif.message + ' ' + notif.itemTitle)
+    //             }
+    //         })
+    //     }
+    // })
 
     return (
         <>
