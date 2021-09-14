@@ -25,7 +25,7 @@ function Notifications(props) {
 
     function ApproveButton(props) {
         if (props.message === "wants to buy") {
-            return <button type="button" style={{ fontSize: '12px' }} className="btn p-0 non-outlined-btn btn-transparent" onClick={() => handleApprove(props.userEmail, props.itemTitle, props.itemId)}> <FontAwesomeIcon icon={faArrowAltCircleRight} className='text-success me-2' />Approve</button>
+            return <button type="button" style={{ fontSize: '12px' }} className="btn p-0 non-outlined-btn btn-transparent" onClick={() => handleApprove(props.buyerEmail, props.itemTitle, props.itemId, props.buyerName)}> <FontAwesomeIcon icon={faArrowAltCircleRight} className='text-success me-2' />Approve</button>
         } else {
             return null
         }
@@ -50,8 +50,8 @@ function Notifications(props) {
             })
     };
 
-    const handleApprove = (userEmail, itemTitle, itemId) => {
-        axios.put(`/api/user/approve/${userEmail}`, {
+    const handleApprove = (buyerEmail, itemTitle, itemId, buyerName) => {
+        axios.put(`/api/user/approve/${buyerEmail}`, {
             _id: user._id,
             notification: {
                 message: `approved buy-request for`,
@@ -69,7 +69,7 @@ function Notifications(props) {
                     notifications: res.data.notifications
                 }
                 Update(newUser)
-                toast.success(res.data.msg)
+                toast.success(`${res.data.msg} ${buyerName}`)
             })
             .catch(err => {
                 toast.error("Couldn't notify")
@@ -95,7 +95,7 @@ function Notifications(props) {
                                         {mobile}
                                     </span>
                                     <div  >
-                                        <ApproveButton itemTitle={itemTitle} message={message} userEmail={userEmail} itemId={itemId} />
+                                        <ApproveButton itemTitle={itemTitle} message={message} buyerEmail={userEmail} itemId={itemId} buyerName={userName} />
                                     </div >
                                     <div className="delete btn" onClick={() => handleDelete(_id)}>
                                         <FontAwesomeIcon icon={faTrash} className='text-danger' />

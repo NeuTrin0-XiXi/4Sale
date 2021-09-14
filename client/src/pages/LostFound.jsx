@@ -149,7 +149,7 @@ function LostFound(props) {
                                                     {
                                                         item.userEmail === user.email ? <Button onClick={() => Delete(item._id, item.status)} variant='danger' className=''><FontAwesomeIcon icon={faTrash} className='me-1' /> Delete</Button>
                                                             : item.claimed ? <Button disabled ><FontAwesomeIcon icon={faCheckCircle} className='me-1'/> {item.status === 'lost' ? 'Found' : 'Claimed'} </Button>
-                                                                : <Button onClick={() => handleClaim(item._id, item.status, item.title)} > {item.status === 'lost' ? 'I found' : 'I claim'} </Button>
+                                                                : <Button onClick={() => handleClaim(item._id, item.status, item.title)} > {item.status === 'lost' ? 'I found' : 'Claim'} </Button>
                                                     }
                                                 </div>
                                             </div>

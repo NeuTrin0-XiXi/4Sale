@@ -27,7 +27,7 @@ function EditProfile(props) {
                     mobile: mobileInput
                 }
                 props.Update(newUser);
-                alert("Your phone number was updated...")
+                toast("Your phone number was updated...")
             })
             .catch(err => {
                 toast.error('Something went wrong!')

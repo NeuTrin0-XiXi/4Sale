@@ -168,19 +168,34 @@ route.put('/:id', (req, res, next) => {
 
 
 //Delete a posted item                              
-route.delete('/:id', async (req, res, next) => {
-    await Item.findById(req.params.id)
-        .select('images')
+route.delete('/:id', (req, res, next) => {
+    Item.findById(req.params.id)
+        .select('images userEmail')
         .then(item => {
             for (let image of item.images) {
-                removeFromCloudinary(image.public_id);
-            }
-        });
-    Item.deleteOne({ _id: req.params.id })
-        .then(() => {
-            res.status(200).send(`Your Ad has been removed`);
+                removeFromCloudinary(image.public_id)
+                    .catch(next);
+            };
+
+            User.updateOne({ email: item.userEmail },
+                { "$pull": { notifications: { itemId: req.params.id } } }
+            )
+                .then(() => {
+                    User.findOne({ email: item.userEmail })
+                        .select('notifications')
+                        .then(user => {
+                            Item.deleteOne({ _id: req.params.id })
+                                .then(() => {
+                                    res.status(200).send(user.notifications);
+                                })
+                                .catch(next);
+                        })
+                        .catch(next);
+                })
+                .catch(next);
         })
         .catch(next);
+
 });
 
 

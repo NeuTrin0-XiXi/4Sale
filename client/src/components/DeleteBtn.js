@@ -12,7 +12,7 @@ function DeleteBtn(props) {
     const { user } = props;
     const Delete = () => {
         axios.delete(`/api/items/${id}`)
-            .then(() => {
+            .then(res => {
                 if (toHome) {
                     props.history.push('/');
                 }
@@ -23,7 +23,8 @@ function DeleteBtn(props) {
 
                 const newUser = {
                     ...user,
-                    soldItems: user.soldItems.filter(item => { return item._id !== id })
+                    soldItems: user.soldItems.filter(item => { return item._id !== id }),
+                    notifications: [...res.data]
                 }
                 props.Update(newUser);
 
@@ -39,9 +40,7 @@ function DeleteBtn(props) {
                     })
             })
             .catch(() => {
-                toast.catch(() => {
-                    toast.error("Couldn't delete Ad!")
-                })
+                toast.error("Couldn't delete Ad!")
             })
     };
     return (

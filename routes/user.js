@@ -112,14 +112,14 @@ route.put('/approve/:userEmail', (req, res, next) => {
         .then(user => {
             if (user != null) {
                 User.findById(req.body._id)
-                    .select('notifications name')
+                    .select('notifications')
                     .then(user => {
-                        res.status(200).send({ msg: `Already notified ${req.body.notification.userName}`, notifications: user.notifications });
+                        res.status(200).send({ msg: `Already notified`, notifications: user.notifications });
                     })
                     .catch(next);
             } else {
-                req.body.notification.read = false;
-                req.body.notification._id = new mongoose.Types.ObjectId();
+                req.body.notification['read'] = false;
+                req.body.notification['_id'] = new mongoose.Types.ObjectId();
 
                 const io = require('../config/socket').get();
                 io.to(req.params.userEmail).emit('notification', req.body.notification)
@@ -135,18 +135,18 @@ route.put('/approve/:userEmail', (req, res, next) => {
                         arrayFilters: [{ "elem": { _id: req.body.notification.itemId } }]
                     }
                 )
-                    .then(a => {
+                    .then(() => {
                         User.updateOne({ _id: req.body._id },
-                            { "$pull": { notifications: { itemId: req.body.notification.itemId, userEmail: { $ne: req.body.notification.userEmail } } } }
+                            { "$pull": { notifications: { itemId: req.body.notification.itemId, userEmail: { $ne: req.params.userEmail } } } }
                         ).then(() => {
                             User.findById(req.body._id)
-                                .select('notifications name')
+                                .select('notifications')
                                 .then(user => {
                                     Item.updateOne({ _id: req.body.notification.itemId }, {
                                         $set: { sold: true }
                                     })
                                         .catch(next);
-                                    res.status(200).send({ msg: `Notified ${req.body.notification.userName}`, notifications: user.notifications });
+                                    res.status(200).send({ msg: "Notified", notifications: user.notifications });
                                 })
                                 .catch(next);
                         })
