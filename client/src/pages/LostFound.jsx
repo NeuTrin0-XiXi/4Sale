@@ -5,7 +5,7 @@ import Spinner from '../components/Spinner'
 import { withRouter } from 'react-router'
 import axios from 'axios'
 import { toast } from 'react-toastify';
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function LostFound(props) {
@@ -125,23 +125,31 @@ function LostFound(props) {
                             {
                                 props.status.map((item) =>
                                     <div className="row my-2 gap-3 gap-md-0" key={item._id} >
-                                        <div className="col-12 col-md-3">
+                                        <div className="col-12 col-md-3 px-5">
                                             {
-                                                <img src={item.images ? item.images.url : `${item.status}.jpg`} alt="Item" style={{ height: '200px', width: '90%' }} />
+                                                <img src={item.images ? item.images.url : `${item.status}.jpg`} alt="Item" style={{ height: '150px', width: '100%' }} />
                                             }
                                         </div>
                                         <div className="col-12 col-md-9">
                                             <h5>{item.title}</h5>
-                                            <p>{item.description}</p>
-                                            <p>{item.date.slice(0, 10)}</p>
-                                            <div>Added by {item.userName} </div>
-                                            <div className="row">
-                                                <div className='col-12 col-md-10' >Email: {item.userEmail}</div>
-                                                <div className='col-12 col-md-2 mt-2' >
+                                            <p style={{
+                                                borderTop: '0.5px dotted #cccccc',
+                                                borderBottom: '0.5px dotted #cccccc',
+                                                padding: '10px 0',
+                                                fontSize: '16px'
+                                            }}  >{item.description}</p>
+                                            <p className='text-success' >{item.date.slice(0, 10)}</p>
+                                            <div className="row gap-3">
+                                                <div className="col-12 col-md-9">
+                                                    <div style={{ fontSize: '14px' }} >Added by: {item.userName}</div>
+                                                    <div style={{ fontSize: '14px' }}  >Email: {item.userEmail}</div>
+                                                </div>
+
+                                                <div className='col-12 col-md-2 text-center' >
                                                     {
-                                                        item.userEmail === user.email ? <Button size='lg' onClick={() => Delete(item._id, item.status)} variant='light' className='text-danger'><FontAwesomeIcon icon={faTrash} /></Button>
-                                                            : item.claimed ? <Button disabled size='lg' > {item.status === 'lost' ? 'Found' : 'Claimed'} </Button>
-                                                                : <Button size='lg' onClick={() => handleClaim(item._id, item.status, item.title)} > {item.status === 'lost' ? 'I found' : 'Claim'} </Button>
+                                                        item.userEmail === user.email ? <Button onClick={() => Delete(item._id, item.status)} variant='danger' className=''><FontAwesomeIcon icon={faTrash} className='me-1' /> Delete</Button>
+                                                            : item.claimed ? <Button disabled ><FontAwesomeIcon icon={faCheckCircle} className='me-1'/> {item.status === 'lost' ? 'Found' : 'Claimed'} </Button>
+                                                                : <Button onClick={() => handleClaim(item._id, item.status, item.title)} > {item.status === 'lost' ? 'I found' : 'I claim'} </Button>
                                                     }
                                                 </div>
                                             </div>
