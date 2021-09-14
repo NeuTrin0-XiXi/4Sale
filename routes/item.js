@@ -13,7 +13,7 @@ const { uploadToCloudinary, parseImage, removeFromCloudinary } = require('../con
 route.get('/', (req, res, next) => {
     Item.find({})
         .sort({ date: 'desc' })
-        .select('title price images approved')
+        .select('title price images approved categories')
         .then((item) => {
             res.status(200).send(item);
         })

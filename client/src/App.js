@@ -24,11 +24,13 @@ function App(props) {
 
     useEffect(() => {
         socket.current.on('notification', (notif) => {
-            Update({
-                ...user,
-                notifications: [...notifications, notif]
-            })
-            toast.success(notif.userName + ' ' + notif.message)
+            if (user.email !== '') {
+                Update({
+                    ...user,
+                    notifications: [...notifications, notif]
+                })
+                toast.success(notif.userName + ' ' + notif.message + ' ' + notif.itemTitle)
+            }
         })
     }, [Update, user, notifications])
 

@@ -46,82 +46,12 @@ class Home extends Component {
             .then(res => {
                 this.setState({
                     ...this.state,
-                    allItems: res.data.splice(0, 8),
-                    loading: false
-                })
-            })
-            .catch(err => {
-                this.setState({
-                    ...this.state,
-                    error: true,
-                    loading: false
-                })
-            })
-        axios.get(`/api/items/filter?categories=Sports`)
-            .then(res => {
-                this.setState({
-                    ...this.state,
-                    Sports: res.data,
-                    loading: false
-                })
-            })
-            .catch(err => {
-                this.setState({
-                    ...this.state,
-                    error: true,
-                    loading: false
-                })
-            })
-        axios.get(`/api/items/filter?categories=Books`)
-            .then(res => {
-                this.setState({
-                    ...this.state,
-                    Books: res.data,
-                    loading: false
-                })
-            })
-            .catch(err => {
-                this.setState({
-                    ...this.state,
-                    error: true,
-                    loading: false
-                })
-            })
-        axios.get(`/api/items/filter?categories=Games`)
-            .then(res => {
-                this.setState({
-                    ...this.state,
-                    Games: res.data,
-                    loading: false
-                })
-            })
-            .catch(err => {
-                this.setState({
-                    ...this.state,
-                    error: true,
-                    loading: false
-                })
-            })
-        axios.get(`/api/items/filter?categories=Utilities`)
-            .then(res => {
-                this.setState({
-                    ...this.state,
-                    Utilities: res.data,
-                    loading: false
-                })
-            })
-            .catch(err => {
-                this.setState({
-                    ...this.state,
-                    error: true,
-                    loading: false
-                })
-            })
-        axios.get(`/api/items/filter?categories=Other`)
-            .then(res => {
-                this.setState({
-                    ...this.state,
-                    Other: res.data,
+                    allItems: res.data.slice(0, 8),
+                    Sports: res.data.filter(item => item.categories.includes('Sports')),
+                    Books: res.data.filter(item => item.categories.includes('Books')),
+                    Games: res.data.filter(item => item.categories.includes('Games')),
+                    Utilities: res.data.filter(item => item.categories.includes('Utilities')),
+                    Other: res.data.filter(item => item.categories.includes('Other')),
                     loading: false
                 })
             })
@@ -147,7 +77,6 @@ class Home extends Component {
                 Other: Other.filter(item => item._id !== id)
             });
         };
-
         return (
             <>
                 <div className='container-fluid d-flex justify-content-around mb-4 ' style={{
