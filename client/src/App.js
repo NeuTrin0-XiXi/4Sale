@@ -12,7 +12,7 @@ function App(props) {
     const { user, Update, auth } = props
     const { notifications } = props.user;
 
-    const ENDPOINT = 'http://localhost:5000';
+    const ENDPOINT = 'https://iitisoc-4sale.herokuapp.com/';
     const socket = useRef(io(ENDPOINT, { transports: ['websocket', 'polling'] }))
 
     useEffect(() => {
