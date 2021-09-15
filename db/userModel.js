@@ -17,7 +17,7 @@ const userSchema = new schema({
         type: schema.Types.ObjectId,
         ref: 'item'
     }],
-    soldItems: [{
+    ads: [{
         type: schema.Types.ObjectId,
         ref: 'item'
     }],

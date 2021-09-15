@@ -11,7 +11,7 @@ function LoginButton(props) {
         let user = {
             ...basicProfile,
             favourites: [],
-            soldItems: [],
+            ads: [],
             _id: '',
             notifications: [],
             orders: []
@@ -21,10 +21,10 @@ function LoginButton(props) {
             googleToken: res.tokenId
         })
             .then(res => {
-                const { favourites, soldItems, _id, notifications, mobile, orders } = res.data;
+                const { favourites, ads, _id, notifications, mobile, orders } = res.data;
 
                 user.favourites = favourites;
-                user.soldItems = soldItems;
+                user.ads = ads;
                 user.notifications = notifications;
                 user._id = _id;
                 user.mobile = mobile

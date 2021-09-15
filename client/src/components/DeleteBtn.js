@@ -23,7 +23,7 @@ function DeleteBtn(props) {
 
                 const newUser = {
                     ...user,
-                    soldItems: user.soldItems.filter(item => { return item._id !== id }),
+                    ads: user.ads.filter(item => { return item._id !== id }),
                     notifications: [...res.data]
                 }
                 props.Update(newUser);

@@ -159,7 +159,7 @@ function ProductPage(props) {
                                 </table>
                             </div>
                             <hr />{
-                                props.auth ? user.soldItems.filter(item1 => { return item1._id === productDetails._id }).length > 0 ? <DeleteBtn toHome={true} id={id} /> :
+                                props.auth ? user.ads.filter(item1 => { return item1._id === productDetails._id }).length > 0 ? <DeleteBtn toHome={true} id={id} /> :
                                     <>
                                         {
                                             orderStatus !== null ?

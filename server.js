@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
 const mongoURI = process.env.MONGO_URI;
-const socket = require("socket.io");
 const cors = require('cors');
 
 

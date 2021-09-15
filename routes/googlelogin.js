@@ -18,11 +18,11 @@ route.post('/', (req, res, next) => {
             .then(items => {
                 user1.favourites = items
             })
-        await Item.find({ _id: { $in: user.soldItems } })
+        await Item.find({ _id: { $in: user.ads } })
             .select('price title images')
             .sort({ date: 'desc' })
             .then(items => {
-                user1.soldItems = items;
+                user1.ads = items;
             });
         res.status(200).send(user1);
     };

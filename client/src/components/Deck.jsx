@@ -51,7 +51,7 @@ function Deck(props) {
                                     </Card.Text>
                                     <Button variant="warning" as={Link} to={`/product/${item._id}`} type="button" id="customViewButton " ><FontAwesomeIcon icon={faCartPlus} /> View </Button>
                                     {
-                                        auth ? user.soldItems.filter(item1 => { return item1._id === item._id }).length > 0 ? <DeleteBtn update={props.update} removeSold={props.removeSold} id={item._id} /> :
+                                        auth ? user.ads.filter(item1 => { return item1._id === item._id }).length > 0 ? <DeleteBtn update={props.update} removeSold={props.removeSold} id={item._id} /> :
                                             <WishBtn item={item} update={props.update}/> : null
                                     }
 

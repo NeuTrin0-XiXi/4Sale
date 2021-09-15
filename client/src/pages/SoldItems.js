@@ -7,14 +7,14 @@ import Spinner from '../components/Spinner';
 function Buy(props) {
     const { user } = props;
     const [loading, setLoading] = useState(true);
-    const [items, setItems] = useState(user.soldItems);
+    const [items, setItems] = useState(user.ads);
 
     useEffect(() => {
         if (!props.loading) {
-            setItems(user.soldItems);
+            setItems(user.ads);
             setLoading(false);
         }
-    }, [user.soldItems, props.loading]);
+    }, [user.ads, props.loading]);
 
     return (
         loading ? <Spinner /> :

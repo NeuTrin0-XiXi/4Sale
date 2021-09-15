@@ -37,14 +37,11 @@ function App(props) {
     useEffect(() => {
         if (auth) {
             socket.current.emit('join', user.email);
-            console.log("joined");
 
             socket.current.on('notification', (notif) => {
-                console.log(notif)
                 addNotif.current(notif)
                 toast.success(notif.userName + ' ' + notif.message + ' ' + notif.itemTitle)
             });
-            console.log("listening");
         }
     }, [auth, user.email, addNotif]);
 

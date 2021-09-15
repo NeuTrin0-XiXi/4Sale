@@ -25,7 +25,7 @@ const Item = require('../db/models').itemModel;
 // route.get('/sold/:id', (req, res, next) => {
 //     User.findById(req.params.id)
 //         .then(user => {
-//             Item.find({ _id: { $in: user.soldItems } })
+//             Item.find({ _id: { $in: user.ads } })
 //                 .select('price title images')
 //                 .sort({ date: 'desc' })
 //                 .then(items => {
@@ -58,13 +58,13 @@ route.get('/orders/:id', (req, res, next) => {
 //SOLD and Item:
 route.put('/sold/:id', (req, res, next) => {
     User.updateOne({ _id: req.params.id },
-        { "$push": { "soldItems": req.body.sold } }
+        { "$push": { "ads": req.body.sold } }
     )
         .then(() => {
             User.findById(req.params.id)
-                .select('soldItems')
+                .select('ads')
                 .then(user => {
-                    Item.find({ _id: { $in: user.soldItems } })
+                    Item.find({ _id: { $in: user.ads } })
                         .select('title images price')
                         .then(items => {
                             res.send(items);
@@ -203,11 +203,11 @@ route.put('/:id', (req, res, next) => {
 //Deleted an Ad
 route.delete('/sold/:id', (req, res, next) => {
     User.updateOne({ _id: req.params.id },
-        { "$pull": { "soldItems": req.body.sold } }
+        { "$pull": { "ads": req.body.sold } }
     )
         .then(() => {
             User.findById(req.params.id)
-                .select('soldItems')
+                .select('ads')
                 .then(user => {
                     res.status(204).end();
                 })

@@ -5,7 +5,7 @@ const initialState = {
         name: '',
         notifications: [],
         imageUrl: '',
-        soldItems: [],
+        ads: [],
         _id: '',
         mobile: 0,
         orders: []
