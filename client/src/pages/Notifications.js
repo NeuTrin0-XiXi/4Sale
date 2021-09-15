@@ -48,6 +48,9 @@ function Notifications(props) {
             .then(res => {
                 toast.success('Deleted Successfully')
             })
+            .catch(err => {
+                toast.error('Something went wrong')
+            })
     };
 
     const handleApprove = (buyerEmail, itemTitle, itemId, buyerName) => {
@@ -64,11 +67,10 @@ function Notifications(props) {
             }
         })
             .then(res => {
-                const newUser = {
+                Update({
                     ...user,
                     notifications: res.data.notifications
-                }
-                Update(newUser)
+                })
                 toast.success(`${res.data.msg} ${buyerName}`)
             })
             .catch(err => {

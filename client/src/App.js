@@ -9,31 +9,44 @@ import io from 'socket.io-client';
 import { useEffect, useRef } from 'react';
 
 function App(props) {
-    const { user, Update, auth } = props
-    const { notifications } = props.user;
+    const { user, Update, auth, loading } = props;
+    const { notifications } = props.user
 
     const socket = useRef(null);
+    const notifs = useRef(notifications);
+    const addNotif = useRef(null);
+
     useEffect(() => {
         const ENDPOINT = 'https://iitisoc-4sale.herokuapp.com/';
         socket.current = io(ENDPOINT, { transports: ['websocket', 'polling'] });
     }, []);
 
     useEffect(() => {
-        if (auth) {
-            socket.current.emit('join', user.email, () => {
-                socket.current.on('notification', (notif) => {
-                    console.log(notif)
-                    Update({
-                        ...user,
-                        notifications: [...notifications, notif]
-                    })
-                    toast.success(notif.userName + ' ' + notif.message + ' ' + notif.itemTitle)
-                });
-            });
-            console.log(`connected to ${user.email}`)
+        addNotif.current = notif => {
+            Update({
+                ...user,
+                notifications: [...notifs.current, notif]
+            })
         }
-    }, [auth, user.email]);
+    }, [user, Update])
 
+    useEffect(() => {
+        notifs.current = notifications;
+    }, [loading, notifications])
+
+    useEffect(() => {
+        if (auth) {
+            socket.current.emit('join', user.email);
+            console.log("joined");
+
+            socket.current.on('notification', (notif) => {
+                console.log(notif)
+                addNotif.current(notif)
+                toast.success(notif.userName + ' ' + notif.message + ' ' + notif.itemTitle)
+            });
+            console.log("listening");
+        }
+    }, [auth, user.email, addNotif]);
 
     // const socket = useRef(null);
     // useEffect(() => {
@@ -88,7 +101,8 @@ function App(props) {
 const mapStateToProps = (state) => {
     return {
         user: state.user,
-        auth: state.Authorised
+        auth: state.Authorised,
+        loading: state.loading
     }
 };
 
