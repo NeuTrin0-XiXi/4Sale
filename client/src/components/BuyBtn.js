@@ -36,6 +36,10 @@ function BuyBtn(props) {
                         })
                     toast.success(res.data);
                 })
+                .catch(err => {
+                    toast.error("Failed to notify seller");
+                    console.log(err.message)
+                })
         }
         else {
             toast.error("Please Login first ");

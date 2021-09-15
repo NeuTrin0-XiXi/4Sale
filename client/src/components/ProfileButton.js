@@ -38,6 +38,9 @@ function ProfileButton(props) {
             }
             props.Update(newUser);
             axios.put(`/api/user/notifbell/${props.user._id}`)
+                .catch(err => {
+                    console.log(err.message);
+                })
         }
     }
     if (props.Auth) {

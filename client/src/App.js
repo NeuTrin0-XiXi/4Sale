@@ -45,35 +45,6 @@ function App(props) {
         }
     }, [auth, user.email, addNotif]);
 
-    // const socket = useRef(null);
-    // useEffect(() => {
-    //     const ENDPOINT = 'https://iitisoc-4sale.herokuapp.com/';
-    //     socket.current = io(ENDPOINT, { transports: ['websocket', 'polling'] });
-    //     console.log("connection")
-    // }, [])
-
-    // useEffect(() => {
-    //     if (auth && socket.current !== null) {
-    //         socket.current.emit('join', user.email);
-    //         console.log("Connected to room: " + user.email)
-    //     }
-    // }, [auth, user.email]);
-
-    // useEffect(prevProps => {
-    //     if (socket.current !== null) {
-    //         socket.current.on('notification', (notif) => {
-    //             console.log(notif);
-    //             if (user.email !== '') {
-    //                 Update({
-    //                     ...user,
-    //                     notifications: [...notifications, notif]
-    //                 })
-    //                 toast.success(notif.userName + ' ' + notif.message + ' ' + notif.itemTitle)
-    //             }
-    //         })
-    //     }
-    // })
-
     return (
         <>
             <Navbar />

@@ -7,7 +7,6 @@ import Spinner from '../components/Spinner';
 
 function Search() {
     const { query } = useParams()
-    console.log(query)
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true)
     const [err, setErr] = useState(false)
@@ -20,6 +19,7 @@ function Search() {
                 setLoading(false)
             })
             .catch(err => {
+                console.log(err);
                 setLoading(false)
                 setErr(true)
             })
@@ -42,7 +42,7 @@ function Search() {
                     <h1 className='text-center' >Results for {query}: </h1>
                 </div>
                 <div>
-                    <ItemList items={items} update={update} removeSold={true}/>
+                    <ItemList items={items} update={update} removeSold={true} />
                 </div>
             </>
         )

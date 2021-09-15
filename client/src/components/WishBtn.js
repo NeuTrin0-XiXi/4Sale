@@ -35,6 +35,9 @@ const WishBtn = (props) => {
                     favourite: item._id
                 }
             })
+            .catch(err=>{
+                console.log(err)
+            })
         }
 
         function Contains(_id) {

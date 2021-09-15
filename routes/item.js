@@ -11,7 +11,7 @@ const { uploadToCloudinary, parseImage, removeFromCloudinary } = require('../con
 //GET Handlers:      
 //GET all items:
 route.get('/', (req, res, next) => {
-    Item.find({})
+    Item.find({ sold: false })
         .sort({ date: 'desc' })
         .select('title price images approved categories')
         .then((item) => {
@@ -24,6 +24,7 @@ route.get('/', (req, res, next) => {
 route.get('/search', (req, res, next) => {
     const { name } = req.query;
     Item.find({
+        sold: false,
         $or: [
             { title: { $regex: name, $options: 'i' } },
             { categories: { $regex: name, $options: 'i' } },
@@ -43,7 +44,7 @@ route.get('/search', (req, res, next) => {
 //----------------------------------------------------//
 //GET Items from Filters:                           
 route.get('/filter', (req, res, next) => {
-    Item.find(req.query)
+    Item.find({ categories: req.query.categories, sold: false })
         .select('title price images approved')
         .then((item) => {
             res.status(200).send(item);
