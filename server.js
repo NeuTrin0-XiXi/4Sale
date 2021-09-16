@@ -21,16 +21,17 @@ mongoose.connect(mongoURI)
         console.log(err.message);
     });
 
+//CORS middleware
+app.use(cors({
+    origin: 'https://iitisoc-4sale.herokuapp.com/',
+    methods: ['GET', 'PUT', 'POST', 'DELETE']
+}));
 
 //bodyParser middleware 
 app.use(express.json());
 
-//CORS middleware
-app.use(cors({
-    origin: '*'
-}));
 
-//Using the API routes
+//API
 app.use('/api', require('./api_routes'));
 
 // Static files
