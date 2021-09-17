@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
 const mongoURI = process.env.MONGO_URI;
-const cors = require('cors');
+// const cors = require('cors');
 
 
 //connection to DB
@@ -12,7 +12,8 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useCreateIndex', true);
 
-mongoose.connect(mongoURI)
+mongoose.connect("mongodb://localhost:27017/4sale")
+    // mongoose.connect(mongoURI)
     .then(res => {
         console.log("mongoDB connected...");
     })
@@ -22,10 +23,10 @@ mongoose.connect(mongoURI)
     });
 
 //CORS middleware
-app.use(cors({
-    origin: 'https://iitisoc-4sale.herokuapp.com/',
-    methods: ['GET', 'PUT', 'POST', 'DELETE']
-}));
+// app.use(cors({
+//     origin: 'http://localhost:5000',
+//     methods: ['GET', 'PUT', 'POST', 'DELETE']
+// }));
 
 //bodyParser middleware 
 app.use(express.json());
