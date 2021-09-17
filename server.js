@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
 const mongoURI = process.env.MONGO_URI;
-// const cors = require('cors');
+const cors = require('cors');
 
 
 //connection to DB
