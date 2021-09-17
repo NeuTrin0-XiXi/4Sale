@@ -22,10 +22,9 @@ mongoose.connect(mongoURI)
     });
 
 //CORS middleware
-// app.use(cors({
-//     origin: 'http://localhost:5000',
-//     methods: ['GET', 'PUT', 'POST', 'DELETE']
-// }));
+app.use(cors({
+    methods: ['GET', 'PUT', 'POST', 'DELETE']
+}));
 
 //bodyParser middleware 
 app.use(express.json());
