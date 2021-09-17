@@ -23,6 +23,7 @@ mongoose.connect(mongoURI)
 
 //CORS middleware
 app.use(cors({
+    origin: 'https://iitisoc-4sale.herokuapp.com/',
     methods: ['GET', 'PUT', 'POST', 'DELETE']
 }));
 
