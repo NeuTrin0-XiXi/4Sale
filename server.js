@@ -12,8 +12,7 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useCreateIndex', true);
 
-mongoose.connect("mongodb://localhost:27017/4sale")
-    // mongoose.connect(mongoURI)
+mongoose.connect(mongoURI)
     .then(res => {
         console.log("mongoDB connected...");
     })
