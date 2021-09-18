@@ -7,10 +7,22 @@ import ScrollToTop from './components/ScrollToTop';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
 import { useEffect, useRef } from 'react';
+import axios from 'axios';
 
 function App(props) {
-    const { user, Update, auth, loading } = props;
+    const { user, Update, auth, loading, accessToken } = props;
     const { notifications } = props.user
+
+    if (accessToken) {
+        axios.interceptors.request.use(
+            config => {
+                config.headers.authorization = `Bearer ${accessToken}`;
+                return config;
+            },
+            err => {
+                return Promise.reject(err);
+            });
+    }
 
     const socket = useRef(null);
     const notifs = useRef(notifications);
@@ -70,7 +82,8 @@ const mapStateToProps = (state) => {
     return {
         user: state.user,
         auth: state.Authorised,
-        loading: state.loading
+        loading: state.loading,
+        accessToken: state.accessToken
     }
 };
 

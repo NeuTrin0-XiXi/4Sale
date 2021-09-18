@@ -21,7 +21,8 @@ function LoginButton(props) {
             googleToken: res.tokenId
         })
             .then(res => {
-                const { favourites, ads, _id, notifications, mobile, orders } = res.data;
+                const { favourites, ads, _id, notifications, mobile, orders } = res.data.user;
+                const { accessToken } = res.data;
 
                 user.favourites = favourites;
                 user.ads = ads;
@@ -29,7 +30,7 @@ function LoginButton(props) {
                 user._id = _id;
                 user.mobile = mobile
                 user.orders = orders
-                props.login({ user: user, loading: false });
+                props.login({ user: user, loading: false, accessToken: accessToken });
             })
     };
 
@@ -55,8 +56,8 @@ function LoginButton(props) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (user) => {
-            dispatch({ type: 'SET_USER', payload: user })
+        login: (data) => {
+            dispatch({ type: 'SET_USER', payload: data })
         },
         loading: (value) => {
             dispatch({ type: 'SET_LOADING', payload: value })

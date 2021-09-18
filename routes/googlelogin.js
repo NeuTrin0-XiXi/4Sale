@@ -1,10 +1,11 @@
 const express = require('express');
 const route = express.Router();
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 // const expressJWT = require('express-jwt');
 const { OAuth2Client } = require('google-auth-library');
 const User = require('../db/models').userModel;
 const Item = require('../db/models').itemModel;
+const genToken = require('../config/auth').genToken;
 
 const client = new OAuth2Client("1059582039946-3rije6k0k92ertj2utffkrvdjjgdrkm0.apps.googleusercontent.com");
 
@@ -18,20 +19,24 @@ route.post('/', (req, res, next) => {
             .then(items => {
                 user1.favourites = items
             })
+            .catch(next);
+
         await Item.find({ _id: { $in: user.ads } })
             .select('price title images')
             .sort({ date: 'desc' })
             .then(items => {
                 user1.ads = items;
-            });
-        res.status(200).send(user1);
+            })
+            .catch(next);
+
+        // genToekn({ email: user.email })
+        const accessToken = genToken({ email: user.email, id: user._id })
+        res.status(200).send({ user: user1, accessToken });
     };
 
     function createdAndSend(user) {
-        res.status(200).send(user);
-    };
-    function error() {
-        next();
+        const accessToken = genToken({ email: user.email, id: user._id })
+        res.status(200).send({ user: user, accessToken });
     };
 
     //Main function
@@ -50,10 +55,10 @@ route.post('/', (req, res, next) => {
                                 })
                         }
                     })
-                    .catch(next);      //Error handeling
+                    .catch(next);
             }
             else {
-                error();
+                next();
             }
         })
         .catch(next);

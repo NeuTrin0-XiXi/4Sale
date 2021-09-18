@@ -30,6 +30,7 @@
         "express": "^4.17.1",
         "express-fileupload": "^1.2.1",
         "google-auth-library": "^7.6.2",
+        "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.13.7",
         "nodemon": "^2.0.12",
         "socket.io": "^4.2.0"

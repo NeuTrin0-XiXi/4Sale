@@ -5,6 +5,7 @@ const route = express.Router();
 const fileUpload = require('express-fileupload');
 const LostFound = require('../db/models').LostFoundModel;
 const User = require('../db/models').userModel;
+const authToken = require('../config/auth').authToken;
 const { uploadToCloudinary, parseImage, removeFromCloudinary } = require('../config/cloudinary-config')
 
 //API handlers
@@ -46,31 +47,35 @@ route.get('/', (req, res, next) => {
 //Middleware:
 route.use(fileUpload());
 //POST Handler:
-route.post('/', parseImage, async (req, res, next) => {
+route.post('/', authToken, parseImage, async (req, res, next) => {
     try {
-        let itemBody = {
-            title: req.body.title,
-            description: req.body.description,
-            userName: req.body.userName,
-            userEmail: req.body.userEmail,
-            status: req.body.status
-        }
+        if (req.auth.email === req.body.userEmail) {
+            let itemBody = {
+                title: req.body.title,
+                description: req.body.description,
+                userName: req.body.userName,
+                userEmail: req.body.userEmail,
+                status: req.body.status
+            }
 
-        if (req.files) {
-            let imageLinks = {};
-            let uploadedUrl = await uploadToCloudinary(req.files.encodedUri[0])
-            imageLinks = {
-                url: uploadedUrl.url,
-                public_id: uploadedUrl.public_id
-            };
-            itemBody['images'] = imageLinks
-        }
+            if (req.files) {
+                let imageLinks = {};
+                let uploadedUrl = await uploadToCloudinary(req.files.encodedUri[0])
+                imageLinks = {
+                    url: uploadedUrl.url,
+                    public_id: uploadedUrl.public_id
+                };
+                itemBody['images'] = imageLinks
+            }
 
-        LostFound.create(itemBody)
-            .then((item) => {
-                res.status(201).send(item);
-            })
-            .catch(next);
+            LostFound.create(itemBody)
+                .then((item) => {
+                    res.status(201).send(item);
+                })
+                .catch(next);
+        } else {
+            res.status(403).end();
+        }
     } catch (err) {
         next(err);
     }
@@ -80,47 +85,51 @@ route.post('/', parseImage, async (req, res, next) => {
 //--------------------------------------------------------------------------//
 //Send a Claim Notification 
 route.put('/notify/:id', (req, res, next) => {
-    LostFound.findById(req.params.id)
-        .then((item) => {
-            LostFound.updateOne({ _id: req.params.id },
-                { $set: { claimed: true } }
-            )
-                .catch(next);
+    if (req.auth.id === req.params.id) {
+        LostFound.findById(req.params.id)
+            .then((item) => {
+                LostFound.updateOne({ _id: req.params.id },
+                    { $set: { claimed: true } }
+                )
+                    .catch(next);
 
-            User.findOne({
-                email: item.userEmail,
-                notifications: {
-                    $elemMatch: {
-                        message: req.body.notification.message,
-                        userEmail: req.body.notification.userEmail
-                    }
-                }
-            })
-                .then(user => {
-                    if (user != null) {
-                        res.status(200).send(`Already notified ${item.userName}`);
-                    } else {
-                        req.body.notification.read = false;
-                        req.body.notification._id = new mongoose.Types.ObjectId();
-
-                        const io = require('../config/socket').get();
-                        io.to(item.userEmail).emit('notification', req.body.notification)
-
-                        User.updateOne({ email: item.userEmail },
-                            { "$push": { "notifications": req.body.notification } },
-                        )
-                            .then(() => {
-                                res.status(200).send({
-                                    item,
-                                    message: `Notified ${item.userName}`
-                                });
-                            })
-                            .catch(next);
+                User.findOne({
+                    email: item.userEmail,
+                    notifications: {
+                        $elemMatch: {
+                            message: req.body.notification.message,
+                            userEmail: req.body.notification.userEmail
+                        }
                     }
                 })
-                .catch(next);
-        })
-        .catch(next);
+                    .then(user => {
+                        if (user != null) {
+                            res.status(200).send(`Already notified ${item.userName}`);
+                        } else {
+                            req.body.notification.read = false;
+                            req.body.notification._id = new mongoose.Types.ObjectId();
+
+                            const io = require('../config/socket').get();
+                            io.to(item.userEmail).emit('notification', req.body.notification)
+
+                            User.updateOne({ email: item.userEmail },
+                                { "$push": { "notifications": req.body.notification } },
+                            )
+                                .then(() => {
+                                    res.status(200).send({
+                                        item,
+                                        message: `Notified ${item.userName}`
+                                    });
+                                })
+                                .catch(next);
+                        }
+                    })
+                    .catch(next);
+            })
+            .catch(next);
+    } else {
+        res.status(403).end();
+    }
 })
 
 
@@ -143,18 +152,22 @@ route.put('/notify/:id', (req, res, next) => {
 
 //Delete a posted item                              
 route.delete('/:id', async (req, res, next) => {
-    await LostFound.findById(req.params.id)
-        .select('images')
-        .then(item => {
-            if (item) {
-                removeFromCloudinary(item.images.public_id);
-            }
-        });
-    LostFound.deleteOne({ _id: req.params.id })
-        .then(() => {
-            res.status(200).send(`Your Ad has been removed`);
-        })
-        .catch(next);
+    if (req.auth.id === req.params.id) {
+        await LostFound.findById(req.params.id)
+            .select('images')
+            .then(item => {
+                if (item) {
+                    removeFromCloudinary(item.images.public_id);
+                }
+            });
+        LostFound.deleteOne({ _id: req.params.id })
+            .then(() => {
+                res.status(200).send(`Your Ad has been removed`);
+            })
+            .catch(next);
+    } else {
+        res.status(403).end();
+    }
 });
 
 

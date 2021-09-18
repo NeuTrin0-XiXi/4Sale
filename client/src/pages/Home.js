@@ -56,6 +56,7 @@ class Home extends Component {
                 })
             })
             .catch(err => {
+                console.log(err);
                 this.setState({
                     ...this.state,
                     error: true,

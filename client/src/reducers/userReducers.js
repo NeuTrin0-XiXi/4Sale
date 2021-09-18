@@ -11,7 +11,8 @@ const initialState = {
         orders: []
     },
     Authorised: false,
-    loading: true
+    loading: true,
+    accessToken: null
 }
 
 const userReducers = (state = initialState, action) => {
@@ -20,18 +21,21 @@ const userReducers = (state = initialState, action) => {
             return {
                 user: action.payload.user,
                 Authorised: true,
-                loading: action.payload.loading
+                loading: action.payload.loading,
+                accessToken: action.payload.accessToken
             };
 
         case 'CLEAR_USER':
             return {
                 user: initialState.user,
                 Authorised: false,
-                loading: false
+                loading: false,
+                accessToken: null
             };
 
         case 'UPDATE_USER':
             return {
+                ...state,
                 user: action.payload,
                 Authorised: true,
                 loading: false

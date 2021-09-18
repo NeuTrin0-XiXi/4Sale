@@ -30,9 +30,9 @@ function DeleteBtn(props) {
 
                 axios({
                     method: 'DELETE',
-                    url: `/api/user/sold/${user._id}`,
+                    url: `/api/user/ads/${user._id}`,
                     data: {
-                        sold: id
+                        ads: id
                     }
                 })
                     .then(() => {

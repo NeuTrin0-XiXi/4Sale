@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
 const mongoURI = process.env.MONGO_URI;
-const cors = require('cors');
+// const cors = require('cors');
 
 
 //connection to DB
@@ -22,10 +22,10 @@ mongoose.connect(mongoURI)
     });
 
 //CORS middleware
-app.use(cors({
-    origin: 'https://iitisoc-4sale.herokuapp.com/',
-    methods: ['GET', 'PUT', 'POST', 'DELETE']
-}));
+// app.use(cors({
+//     origin: 'https://iitisoc-4sale.herokuapp.com/',
+//     methods: ['GET', 'PUT', 'POST', 'DELETE']
+// }));
 
 //bodyParser middleware 
 app.use(express.json());
@@ -48,7 +48,6 @@ app.use((err, req, res, next) => {
     console.log(err.message);
     res.status(500).send("Something went wrong...");
 })
-
 
 
 
