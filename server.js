@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === 'production') {
 //Error handling
 app.use((err, req, res, next) => {
     console.log(err.message);
-    res.status(500).send({ msg: "Something went wrong...", err: err.message });
+    res.status(500).send("Something went wrong...");
 })
 
 
