@@ -13,6 +13,7 @@ function DeleteBtn(props) {
     const Delete = () => {
         axios.delete(`/api/items/${id}`)
             .then(res => {
+                toast.success("Ad deleted successfully")
                 if (toHome) {
                     props.history.push('/');
                 }
@@ -27,17 +28,6 @@ function DeleteBtn(props) {
                     notifications: [...res.data]
                 }
                 props.Update(newUser);
-
-                axios({
-                    method: 'DELETE',
-                    url: `/api/user/ads/${user._id}`,
-                    data: {
-                        ads: id
-                    }
-                })
-                    .then(() => {
-                        toast.success("Ad deleted successfully")
-                    })
             })
             .catch(err => {
                 console.log(err.message);

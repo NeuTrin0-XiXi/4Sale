@@ -17,9 +17,10 @@ const WishBtn = (props) => {
             };
             newUser.favourites.push(item)
             props.Update(newUser);
-            axios.put(`/api/user/favourites/${user._id}`, {
-                favourite: item._id
-            })
+            axios.put(`/api/user/favourites/${item._id}`)
+                .catch(err => {
+                    console.log(err);
+                })
         };
 
         const removeFavourite = (item) => {
@@ -28,16 +29,10 @@ const WishBtn = (props) => {
                 favourites: user.favourites.filter(item1 => item1._id !== item._id)
             };
             props.Update(newUser);
-            axios({
-                method: 'DELETE',
-                url: `/api/user/favourites/${user._id}`,
-                data: {
-                    favourite: item._id
-                }
-            })
-            .catch(err=>{
-                console.log(err)
-            })
+            axios.delete(`/api/user/favourites/${item._id}`)
+                .catch(err => {
+                    console.log(err)
+                })
         }
 
         function Contains(_id) {

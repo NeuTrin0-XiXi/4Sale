@@ -37,7 +37,7 @@ function ProfileButton(props) {
                 notifications: newNotifs
             }
             props.Update(newUser);
-            axios.put(`/api/user/notifbell/${props.user._id}`)
+            axios.put(`/api/user/notifbell`)
                 .catch(err => {
                     console.log(err.message);
                 })

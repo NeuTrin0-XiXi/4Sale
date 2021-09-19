@@ -75,9 +75,10 @@ route.get('/:id', (req, res, next) => {
 //Middleware:
 route.use(fileUpload());
 //POST Handler:
-route.post('/', authToken, parseImage, async (req, res, next) => {
-    try {
-        if (req.auth.email === req.body.userEmail) {
+route.post('/', authToken, parseImage, (req, res, next) => {
+    User.findOne({ email: req.auth.email })
+        .select('name')
+        .then(async user => {
             const { body } = req;
             let setCategories = [];
             let index = 0;
@@ -102,64 +103,70 @@ route.post('/', authToken, parseImage, async (req, res, next) => {
                 title: req.body.title,
                 description: req.body.description,
                 price: req.body.price,
-                userName: req.body.userName,
-                userEmail: req.body.userEmail,
+                userName: user.name,
+                userEmail: req.auth.email,
                 categories: setCategories,
                 images: imageLinks
             }
             Item.create(itemBody)
                 .then((item) => {
+                    User.updateOne({ _id: req.auth.id },
+                        { "$push": { "ads": item._id } }
+                    )
+                        .catch(next);
+
                     res.status(201).send(item);
                 })
                 .catch(next);
-        } else {
-            res.status(403).end();
-        }
-    } catch (err) {
-        next(err);
-    }
+        })
+        .catch(next);
 });
 
 //--------------------------------------------------------------------------//
 //Send a Buy-Sell Notification 
-route.put('/notify/:id', authToken, (req, res, next) => {
+route.put('/buy/:id', authToken, (req, res, next) => {
     Item.findById(req.params.id)
-        .select('userEmail userName')
+        .select('userEmail userName title')
         .then((item) => {
-            if (req.auth.email === item.userEmail) {
-                User.findOne({
-                    email: item.userEmail,
-                    notifications: {
-                        $elemMatch: {
-                            message: req.body.notification.message,
-                            userEmail: req.body.notification.userEmail
-                        }
+            User.findOne({
+                email: item.userEmail,
+                notifications: {
+                    $elemMatch: {
+                        message: req.body.notification.message,
+                        userEmail: req.auth.email,
+                        itemTitle: item.title
+                    }
+                }
+            })
+                .then(user => {
+                    if (user != null) {
+                        res.status(200).send(`Already notified ${item.userName}`);
+                    } else {
+                        User.findById(req.auth.id)
+                            .then(user1 => {
+                                req.body.notification['userName'] = user1.name;
+                                req.body.notification['userEmail'] = req.auth.email;
+                                req.body.notification.read = false;
+                                req.body.notification._id = new mongoose.Types.ObjectId();
+
+                                const io = require('../config/socket').get();
+                                io.to(item.userEmail).emit('notification', req.body.notification)
+
+                                User.updateOne({ email: item.userEmail },
+                                    { "$push": { "notifications": req.body.notification } },
+                                )
+                                    .then(() => {
+                                        User.updateOne({ _id: req.auth.id },
+                                            { "$push": { "orders": { _id: req.params.id } } }
+                                        )
+                                            .then(() => {
+                                                res.status(200).send(`Notified ${item.userName}`);
+                                            })
+                                    })
+                            })
                     }
                 })
-                    .then(user => {
-                        if (user != null) {
-                            res.header("Access-Control-Allow-Origin", "*");
-                            res.status(200).send(`Already notified ${item.userName}`);
-                        } else {
-                            req.body.notification.read = false;
-                            req.body.notification._id = new mongoose.Types.ObjectId();
-
-                            const io = require('../config/socket').get();
-                            io.to(item.userEmail).emit('notification', req.body.notification)
-
-                            User.updateOne({ email: item.userEmail },
-                                { "$push": { "notifications": req.body.notification } },
-                            )
-                                .then(() => {
-                                    res.status(200).send(`Notified ${item.userName}`);
-                                })
-
-                        }
-                    })
-                    .catch(next);
-            } else {
-                res.status(403).end();
-            }
+                .catch(next);
         })
         .catch(next);
 })
@@ -189,22 +196,29 @@ route.put('/:id', authToken, (req, res, next) => {
 route.delete('/:id', authToken, (req, res, next) => {
     Item.findById(req.params.id)
         .select('images userEmail')
-        .then(item => {
+        .then(async item => {
             if (req.auth.email === item.userEmail) {
+
                 for (let image of item.images) {
-                    removeFromCloudinary(image.public_id)
+                    await removeFromCloudinary(image.public_id)
+                        .then(() => {
+                            console.log("removed")
+                        })
                         .catch(next);
                 };
 
-                User.updateOne({ email: item.userEmail },
-                    { "$pull": { notifications: { itemId: req.params.id } } }
-                )
+                Item.deleteOne({ _id: req.params.id })
                     .then(() => {
-                        User.findOne({ email: item.userEmail })
-                            .select('notifications')
-                            .then(user => {
-                                Item.deleteOne({ _id: req.params.id })
-                                    .then(() => {
+                        User.updateOne({ _id: req.auth.id },
+                            {
+                                "$pull": { notifications: { itemId: req.params.id } },
+                                "$pull": { ads: req.params.id }
+                            }
+                        )
+                            .then(() => {
+                                User.findById(req.auth.id)
+                                    .select('notifications')
+                                    .then(user => {
                                         res.status(200).send(user.notifications);
                                     })
                                     .catch(next);
@@ -217,7 +231,6 @@ route.delete('/:id', authToken, (req, res, next) => {
             }
         })
         .catch(next);
-
 });
 
 

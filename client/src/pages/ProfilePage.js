@@ -7,7 +7,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 function EditProfile(props) {
-    const { name, email, imageUrl, mobile, _id } = props.user
+    const { name, email, imageUrl, mobile } = props.user
     const [mobileInput, setMobileInput] = useState('')
     const [visibility, setVisibility] = useState(false)
     const inputRef = useRef()
@@ -18,7 +18,7 @@ function EditProfile(props) {
     const handleSubmit = (e) => {
         setVisibility(!visibility)
         e.preventDefault();
-        axios.put(`/api/user/${_id}`, {
+        axios.put(`/api/user`, {
             mobile: mobileInput
         })
             .then(res => {

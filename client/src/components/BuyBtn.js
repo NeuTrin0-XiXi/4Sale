@@ -9,31 +9,24 @@ function BuyBtn(props) {
     const { id } = props;
     const handleBuy = () => {
         if (auth) {
-            axios.put(`/api/items/notify/${id}`, {
+            axios.put(`/api/items/buy/${id}`, {
                 notification: {
                     message: "wants to buy",
                     itemTitle: props.title,
-                    userName: user.name,
-                    userEmail: user.email,
                     mobile: user.mobile,
                     dp: user.imageUrl,
                     itemId: id
                 }
             })
                 .then(res => {
-                    axios.put(`/api/user/order/${user._id}`, {
-                        order: id
-                    })
-                        .then(res => {
-                            const newUser = {
-                                ...user,
-                                orders: [
-                                    ...user.orders,
-                                    { _id: id, success: false }
-                                ]
-                            };
-                            props.Update(newUser);
-                        })
+                    const newUser = {
+                        ...user,
+                        orders: [
+                            { success: false, _id: id },
+                            ...user.orders
+                        ]
+                    };
+                    props.Update(newUser);
                     toast.success(res.data);
                 })
                 .catch(err => {

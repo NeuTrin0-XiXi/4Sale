@@ -35,28 +35,18 @@ function Sell(props) {
         const formData = e.target;
         const newItem = new FormData(formData);
         newItem.append('userName', user.name);
-        newItem.append('userEmail', user.email);
 
         axios.post('/api/items', newItem)
             .then(res => {
                 setPosting(false)
                 toast.success(`Posted Ad for ${res.data.title}`);
                 history.push('/');
-                axios.put(`/api/user/sold/${user._id}`, {
-                    sold: res.data._id
-                })
-                    .then((res) => {
-                        const newUser = {
-                            ...user,
-                            ads: res.data
-                        }
-                        Update(newUser);
-                    })
-                    .catch(err => {
-                        setPosting(false)
-                        console.log(err);
-                        toast.error("Failed to post");
-                    });
+                
+                const newUser = {
+                    ...user,
+                    ads: [res.data, ...user.ads]
+                }
+                Update(newUser);
             })
             .catch(err => {
                 setPosting(false)

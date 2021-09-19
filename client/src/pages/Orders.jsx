@@ -14,7 +14,7 @@ function Orders(props) {
 
     useEffect(() => {
         if (!props.loading) {
-            axios.get(`/api/user/orders/${user._id}`)
+            axios.get(`/api/user/orders`)
                 .then(res => {
                     setOrders(res.data)
                     setLoading(false)

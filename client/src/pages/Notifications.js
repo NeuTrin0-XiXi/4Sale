@@ -38,17 +38,11 @@ function Notifications(props) {
         }
         Update(newUser);
 
-        axios({
-            method: 'DELETE',
-            url: `/api/user/notif/${props.user._id}`,
-            data: {
-                id: _id
-            }
-        })
-            .then(res => {
+        axios.delete(`/api/user/notif/${_id}`)
+            .then(() => {
                 toast.success('Deleted Successfully')
             })
-            .catch(err => {
+            .catch(() => {
                 toast.error('Something went wrong')
             })
     };
@@ -59,8 +53,6 @@ function Notifications(props) {
             notification: {
                 message: `approved buy-request for`,
                 itemTitle: itemTitle,
-                userName: user.name,
-                userEmail: user.email,
                 mobile: user.mobile,
                 dp: user.imageUrl,
                 itemId: itemId
