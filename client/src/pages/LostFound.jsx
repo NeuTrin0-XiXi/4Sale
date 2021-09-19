@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import React, { useState, useEffect } from 'react'
-import { Button, Tab, Tabs } from 'react-bootstrap'
+import { Button, Form, InputGroup, Tab, Tabs, } from 'react-bootstrap'
 import Spinner from '../components/Spinner'
 import { withRouter } from 'react-router'
 import axios from 'axios'
 import { toast } from 'react-toastify';
-import { faCheckCircle, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle, faSearch, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function LostFound(props) {
@@ -13,19 +13,15 @@ function LostFound(props) {
     const { user, auth } = props;
     const [posting, setPosting] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [data, setData] = useState([]);
     const [lost, setLost] = useState([]);
     const [found, setFound] = useState([]);
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
         axios.get('/api/lost-found/')
             .then(res => {
-                setLost([
-                    ...res.data.filter(item => item.status === 'lost')
-                ]);
-
-                setFound([
-                    ...res.data.filter(item => item.status === 'found')
-                ]);
+                setData(res.data)
                 setLoading(false)
             })
             .catch(e => {
@@ -34,6 +30,17 @@ function LostFound(props) {
                 toast.error('Could not fetch items')
             })
     }, [])
+
+    useEffect(() => {
+        setLost(
+            data.filter(item => item.status === 'lost' && item.title.toLowerCase().includes(search.toLowerCase()))
+        );
+
+        setFound(
+            data.filter(item => item.status === 'found' && item.title.toLowerCase().includes(search.toLowerCase()))
+        );
+
+    }, [search, data])
 
     const handleClaim = (id, status, title) => {
         if (auth) {
@@ -123,6 +130,7 @@ function LostFound(props) {
                     loading ? <Spinner /> :
                         <div className="container">
                             {
+
                                 props.status.map((item) =>
                                     <div className="row my-2 gap-3 gap-md-0" key={item._id} >
                                         <div className="col-12 col-md-3 px-5">
@@ -148,7 +156,7 @@ function LostFound(props) {
                                                 <div className='col-12 col-md-2 text-center' >
                                                     {
                                                         item.userEmail === user.email ? <Button onClick={() => Delete(item._id, item.status)} variant='danger' className=''><FontAwesomeIcon icon={faTrash} className='me-1' /> Delete</Button>
-                                                            : item.claimed ? <Button disabled ><FontAwesomeIcon icon={faCheckCircle} className='me-1'/> {item.status === 'lost' ? 'Found' : 'Claimed'} </Button>
+                                                            : item.claimed ? <Button disabled ><FontAwesomeIcon icon={faCheckCircle} className='me-1' /> {item.status === 'lost' ? 'Found' : 'Claimed'} </Button>
                                                                 : <Button onClick={() => handleClaim(item._id, item.status, item.title)} > {item.status === 'lost' ? 'I found' : 'Claim'} </Button>
                                                     }
                                                 </div>
@@ -174,6 +182,29 @@ function LostFound(props) {
                     justifyContent: 'center'
                 }} ><h2 className="text-center">Posting...</h2></div> :
                     <div className="my-4 container-lg">
+                        <Form onSubmit={(e) => {
+                            e.preventDefault()
+                            setSearch(e.target.value)
+                        }} >
+                            <InputGroup>
+                                <Form.Control placeholder='Search' className='non-outlined-btn' onChange={(e) => setSearch(e.target.value)} value={search} style={{
+                                    border: '1px solid #ced4da',
+                                    borderRight: 'none'
+                                }} />
+                                <Button onClick={() => setSearch('')} variant='transparent' className='text-secondary'
+                                    style={{
+                                        border: '1px solid #ced4da',
+                                        borderLeft: 'none'
+                                    }}
+                                ><FontAwesomeIcon icon={faTimes}
+                                    style={{
+                                        opacity: search === '' ? '0' : '1'
+                                    }}
+                                    /></Button>
+                                <Button type='submit' ><FontAwesomeIcon icon={faSearch} /></Button>
+                            </InputGroup>
+
+                        </Form>
                         <Tabs
                             defaultActiveKey="lost"
                             transition={false}
