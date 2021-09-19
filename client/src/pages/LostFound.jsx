@@ -46,8 +46,6 @@ function LostFound(props) {
         if (auth) {
             let notification = {
                 itemTitle: title,
-                userName: user.name,
-                userEmail: user.email,
                 mobile: user.mobile,
                 dp: user.profilePic
             }
@@ -84,9 +82,6 @@ function LostFound(props) {
         setPosting(true)
         const formData = e.target
         const newItem = new FormData(formData)
-
-        newItem.append('userName', user.name);
-        newItem.append('userEmail', user.email);
 
         axios.post('/api/lost-found', newItem)
             .then(res => {
@@ -184,7 +179,6 @@ function LostFound(props) {
                     <div className="my-4 container-lg">
                         <Form onSubmit={(e) => {
                             e.preventDefault()
-                            setSearch(e.target.value)
                         }} >
                             <InputGroup>
                                 <Form.Control placeholder='Search' className='non-outlined-btn' onChange={(e) => setSearch(e.target.value)} value={search} style={{

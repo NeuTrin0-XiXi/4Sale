@@ -195,17 +195,21 @@ route.put('/:id', authToken, (req, res, next) => {
 //Delete a posted item                              
 route.delete('/:id', authToken, (req, res, next) => {
     Item.findById(req.params.id)
-        .select('images userEmail')
+        .select('userEmail')
         .then(async item => {
             if (req.auth.email === item.userEmail) {
-
-                for (let image of item.images) {
-                    await removeFromCloudinary(image.public_id)
-                        .then(() => {
-                            console.log("removed")
-                        })
-                        .catch(next);
-                };
+                await Item.findById(req.params.id)
+                    .select('images')
+                    .then(item => {
+                        for (let image of item.images) {
+                            removeFromCloudinary(image.public_id)
+                                .catch(err => {
+                                    console.log(err);
+                                    next();
+                                });
+                        }
+                    })
+                    .catch(next);
 
                 Item.deleteOne({ _id: req.params.id })
                     .then(() => {
