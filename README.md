@@ -5,8 +5,9 @@ A Buying and Selling portal for our IITI peeps for easy buying and selling withi
 > Site hosted [here](https://iitisoc-4sale.herokuapp.com)
 
 * Group Web11's entry for IITISoC'21
-  * [Arush Pradhan](github.com/13suk) 
-  * [Jaisurya Katla](github.com/Jaisxixi)
-  * [Kanishka Goyal](github.com/Kanishka751)
+  * [Arush Pradhan](https://github.com/13suk) 
+  * [Jaisurya Katla](https://github.com/Jaisxixi)
+  * [Suman Jaiswal](https://github.com/Suman-Jaiswal)
+  * [Kanishka Goyal](https://github.com/Kanishka751)
 * A **MERN stack** app.
 The web app is a single page application developed using **ReactJs**, and uses the **MongoAtlas** cloud  
