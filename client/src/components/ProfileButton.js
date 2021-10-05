@@ -9,6 +9,7 @@ import BellOn from '../svgs/BellOn';
 import BellOff from '../svgs/BellOff';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faCertificate, faUser, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { Nav } from 'react-bootstrap';
 
 function NotifButton(props) {
     if (props.notifications) {
@@ -22,6 +23,7 @@ function NotifButton(props) {
     }
 }
 function ProfileButton(props) {
+
     const handleBell = () => {
         if (props.notifications) {
             let newNotifs = [];
@@ -44,31 +46,27 @@ function ProfileButton(props) {
         }
     }
     if (props.Auth) {
-        return (<>
+        return (
             <div className="profile d-flex justify-content-between ">
-                <Link onClick={handleBell} to="/notifications" className='m-auto mx-2' id="notification-bell" >
-                    <NotifButton notifications={props.notifications} user={props.user} />
-                </Link>
-                {props.user.name ? <div className='mt-auto mx-3' style={{ color: 'white', margin: 'auto 0' }} >  Hi {props.user.name.slice(0, props.user.name.indexOf(' '))} </div> : null}
-                <div className="dropdown dropstart" >
-                    <button className="btn btn-transparent p-0 dropdown-toggle" style={{ borderRadius: '100%' }} type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-
-                        <img src={props.user.imageUrl} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />
-                    </button>
-                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                        <li> <Link className="dropdown-item" to="/profile"><FontAwesomeIcon className='me-2' icon={faUser} />Profile</Link></li>
-                        <li>  <Link className="dropdown-item" to="/favourites"><FontAwesomeIcon className='me-2' icon={faHeart} />Favourites</Link></li>
-                        <li>  <Link className="dropdown-item" to="/your-ads"><FontAwesomeIcon className='me-2' icon={faCertificate} />Your Ads</Link></li>
-                        <li>  <Link className="dropdown-item" to="/orders"><FontAwesomeIcon className='me-2' icon={faShoppingBag} />Your Orders</Link></li>
-                        <li><hr className="dropdown-divider" /></li>
-                        <li> <LogoutButton /></li>
-                    </ul>
-                </div>
-
+            <Nav.Link onClick={handleBell} as={Link} eventKey='12' to="/notifications" className='m-auto mx-2' id="notification-bell" >
+                <NotifButton notifications={props.notifications} user={props.user} />
+            </Nav.Link>
+            {props.user.name ? <div className='mt-auto mx-3' style={{ color: 'white', margin: 'auto 0' }} >  Hi {props.user.name.slice(0, props.user.name.indexOf(' '))} </div> : null}
+            <div className="dropdown dropstart" >
+                <button className="btn btn-transparent p-0 dropdown-toggle" style={{ borderRadius: '100%' }} type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src={props.user.imageUrl} alt="User icon" className="d-inline-block align-text-top" id="profile-image" />
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <li> <Nav.Link as={Link} eventKey='13' className="dropdown-item text-dark px-2" to="/profile"><FontAwesomeIcon className='me-2' icon={faUser} />Profile</Nav.Link></li>
+                    <li>  <Nav.Link as={Link} eventKey='14' className="dropdown-item text-dark px-2" to="/favourites"><FontAwesomeIcon className='me-2' icon={faHeart} />Favourites</Nav.Link></li>
+                    <li>  <Nav.Link as={Link} eventKey='15' className="dropdown-item text-dark px-2" to="/your-ads"><FontAwesomeIcon className='me-2' icon={faCertificate} />Your Ads</Nav.Link></li>
+                    <li>  <Nav.Link as={Link} eventKey='16' className="dropdown-item text-dark px-2" to="/orders"><FontAwesomeIcon className='me-2' icon={faShoppingBag} />Your Orders</Nav.Link></li>
+                    <li><hr className="dropdown-divider" /></li>
+                    <li> <LogoutButton /></li>
+                </ul>
             </div>
 
-
-        </>
+        </div>
         );
     } else {
         return (

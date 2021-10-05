@@ -59,7 +59,7 @@ function NavbarComponent(props) {
                     </Nav>
                     <Form className="d-flex" onSubmit={handleSubmit} style={{ height: '40px' }}>
                         <Form.Control autoCapitalize="sentences" onChange={handleChange} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <Button variant='transparent' className='text-light' size='sm' type="submit"><FontAwesomeIcon icon={faSearch} /></Button>
+                        <Nav.Link eventKey='17' as={Button} variant='transparent' className='text-light' size='sm' type="submit"><FontAwesomeIcon icon={faSearch} /></Nav.Link>
                     </Form><hr className='m-1 text-light' />
                     <Nav className='mx-2' >
                         <ProfileButton />
