@@ -38,7 +38,7 @@ function LoginButton(props) {
         console.log(res);
     }
     return (
-        <div>
+        <div className='m-auto' >
             <GoogleLogin
                 id="navLoginButton"
                 clientId={clientID}

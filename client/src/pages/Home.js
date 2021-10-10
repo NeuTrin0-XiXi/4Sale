@@ -81,11 +81,11 @@ class Home extends Component {
         return (
             <>
                 <div className='container-fluid d-flex justify-content-around mb-4 ' style={{
-                    height: '42vw', backgroundColor: '#fff',
+                    height: '25vw', backgroundColor: '#fff',
                     backgroundImage: 'url("https://www.transparenttextures.com/patterns/always-grey.png")'
                 }} >
-                    <div className="d-flex flex-column" style={{ width: '55vw', padding: '20px 10px' }}>
-                        <h1 className="" style={{ fontSize: '5vw', fontWeight: 'bold' }} >Every Purchase will be made with pleasure.</h1>
+                    <div className="d-flex flex-column" style={{ width: '75vw', padding: '20px 10px' }}>
+                        <h1 className="" style={{ fontSize: '4vw', fontWeight: 'bold' }} >Every Purchase will be made with pleasure.</h1>
                         <p style={{ fontSize: '3vw' }} >Login with Institute Id.</p>
                     </div>
                     <HomeSvg />
