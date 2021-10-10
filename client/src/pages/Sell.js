@@ -70,12 +70,12 @@ function Sell(props) {
                             <main>
 
                                 <div className='container-fluid d-flex justify-content-between mb-4 ' style={{
-                                    height: '42vw', backgroundColor: '#fff',
+                                    height: '25vw', backgroundColor: '#fff',
                                     backgroundImage: 'url("https://www.transparenttextures.com/patterns/always-grey.png")'
                                 }} >
-                                    <div className="d-flex flex-column" style={{ width: '55vw', padding: '20px 10px' }}>
-                                        <h1 className="" style={{ fontSize: '5vw', fontWeight: 'bold' }} >Want to share your belongings? </h1>
-                                        <p style={{ fontSize: '3vw' }} >Post an AD now.</p>
+                                    <div className="d-flex flex-column" style={{ width: '65vw', padding: '20px 10px' }}>
+                                        <h1 className="" style={{ fontSize: '4vw', fontWeight: 'bold' }} >Want to share your belongings? </h1>
+                                        <p style={{ fontSize: '2vw' }} >Post an AD now.</p>
                                     </div>
                                     <img src="/sell.jpg" alt="" style={{ height: 'inherit' }} />
                                 </div>
