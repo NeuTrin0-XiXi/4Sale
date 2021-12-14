@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
 const mongoURI = process.env.MONGO_URI;
-// const cors = require('cors');
 
 
 //connection to DB
@@ -21,11 +20,6 @@ mongoose.connect(mongoURI)
         console.log(err.message);
     });
 
-//CORS middleware
-// app.use(cors({
-//     origin: 'https://iitisoc-4sale.herokuapp.com/',
-//     methods: ['GET', 'PUT', 'POST', 'DELETE']
-// }));
 
 //bodyParser middleware 
 app.use(express.json());
@@ -33,6 +27,7 @@ app.use(express.json());
 
 //API
 app.use('/api', require('./api_routes'));
+
 
 // Static files
 if (process.env.NODE_ENV === 'production') {
