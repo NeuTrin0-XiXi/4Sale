@@ -1,4 +1,5 @@
 import React from 'react';
+import './Footer.css'
 // import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -19,10 +20,10 @@ const Footer = () => {
         <>
                 <div className="container-fluid " style={{backgroundColor: '#333333'}} >
                     <div className="row">
-                        <div className="col-12 col-md-3" style={column}>
+                        <div className="col-4" style={column}>
                             <span className="logo"> 4Sale</span>
                         </div>
-                        <div className = "col-12 col-md-6 text-light my-auto" style = {{ fontFamily: "Poppins", fontSize: '35px' }} >
+                        <div className = "col-8 text-light my-auto lead footer-title"  >
                             An Initiative by Student Gymkhana , IIT Indore ...
                         </div>
 {/* <div className="col-12 col-md-3" style={column}>

@@ -14,7 +14,8 @@ function NavbarComponent(props) {
     const textColor = {
         color: 'white',
         textDecoration: 'none',
-        margin: 'auto 10px'
+        margin: 'auto',
+        padding: '5px 10px'
     };
     const logoColor = {
         color: '#62c1ad',
@@ -39,29 +40,32 @@ function NavbarComponent(props) {
                 <Navbar.Collapse >
                     <Nav className="me-auto">
                         <Nav.Link eventKey='1' as={Link} style={textColor} to="/" >Home</Nav.Link><hr className='m-1 text-light' />
-                        <Nav.Link eventKey='2' as={Link}  style={textColor} to="/sell"  >Sell</Nav.Link><hr className='m-1 text-light' />
-                        <Nav.Link eventKey='3' as={Link}  style={textColor} to="/about">About</Nav.Link><hr className='m-1 text-light' />
-                        <Nav.Link eventKey='4' as={Link}  style={textColor} to="/contact">Contact</Nav.Link><hr className='m-1 text-light' />
-                        <Nav.Link eventKey='5' as={Link}  style={textColor} to="/lost-found">Lost/Found</Nav.Link><hr className='m-1 text-light' />
-                        <Dropdown style={textColor} id="collasible-nav-dropdown">
-                            <Dropdown.Toggle className='non-outlined-btn btn-warning ' >Buy</Dropdown.Toggle>
+                        <Nav.Link eventKey='5' as={Link} style={textColor} to="/lost-found">Lost/Found</Nav.Link><hr className='m-1 text-light' />
+                        <Nav.Link eventKey='2' as={Link} style={textColor} to="/sell"  >Sell</Nav.Link><hr className='m-1 text-light' />
+                        <Dropdown id="collasible-nav-dropdown">
+                            <Dropdown.Toggle className='non-outlined-btn btn-warning w-100' >Buy</Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item  eventKey='6' as={Link} to="/buy/All">All</Dropdown.Item>
-                                <Dropdown.Item  eventKey='7' as={Link} to="/buy/Sports">Sports</Dropdown.Item>
-                                <Dropdown.Item  eventKey='8' as={Link} to="/buy/Books">Books</Dropdown.Item>
-                                <Dropdown.Item  eventKey='9' as={Link} to="/buy/Games">Games</Dropdown.Item>
-                                <Dropdown.Item  eventKey='10' as={Link} to="/buy/Utilities">Utilities</Dropdown.Item>
+                                <Dropdown.Item eventKey='6' as={Link} to="/buy/All">All</Dropdown.Item>
+                                <Dropdown.Item eventKey='7' as={Link} to="/buy/Sports">Sports</Dropdown.Item>
+                                <Dropdown.Item eventKey='8' as={Link} to="/buy/Books">Books</Dropdown.Item>
+                                <Dropdown.Item eventKey='9' as={Link} to="/buy/Games">Games</Dropdown.Item>
+                                <Dropdown.Item eventKey='10' as={Link} to="/buy/Utilities">Utilities</Dropdown.Item>
                                 <NavDropdown.Divider />
-                                <Dropdown.Item  eventKey='11' as={Link} to="/buy/Other">Others</Dropdown.Item>
+                                <Dropdown.Item eventKey='11' as={Link} to="/buy/Other">Others</Dropdown.Item>
                             </Dropdown.Menu>
 
                         </Dropdown><hr className='m-1 text-light' />
+
                     </Nav>
-                    <Form className="d-flex" onSubmit={handleSubmit} style={{ height: '40px' }}>
+                    <Form className="d-flex search-bar m-auto" onSubmit={handleSubmit} >
                         <Form.Control autoCapitalize="sentences" onChange={handleChange} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <Button variant='transparent' className='text-light' size='sm' type="submit"><FontAwesomeIcon icon={faSearch} /></Button>
+                        <Nav.Link eventKey='17' as={Button} variant='transparent' className='text-light' size='sm' type="submit"><FontAwesomeIcon icon={faSearch} /></Nav.Link>
                     </Form><hr className='m-1 text-light' />
-                    <Nav className='mx-2' >
+
+
+                    <Nav className='ms-auto' >
+                        <Nav.Link eventKey='3' as={Link}  style={textColor} to="/about">About</Nav.Link><hr className='m-1 text-light' />
+                        <Nav.Link eventKey='4' as={Link} style={textColor} to="/contact">Contact</Nav.Link><hr className='m-1 text-light' />
                         <ProfileButton />
                     </Nav>
                 </Navbar.Collapse>

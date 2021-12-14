@@ -177,6 +177,8 @@ function LostFound(props) {
                     justifyContent: 'center'
                 }} ><h2 className="text-center">Posting...</h2></div> :
                     <div className="my-4 container-lg">
+                        <div className="d-flex justify-content-between" >
+                        <h4 className='text-center' >Something Lost or Found?</h4>
                         <Form onSubmit={(e) => {
                             e.preventDefault()
                         }} >
@@ -199,6 +201,8 @@ function LostFound(props) {
                             </InputGroup>
 
                         </Form>
+                        </div>
+                      
                         <Tabs
                             defaultActiveKey="lost"
                             transition={false}
