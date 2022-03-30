@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
-// import clientID from '../googleClient';
+import clientID from '../googleClient';
 
 function LoginButton(props) {
 
@@ -41,8 +41,8 @@ function LoginButton(props) {
         <div className='m-auto' >
             <GoogleLogin
                 id="navLoginButton"
-                clientId={process.env.GOOGLE_CLIENT_ID}
-                // clientId={clientID}
+                // clientId={process.env.GOOGLE_CLIENT_ID}
+                clientId={clientID}
                 buttonText="Login"
                 hostedDomain={"iiti.ac.in"}
                 onSuccess={LoginSuccess}
