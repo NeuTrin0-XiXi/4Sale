@@ -41,7 +41,6 @@ function LoginButton(props) {
         <div className='m-auto' >
             <GoogleLogin
                 id="navLoginButton"
-                // clientId={process.env.GOOGLE_CLIENT_ID}
                 clientId={clientID}
                 buttonText="Login"
                 hostedDomain={"iiti.ac.in"}
