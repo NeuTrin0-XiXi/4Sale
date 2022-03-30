@@ -12,7 +12,6 @@ import { faHeart, faCertificate, faUser, faShoppingBag } from '@fortawesome/free
 import { Nav } from 'react-bootstrap';
 
 function NotifButton(props) {
-    console.log(props.user)
     if (props.notifications) {
         return (
             <BellOn />

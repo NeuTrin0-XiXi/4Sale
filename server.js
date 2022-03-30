@@ -3,16 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
-const mongoURI = process.env.MONGO_URI;
 
 
-//connection to DB
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('useCreateIndex', true);
-
-mongoose.connect(mongoURI)
-    .then(res => {
+//Connection to DB
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
         console.log("mongoDB connected...");
     })
     .catch((err) => {
@@ -56,6 +51,5 @@ const io = require('./config/socket').init(server);
 io.on('connection', function (socket) {
     socket.on('join', function (email) {
         socket.join(email);
-        //{email:"sadads@gmail.com"}
     });
 })

@@ -1,13 +1,11 @@
 const express = require('express');
 const route = express.Router();
-const jwt = require('jsonwebtoken');
-// const expressJWT = require('express-jwt');
 const { OAuth2Client } = require('google-auth-library');
 const User = require('../db/models').userModel;
 const Item = require('../db/models').itemModel;
 const genToken = require('../config/auth').genToken;
 
-const client = new OAuth2Client("1059582039946-3rije6k0k92ertj2utffkrvdjjgdrkm0.apps.googleusercontent.com");
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 route.post('/', (req, res, next) => {
     const { googleToken } = req.body;
@@ -29,7 +27,6 @@ route.post('/', (req, res, next) => {
             })
             .catch(next);
 
-        // genToekn({ email: user.email })
         const accessToken = genToken({ email: user.email, id: user._id })
         res.status(200).send({ user: user1, accessToken });
     };
@@ -40,7 +37,7 @@ route.post('/', (req, res, next) => {
     };
 
     //Main function
-    client.verifyIdToken({ idToken: googleToken, audience: "1059582039946-3rije6k0k92ertj2utffkrvdjjgdrkm0.apps.googleusercontent.com" })
+    client.verifyIdToken({ idToken: googleToken, audience: process.env.GOOGLE_CLIENT_ID})
         .then(res => {
             const { email_verified, name, email } = res.payload;
             if (email_verified) {

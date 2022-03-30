@@ -142,10 +142,10 @@ function ProductPage(props) {
                                             <th className="pl-0 w-25" scope="row"><strong>Email:</strong></th>
                                             <td><a href={`mailto:${productDetails.userEmail}`}>{productDetails.userEmail}</a></td>
                                         </tr>
-                                        <tr>
+                                        {/* <tr>
                                             <th className="pl-0 w-25" scope="row"><strong>Room No:</strong></th>
                                             <td>512</td>
-                                        </tr>
+                                        </tr> */}
                                         <tr>
                                             <th className="pl-0 w-25" scope="row"><strong>Date:</strong></th>
                                             <td><div> {

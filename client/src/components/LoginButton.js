@@ -41,7 +41,8 @@ function LoginButton(props) {
         <div className='m-auto' >
             <GoogleLogin
                 id="navLoginButton"
-                clientId={clientID}
+                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                // clientId={clientID}
                 buttonText="Login"
                 hostedDomain={"iiti.ac.in"}
                 onSuccess={LoginSuccess}
