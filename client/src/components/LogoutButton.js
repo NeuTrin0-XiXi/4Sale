@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { Nav } from 'react-bootstrap';
 import { useHistory } from 'react-router';
-import clientID from './googleClient';
+import clientID from '../googleClient';
 
 function LogoutButton(props) {
     const history = useHistory()
