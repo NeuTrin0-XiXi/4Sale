@@ -16,7 +16,7 @@ const ContactUs = (props) => {
                                 <div className="row row-cols-sm-1 text-center" >
                                     <div className="col-12 contactInfoElement"><h4><b>Contact Information</b></h4></div>
                                     <div className="col-12 contactInfoElement"><strong>Phone no :918XXXXXXX</strong></div>
-                                    <div className="col-12 contactInfoElement"><strong>e-mail Id: 4Sale@iiti.ac.in</strong></div>
+                                    <div className="col-12 contactInfoElement"><a href="mailto:4sale@iiti.ac.in"><strong>e-mail Id: 4Sale@iiti.ac.in</strong></a></div>
                                     <div className="col-12 contactInfoElement"><strong>Location : Khandwa road, Simrol,Indore, M.P. India</strong></div>
                                 </div>
                             </div>
