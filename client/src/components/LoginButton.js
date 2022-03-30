@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
-import clientID from '../googleClient';
+// import clientID from '../googleClient';
 
 function LoginButton(props) {
 
