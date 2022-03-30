@@ -158,7 +158,7 @@ route.delete('/:id',authToken, (req, res, next) => {
         .select('images userEmail')
         .then(async item => {
             if (item.userEmail === req.auth.email) {
-                if (item) {
+                if (item.images) {
                     await removeFromCloudinary(item.images.public_id);
                 }
                 LostFound.deleteOne({ _id: req.params.id })
