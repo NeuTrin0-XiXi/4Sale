@@ -1,82 +1,70 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Card } from 'react-bootstrap';
+import "./contactUs.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPhone, faHandshake } from '@fortawesome/free-solid-svg-icons'
 
-const ContactUs = (props) => {
-    const handleSubmit = (e) => {
-        alert("This page is non-functional...");
-        e.preventDefault();
-    }
+export default function ContactUs() {
 
-    return (
-        <>
-            <div className="container my-5 bg-light " style={{borderRadius: '10px'}}>
-                <div className="row gutters">
-                    <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                        <div className="card h-100">
-                            <div className="card-body">
-                                <div className="row row-cols-sm-1 text-center" >
-                                    <div className="col-12 contactInfoElement"><h4><b>Contact Information</b></h4></div>
-                                    <div className="col-12 contactInfoElement"><strong>Phone no :918XXXXXXX</strong></div>
-                                    <div className="col-12 contactInfoElement"><a href="mailto:4sale@iiti.ac.in"><strong>e-mail Id: 4Sale@iiti.ac.in</strong></a></div>
-                                    <div className="col-12 contactInfoElement"><strong>Location : Khandwa road, Simrol,Indore, M.P. India</strong></div>
-                                </div>
-                            </div>
+useEffect(() => {
+window.scrollTo(0, 0)
+}, [])
+
+return (
+<section className='contact bg-light py-5'>
+    <div className="container text-dark">
+        <div className="h1 text-center text-success mb-3">Contact Us</div>
+        <div className="row cards">
+            <div className="col-12 col-md-6 p-3 cardbox" data-aos="fade-up">
+                <Card style={{ width: '30rem' }} className="text-center">
+                    <Card.Body>
+                        <FontAwesomeIcon className='icon' icon={faPhone} size="3x" />
+                        <Card.Title>Talk To Us
+                        </Card.Title>
+                        <Card.Text>
+                            Want to know more about IIT Indore's working?
+                        </Card.Text>
+                        <Card.Text>
+                            Akash Gupta: <span>+91 123456789</span>
+                        </Card.Text>
+
+                    </Card.Body>
+                </Card>
+            </div>
+            <div className="col-12 col-md-6 p-3 cardbox" data-aos="fade-up">
+                <Card style={{ width: '30rem' }} className="text-center">
+                    <Card.Body>
+                        <FontAwesomeIcon className='icon' icon={faHandshake} size="3x" />
+                        <Card.Title>Contact The Team
+                        </Card.Title>
+                        <Card.Text>
+                            Website developed by IIT Indore's students.
+                        </Card.Text>
+                        <Card.Text>
+                            Email: <span><a href="mailto:4sale@iiti.ac.in">4sale@iiti.ac.in</a></span>
+                        </Card.Text>
+
+                    </Card.Body>
+                </Card>
+            </div>
+            <div className="col-12 p-3 mt-5" data-aos="fade-up">
+                <div className="row my-3 text-center">
+                    <div className="h3 col-12 col-md-6 text-center">
+                        <div className="text-success mb-2">Location</div>
+                        <div className="lead">
+                            In the campus of IIT Indore, Khandwa road, Simrol
                         </div>
                     </div>
-
-                    {/* ___ */}
-
-                    <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 bg-light">
-                        <div className="card h-100">
-                            <div className="card-body bg-light">
-                                <div className="row gutters">
-                                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                        <h2 className="mb-2  text-center"><u>Contact Us</u></h2><br />
-                                    </div>
-                                    <br /><br />
-                                    <form className="d-flex flex-column bd-highlight mb-3" onSubmit={handleSubmit}>
-                                        <div className=" col-12 ">
-                                            <div className="form-group">
-                                                <label htmlFor="fullName">Full Name</label>
-                                                <input type="text" className="form-control" id="fullName" placeholder="Enter full name" />
-                                            </div>
-                                            <br />
-                                        </div>
-                                        <div className=" col-12">
-                                            <div className="form-group">
-                                                <label htmlFor="eMail">Email</label>
-                                                <input type="email" className="form-control" id="eMail" placeholder="Enter email ID" />
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div className=" col-12">
-                                            <div className="form-group">
-                                                <label htmlFor="phone">Phone</label>
-                                                <input type="text" className="form-control" id="phone" placeholder="Enter phone number" />
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div className=" col-12">
-                                            <div className="form-group">
-                                                <label htmlFor="enterMessage">Write a Message</label>
-                                                <textarea className="form-control contactUsMessage" id="message" placeholder="Enter your message here..." />
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div className="col-12">
-                                            <div className="text-center">
-                                                <button type="submit" className="btn btn-success col-md-4 customColor">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="col-12 col-md-6 p-2">
+                        <iframe title="map" className="w-75 m-0"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44173.68003234819!2d75.89840349008908!3d22.530456862910512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962efcccbce7145%3A0x784e8cb69818596b!2sIndian%20Institute%20Of%20Technology%E2%80%93Indore%20(IIT%E2%80%93Indore)!5e0!3m2!1sen!2sin!4v1646406923144!5m2!1sen!2sin"
+                            height={300} allowFullScreen loading="lazy" />
                     </div>
                 </div>
-                <br />
-            </div>
-        </>
-    )
-}
 
-export default ContactUs;
+            </div>
+        </div>
+    </div>
+</section>
+)
+}
