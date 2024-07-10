@@ -7,7 +7,7 @@ This website also has a section for lost or found items.
 
 * Group Web11's entry for IITISoC'21
   * [Arush Pradhan](https://github.com/13suk) 
-  * [Jaisurya Katla](https://github.com/Jaisxixi)
+  * [Jaisurya Katla](https://github.com/NeuTrin0-XiXi)
   * [Suman Jaiswal](https://github.com/Suman-Jaiswal)
   * [Kanishka Goyal](https://github.com/Kanishka751)
 * A **MERN stack** app.
